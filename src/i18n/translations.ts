@@ -45,7 +45,7 @@ const translations: Record<Locale, Translations> = {
     hero: {
       headline: 'Hofverwaltung,\nvon Bauern entwickelt.',
       sub: 'Open-Source Software für kleine und mittlere Betriebe. Keine Investoren, kein Lock-in — nur Werkzeuge, die wirklich funktionieren.',
-      testPhase: 'Die App befindet sich derzeit in einer Testphase — probiere sie aus und gib uns dein Feedback.',
+      testPhase: 'Die App befindet sich derzeit in einer Testphase — probiere sie aus und schick uns dein Feedback an feedback@coltivio.ch.',
       ctaIos: 'iOS TestFlight ↗',
       ctaAndroid: 'Android Beta',
     },
@@ -84,13 +84,13 @@ const translations: Record<Locale, Translations> = {
     webapp: {
       label: 'Wenn das Handy nicht das richtige Werkzeug ist — Die Web App',
       title: 'Die Desktop-Ergänzung',
-      body: 'Gleiche Daten, grösserer Bildschirm.',
+      body: 'Alle Funktionen der App — plus die oben aufgeführten.',
       contacts: { title: 'Kontaktverwaltung', desc: 'Verwalte alle Hofkontakte. Füge Labels hinzu, um zu wissen, wer sich für ein Fleischpaket interessiert oder bei der Ernte helfen möchte.' },
       orders: { title: 'Einfaches Bestellbuch', desc: 'Erfasse Bestellungen von deinen Kontakten und verfolge, ob sie geliefert und bezahlt wurden.' },
       sponsorships: { title: 'Patenschaftsverwaltung', desc: 'Verwalte deine Tierpatenschaften auf einen Blick: Wer ist Pate welches Tieres, welches Modell läuft — und ist die Zahlung eingegangen? Sende personalisierte Newsletter direkt an alle Paten.' },
     },
     oss: { github: 'Auf GitHub ansehen' },
-    newsletter: { title: 'Newsletter', sub: 'Bleib auf dem Laufenden. Wir informieren dich über neue Funktionen, Updates und alles rund um Coltivio.', placeholder: 'deine@email.ch', cta: 'Anmelden', success: 'Danke! Du erhältst in Kürze eine Bestätigungs-E-Mail.', error: 'Etwas ist schiefgelaufen. Bitte versuche es erneut.' },
+    newsletter: { title: 'Newsletter', sub: 'Bleib auf dem Laufenden. Wir informieren dich über neue Funktionen, Updates und alles rund um Coltivio.', placeholder: 'deine@email.ch', cta: 'Anmelden', success: 'Danke für deine Anmeldung! Wir halten dich auf dem Laufenden.', error: 'Etwas ist schiefgelaufen. Bitte versuche es erneut.' },
     footer: { tagline: 'Open-Source Hofverwaltung', github: 'GitHub', iosBeta: 'iOS Beta', androidBeta: 'Android Beta' },
   },
 
@@ -99,7 +99,7 @@ const translations: Record<Locale, Translations> = {
     hero: {
       headline: 'Gestion agricole,\ncréée par des agriculteurs.',
       sub: "Logiciel open source à but non lucratif pour les petites et moyennes exploitations. Pas d'investisseurs, pas de verrouillage — juste des outils qui fonctionnent vraiment.",
-      testPhase: "L'app est actuellement en phase de test — essayez-la et partagez vos retours.",
+      testPhase: "L'app est actuellement en phase de test — essayez-la et envoyez-nous vos retours à feedback@coltivio.ch.",
       ctaIos: 'iOS TestFlight ↗',
       ctaAndroid: 'Android Beta',
     },
@@ -138,13 +138,13 @@ const translations: Record<Locale, Translations> = {
     webapp: {
       label: "Quand le téléphone n'est pas le bon outil — L'application Web",
       title: 'Le Compagnon Bureau',
-      body: 'Mêmes données, écran plus grand.',
+      body: 'Toutes les fonctionnalités de l\'app — plus celles listées ci-dessus.',
       contacts: { title: 'Gestion des contacts', desc: 'Gérez tous vos contacts agricoles. Ajoutez des labels pour savoir qui est intéressé par un colis de viande ou veut aider pendant la récolte.' },
       orders: { title: 'Carnet de commandes', desc: 'Enregistrez les commandes de vos contacts et suivez si elles ont été livrées et payées.' },
       sponsorships: { title: 'Gestion des parrainages', desc: 'Gérez vos parrainages d\'animaux en un coup d\'œil : qui parraine quel animal, quel programme est actif — et le paiement est-il arrivé ? Envoyez des newsletters personnalisées directement à tous les parrains.' },
     },
     oss: { github: 'Voir sur GitHub' },
-    newsletter: { title: 'Newsletter', sub: 'Restez informé. Nous vous tiendrons au courant des nouvelles fonctionnalités, mises à jour et tout ce qui concerne Coltivio.', placeholder: 'votre@email.ch', cta: "S'inscrire", success: 'Merci ! Vous recevrez un e-mail de confirmation sous peu.', error: "Une erreur s'est produite. Veuillez réessayer." },
+    newsletter: { title: 'Newsletter', sub: 'Restez informé. Nous vous tiendrons au courant des nouvelles fonctionnalités, mises à jour et tout ce qui concerne Coltivio.', placeholder: 'votre@email.ch', cta: "S'inscrire", success: 'Merci pour votre inscription ! Nous vous tiendrons informé.', error: "Une erreur s'est produite. Veuillez réessayer." },
     footer: { tagline: 'Gestion agricole open source', github: 'GitHub', iosBeta: 'iOS Bêta', androidBeta: 'Android Bêta' },
   },
 
@@ -153,7 +153,7 @@ const translations: Record<Locale, Translations> = {
     hero: {
       headline: 'Gestione agricola,\nfatta da agricoltori.',
       sub: 'Software open source e senza scopo di lucro per piccole e medie aziende agricole. Nessun investitore, nessun lock-in — solo strumenti che funzionano davvero.',
-      testPhase: "L'app è attualmente in fase di test — provala e condividi il tuo feedback.",
+      testPhase: "L'app è attualmente in fase di test — provala e inviaci il tuo feedback a feedback@coltivio.ch.",
       ctaIos: 'iOS TestFlight ↗',
       ctaAndroid: 'Android Beta',
     },
@@ -192,13 +192,13 @@ const translations: Record<Locale, Translations> = {
     webapp: {
       label: "Quando il telefono non è lo strumento giusto — L'app Web",
       title: 'Il Compagno Desktop',
-      body: 'Stessi dati, schermo più grande.',
+      body: 'Tutte le funzioni dell\'app — più quelle elencate sopra.',
       contacts: { title: 'Gestione contatti', desc: 'Gestisci tutti i tuoi contatti agricoli. Aggiungi etichette per ricordare chi è interessato a un pacco di carne o vuole aiutare durante il raccolto.' },
       orders: { title: 'Registro ordini semplice', desc: 'Aggiungi ordini dai tuoi contatti e traccia se sono stati consegnati e pagati.' },
       sponsorships: { title: 'Gestione sponsorizzazioni', desc: "Gestisci le tue sponsorizzazioni animali a colpo d'occhio: chi sponsorizza quale animale, quale piano è attivo — e il pagamento è arrivato? Invia newsletter personalizzate direttamente a tutti gli sponsor." },
     },
     oss: { github: 'Vedi su GitHub' },
-    newsletter: { title: 'Newsletter', sub: 'Rimani aggiornato. Ti terremo informato su nuove funzionalità, aggiornamenti e tutto ciò che riguarda Coltivio.', placeholder: 'tua@email.ch', cta: 'Iscriviti', success: 'Grazie! Riceverai a breve un\'email di conferma.', error: 'Qualcosa è andato storto. Riprova.' },
+    newsletter: { title: 'Newsletter', sub: 'Rimani aggiornato. Ti terremo informato su nuove funzionalità, aggiornamenti e tutto ciò che riguarda Coltivio.', placeholder: 'tua@email.ch', cta: 'Iscriviti', success: 'Grazie per l\'iscrizione! Ti terremo aggiornato.', error: 'Qualcosa è andato storto. Riprova.' },
     footer: { tagline: 'Gestione agricola open source', github: 'GitHub', iosBeta: 'iOS Beta', androidBeta: 'Android Beta' },
   },
 
@@ -207,7 +207,7 @@ const translations: Record<Locale, Translations> = {
     hero: {
       headline: 'Farm Management,\nBuilt by Farmers.',
       sub: 'Open source, non-profit software for small and medium farms. No investors, no lock-in — just tools that actually work.',
-      testPhase: 'The app is currently in a test phase — try it out and share your feedback.',
+      testPhase: 'The app is currently in a test phase — try it out and send us your feedback at feedback@coltivio.ch.',
       ctaIos: 'iOS TestFlight ↗',
       ctaAndroid: 'Android Beta',
     },
@@ -246,13 +246,13 @@ const translations: Record<Locale, Translations> = {
     webapp: {
       label: "When the Phone Isn't the Right Tool — The Web App",
       title: 'The Desktop Companion',
-      body: 'Same data, bigger screen.',
+      body: 'All features of the app — plus the ones listed above.',
       contacts: { title: 'Contact Management', desc: "Manage all your farm contacts. Add labels to remember who's interested in a meat package or wants to help during harvest." },
       orders: { title: 'Simple Order Book', desc: "Add orders from your contacts and track whether they've been delivered and paid." },
       sponsorships: { title: 'Sponsorship Management', desc: "Manage your animal sponsorships at a glance: who sponsors which animal, which plan is active — and has the payment come in? Send personalised newsletters directly to all sponsors." },
     },
     oss: { github: 'View on GitHub' },
-    newsletter: { title: 'Newsletter', sub: "Stay in the loop. We'll keep you updated on new features, releases, and everything Coltivio.", placeholder: 'your@email.com', cta: 'Subscribe', success: "Thanks! You'll receive a confirmation email shortly.", error: 'Something went wrong. Please try again.' },
+    newsletter: { title: 'Newsletter', sub: "Stay in the loop. We'll keep you updated on new features, releases, and everything Coltivio.", placeholder: 'your@email.com', cta: 'Subscribe', success: "Thanks for signing up! We'll keep you in the loop.", error: 'Something went wrong. Please try again.' },
     footer: { tagline: 'Open source farm management', github: 'GitHub', iosBeta: 'iOS Beta', androidBeta: 'Android Beta' },
   },
 }
