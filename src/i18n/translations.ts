@@ -84,7 +84,7 @@ const translations: Record<Locale, Translations> = {
     webapp: {
       label: 'Wenn das Handy nicht das richtige Werkzeug ist — Die Web App',
       title: 'Die Desktop-Ergänzung',
-      body: 'Alle Funktionen der App — plus die oben aufgeführten.',
+      body: 'Gleiche Daten, grösserer Bildschirm — plus diese zusätzlichen Funktionen:',
       contacts: { title: 'Kontaktverwaltung', desc: 'Verwalte alle Hofkontakte. Füge Labels hinzu, um zu wissen, wer sich für ein Fleischpaket interessiert oder bei der Ernte helfen möchte.' },
       orders: { title: 'Einfaches Bestellbuch', desc: 'Erfasse Bestellungen von deinen Kontakten und verfolge, ob sie geliefert und bezahlt wurden.' },
       sponsorships: { title: 'Patenschaftsverwaltung', desc: 'Verwalte deine Tierpatenschaften auf einen Blick: Wer ist Pate welches Tieres, welches Modell läuft — und ist die Zahlung eingegangen? Sende personalisierte Newsletter direkt an alle Paten.' },
@@ -138,7 +138,7 @@ const translations: Record<Locale, Translations> = {
     webapp: {
       label: "Quand le téléphone n'est pas le bon outil — L'application Web",
       title: 'Le Compagnon Bureau',
-      body: 'Toutes les fonctionnalités de l\'app — plus celles listées ci-dessus.',
+      body: 'Mêmes données, écran plus grand — plus ces fonctionnalités supplémentaires :',
       contacts: { title: 'Gestion des contacts', desc: 'Gérez tous vos contacts agricoles. Ajoutez des labels pour savoir qui est intéressé par un colis de viande ou veut aider pendant la récolte.' },
       orders: { title: 'Carnet de commandes', desc: 'Enregistrez les commandes de vos contacts et suivez si elles ont été livrées et payées.' },
       sponsorships: { title: 'Gestion des parrainages', desc: 'Gérez vos parrainages d\'animaux en un coup d\'œil : qui parraine quel animal, quel programme est actif — et le paiement est-il arrivé ? Envoyez des newsletters personnalisées directement à tous les parrains.' },
@@ -192,7 +192,7 @@ const translations: Record<Locale, Translations> = {
     webapp: {
       label: "Quando il telefono non è lo strumento giusto — L'app Web",
       title: 'Il Compagno Desktop',
-      body: 'Tutte le funzioni dell\'app — più quelle elencate sopra.',
+      body: 'Stessi dati, schermo più grande — più queste funzioni aggiuntive:',
       contacts: { title: 'Gestione contatti', desc: 'Gestisci tutti i tuoi contatti agricoli. Aggiungi etichette per ricordare chi è interessato a un pacco di carne o vuole aiutare durante il raccolto.' },
       orders: { title: 'Registro ordini semplice', desc: 'Aggiungi ordini dai tuoi contatti e traccia se sono stati consegnati e pagati.' },
       sponsorships: { title: 'Gestione sponsorizzazioni', desc: "Gestisci le tue sponsorizzazioni animali a colpo d'occhio: chi sponsorizza quale animale, quale piano è attivo — e il pagamento è arrivato? Invia newsletter personalizzate direttamente a tutti gli sponsor." },
@@ -246,7 +246,7 @@ const translations: Record<Locale, Translations> = {
     webapp: {
       label: "When the Phone Isn't the Right Tool — The Web App",
       title: 'The Desktop Companion',
-      body: 'All features of the app — plus the ones listed above.',
+      body: 'Same data, bigger screen — plus these additional features:',
       contacts: { title: 'Contact Management', desc: "Manage all your farm contacts. Add labels to remember who's interested in a meat package or wants to help during harvest." },
       orders: { title: 'Simple Order Book', desc: "Add orders from your contacts and track whether they've been delivered and paid." },
       sponsorships: { title: 'Sponsorship Management', desc: "Manage your animal sponsorships at a glance: who sponsors which animal, which plan is active — and has the payment come in? Send personalised newsletters directly to all sponsors." },
