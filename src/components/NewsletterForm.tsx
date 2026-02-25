@@ -13,38 +13,35 @@ interface Props {
   errorMsg: string
 }
 
-export function NewsletterForm({ /* apiUrl, */ lang, placeholder, cta, successMsg, errorMsg }: Props) {
+export function NewsletterForm({ apiUrl, lang, placeholder, cta, successMsg, errorMsg }: Props) {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
-  // TODO: re-enable once backend captcha endpoint is deployed
-  // useEffect(() => {
-  //   if (document.querySelector('script[src*="turnstile"]')) return
-  //   const script = document.createElement('script')
-  //   script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js'
-  //   script.async = true
-  //   script.defer = true
-  //   document.head.appendChild(script)
-  // }, [])
+  useEffect(() => {
+    if (document.querySelector('script[src*="turnstile"]')) return
+    const script = document.createElement('script')
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js'
+    script.async = true
+    script.defer = true
+    document.head.appendChild(script)
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    // TODO: re-enable captcha verification once backend is deployed
-    // const token = new FormData(e.currentTarget).get('cf-turnstile-response') as string
-    // if (!token) return
+    const token = new FormData(e.currentTarget).get('cf-turnstile-response') as string
+    if (!token) return
 
     setStatus('loading')
 
     try {
-      // TODO: re-enable once backend is deployed
-      // const captchaRes = await fetch(`${apiUrl}/v1/captcha/verify`, {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ token }),
-      // })
-      // const captchaData = await captchaRes.json() as { data?: { success: boolean } }
-      // if (!captchaData.data?.success) throw new Error('captcha failed')
+      const captchaRes = await fetch(`${apiUrl}/v1/captcha/verify`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token }),
+      })
+      const captchaData = await captchaRes.json() as { data?: { success: boolean } }
+      if (!captchaData.data?.success) throw new Error('captcha failed')
 
       const formData = new FormData()
       formData.append('EMAIL', email)
@@ -82,8 +79,7 @@ export function NewsletterForm({ /* apiUrl, */ lang, placeholder, cta, successMs
           {status === 'loading' ? '…' : cta}
         </button>
       </div>
-      {/* TODO: re-enable turnstile widget once backend is deployed
-      <div className="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} /> */}
+      <div className="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} />
       {status === 'error' && (
         <p className="text-sm text-destructive">{errorMsg}</p>
       )}
