@@ -34,6 +34,11 @@ export interface Translations {
     orders: { title: string; desc: string }
     sponsorships: { title: string; desc: string }
   }
+  more: {
+    wiki: { title: string; desc: string }
+    tasks: { title: string; desc: string }
+    multiUser: { title: string; desc: string }
+  }
   oss: { github: string }
   collaborate: { title: string; body: string }
   newsletter: { title: string; sub: string; placeholder: string; cta: string; success: string; error: string }
@@ -90,6 +95,11 @@ const translations: Record<Locale, Translations> = {
       orders: { title: 'Einfaches Bestellbuch', desc: 'Erfasse Bestellungen von deinen Kontakten und verfolge, ob sie geliefert und bezahlt wurden.' },
       sponsorships: { title: 'Patenschaftsverwaltung', desc: 'Verwalte deine Tierpatenschaften auf einen Blick: Wer ist Pate welches Tieres, welches Modell läuft — und ist die Zahlung eingegangen? Sende personalisierte Newsletter direkt an alle Paten.' },
     },
+    more: {
+      wiki: { title: 'Wiki', desc: 'Dein persönliches Wissensarchiv auf dem Hof. Halte Notizen, Anleitungen und Erfahrungen fest — und teile einzelne Einträge mit der Community, wenn du möchtest.' },
+      tasks: { title: 'Aufgaben', desc: 'Erstelle Aufgaben und weise Tiere, Flächen oder Ausrüstung direkt zu. 50 Ziegen Klauen schneiden? Einfach zuweisen und automatisch eine Checkliste erhalten — Tier für Tier abhaken.' },
+      multiUser: { title: 'Mehrere Benutzer', desc: 'Lade andere Personen zu deinem Betrieb ein. Aufgaben gemeinsam planen, Aufzeichnungen synchron halten und weniger Hin-und-Her bei der täglichen Arbeit.' },
+    },
     oss: { github: 'Auf GitHub ansehen' },
     collaborate: { title: 'Werde Teil von Coltivio', body: 'Wir sind immer auf der Suche nach Landwirt:innen und interessierten Personen, die mitgestalten möchten. Meld dich einfach bei uns:' },
     newsletter: { title: 'Newsletter', sub: 'Bleib auf dem Laufenden. Wir informieren dich über neue Funktionen, Updates und alles rund um Coltivio.', placeholder: 'deine@email.ch', cta: 'Anmelden', success: 'Danke für deine Anmeldung! Wir halten dich auf dem Laufenden.', error: 'Etwas ist schiefgelaufen. Bitte versuche es erneut.' },
@@ -144,6 +154,11 @@ const translations: Record<Locale, Translations> = {
       contacts: { title: 'Gestion des contacts', desc: 'Gérez tous vos contacts agricoles. Ajoutez des labels pour savoir qui est intéressé par un colis de viande ou veut aider pendant la récolte.' },
       orders: { title: 'Carnet de commandes', desc: 'Enregistrez les commandes de vos contacts et suivez si elles ont été livrées et payées.' },
       sponsorships: { title: 'Gestion des parrainages', desc: 'Gérez vos parrainages d\'animaux en un coup d\'œil : qui parraine quel animal, quel programme est actif — et le paiement est-il arrivé ? Envoyez des newsletters personnalisées directement à tous les parrains.' },
+    },
+    more: {
+      wiki: { title: 'Wiki', desc: "Votre base de connaissances personnelle à la ferme. Notez guides, astuces et expériences — et partagez certaines entrées avec la communauté si vous le souhaitez." },
+      tasks: { title: 'Tâches', desc: "Créez des tâches et attribuez-leur animaux, surfaces ou équipements. Sabots de 50 chèvres à couper ? Assignez-les et obtenez une liste de contrôle automatique — à cocher animal par animal." },
+      multiUser: { title: 'Multi-utilisateurs', desc: "Invitez d'autres personnes dans votre exploitation. Planifiez ensemble, synchronisez vos données et réduisez les allers-retours dans le travail quotidien." },
     },
     oss: { github: 'Voir sur GitHub' },
     collaborate: { title: 'Rejoins Coltivio', body: 'Nous cherchons toujours d\'autres agriculteurs et développeurs pour collaborer. Contactez-nous :' },
@@ -200,6 +215,11 @@ const translations: Record<Locale, Translations> = {
       orders: { title: 'Registro ordini semplice', desc: 'Aggiungi ordini dai tuoi contatti e traccia se sono stati consegnati e pagati.' },
       sponsorships: { title: 'Gestione sponsorizzazioni', desc: "Gestisci le tue sponsorizzazioni animali a colpo d'occhio: chi sponsorizza quale animale, quale piano è attivo — e il pagamento è arrivato? Invia newsletter personalizzate direttamente a tutti gli sponsor." },
     },
+    more: {
+      wiki: { title: 'Wiki', desc: "La tua base di conoscenze in fattoria. Raccogli note, guide e buone pratiche — e condividi singole voci con la community se vuoi." },
+      tasks: { title: 'Attività', desc: "Crea attività e assegna animali, superfici o attrezzatura. Zoccoli da tagliare a 50 capre? Assegnale e ottieni una checklist automatica — una spunta per ogni animale." },
+      multiUser: { title: 'Multi-utente', desc: "Invita altre persone nella tua azienda. Pianificate insieme, mantenete i dati sincronizzati e riducete il coordinamento nel lavoro quotidiano." },
+    },
     oss: { github: 'Vedi su GitHub' },
     collaborate: { title: 'Entra a far parte di Coltivio', body: 'Siamo sempre alla ricerca di agricoltori e sviluppatori con cui collaborare. Scrivici:' },
     newsletter: { title: 'Newsletter', sub: 'Rimani aggiornato. Ti terremo informato su nuove funzionalità, aggiornamenti e tutto ciò che riguarda Coltivio.', placeholder: 'tua@email.ch', cta: 'Iscriviti', success: 'Grazie per l\'iscrizione! Ti terremo aggiornato.', error: 'Qualcosa è andato storto. Riprova.' },
@@ -254,6 +274,11 @@ const translations: Record<Locale, Translations> = {
       contacts: { title: 'Contact Management', desc: "Manage all your farm contacts. Add labels to remember who's interested in a meat package or wants to help during harvest." },
       orders: { title: 'Simple Order Book', desc: "Add orders from your contacts and track whether they've been delivered and paid." },
       sponsorships: { title: 'Sponsorship Management', desc: "Manage your animal sponsorships at a glance: who sponsors which animal, which plan is active — and has the payment come in? Send personalised newsletters directly to all sponsors." },
+    },
+    more: {
+      wiki: { title: 'Wiki', desc: "Your personal knowledge base on the farm. Collect notes, guides, and best practices — and share individual entries with the community if you want." },
+      tasks: { title: 'Tasks', desc: "Create tasks and attach animals, plots, or equipment. Need to cut the hooves of 50 goats? Assign them and get an auto-generated checklist — tick off each animal as you go." },
+      multiUser: { title: 'Multi-User', desc: "Invite others to your farm and plan together. Shared tasks, synced records, and less back-and-forth in day-to-day work." },
     },
     oss: { github: 'View on GitHub' },
     collaborate: { title: 'Become Part of Coltivio', body: 'We are always looking for farmers and people who want to collaborate on the project. Get in touch:' },

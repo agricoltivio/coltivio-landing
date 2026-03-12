@@ -176,6 +176,30 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
         <Fragment set:html={phoneMockup('/screenshots/animals.png', '', 'sm:flex lg:hidden')} />
       </div>
 
+      {/* More features */}
+      <div class="space-y-6">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
+            <div class="pt-6 px-6 pb-6 space-y-2">
+              <h4 class="font-semibold">{tr.more.wiki.title}</h4>
+              <p class="text-sm text-muted-foreground leading-relaxed">{tr.more.wiki.desc}</p>
+            </div>
+          </div>
+          <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
+            <div class="pt-6 px-6 pb-6 space-y-2">
+              <h4 class="font-semibold">{tr.more.tasks.title}</h4>
+              <p class="text-sm text-muted-foreground leading-relaxed">{tr.more.tasks.desc}</p>
+            </div>
+          </div>
+          <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
+            <div class="pt-6 px-6 pb-6 space-y-2">
+              <h4 class="font-semibold">{tr.more.multiUser.title}</h4>
+              <p class="text-sm text-muted-foreground leading-relaxed">{tr.more.multiUser.desc}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Demo video */}
       <div class="space-y-6">
         <h3 class="text-2xl font-bold">{tr.demo.title}</h3>
