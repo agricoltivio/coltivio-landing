@@ -2,6 +2,7 @@
 import type { Translations } from '@/i18n/translations'
 import { NewsletterForm } from './NewsletterForm'
 import { LanguageSwitcher } from './LanguageSwitcher'
+import { MobileNav } from './MobileNav'
 
 interface Props {
   tr: Translations
@@ -33,16 +34,54 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
         <img src="/logo.png" alt="Coltivio" class="h-7" />
         Coltivio
       </div>
+
+      {/* Desktop nav links */}
+      <nav class="hidden lg:flex items-center gap-1 text-sm font-medium">
+        <a href="#features" class="px-3 py-1.5 rounded hover:bg-muted transition-colors">{tr.nav.features}</a>
+        <a href="#webapp" class="px-3 py-1.5 rounded hover:bg-muted transition-colors">{tr.nav.webapp}</a>
+        <a href="#membership" class="px-3 py-1.5 rounded hover:bg-muted transition-colors">{tr.nav.membership}</a>
+        <a href="#about" class="px-3 py-1.5 rounded hover:bg-muted transition-colors">{tr.nav.about}</a>
+      </nav>
+
       <div class="flex items-center gap-2">
+        {/* Open App: desktop only */}
         <a
           href={appUrl}
+          data-auth-redirect="/dashboard"
           target="_blank"
           rel="noopener noreferrer"
-          class="rounded-md bg-primary px-4 py-1.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+          class="hidden lg:inline-flex rounded-md border border-input bg-background px-4 py-1.5 text-sm font-medium hover:bg-muted transition-colors"
         >
           {tr.nav.openApp}
         </a>
-        <LanguageSwitcher client:load lang={lang} />
+        {/* Become Member: always visible */}
+        <a
+          href={`${appUrl}/membership`}
+          data-auth-redirect="/membership"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex rounded-md bg-primary px-4 py-1.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+        >
+          {tr.membership.cta}
+        </a>
+        {/* Lang switcher: desktop only */}
+        <div class="hidden lg:block">
+          <LanguageSwitcher client:load lang={lang} />
+        </div>
+        {/* Mobile hamburger */}
+        <MobileNav
+          client:load
+          lang={lang}
+          appUrl={appUrl}
+          labels={{
+            features: tr.nav.features,
+            webapp: tr.nav.webapp,
+            membership: tr.nav.membership,
+            about: tr.nav.about,
+            openApp: tr.nav.openApp,
+            membershipCta: tr.membership.cta,
+          }}
+        />
       </div>
     </div>
   </header>
@@ -99,7 +138,7 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
   </section>
 
   {/* ── Features ───────────────────────────────────────────── */}
-  <section class="border-t py-20">
+  <section id="features" class="border-t py-20">
     <div class="container mx-auto px-4 space-y-20">
       <p class="text-sm font-medium text-muted-foreground uppercase tracking-wider">
         {tr.fieldwork.sub}
@@ -187,13 +226,19 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
           </div>
           <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
             <div class="pt-6 px-6 pb-6 space-y-2">
-              <h4 class="font-semibold">{tr.more.tasks.title}</h4>
+              <div class="flex items-start justify-between gap-2">
+                <h4 class="font-semibold">{tr.more.tasks.title}</h4>
+                <span class="shrink-0 inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">★ {tr.memberBadge}</span>
+              </div>
               <p class="text-sm text-muted-foreground leading-relaxed">{tr.more.tasks.desc}</p>
             </div>
           </div>
           <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
             <div class="pt-6 px-6 pb-6 space-y-2">
-              <h4 class="font-semibold">{tr.more.multiUser.title}</h4>
+              <div class="flex items-start justify-between gap-2">
+                <h4 class="font-semibold">{tr.more.multiUser.title}</h4>
+                <span class="shrink-0 inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">★ {tr.memberBadge}</span>
+              </div>
               <p class="text-sm text-muted-foreground leading-relaxed">{tr.more.multiUser.desc}</p>
             </div>
           </div>
@@ -241,7 +286,7 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
   </section>
 
   {/* ── Web App ────────────────────────────────────────────── */}
-  <section class="border-t bg-muted/30 py-20">
+  <section id="webapp" class="border-t bg-muted/30 py-20">
     <div class="container mx-auto px-4 space-y-20">
       <p class="text-sm font-medium text-muted-foreground uppercase tracking-wider">
         {tr.webapp.label}
@@ -249,28 +294,47 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
       <div class="space-y-6 max-w-3xl">
         <h2 class="text-2xl font-bold">{tr.webapp.title}</h2>
         <p class="text-muted-foreground">{tr.webapp.body}</p>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
             <div class="pt-6 px-6 pb-6 space-y-2">
-              <h4 class="font-semibold">{tr.webapp.contacts.title}</h4>
+              <div class="flex items-start justify-between gap-2">
+                <h4 class="font-semibold">{tr.webapp.contacts.title}</h4>
+                <span class="shrink-0 inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">★ {tr.memberBadge}</span>
+              </div>
               <p class="text-sm text-muted-foreground leading-relaxed">{tr.webapp.contacts.desc}</p>
             </div>
           </div>
           <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
             <div class="pt-6 px-6 pb-6 space-y-2">
-              <h4 class="font-semibold">{tr.webapp.orders.title}</h4>
+              <div class="flex items-start justify-between gap-2">
+                <h4 class="font-semibold">{tr.webapp.orders.title}</h4>
+                <span class="shrink-0 inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">★ {tr.memberBadge}</span>
+              </div>
               <p class="text-sm text-muted-foreground leading-relaxed">{tr.webapp.orders.desc}</p>
             </div>
           </div>
           <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
             <div class="pt-6 px-6 pb-6 space-y-2">
-              <h4 class="font-semibold">{tr.webapp.sponsorships.title}</h4>
+              <div class="flex items-start justify-between gap-2">
+                <h4 class="font-semibold">{tr.webapp.sponsorships.title}</h4>
+                <span class="shrink-0 inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">★ {tr.memberBadge}</span>
+              </div>
               <p class="text-sm text-muted-foreground leading-relaxed">{tr.webapp.sponsorships.desc}</p>
+            </div>
+          </div>
+          <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
+            <div class="pt-6 px-6 pb-6 space-y-2">
+              <div class="flex items-start justify-between gap-2">
+                <h4 class="font-semibold">{tr.webapp.community.title}</h4>
+                <span class="shrink-0 inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">★ {tr.memberBadge}</span>
+              </div>
+              <p class="text-sm text-muted-foreground leading-relaxed">{tr.webapp.community.desc}</p>
             </div>
           </div>
         </div>
         <a
           href={appUrl}
+          data-auth-redirect="/dashboard"
           target="_blank"
           rel="noopener noreferrer"
           class="inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3 text-base font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
@@ -282,7 +346,7 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
   </section>
 
   {/* ── OSS ────────────────────────────────────────────────── */}
-  <section class="border-t py-20">
+  <section id="about" class="border-t py-20">
     <div class="container mx-auto px-4 max-w-3xl space-y-8">
       <h2 class="text-3xl font-bold">{tr.story.ossTitle}</h2>
       <div class="space-y-4 text-muted-foreground leading-relaxed">
@@ -304,18 +368,24 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
     </div>
   </section>
 
-  {/* ── Collaborate ────────────────────────────────────────── */}
-  <section class="border-t py-20">
-    <div class="container mx-auto px-4 max-w-2xl space-y-4">
-      <h2 class="text-3xl font-bold">{tr.collaborate.title}</h2>
-      <p class="text-lg text-muted-foreground leading-relaxed">{tr.collaborate.body}</p>
-      <a href="mailto:info@coltivio.ch" class="inline-block text-lg font-medium text-primary hover:underline">
-        info@coltivio.ch
+  {/* ── Membership ─────────────────────────────────────────── */}
+  <section id="membership" class="border-t bg-primary/5 py-20">
+    <div class="container mx-auto px-4 max-w-3xl space-y-6">
+<h2 class="text-3xl font-bold md:text-4xl">{tr.membership.tagline}</h2>
+      <p class="text-lg text-muted-foreground leading-relaxed">{tr.membership.body}</p>
+      <a
+        href={`${appUrl}/membership`}
+        data-auth-redirect="/membership"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3 text-base font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+      >
+        {tr.membership.cta} →
       </a>
     </div>
   </section>
 
-  {/* ── Newsletter ─────────────────────────────────────────── */}
+{/* ── Newsletter ─────────────────────────────────────────── */}
   <section class="border-t py-20">
     <div class="container mx-auto px-4 max-w-2xl space-y-6">
       <h2 class="text-3xl font-bold">{tr.newsletter.title}</h2>
@@ -333,6 +403,7 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
   </section>
 
   {/* ── Footer ─────────────────────────────────────────────── */}
+
   <footer class="border-t py-10">
     <div class="container mx-auto px-4 space-y-6">
       <div class="flex flex-wrap items-center justify-between gap-4">
@@ -362,3 +433,33 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
   </footer>
 
 </div>
+
+<script define:vars={{ appUrl }} is:inline>
+  // Read tokens from hash fragment (e.g. #access_token=...&refresh_token=...)
+  // Hash is used so tokens never reach the server or appear in analytics/logs.
+  const hash = window.location.hash.slice(1)
+  if (hash) {
+    const params = new URLSearchParams(hash)
+    const accessToken = params.get('access_token')
+    const refreshToken = params.get('refresh_token')
+    if (accessToken && refreshToken) {
+      sessionStorage.setItem('coltivio_access_token', accessToken)
+      sessionStorage.setItem('coltivio_refresh_token', refreshToken)
+      // Remove hash from URL so tokens don't linger in browser history
+      history.replaceState(null, '', window.location.pathname + window.location.search)
+    }
+  }
+
+  // Rewrite all [data-auth-redirect] links to the token-exchange URL if tokens exist
+  const accessToken = sessionStorage.getItem('coltivio_access_token')
+  const refreshToken = sessionStorage.getItem('coltivio_refresh_token')
+  if (accessToken && refreshToken) {
+    document.querySelectorAll('[data-auth-redirect]').forEach((el) => {
+      const redirect = el.getAttribute('data-auth-redirect')
+      el.setAttribute(
+        'href',
+        `${appUrl}/auth/token#access_token=${encodeURIComponent(accessToken)}&refresh_token=${encodeURIComponent(refreshToken)}&redirect=${encodeURIComponent(redirect)}`
+      )
+    })
+  }
+</script>
