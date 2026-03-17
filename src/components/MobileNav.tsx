@@ -5,6 +5,7 @@ interface NavLabels {
   features: string
   webapp: string
   membership: string
+  donate: string
   about: string
   openApp: string
   membershipCta: string
@@ -16,8 +17,8 @@ interface Props {
   labels: NavLabels
 }
 
-function buildAuthUrl(appUrl: string, accessToken: string, refreshToken: string, redirect: string) {
-  return `${appUrl}/auth/token#access_token=${encodeURIComponent(accessToken)}&refresh_token=${encodeURIComponent(refreshToken)}&redirect=${encodeURIComponent(redirect)}`
+function buildAuthUrl(appUrl: string, token: string, redirect: string) {
+  return `${appUrl}/auth/token#token=${encodeURIComponent(token)}&redirect=${encodeURIComponent(redirect)}`
 }
 
 export function MobileNav({ lang, appUrl, labels }: Props) {
@@ -26,10 +27,9 @@ export function MobileNav({ lang, appUrl, labels }: Props) {
 
   // Build auth-aware URL for "Open App" on mount
   useEffect(() => {
-    const accessToken = sessionStorage.getItem('coltivio_access_token')
-    const refreshToken = sessionStorage.getItem('coltivio_refresh_token')
-    if (accessToken && refreshToken) {
-      setOpenAppHref(buildAuthUrl(appUrl, accessToken, refreshToken, '/dashboard'))
+    const token = sessionStorage.getItem('coltivio_token')
+    if (token) {
+      setOpenAppHref(buildAuthUrl(appUrl, token, '/dashboard'))
     }
   }, [appUrl])
 
@@ -102,6 +102,7 @@ export function MobileNav({ lang, appUrl, labels }: Props) {
             { href: '#features', label: labels.features },
             { href: '#webapp', label: labels.webapp },
             { href: '#membership', label: labels.membership },
+            { href: '#donate', label: labels.donate },
             { href: '#about', label: labels.about },
           ] as const).map(({ href, label }) => (
             <a

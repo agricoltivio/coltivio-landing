@@ -1,7 +1,7 @@
 export type Locale = 'de' | 'fr' | 'it' | 'en'
 
 export interface Translations {
-  nav: { openApp: string; features: string; webapp: string; membership: string; about: string }
+  nav: { openApp: string; features: string; webapp: string; membership: string; donate: string; about: string }
   hero: { headline: string; sub: string; testPhase: string; ctaIos: string; ctaAndroid: string }
   story: { headline: string; founders: string; problem: string; born: string; ossTitle: string; oss: string; data: string; funding: string }
   fieldwork: {
@@ -42,15 +42,29 @@ export interface Translations {
   }
   memberBadge: string
   membership: { tagline: string; body: string; cta: string }
-  oss: { github: string }
+  oss: { github: string; vereinSubheading: string; vereinBody: string; statutenLink: string }
   collaborate: { title: string; body: string }
+  donate: {
+    title: string
+    sub: string
+    amountLabel: string
+    customPlaceholder: string
+    emailLabel: string
+    emailPlaceholder: string
+    cta: string
+    processing: string
+    error: string
+    thankYouTitle: string
+    thankYouBody: string
+    thankYouClose: string
+  }
   newsletter: { title: string; sub: string; placeholder: string; cta: string; success: string; error: string }
   footer: { tagline: string; github: string; iosBeta: string; androidBeta: string }
 }
 
 const translations: Record<Locale, Translations> = {
   de: {
-    nav: { openApp: 'App öffnen', features: 'Funktionen', webapp: 'Web App', membership: 'Mitgliedschaft', about: 'Über uns' },
+    nav: { openApp: 'App öffnen', features: 'Funktionen', webapp: 'Web App', membership: 'Mitgliedschaft', donate: 'Spenden', about: 'Über uns' },
     hero: {
       headline: 'Hofverwaltung,\nvon Bauern entwickelt.',
       sub: 'Open-Source Software für kleine und mittlere Betriebe. Keine Investoren, kein Lock-in — nur Werkzeuge, die wirklich funktionieren.',
@@ -110,14 +124,15 @@ const translations: Record<Locale, Translations> = {
       body: 'Hilf mit das Projekt weiterzuentwickeln und profitiere von weiteren Vorteilen. Coltivio wird ausschliesslich durch Spenden und Mitgliedschaften finanziert — keine Investoren, keine Werbung.',
       cta: 'Mitglied werden',
     },
-    oss: { github: 'Auf GitHub ansehen' },
+    oss: { github: 'Auf GitHub ansehen', vereinSubheading: 'Gemeinsam für eine freie und unabhängige Landwirtschaft', vereinBody: 'AgriColtivio, welcher diese App entwickelt, ist ein gemeinnütziger Verein, der zum Ziel hat, kleine und mittelgrosse landwirtschaftliche Betriebe zu stärken.', statutenLink: 'Vereinsstatuten lesen' },
     collaborate: { title: 'Werde Teil von Coltivio', body: 'Wir sind immer auf der Suche nach Landwirt:innen und interessierten Personen, die mitgestalten möchten. Meld dich einfach bei uns:' },
+    donate: { title: 'Coltivio unterstützen', sub: 'Jeder Beitrag zählt — und hilft uns, eine unabhängige Alternative aufzubauen, bei der die Interessen der Bäuerinnen und Bauern im Vordergrund stehen.', amountLabel: 'Betrag (CHF)', customPlaceholder: 'Anderen Betrag eingeben', emailLabel: 'Deine E-Mail-Adresse', emailPlaceholder: 'deine@email.ch', cta: 'Jetzt spenden', processing: 'Weiterleitung...', error: 'Etwas ist schiefgelaufen. Bitte versuche es erneut.', thankYouTitle: 'Danke für deine Unterstützung!', thankYouBody: 'Danke, dass du AgriColtivio unterstützt. Du erhältst in Kürze eine E-Mail mit einer Spendenbestätigung.', thankYouClose: 'Schliessen' },
     newsletter: { title: 'Newsletter', sub: 'Bleib auf dem Laufenden. Wir informieren dich über neue Funktionen, Updates und alles rund um Coltivio.', placeholder: 'deine@email.ch', cta: 'Anmelden', success: 'Danke für deine Anmeldung! Wir halten dich auf dem Laufenden.', error: 'Etwas ist schiefgelaufen. Bitte versuche es erneut.' },
     footer: { tagline: 'Open-Source Hofverwaltung', github: 'GitHub', iosBeta: 'iOS Beta', androidBeta: 'Android Beta' },
   },
 
   fr: {
-    nav: { openApp: "Ouvrir l'App", features: 'Fonctionnalités', webapp: 'Web App', membership: 'Adhésion', about: 'À propos' },
+    nav: { openApp: "Ouvrir l'App", features: 'Fonctionnalités', webapp: 'Web App', membership: 'Adhésion', donate: 'Faire un don', about: 'À propos' },
     hero: {
       headline: 'Gestion agricole,\ncréée par des agriculteurs.',
       sub: "Logiciel open source à but non lucratif pour les petites et moyennes exploitations. Pas d'investisseurs, pas de verrouillage — juste des outils qui fonctionnent vraiment.",
@@ -177,14 +192,15 @@ const translations: Record<Locale, Translations> = {
       body: 'Aidez à développer le projet et profitez d\'avantages supplémentaires. Coltivio est financé exclusivement par des dons et des adhésions — pas d\'investisseurs, pas de publicité.',
       cta: 'Devenir membre',
     },
-    oss: { github: 'Voir sur GitHub' },
+    oss: { github: 'Voir sur GitHub', vereinSubheading: 'Ensemble pour une agriculture libre et indépendante', vereinBody: "AgriColtivio, qui développe cette application, est une association à but non lucratif dont l'objectif est de renforcer les petites et moyennes exploitations agricoles.", statutenLink: "Lire les statuts de l'association" },
     collaborate: { title: 'Rejoins Coltivio', body: 'Nous cherchons toujours d\'autres agriculteurs et développeurs pour collaborer. Contactez-nous :' },
+    donate: { title: 'Aidez à faire vivre ce projet', sub: "Chaque contribution compte — et nous aide à développer Coltivio et à le garder gratuit pour tous.", amountLabel: 'Montant (CHF)', customPlaceholder: 'Saisir un autre montant', emailLabel: 'Votre adresse e-mail', emailPlaceholder: 'votre@email.ch', cta: 'Faire un don', processing: 'Redirection...', error: "Une erreur s'est produite. Veuillez réessayer.", thankYouTitle: 'Merci pour votre soutien !', thankYouBody: "Merci de soutenir AgriColtivio. Vous recevrez bientôt un e-mail de confirmation de don.", thankYouClose: 'Fermer' },
     newsletter: { title: 'Newsletter', sub: 'Restez informé. Nous vous tiendrons au courant des nouvelles fonctionnalités, mises à jour et tout ce qui concerne Coltivio.', placeholder: 'votre@email.ch', cta: "S'inscrire", success: 'Merci pour votre inscription ! Nous vous tiendrons informé.', error: "Une erreur s'est produite. Veuillez réessayer." },
     footer: { tagline: 'Gestion agricole open source', github: 'GitHub', iosBeta: 'iOS Bêta', androidBeta: 'Android Bêta' },
   },
 
   it: {
-    nav: { openApp: 'Apri App', features: 'Funzionalità', webapp: 'Web App', membership: 'Iscrizione', about: 'Chi siamo' },
+    nav: { openApp: 'Apri App', features: 'Funzionalità', webapp: 'Web App', membership: 'Iscrizione', donate: 'Donazioni', about: 'Chi siamo' },
     hero: {
       headline: 'Gestione agricola,\nfatta da agricoltori.',
       sub: 'Software open source e senza scopo di lucro per piccole e medie aziende agricole. Nessun investitore, nessun lock-in — solo strumenti che funzionano davvero.',
@@ -244,14 +260,15 @@ const translations: Record<Locale, Translations> = {
       body: 'Aiuta a sviluppare il progetto e approfitta di ulteriori vantaggi. Coltivio è finanziato esclusivamente da donazioni e iscrizioni — nessun investitore, nessuna pubblicità.',
       cta: 'Diventa membro',
     },
-    oss: { github: 'Vedi su GitHub' },
+    oss: { github: 'Vedi su GitHub', vereinSubheading: "Insieme per un'agricoltura libera e indipendente", vereinBody: "AgriColtivio, che sviluppa questa app, è un'associazione senza scopo di lucro il cui obiettivo è rafforzare le piccole e medie aziende agricole.", statutenLink: "Leggi lo statuto dell'associazione" },
     collaborate: { title: 'Entra a far parte di Coltivio', body: 'Siamo sempre alla ricerca di agricoltori e sviluppatori con cui collaborare. Scrivici:' },
+    donate: { title: 'Aiuta a mantenere vivo questo progetto', sub: 'Ogni contributo conta — e ci aiuta a sviluppare Coltivio e a mantenerlo gratuito per tutti.', amountLabel: 'Importo (CHF)', customPlaceholder: 'Inserisci un altro importo', emailLabel: 'Il tuo indirizzo e-mail', emailPlaceholder: 'tua@email.ch', cta: 'Dona ora', processing: 'Reindirizzamento...', error: 'Qualcosa è andato storto. Riprova.', thankYouTitle: 'Grazie per il tuo sostegno!', thankYouBody: 'Grazie per sostenere AgriColtivio. Riceverai a breve una e-mail di conferma della donazione.', thankYouClose: 'Chiudi' },
     newsletter: { title: 'Newsletter', sub: 'Rimani aggiornato. Ti terremo informato su nuove funzionalità, aggiornamenti e tutto ciò che riguarda Coltivio.', placeholder: 'tua@email.ch', cta: 'Iscriviti', success: 'Grazie per l\'iscrizione! Ti terremo aggiornato.', error: 'Qualcosa è andato storto. Riprova.' },
     footer: { tagline: 'Gestione agricola open source', github: 'GitHub', iosBeta: 'iOS Beta', androidBeta: 'Android Beta' },
   },
 
   en: {
-    nav: { openApp: 'Open App', features: 'Features', webapp: 'Web App', membership: 'Membership', about: 'About' },
+    nav: { openApp: 'Open App', features: 'Features', webapp: 'Web App', membership: 'Membership', donate: 'Donate', about: 'About' },
     hero: {
       headline: 'Farm Management,\nBuilt by Farmers.',
       sub: 'Open source, non-profit software for small and medium farms. No investors, no lock-in — just tools that actually work.',
@@ -311,8 +328,9 @@ const translations: Record<Locale, Translations> = {
       body: 'Help shape the project and enjoy additional benefits. Coltivio is funded exclusively through donations and memberships — no investors, no advertising.',
       cta: 'Become a member',
     },
-    oss: { github: 'View on GitHub' },
+    oss: { github: 'View on GitHub', vereinSubheading: 'Together for a free and independent agriculture', vereinBody: 'AgriColtivio, the organisation behind this app, is a non-profit association dedicated to strengthening small and medium-sized farms.', statutenLink: 'Read the association statutes' },
     collaborate: { title: 'Become Part of Coltivio', body: 'We are always looking for farmers and people who want to collaborate on the project. Get in touch:' },
+    donate: { title: 'Help keep this project going', sub: 'Every contribution counts — and helps us keep developing Coltivio and keep it free for everyone.', amountLabel: 'Amount (CHF)', customPlaceholder: 'Enter a custom amount', emailLabel: 'Your email address', emailPlaceholder: 'your@email.com', cta: 'Donate now', processing: 'Redirecting...', error: 'Something went wrong. Please try again.', thankYouTitle: 'Thank you for your support!', thankYouBody: 'Thank you for supporting AgriColtivio. You will receive an email with a donation confirmation shortly.', thankYouClose: 'Close' },
     newsletter: { title: 'Newsletter', sub: "Stay in the loop. We'll keep you updated on new features, releases, and everything Coltivio.", placeholder: 'your@email.com', cta: 'Subscribe', success: "Thanks for signing up! We'll keep you in the loop.", error: 'Something went wrong. Please try again.' },
     footer: { tagline: 'Open source farm management', github: 'GitHub', iosBeta: 'iOS Beta', androidBeta: 'Android Beta' },
   },

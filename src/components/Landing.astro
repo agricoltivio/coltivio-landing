@@ -3,6 +3,8 @@ import type { Translations } from '@/i18n/translations'
 import { NewsletterForm } from './NewsletterForm'
 import { LanguageSwitcher } from './LanguageSwitcher'
 import { MobileNav } from './MobileNav'
+import { StatutenDialog } from './StatutenDialog'
+import { DonationForm } from './DonationForm'
 
 interface Props {
   tr: Translations
@@ -40,6 +42,7 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
         <a href="#features" class="px-3 py-1.5 rounded hover:bg-muted transition-colors">{tr.nav.features}</a>
         <a href="#webapp" class="px-3 py-1.5 rounded hover:bg-muted transition-colors">{tr.nav.webapp}</a>
         <a href="#membership" class="px-3 py-1.5 rounded hover:bg-muted transition-colors">{tr.nav.membership}</a>
+        <a href="#donate" class="px-3 py-1.5 rounded hover:bg-muted transition-colors">{tr.nav.donate}</a>
         <a href="#about" class="px-3 py-1.5 rounded hover:bg-muted transition-colors">{tr.nav.about}</a>
       </nav>
 
@@ -50,7 +53,7 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
           data-auth-redirect="/dashboard"
           target="_blank"
           rel="noopener noreferrer"
-          class="hidden lg:inline-flex rounded-md border border-input bg-background px-4 py-1.5 text-sm font-medium hover:bg-muted transition-colors"
+          class="hidden md:inline-flex rounded-md border border-input bg-background px-4 py-1.5 text-sm font-medium hover:bg-muted transition-colors"
         >
           {tr.nav.openApp}
         </a>
@@ -77,6 +80,7 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
             features: tr.nav.features,
             webapp: tr.nav.webapp,
             membership: tr.nav.membership,
+            donate: tr.nav.donate,
             about: tr.nav.about,
             openApp: tr.nav.openApp,
             membershipCta: tr.membership.cta,
@@ -371,8 +375,13 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
   {/* ── Membership ─────────────────────────────────────────── */}
   <section id="membership" class="border-t bg-primary/5 py-20">
     <div class="container mx-auto px-4 max-w-3xl space-y-6">
-<h2 class="text-3xl font-bold md:text-4xl">{tr.membership.tagline}</h2>
+      <h2 class="text-3xl font-bold md:text-4xl">{tr.membership.tagline}</h2>
       <p class="text-lg text-muted-foreground leading-relaxed">{tr.membership.body}</p>
+      <div class="border-t pt-6 space-y-3">
+        <h3 class="text-lg font-semibold">{tr.oss.vereinSubheading}</h3>
+        <p class="text-muted-foreground leading-relaxed">{tr.oss.vereinBody}</p>
+        <StatutenDialog client:load lang={lang} linkLabel={tr.oss.statutenLink} />
+      </div>
       <a
         href={`${appUrl}/membership`}
         data-auth-redirect="/membership"
@@ -385,7 +394,30 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
     </div>
   </section>
 
-{/* ── Newsletter ─────────────────────────────────────────── */}
+{/* ── Donate ─────────────────────────────────────────────── */}
+  <section id="donate" class="border-t py-20">
+    <div class="container mx-auto px-4 max-w-2xl space-y-6">
+      <h2 class="text-3xl font-bold">{tr.donate.title}</h2>
+      <p class="text-muted-foreground">{tr.donate.sub}</p>
+      <DonationForm
+        client:load
+        apiUrl={apiUrl}
+        lang={lang}
+        amountLabel={tr.donate.amountLabel}
+        customPlaceholder={tr.donate.customPlaceholder}
+        emailLabel={tr.donate.emailLabel}
+        emailPlaceholder={tr.donate.emailPlaceholder}
+        cta={tr.donate.cta}
+        processing={tr.donate.processing}
+        error={tr.donate.error}
+        thankYouTitle={tr.donate.thankYouTitle}
+        thankYouBody={tr.donate.thankYouBody}
+        thankYouClose={tr.donate.thankYouClose}
+      />
+    </div>
+  </section>
+
+  {/* ── Newsletter ─────────────────────────────────────────── */}
   <section class="border-t py-20">
     <div class="container mx-auto px-4 max-w-2xl space-y-6">
       <h2 class="text-3xl font-bold">{tr.newsletter.title}</h2>
@@ -435,30 +467,27 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
 </div>
 
 <script define:vars={{ appUrl }} is:inline>
-  // Read tokens from hash fragment (e.g. #access_token=...&refresh_token=...)
-  // Hash is used so tokens never reach the server or appear in analytics/logs.
+  // Read token from hash fragment (e.g. #token=...)
+  // Hash is used so the token never reaches the server or appears in analytics/logs.
   const hash = window.location.hash.slice(1)
   if (hash) {
     const params = new URLSearchParams(hash)
-    const accessToken = params.get('access_token')
-    const refreshToken = params.get('refresh_token')
-    if (accessToken && refreshToken) {
-      sessionStorage.setItem('coltivio_access_token', accessToken)
-      sessionStorage.setItem('coltivio_refresh_token', refreshToken)
-      // Remove hash from URL so tokens don't linger in browser history
+    const token = params.get('token')
+    if (token) {
+      sessionStorage.setItem('coltivio_token', token)
+      // Remove hash from URL so the token doesn't linger in browser history
       history.replaceState(null, '', window.location.pathname + window.location.search)
     }
   }
 
-  // Rewrite all [data-auth-redirect] links to the token-exchange URL if tokens exist
-  const accessToken = sessionStorage.getItem('coltivio_access_token')
-  const refreshToken = sessionStorage.getItem('coltivio_refresh_token')
-  if (accessToken && refreshToken) {
+  // Rewrite all [data-auth-redirect] links to the token-exchange URL if token exists
+  const token = sessionStorage.getItem('coltivio_token')
+  if (token) {
     document.querySelectorAll('[data-auth-redirect]').forEach((el) => {
       const redirect = el.getAttribute('data-auth-redirect')
       el.setAttribute(
         'href',
-        `${appUrl}/auth/token#access_token=${encodeURIComponent(accessToken)}&refresh_token=${encodeURIComponent(refreshToken)}&redirect=${encodeURIComponent(redirect)}`
+        `${appUrl}/auth/token#token=${encodeURIComponent(token)}&redirect=${encodeURIComponent(redirect)}`
       )
     })
   }
