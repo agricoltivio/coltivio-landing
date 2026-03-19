@@ -5,6 +5,7 @@ import { LanguageSwitcher } from './LanguageSwitcher'
 import { MobileNav } from './MobileNav'
 import { StatutenDialog } from './StatutenDialog'
 import { DonationForm } from './DonationForm'
+import { AndroidBetaDialog } from './AndroidBetaDialog'
 
 interface Props {
   tr: Translations
@@ -113,12 +114,16 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
             >
               {tr.hero.ctaIos}
             </a>
-            <a
-              href="mailto:support@coltivio.ch?subject=Android%20Beta%20Test&body=Hallo%2C%20bitte%20freischalten%20f%C3%BCr%20Android%20Test%2C%20hier%20mein%20PlayStore%20Google%20Account%20Email%20%3C%3D%3D%3D%20bitte%20Email%20angeben%20%3D%3D%3D%3E"
-              class="inline-flex items-center justify-center rounded-md border border-input bg-background px-6 py-3 text-base font-medium hover:bg-muted transition-colors"
-            >
-              {tr.hero.ctaAndroid}
-            </a>
+            <AndroidBetaDialog
+              client:load
+              label={tr.hero.ctaAndroid}
+              groupOption={tr.androidBetaDialog.groupOption}
+              groupDesc={tr.androidBetaDialog.groupDesc}
+              downloadTitle={tr.androidBetaDialog.downloadTitle}
+              emailOption={tr.androidBetaDialog.emailOption}
+              emailDesc={tr.androidBetaDialog.emailDesc}
+              issues={tr.androidBetaDialog.issues}
+            />
           </div>
         </div>
       </div>
@@ -450,9 +455,17 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
           <a href="https://testflight.apple.com/join/MZ3HNzDW" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded hover:bg-muted transition-colors text-muted-foreground hover:text-foreground">
             {tr.footer.iosBeta}
           </a>
-          <a href="mailto:support@coltivio.ch?subject=Android%20Beta%20Test&body=Hallo%2C%20bitte%20freischalten%20f%C3%BCr%20Android%20Test%2C%20hier%20mein%20PlayStore%20Google%20Account%20Email%20%3C%3D%3D%3D%20bitte%20Email%20angeben%20%3D%3D%3D%3E" class="px-3 py-1.5 rounded hover:bg-muted transition-colors text-muted-foreground hover:text-foreground">
-            {tr.footer.androidBeta}
-          </a>
+          <AndroidBetaDialog
+            client:load
+            label={tr.footer.androidBeta}
+            groupOption={tr.androidBetaDialog.groupOption}
+            groupDesc={tr.androidBetaDialog.groupDesc}
+            downloadTitle={tr.androidBetaDialog.downloadTitle}
+            emailOption={tr.androidBetaDialog.emailOption}
+            emailDesc={tr.androidBetaDialog.emailDesc}
+            issues={tr.androidBetaDialog.issues}
+            className="px-3 py-1.5 rounded hover:bg-muted transition-colors text-muted-foreground hover:text-foreground text-sm"
+          />
         </div>
       </div>
       <div class="flex flex-wrap gap-4 text-sm text-muted-foreground">
