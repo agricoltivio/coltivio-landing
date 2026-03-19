@@ -42,6 +42,9 @@ export interface Translations {
   oss: { github: string }
   collaborate: { title: string; body: string }
   newsletter: { title: string; sub: string; placeholder: string; cta: string; success: string; error: string }
+  imprint: { title: string; back: string }
+  privacy: { title: string; back: string }
+  dataDeletion: { title: string; back: string }
   footer: { tagline: string; github: string; iosBeta: string; androidBeta: string }
 }
 
@@ -103,6 +106,9 @@ const translations: Record<Locale, Translations> = {
     oss: { github: 'Auf GitHub ansehen' },
     collaborate: { title: 'Werde Teil von Coltivio', body: 'Wir sind immer auf der Suche nach Landwirt:innen und interessierten Personen, die mitgestalten möchten. Meld dich einfach bei uns:' },
     newsletter: { title: 'Newsletter', sub: 'Bleib auf dem Laufenden. Wir informieren dich über neue Funktionen, Updates und alles rund um Coltivio.', placeholder: 'deine@email.ch', cta: 'Anmelden', success: 'Danke für deine Anmeldung! Wir halten dich auf dem Laufenden.', error: 'Etwas ist schiefgelaufen. Bitte versuche es erneut.' },
+    imprint: { title: 'Impressum', back: 'Zurück' },
+    privacy: { title: 'Datenschutzerklärung', back: 'Zurück' },
+    dataDeletion: { title: 'Datenlöschung', back: 'Zurück' },
     footer: { tagline: 'Open-Source Hofverwaltung', github: 'GitHub', iosBeta: 'iOS Beta', androidBeta: 'Android Beta' },
   },
 
@@ -163,6 +169,9 @@ const translations: Record<Locale, Translations> = {
     oss: { github: 'Voir sur GitHub' },
     collaborate: { title: 'Rejoins Coltivio', body: 'Nous cherchons toujours d\'autres agriculteurs et développeurs pour collaborer. Contactez-nous :' },
     newsletter: { title: 'Newsletter', sub: 'Restez informé. Nous vous tiendrons au courant des nouvelles fonctionnalités, mises à jour et tout ce qui concerne Coltivio.', placeholder: 'votre@email.ch', cta: "S'inscrire", success: 'Merci pour votre inscription ! Nous vous tiendrons informé.', error: "Une erreur s'est produite. Veuillez réessayer." },
+    imprint: { title: 'Mentions légales', back: 'Retour' },
+    privacy: { title: 'Politique de confidentialité', back: 'Retour' },
+    dataDeletion: { title: 'Suppression des données', back: 'Retour' },
     footer: { tagline: 'Gestion agricole open source', github: 'GitHub', iosBeta: 'iOS Bêta', androidBeta: 'Android Bêta' },
   },
 
@@ -223,6 +232,9 @@ const translations: Record<Locale, Translations> = {
     oss: { github: 'Vedi su GitHub' },
     collaborate: { title: 'Entra a far parte di Coltivio', body: 'Siamo sempre alla ricerca di agricoltori e sviluppatori con cui collaborare. Scrivici:' },
     newsletter: { title: 'Newsletter', sub: 'Rimani aggiornato. Ti terremo informato su nuove funzionalità, aggiornamenti e tutto ciò che riguarda Coltivio.', placeholder: 'tua@email.ch', cta: 'Iscriviti', success: 'Grazie per l\'iscrizione! Ti terremo aggiornato.', error: 'Qualcosa è andato storto. Riprova.' },
+    imprint: { title: 'Impronta', back: 'Indietro' },
+    privacy: { title: 'Informativa sulla privacy', back: 'Indietro' },
+    dataDeletion: { title: 'Cancellazione dei dati', back: 'Indietro' },
     footer: { tagline: 'Gestione agricola open source', github: 'GitHub', iosBeta: 'iOS Beta', androidBeta: 'Android Beta' },
   },
 
@@ -283,6 +295,9 @@ const translations: Record<Locale, Translations> = {
     oss: { github: 'View on GitHub' },
     collaborate: { title: 'Become Part of Coltivio', body: 'We are always looking for farmers and people who want to collaborate on the project. Get in touch:' },
     newsletter: { title: 'Newsletter', sub: "Stay in the loop. We'll keep you updated on new features, releases, and everything Coltivio.", placeholder: 'your@email.com', cta: 'Subscribe', success: "Thanks for signing up! We'll keep you in the loop.", error: 'Something went wrong. Please try again.' },
+    imprint: { title: 'Imprint', back: 'Back' },
+    privacy: { title: 'Privacy Policy', back: 'Back' },
+    dataDeletion: { title: 'Data Deletion', back: 'Back' },
     footer: { tagline: 'Open source farm management', github: 'GitHub', iosBeta: 'iOS Beta', androidBeta: 'Android Beta' },
   },
 }

@@ -1,0 +1,59 @@
+---
+import type { Translations } from '@/i18n/translations'
+import { dataDeletionContent } from '@/i18n/data-deletion'
+import type { Locale } from '@/i18n/translations'
+
+interface Props {
+  tr: Translations
+  lang: string
+}
+
+const { tr, lang } = Astro.props
+const homeUrl = lang === 'de' ? '/' : `/${lang}`
+const locale = (lang in dataDeletionContent ? lang : 'de') as Locale
+const c = dataDeletionContent[locale]
+---
+
+<div class="min-h-screen bg-background text-foreground">
+  <div class="container mx-auto max-w-2xl px-4 py-12 space-y-8">
+    <a href={homeUrl} class="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M19 12H5M12 5l-7 7 7 7"/>
+      </svg>
+      {tr.dataDeletion.back}
+    </a>
+
+    <div class="space-y-6">
+      <h1 class="text-3xl font-bold">{tr.dataDeletion.title}</h1>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-semibold">{c.whatStoredTitle}</h2>
+        <p class="text-muted-foreground">{c.whatStoredBody}</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-semibold">{c.inAppTitle}</h2>
+        <p class="text-muted-foreground">{c.inAppIntro}</p>
+        <ol class="list-decimal pl-5 space-y-1 text-muted-foreground">
+          {c.inAppSteps.map((step) => (
+            <li>
+              {step.text}{step.bold && <strong class="text-foreground">{step.bold}</strong>}
+            </li>
+          ))}
+        </ol>
+        <p class="text-muted-foreground">{c.inAppOutro}</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-semibold">{c.emailTitle}</h2>
+        <p class="text-muted-foreground">{c.emailIntro}</p>
+        <p>
+          <a href="mailto:support@coltivio.ch?subject=Kontolöschung" class="underline hover:no-underline font-medium">
+            support@coltivio.ch
+          </a>
+        </p>
+        <p class="text-muted-foreground">{c.emailNote}</p>
+      </section>
+    </div>
+  </div>
+</div>

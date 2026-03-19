@@ -1,0 +1,69 @@
+---
+import type { Translations } from '@/i18n/translations'
+import { privacyContent } from '@/i18n/privacy'
+import type { Locale } from '@/i18n/translations'
+
+interface Props {
+  tr: Translations
+  lang: string
+}
+
+const { tr, lang } = Astro.props
+const homeUrl = lang === 'de' ? '/' : `/${lang}`
+const locale = (lang in privacyContent ? lang : 'de') as Locale
+const { date, sections } = privacyContent[locale]
+---
+
+<div class="min-h-screen bg-background text-foreground">
+  <div class="container mx-auto max-w-2xl px-4 py-12 space-y-8">
+    <a href={homeUrl} class="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M19 12H5M12 5l-7 7 7 7"/>
+      </svg>
+      {tr.privacy.back}
+    </a>
+
+    <div class="space-y-6">
+      <h1 class="text-3xl font-bold">{tr.privacy.title}</h1>
+      <p class="text-muted-foreground">{date}</p>
+
+      {sections.map((section) => (
+        <section class="space-y-3">
+          <h2 class="text-xl font-semibold">{section.heading}</h2>
+
+          {section.heading.includes('1.') && (
+            <address class="not-italic text-base space-y-0.5">
+              <p class="font-semibold">AgriColtivio</p>
+              <p>Via Miadi 25</p>
+              <p>6544 Braggio</p>
+              <a href="mailto:verein@coltivio.ch" class="underline hover:no-underline">verein@coltivio.ch</a>
+            </address>
+          )}
+
+          {section.content && <p class="text-base leading-relaxed">{section.content}</p>}
+
+          {section.subheadings && section.subheadings.map((sub) => (
+            <div class="space-y-1">
+              <h3 class="font-medium">{sub.title}</h3>
+              <p class="text-base leading-relaxed">{sub.content}</p>
+            </div>
+          ))}
+
+          {section.list && (
+            <>
+              <ul class="list-disc pl-5 space-y-1 text-base">
+                {section.list.map((item) => <li>{item}</li>)}
+              </ul>
+              {section.listNote && (
+                <p class="text-base">
+                  {section.listNote.replace('verein@coltivio.ch', '')}
+                  <a href="mailto:verein@coltivio.ch" class="underline hover:no-underline">verein@coltivio.ch</a>
+                </p>
+              )}
+            </>
+          )}
+        </section>
+      ))}
+    </div>
+  </div>
+</div>
