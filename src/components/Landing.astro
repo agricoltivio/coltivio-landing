@@ -456,9 +456,9 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
         </div>
       </div>
       <div class="flex flex-wrap gap-4 text-sm text-muted-foreground">
-        <a href={`${appUrl}/imprint`} class="hover:underline">Impressum</a>
-        <a href={`${appUrl}/privacy`} class="hover:underline">Datenschutz</a>
-        <a href={`${appUrl}/data-deletion`} class="hover:underline">Datenlöschung</a>
+        <a href={lang === 'de' ? '/imprint' : `/${lang}/imprint`} class="hover:underline">{tr.imprint.title}</a>
+        <a href={lang === 'de' ? '/privacy' : `/${lang}/privacy`} class="hover:underline">{tr.privacy.title}</a>
+        <a href={lang === 'de' ? '/data-deletion' : `/${lang}/data-deletion`} class="hover:underline">{tr.dataDeletion.title}</a>
         <span class="ml-auto">© 2025 Coltivio</span>
       </div>
     </div>

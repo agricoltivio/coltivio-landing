@@ -1,0 +1,12 @@
+---
+import Base from '@/layouts/Base.astro'
+import ImprintPage from '@/components/ImprintPage.astro'
+import { getTranslations } from '@/i18n/translations'
+
+const lang = 'de'
+const tr = getTranslations(lang)
+---
+
+<Base lang={lang} title={`${tr.imprint.title} — Coltivio`} description="AgriColtivio, Via Miadi 25, 6544 Braggio">
+  <ImprintPage tr={tr} lang={lang} />
+</Base>

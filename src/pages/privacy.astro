@@ -1,0 +1,12 @@
+---
+import Base from '@/layouts/Base.astro'
+import PrivacyPage from '@/components/PrivacyPage.astro'
+import { getTranslations } from '@/i18n/translations'
+
+const lang = 'de'
+const tr = getTranslations(lang)
+---
+
+<Base lang={lang} title={`${tr.privacy.title} — Coltivio`} description={tr.privacy.title}>
+  <PrivacyPage tr={tr} lang={lang} />
+</Base>
