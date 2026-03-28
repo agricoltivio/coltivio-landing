@@ -40,6 +40,9 @@ export interface Translations {
     wiki: { title: string; desc: string }
     tasks: { title: string; desc: string }
     multiUser: { title: string; desc: string }
+    rotationDrafts: { title: string; desc: string }
+    journals: { title: string; desc: string }
+    onboarding: { title: string; desc: string }
   }
   memberBadge: string
   membership: { tagline: string; body: string; cta: string }
@@ -121,7 +124,7 @@ const translations: Record<Locale, Translations> = {
       title: 'Die Desktop-Ergänzung',
       body: 'Gleiche Daten, grösserer Bildschirm — plus diese zusätzlichen Funktionen:',
       contacts: { title: 'Kontaktverwaltung', desc: 'Verwalte alle Hofkontakte. Füge Labels hinzu, um zu wissen, wer sich für ein Fleischpaket interessiert oder bei der Ernte helfen möchte.' },
-      orders: { title: 'Einfaches Bestellbuch', desc: 'Erfasse Bestellungen von deinen Kontakten und verfolge, ob sie geliefert und bezahlt wurden.' },
+      orders: { title: 'Einfaches Bestellbuch', desc: 'Erfasse Bestellungen von deinen Kontakten und verfolge, ob sie geliefert und bezahlt wurden. Drucke individuelle Rechnungen mit eigenem Inhalt für jede Bestellung.' },
       sponsorships: { title: 'Patenschaftsverwaltung', desc: 'Verwalte deine Tierpatenschaften auf einen Blick: Wer ist Pate welches Tieres, welches Modell läuft — und ist die Zahlung eingegangen? Sende personalisierte Newsletter direkt an alle Paten.' },
       community: { title: 'Treffpunkt', desc: 'Stell Fragen, schlage neue Funktionen vor, melde Probleme und vernetze dich mit anderen Landwirt:innen.' },
     },
@@ -129,6 +132,9 @@ const translations: Record<Locale, Translations> = {
       wiki: { title: 'Wiki', desc: 'Dein persönliches Wissensarchiv auf dem Hof. Halte Notizen, Anleitungen und Erfahrungen fest — und teile einzelne Einträge mit der Community, wenn du möchtest.' },
       tasks: { title: 'Aufgaben', desc: 'Erstelle Aufgaben und weise Tiere, Flächen oder Ausrüstung direkt zu. 50 Ziegen Klauen schneiden? Einfach zuweisen und automatisch eine Checkliste erhalten — Tier für Tier abhaken.' },
       multiUser: { title: 'Mehrere Benutzer', desc: 'Lade andere Personen zu deinem Betrieb ein. Aufgaben gemeinsam planen, Aufzeichnungen synchron halten und weniger Hin-und-Her bei der täglichen Arbeit.' },
+      rotationDrafts: { title: 'Fruchtfolge-Entwürfe', desc: 'Erstelle mehrere Planungsentwürfe für ausgewählte Flächen und vergleiche verschiedene Szenarien — übernimm einfach den Entwurf, der am besten passt.' },
+      journals: { title: 'Journal', desc: 'Füge Tieren und Flächen Journaleinträge mit Bildern hinzu — für Beobachtungen, Ereignisse oder alles, was du festhalten möchtest.' },
+      onboarding: { title: 'Detailliertes Onboarding', desc: 'Schritt-für-Schritt-Anleitungen für alle Funktionen — damit du das Beste aus Coltivio herausholst, von Anfang an.' },
     },
     memberBadge: 'Mitglied',
     membership: {
@@ -200,7 +206,7 @@ const translations: Record<Locale, Translations> = {
       title: 'Le Compagnon Bureau',
       body: 'Mêmes données, écran plus grand — plus ces fonctionnalités supplémentaires :',
       contacts: { title: 'Gestion des contacts', desc: 'Gérez tous vos contacts agricoles. Ajoutez des labels pour savoir qui est intéressé par un colis de viande ou veut aider pendant la récolte.' },
-      orders: { title: 'Carnet de commandes', desc: 'Enregistrez les commandes de vos contacts et suivez si elles ont été livrées et payées.' },
+      orders: { title: 'Carnet de commandes', desc: "Enregistrez les commandes de vos contacts et suivez si elles ont été livrées et payées. Imprimez des factures personnalisées avec votre propre contenu pour chaque commande." },
       sponsorships: { title: 'Gestion des parrainages', desc: 'Gérez vos parrainages d\'animaux en un coup d\'œil : qui parraine quel animal, quel programme est actif — et le paiement est-il arrivé ? Envoyez des newsletters personnalisées directement à tous les parrains.' },
       community: { title: 'Point de Rencontre', desc: 'Posez des questions, proposez de nouvelles fonctionnalités, signalez des problèmes et échangez avec d\'autres agriculteurs.' },
     },
@@ -208,6 +214,9 @@ const translations: Record<Locale, Translations> = {
       wiki: { title: 'Wiki', desc: "Votre base de connaissances personnelle à la ferme. Notez guides, astuces et expériences — et partagez certaines entrées avec la communauté si vous le souhaitez." },
       tasks: { title: 'Tâches', desc: "Créez des tâches et attribuez-leur animaux, surfaces ou équipements. Sabots de 50 chèvres à couper ? Assignez-les et obtenez une liste de contrôle automatique — à cocher animal par animal." },
       multiUser: { title: 'Multi-utilisateurs', desc: "Invitez d'autres personnes dans votre exploitation. Planifiez ensemble, synchronisez vos données et réduisez les allers-retours dans le travail quotidien." },
+      rotationDrafts: { title: 'Brouillons de rotation', desc: "Créez plusieurs brouillons de planification pour les parcelles sélectionnées et comparez différents scénarios — appliquez simplement celui qui convient le mieux." },
+      journals: { title: 'Journal', desc: "Ajoutez des entrées de journal avec photos à vos animaux et parcelles — pour des observations, des événements ou tout ce que vous souhaitez noter." },
+      onboarding: { title: 'Onboarding détaillé', desc: "Des guides pas à pas pour toutes les fonctionnalités — pour tirer le meilleur de Coltivio dès le début." },
     },
     memberBadge: 'Membre',
     membership: {
@@ -279,7 +288,7 @@ const translations: Record<Locale, Translations> = {
       title: 'Il Compagno Desktop',
       body: 'Stessi dati, schermo più grande — più queste funzioni aggiuntive:',
       contacts: { title: 'Gestione contatti', desc: 'Gestisci tutti i tuoi contatti agricoli. Aggiungi etichette per ricordare chi è interessato a un pacco di carne o vuole aiutare durante il raccolto.' },
-      orders: { title: 'Registro ordini semplice', desc: 'Aggiungi ordini dai tuoi contatti e traccia se sono stati consegnati e pagati.' },
+      orders: { title: 'Registro ordini semplice', desc: 'Aggiungi ordini dai tuoi contatti e traccia se sono stati consegnati e pagati. Stampa fatture personalizzate con contenuto su misura per ogni ordine.' },
       sponsorships: { title: 'Gestione sponsorizzazioni', desc: "Gestisci le tue sponsorizzazioni animali a colpo d'occhio: chi sponsorizza quale animale, quale piano è attivo — e il pagamento è arrivato? Invia newsletter personalizzate direttamente a tutti gli sponsor." },
       community: { title: 'Punto d\'Incontro', desc: 'Fai domande, proponi nuove funzionalità, segnala problemi e connettiti con altri agricoltori.' },
     },
@@ -287,6 +296,9 @@ const translations: Record<Locale, Translations> = {
       wiki: { title: 'Wiki', desc: "La tua base di conoscenze in fattoria. Raccogli note, guide e buone pratiche — e condividi singole voci con la community se vuoi." },
       tasks: { title: 'Attività', desc: "Crea attività e assegna animali, superfici o attrezzatura. Zoccoli da tagliare a 50 capre? Assegnale e ottieni una checklist automatica — una spunta per ogni animale." },
       multiUser: { title: 'Multi-utente', desc: "Invita altre persone nella tua azienda. Pianificate insieme, mantenete i dati sincronizzati e riducete il coordinamento nel lavoro quotidiano." },
+      rotationDrafts: { title: 'Bozze di rotazione', desc: "Crea più bozze di pianificazione per le superfici selezionate e confronta diversi scenari — applica semplicemente quella che si adatta meglio." },
+      journals: { title: 'Diario', desc: "Aggiungi voci di diario con immagini ad animali e superfici — per osservazioni, eventi o tutto ciò che vuoi annotare." },
+      onboarding: { title: 'Onboarding dettagliato', desc: "Guide passo dopo passo per tutte le funzionalità — per sfruttare al massimo Coltivio fin dall'inizio." },
     },
     memberBadge: 'Membro',
     membership: {
@@ -358,7 +370,7 @@ const translations: Record<Locale, Translations> = {
       title: 'The Desktop Companion',
       body: 'Same data, bigger screen — plus these additional features:',
       contacts: { title: 'Contact Management', desc: "Manage all your farm contacts. Add labels to remember who's interested in a meat package or wants to help during harvest." },
-      orders: { title: 'Simple Order Book', desc: "Add orders from your contacts and track whether they've been delivered and paid." },
+      orders: { title: 'Simple Order Book', desc: "Add orders from your contacts and track whether they've been delivered and paid. Print custom invoices with your own content for each order." },
       sponsorships: { title: 'Sponsorship Management', desc: "Manage your animal sponsorships at a glance: who sponsors which animal, which plan is active — and has the payment come in? Send personalised newsletters directly to all sponsors." },
       community: { title: 'Community Hub', desc: 'Ask questions, suggest new features, report issues, and connect with other farmers.' },
     },
@@ -366,6 +378,9 @@ const translations: Record<Locale, Translations> = {
       wiki: { title: 'Wiki', desc: "Your personal knowledge base on the farm. Collect notes, guides, and best practices — and share individual entries with the community if you want." },
       tasks: { title: 'Tasks', desc: "Create tasks and attach animals, plots, or equipment. Need to cut the hooves of 50 goats? Assign them and get an auto-generated checklist — tick off each animal as you go." },
       multiUser: { title: 'Multi-User', desc: "Invite others to your farm and plan together. Shared tasks, synced records, and less back-and-forth in day-to-day work." },
+      rotationDrafts: { title: 'Rotation Drafts', desc: "Create multiple planning drafts for selected plots and compare different scenarios — just apply the one that fits best." },
+      journals: { title: 'Journal', desc: "Add journal entries with photos to animals and plots — for observations, events, or anything you want to keep track of." },
+      onboarding: { title: 'Detailed Onboarding', desc: "Step-by-step guides for every feature — so you get the most out of Coltivio right from the start." },
     },
     memberBadge: 'Member',
     membership: {
