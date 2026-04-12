@@ -1,8 +1,9 @@
 export type Locale = 'de' | 'fr' | 'it' | 'en'
 
 export interface Translations {
-  nav: { openApp: string }
-  hero: { headline: string; sub: string; testPhase: string; ctaIos: string; ctaAndroid: string }
+  nav: { openApp: string; features: string; webapp: string; membership: string; donate: string; about: string }
+  hero: { headline: string; sub: string; testPhase: string; testPhaseBanner: string; ctaIos: string; ctaAndroid: string }
+  androidBetaDialog: { groupOption: string; groupDesc: string; downloadTitle: string; emailOption: string; emailDesc: string; issues: string }
   story: { headline: string; founders: string; problem: string; born: string; ossTitle: string; oss: string; data: string; funding: string }
   fieldwork: {
     title: string
@@ -33,14 +34,36 @@ export interface Translations {
     contacts: { title: string; desc: string }
     orders: { title: string; desc: string }
     sponsorships: { title: string; desc: string }
+    community: { title: string; desc: string }
   }
   more: {
     wiki: { title: string; desc: string }
     tasks: { title: string; desc: string }
     multiUser: { title: string; desc: string }
+    rotationDrafts: { title: string; desc: string }
+    journals: { title: string; desc: string }
+    onboarding: { title: string; desc: string }
+    stats: { title: string; desc: string }
   }
-  oss: { github: string }
+  memberBadge: string
+  membershipTeaser: { tagline: string; body: string; cta: string }
+  membership: { tagline: string; body: string; cta: string; price: string }
+  oss: { github: string; vereinSubheading: string; vereinBody: string; statutenLink: string }
   collaborate: { title: string; body: string }
+  donate: {
+    title: string
+    sub: string
+    amountLabel: string
+    customPlaceholder: string
+    emailLabel: string
+    emailPlaceholder: string
+    cta: string
+    processing: string
+    error: string
+    thankYouTitle: string
+    thankYouBody: string
+    thankYouClose: string
+  }
   newsletter: { title: string; sub: string; placeholder: string; cta: string; success: string; error: string }
   imprint: { title: string; back: string }
   privacy: { title: string; back: string }
@@ -50,13 +73,22 @@ export interface Translations {
 
 const translations: Record<Locale, Translations> = {
   de: {
-    nav: { openApp: 'App öffnen' },
+    nav: { openApp: 'App öffnen', features: 'Funktionen', webapp: 'Web App', membership: 'Mitgliedschaft', donate: 'Spenden', about: 'Über uns' },
     hero: {
       headline: 'Hofverwaltung,\nvon Bauern entwickelt.',
       sub: 'Open-Source Software für kleine und mittlere Betriebe. Keine Investoren, kein Lock-in — nur Werkzeuge, die wirklich funktionieren.',
       testPhase: 'Die App befindet sich derzeit in einer Testphase — probiere sie aus und schick uns dein Feedback an feedback@coltivio.ch.',
+      testPhaseBanner: 'Testphase — alle Funktionen, inkl. Mitgliederfunktionen, sind derzeit für alle kostenlos verfügbar.',
       ctaIos: 'iOS TestFlight ↗',
       ctaAndroid: 'Android Beta',
+    },
+    androidBetaDialog: {
+      groupOption: 'Option 1 — Google Group beitreten',
+      groupDesc: 'Tritt der Google Group bei, um automatisch für den Beta-Test freigeschaltet zu werden.',
+      downloadTitle: 'Dann App im Play Store herunterladen',
+      emailOption: 'Option 2 — Per E-Mail anfragen',
+      emailDesc: 'Falls du kein Google-Konto hast, schreib uns direkt.',
+      issues: 'Probleme oder Feedback? Schreib uns an support@coltivio.ch.',
     },
     story: {
       headline: 'Papierkram? Excel-Chaos? Nachtragen am Abend?',
@@ -95,16 +127,34 @@ const translations: Record<Locale, Translations> = {
       title: 'Die Desktop-Ergänzung',
       body: 'Gleiche Daten, grösserer Bildschirm — plus diese zusätzlichen Funktionen:',
       contacts: { title: 'Kontaktverwaltung', desc: 'Verwalte alle Hofkontakte. Füge Labels hinzu, um zu wissen, wer sich für ein Fleischpaket interessiert oder bei der Ernte helfen möchte.' },
-      orders: { title: 'Einfaches Bestellbuch', desc: 'Erfasse Bestellungen von deinen Kontakten und verfolge, ob sie geliefert und bezahlt wurden.' },
+      orders: { title: 'Einfaches Bestellbuch', desc: 'Erfasse Bestellungen von deinen Kontakten und verfolge, ob sie geliefert und bezahlt wurden. Drucke individuelle Rechnungen mit eigenem Inhalt für jede Bestellung.' },
       sponsorships: { title: 'Patenschaftsverwaltung', desc: 'Verwalte deine Tierpatenschaften auf einen Blick: Wer ist Pate welches Tieres, welches Modell läuft — und ist die Zahlung eingegangen? Sende personalisierte Newsletter direkt an alle Paten.' },
+      community: { title: 'Treffpunkt', desc: 'Stell Fragen, schlage neue Funktionen vor, melde Probleme und vernetze dich mit anderen Landwirt:innen.' },
     },
     more: {
       wiki: { title: 'Wiki', desc: 'Dein persönliches Wissensarchiv auf dem Hof. Halte Notizen, Anleitungen und Erfahrungen fest — und teile einzelne Einträge mit der Community, wenn du möchtest.' },
       tasks: { title: 'Aufgaben', desc: 'Erstelle Aufgaben und weise Tiere, Flächen oder Ausrüstung direkt zu. 50 Ziegen Klauen schneiden? Einfach zuweisen und automatisch eine Checkliste erhalten — Tier für Tier abhaken.' },
-      multiUser: { title: 'Mehrere Benutzer', desc: 'Lade andere Personen zu deinem Betrieb ein. Aufgaben gemeinsam planen, Aufzeichnungen synchron halten und weniger Hin-und-Her bei der täglichen Arbeit.' },
+      multiUser: { title: 'Mehrere Benutzer', desc: 'Lade andere Personen zu deinem Betrieb ein. Vergib funktionsspezifische Lese- und Schreibrechte — so hat jeder genau den Zugriff, den er braucht. Aufgaben gemeinsam planen, Aufzeichnungen synchron halten und weniger Hin-und-Her bei der täglichen Arbeit.' },
+      rotationDrafts: { title: 'Fruchtfolge-Entwürfe', desc: 'Erstelle mehrere Planungsentwürfe für ausgewählte Flächen und vergleiche verschiedene Szenarien — übernimm einfach den Entwurf, der am besten passt.' },
+      journals: { title: 'Journal', desc: 'Füge Tieren und Flächen Journaleinträge mit Bildern hinzu — für Beobachtungen, Ereignisse oder alles, was du festhalten möchtest.' },
+      onboarding: { title: 'Detailliertes Onboarding', desc: 'Schritt-für-Schritt-Anleitungen für alle Funktionen — damit du das Beste aus Coltivio herausholst, von Anfang an.' },
+      stats: { title: 'Statistiken', desc: 'Detaillierte Grafiken zur Feldarbeit, Altersverteilung im Tierbestand oder Familienstammbäume — verstehe deinen Betrieb auf einen Blick.' },
     },
-    oss: { github: 'Auf GitHub ansehen' },
+    memberBadge: 'Mitglied',
+    membershipTeaser: {
+      tagline: 'Unabhängig. Gemeinnützig. Von Landwirt:innen für Landwirt:innen.',
+      body: 'AgriColtivio ist ein gemeinnütziger Verein. Um die laufenden Kosten langfristig zu decken, sind einige erweiterte Funktionen Vereinsmitgliedern vorbehalten.',
+      cta: 'Erfahre mehr',
+    },
+    membership: {
+      tagline: 'Werde Teil einer Gemeinschaft welche für eine offene und faire Landwirtschaft steht.',
+      body: 'Hilf mit das Projekt weiterzuentwickeln und profitiere von weiteren Vorteilen. Coltivio wird ausschliesslich durch Spenden und Mitgliedschaften finanziert — keine Investoren, keine Werbung.',
+      cta: 'Mitglied werden',
+      price: 'Eine Mitgliedschaft kostet CHF 50 pro Jahr und gibt dir Zugang zu allen Funktionen.',
+    },
+    oss: { github: 'Auf GitHub ansehen', vereinSubheading: 'Gemeinsam für eine freie und unabhängige Landwirtschaft', vereinBody: 'AgriColtivio, welcher diese App entwickelt, ist ein gemeinnütziger Verein, der zum Ziel hat, kleine und mittelgrosse landwirtschaftliche Betriebe zu stärken.', statutenLink: 'Vereinsstatuten lesen' },
     collaborate: { title: 'Werde Teil von Coltivio', body: 'Wir sind immer auf der Suche nach Landwirt:innen und interessierten Personen, die mitgestalten möchten. Meld dich einfach bei uns:' },
+    donate: { title: 'Coltivio unterstützen', sub: 'Jeder Beitrag zählt — und hilft uns, eine unabhängige Alternative aufzubauen, bei der die Interessen der Bäuerinnen und Bauern im Vordergrund stehen.', amountLabel: 'Betrag (CHF)', customPlaceholder: 'Anderen Betrag eingeben', emailLabel: 'Deine E-Mail-Adresse', emailPlaceholder: 'deine@email.ch', cta: 'Jetzt spenden', processing: 'Weiterleitung...', error: 'Etwas ist schiefgelaufen. Bitte versuche es erneut.', thankYouTitle: 'Danke für deine Unterstützung!', thankYouBody: 'Danke, dass du AgriColtivio unterstützt. Du erhältst in Kürze eine E-Mail mit einer Spendenbestätigung.', thankYouClose: 'Schliessen' },
     newsletter: { title: 'Newsletter', sub: 'Bleib auf dem Laufenden. Wir informieren dich über neue Funktionen, Updates und alles rund um Coltivio.', placeholder: 'deine@email.ch', cta: 'Anmelden', success: 'Danke für deine Anmeldung! Wir halten dich auf dem Laufenden.', error: 'Etwas ist schiefgelaufen. Bitte versuche es erneut.' },
     imprint: { title: 'Impressum', back: 'Zurück' },
     privacy: { title: 'Datenschutzerklärung', back: 'Zurück' },
@@ -113,13 +163,22 @@ const translations: Record<Locale, Translations> = {
   },
 
   fr: {
-    nav: { openApp: "Ouvrir l'App" },
+    nav: { openApp: "Ouvrir l'App", features: 'Fonctionnalités', webapp: 'Web App', membership: 'Adhésion', donate: 'Faire un don', about: 'À propos' },
     hero: {
       headline: 'Gestion agricole,\ncréée par des agriculteurs.',
       sub: "Logiciel open source à but non lucratif pour les petites et moyennes exploitations. Pas d'investisseurs, pas de verrouillage — juste des outils qui fonctionnent vraiment.",
       testPhase: "L'app est actuellement en phase de test — essayez-la et envoyez-nous vos retours à feedback@coltivio.ch.",
+      testPhaseBanner: "Phase de test — toutes les fonctionnalités, y compris les fonctionnalités membres, sont actuellement disponibles gratuitement pour tous.",
       ctaIos: 'iOS TestFlight ↗',
       ctaAndroid: 'Android Beta',
+    },
+    androidBetaDialog: {
+      groupOption: 'Option 1 — Rejoindre le Google Group',
+      groupDesc: 'Rejoins le Google Group pour être automatiquement activé pour le test bêta.',
+      downloadTitle: 'Puis télécharger l\'app sur le Play Store',
+      emailOption: 'Option 2 — Demander par e-mail',
+      emailDesc: 'Si tu n\'as pas de compte Google, écris-nous directement.',
+      issues: 'Problèmes ou retours ? Écris-nous à support@coltivio.ch.',
     },
     story: {
       headline: 'Paperasse ? Chaos Excel ? Rattrapage le soir ?',
@@ -158,16 +217,34 @@ const translations: Record<Locale, Translations> = {
       title: 'Le Compagnon Bureau',
       body: 'Mêmes données, écran plus grand — plus ces fonctionnalités supplémentaires :',
       contacts: { title: 'Gestion des contacts', desc: 'Gérez tous vos contacts agricoles. Ajoutez des labels pour savoir qui est intéressé par un colis de viande ou veut aider pendant la récolte.' },
-      orders: { title: 'Carnet de commandes', desc: 'Enregistrez les commandes de vos contacts et suivez si elles ont été livrées et payées.' },
+      orders: { title: 'Carnet de commandes', desc: "Enregistrez les commandes de vos contacts et suivez si elles ont été livrées et payées. Imprimez des factures personnalisées avec votre propre contenu pour chaque commande." },
       sponsorships: { title: 'Gestion des parrainages', desc: 'Gérez vos parrainages d\'animaux en un coup d\'œil : qui parraine quel animal, quel programme est actif — et le paiement est-il arrivé ? Envoyez des newsletters personnalisées directement à tous les parrains.' },
+      community: { title: 'Point de Rencontre', desc: 'Posez des questions, proposez de nouvelles fonctionnalités, signalez des problèmes et échangez avec d\'autres agriculteurs.' },
     },
     more: {
       wiki: { title: 'Wiki', desc: "Votre base de connaissances personnelle à la ferme. Notez guides, astuces et expériences — et partagez certaines entrées avec la communauté si vous le souhaitez." },
       tasks: { title: 'Tâches', desc: "Créez des tâches et attribuez-leur animaux, surfaces ou équipements. Sabots de 50 chèvres à couper ? Assignez-les et obtenez une liste de contrôle automatique — à cocher animal par animal." },
-      multiUser: { title: 'Multi-utilisateurs', desc: "Invitez d'autres personnes dans votre exploitation. Planifiez ensemble, synchronisez vos données et réduisez les allers-retours dans le travail quotidien." },
+      multiUser: { title: 'Multi-utilisateurs', desc: "Invitez d'autres personnes dans votre exploitation. Attribuez des droits de lecture et d'écriture par fonctionnalité — chacun a exactement les accès dont il a besoin. Planifiez ensemble, synchronisez vos données et réduisez les allers-retours dans le travail quotidien." },
+      rotationDrafts: { title: 'Brouillons de rotation', desc: "Créez plusieurs brouillons de planification pour les parcelles sélectionnées et comparez différents scénarios — appliquez simplement celui qui convient le mieux." },
+      journals: { title: 'Journal', desc: "Ajoutez des entrées de journal avec photos à vos animaux et parcelles — pour des observations, des événements ou tout ce que vous souhaitez noter." },
+      onboarding: { title: 'Onboarding détaillé', desc: "Des guides pas à pas pour toutes les fonctionnalités — pour tirer le meilleur de Coltivio dès le début." },
+      stats: { title: 'Statistiques', desc: "Graphiques détaillés sur les travaux des champs, la répartition par âge du cheptel ou les arbres généalogiques — comprenez votre exploitation en un coup d'œil." },
     },
-    oss: { github: 'Voir sur GitHub' },
+    memberBadge: 'Membre',
+    membershipTeaser: {
+      tagline: 'Indépendant. À but non lucratif. Par des agriculteurs pour des agriculteurs.',
+      body: "AgriColtivio est une association à but non lucratif. Pour couvrir les coûts de fonctionnement sur le long terme, certaines fonctionnalités avancées sont réservées aux membres.",
+      cta: 'En savoir plus',
+    },
+    membership: {
+      tagline: 'Rejoignez une communauté qui défend une agriculture ouverte et équitable.',
+      body: 'Aidez à développer le projet et profitez d\'avantages supplémentaires. Coltivio est financé exclusivement par des dons et des adhésions — pas d\'investisseurs, pas de publicité.',
+      cta: 'Devenir membre',
+      price: "Une adhésion coûte CHF 50 par an et donne accès à toutes les fonctionnalités.",
+    },
+    oss: { github: 'Voir sur GitHub', vereinSubheading: 'Ensemble pour une agriculture libre et indépendante', vereinBody: "AgriColtivio, qui développe cette application, est une association à but non lucratif dont l'objectif est de renforcer les petites et moyennes exploitations agricoles.", statutenLink: "Lire les statuts de l'association" },
     collaborate: { title: 'Rejoins Coltivio', body: 'Nous cherchons toujours d\'autres agriculteurs et développeurs pour collaborer. Contactez-nous :' },
+    donate: { title: 'Aidez à faire vivre ce projet', sub: "Chaque contribution compte — et nous aide à développer Coltivio et à le garder gratuit pour tous.", amountLabel: 'Montant (CHF)', customPlaceholder: 'Saisir un autre montant', emailLabel: 'Votre adresse e-mail', emailPlaceholder: 'votre@email.ch', cta: 'Faire un don', processing: 'Redirection...', error: "Une erreur s'est produite. Veuillez réessayer.", thankYouTitle: 'Merci pour votre soutien !', thankYouBody: "Merci de soutenir AgriColtivio. Vous recevrez bientôt un e-mail de confirmation de don.", thankYouClose: 'Fermer' },
     newsletter: { title: 'Newsletter', sub: 'Restez informé. Nous vous tiendrons au courant des nouvelles fonctionnalités, mises à jour et tout ce qui concerne Coltivio.', placeholder: 'votre@email.ch', cta: "S'inscrire", success: 'Merci pour votre inscription ! Nous vous tiendrons informé.', error: "Une erreur s'est produite. Veuillez réessayer." },
     imprint: { title: 'Mentions légales', back: 'Retour' },
     privacy: { title: 'Politique de confidentialité', back: 'Retour' },
@@ -176,13 +253,22 @@ const translations: Record<Locale, Translations> = {
   },
 
   it: {
-    nav: { openApp: 'Apri App' },
+    nav: { openApp: 'Apri App', features: 'Funzionalità', webapp: 'Web App', membership: 'Iscrizione', donate: 'Donazioni', about: 'Chi siamo' },
     hero: {
       headline: 'Gestione agricola,\nfatta da agricoltori.',
       sub: 'Software open source e senza scopo di lucro per piccole e medie aziende agricole. Nessun investitore, nessun lock-in — solo strumenti che funzionano davvero.',
       testPhase: "L'app è attualmente in fase di test — provala e inviaci il tuo feedback a feedback@coltivio.ch.",
+      testPhaseBanner: "Fase di test — tutte le funzionalità, incluse quelle riservate ai membri, sono attualmente disponibili gratuitamente per tutti.",
       ctaIos: 'iOS TestFlight ↗',
       ctaAndroid: 'Android Beta',
+    },
+    androidBetaDialog: {
+      groupOption: 'Opzione 1 — Iscriviti al Google Group',
+      groupDesc: 'Iscriviti al Google Group per essere attivato automaticamente per il test beta.',
+      downloadTitle: 'Poi scarica l\'app dal Play Store',
+      emailOption: 'Opzione 2 — Richiedi via e-mail',
+      emailDesc: 'Se non hai un account Google, scrivici direttamente.',
+      issues: 'Problemi o feedback? Scrivici a support@coltivio.ch.',
     },
     story: {
       headline: 'Burocrazia? Caos Excel? Aggiornare tutto la sera?',
@@ -221,16 +307,34 @@ const translations: Record<Locale, Translations> = {
       title: 'Il Compagno Desktop',
       body: 'Stessi dati, schermo più grande — più queste funzioni aggiuntive:',
       contacts: { title: 'Gestione contatti', desc: 'Gestisci tutti i tuoi contatti agricoli. Aggiungi etichette per ricordare chi è interessato a un pacco di carne o vuole aiutare durante il raccolto.' },
-      orders: { title: 'Registro ordini semplice', desc: 'Aggiungi ordini dai tuoi contatti e traccia se sono stati consegnati e pagati.' },
+      orders: { title: 'Registro ordini semplice', desc: 'Aggiungi ordini dai tuoi contatti e traccia se sono stati consegnati e pagati. Stampa fatture personalizzate con contenuto su misura per ogni ordine.' },
       sponsorships: { title: 'Gestione sponsorizzazioni', desc: "Gestisci le tue sponsorizzazioni animali a colpo d'occhio: chi sponsorizza quale animale, quale piano è attivo — e il pagamento è arrivato? Invia newsletter personalizzate direttamente a tutti gli sponsor." },
+      community: { title: 'Punto d\'Incontro', desc: 'Fai domande, proponi nuove funzionalità, segnala problemi e connettiti con altri agricoltori.' },
     },
     more: {
       wiki: { title: 'Wiki', desc: "La tua base di conoscenze in fattoria. Raccogli note, guide e buone pratiche — e condividi singole voci con la community se vuoi." },
       tasks: { title: 'Attività', desc: "Crea attività e assegna animali, superfici o attrezzatura. Zoccoli da tagliare a 50 capre? Assegnale e ottieni una checklist automatica — una spunta per ogni animale." },
-      multiUser: { title: 'Multi-utente', desc: "Invita altre persone nella tua azienda. Pianificate insieme, mantenete i dati sincronizzati e riducete il coordinamento nel lavoro quotidiano." },
+      multiUser: { title: 'Multi-utente', desc: "Invita altre persone nella tua azienda. Assegna permessi di lettura e scrittura per singola funzionalità — ognuno ha esattamente gli accessi di cui ha bisogno. Pianificate insieme, mantenete i dati sincronizzati e riducete il coordinamento nel lavoro quotidiano." },
+      rotationDrafts: { title: 'Bozze di rotazione', desc: "Crea più bozze di pianificazione per le superfici selezionate e confronta diversi scenari — applica semplicemente quella che si adatta meglio." },
+      journals: { title: 'Diario', desc: "Aggiungi voci di diario con immagini ad animali e superfici — per osservazioni, eventi o tutto ciò che vuoi annotare." },
+      onboarding: { title: 'Onboarding dettagliato', desc: "Guide passo dopo passo per tutte le funzionalità — per sfruttare al massimo Coltivio fin dall'inizio." },
+      stats: { title: 'Statistiche', desc: "Grafici dettagliati sui lavori in campo, la distribuzione per età del bestiame o gli alberi genealogici — comprendi la tua azienda a colpo d'occhio." },
     },
-    oss: { github: 'Vedi su GitHub' },
+    memberBadge: 'Membro',
+    membershipTeaser: {
+      tagline: 'Indipendente. Non-profit. Da agricoltori per agricoltori.',
+      body: "AgriColtivio è un'associazione senza scopo di lucro. Per coprire i costi operativi nel lungo termine, alcune funzionalità avanzate sono riservate ai soci.",
+      cta: 'Scopri di più',
+    },
+    membership: {
+      tagline: 'Entra a far parte di una comunità che sostiene un\'agricoltura aperta e equa.',
+      body: 'Aiuta a sviluppare il progetto e approfitta di ulteriori vantaggi. Coltivio è finanziato esclusivamente da donazioni e iscrizioni — nessun investitore, nessuna pubblicità.',
+      cta: 'Diventa membro',
+      price: "Un'iscrizione costa CHF 50 all'anno e dà accesso a tutte le funzionalità.",
+    },
+    oss: { github: 'Vedi su GitHub', vereinSubheading: "Insieme per un'agricoltura libera e indipendente", vereinBody: "AgriColtivio, che sviluppa questa app, è un'associazione senza scopo di lucro il cui obiettivo è rafforzare le piccole e medie aziende agricole.", statutenLink: "Leggi lo statuto dell'associazione" },
     collaborate: { title: 'Entra a far parte di Coltivio', body: 'Siamo sempre alla ricerca di agricoltori e sviluppatori con cui collaborare. Scrivici:' },
+    donate: { title: 'Aiuta a mantenere vivo questo progetto', sub: 'Ogni contributo conta — e ci aiuta a sviluppare Coltivio e a mantenerlo gratuito per tutti.', amountLabel: 'Importo (CHF)', customPlaceholder: 'Inserisci un altro importo', emailLabel: 'Il tuo indirizzo e-mail', emailPlaceholder: 'tua@email.ch', cta: 'Dona ora', processing: 'Reindirizzamento...', error: 'Qualcosa è andato storto. Riprova.', thankYouTitle: 'Grazie per il tuo sostegno!', thankYouBody: 'Grazie per sostenere AgriColtivio. Riceverai a breve una e-mail di conferma della donazione.', thankYouClose: 'Chiudi' },
     newsletter: { title: 'Newsletter', sub: 'Rimani aggiornato. Ti terremo informato su nuove funzionalità, aggiornamenti e tutto ciò che riguarda Coltivio.', placeholder: 'tua@email.ch', cta: 'Iscriviti', success: 'Grazie per l\'iscrizione! Ti terremo aggiornato.', error: 'Qualcosa è andato storto. Riprova.' },
     imprint: { title: 'Impronta', back: 'Indietro' },
     privacy: { title: 'Informativa sulla privacy', back: 'Indietro' },
@@ -239,13 +343,22 @@ const translations: Record<Locale, Translations> = {
   },
 
   en: {
-    nav: { openApp: 'Open App' },
+    nav: { openApp: 'Open App', features: 'Features', webapp: 'Web App', membership: 'Membership', donate: 'Donate', about: 'About' },
     hero: {
       headline: 'Farm Management,\nBuilt by Farmers.',
       sub: 'Open source, non-profit software for small and medium farms. No investors, no lock-in — just tools that actually work.',
       testPhase: 'The app is currently in a test phase — try it out and send us your feedback at feedback@coltivio.ch.',
+      testPhaseBanner: 'Test phase — all features, including member features, are currently available for free.',
       ctaIos: 'iOS TestFlight ↗',
       ctaAndroid: 'Android Beta',
+    },
+    androidBetaDialog: {
+      groupOption: 'Option 1 — Join the Google Group',
+      groupDesc: 'Join the Google Group to be automatically enabled for the beta test.',
+      downloadTitle: 'Then download the app from the Play Store',
+      emailOption: 'Option 2 — Request via email',
+      emailDesc: 'If you don\'t have a Google account, write to us directly.',
+      issues: 'Issues or feedback? Write to us at support@coltivio.ch.',
     },
     story: {
       headline: 'Paperwork? Excel chaos? Catching up in the evening?',
@@ -284,16 +397,34 @@ const translations: Record<Locale, Translations> = {
       title: 'The Desktop Companion',
       body: 'Same data, bigger screen — plus these additional features:',
       contacts: { title: 'Contact Management', desc: "Manage all your farm contacts. Add labels to remember who's interested in a meat package or wants to help during harvest." },
-      orders: { title: 'Simple Order Book', desc: "Add orders from your contacts and track whether they've been delivered and paid." },
+      orders: { title: 'Simple Order Book', desc: "Add orders from your contacts and track whether they've been delivered and paid. Print custom invoices with your own content for each order." },
       sponsorships: { title: 'Sponsorship Management', desc: "Manage your animal sponsorships at a glance: who sponsors which animal, which plan is active — and has the payment come in? Send personalised newsletters directly to all sponsors." },
+      community: { title: 'Community Hub', desc: 'Ask questions, suggest new features, report issues, and connect with other farmers.' },
     },
     more: {
       wiki: { title: 'Wiki', desc: "Your personal knowledge base on the farm. Collect notes, guides, and best practices — and share individual entries with the community if you want." },
       tasks: { title: 'Tasks', desc: "Create tasks and attach animals, plots, or equipment. Need to cut the hooves of 50 goats? Assign them and get an auto-generated checklist — tick off each animal as you go." },
-      multiUser: { title: 'Multi-User', desc: "Invite others to your farm and plan together. Shared tasks, synced records, and less back-and-forth in day-to-day work." },
+      multiUser: { title: 'Multi-User', desc: "Invite others to your farm and assign feature-specific read and write permissions — so everyone has exactly the access they need. Plan together, keep records in sync, and reduce back-and-forth in daily work." },
+      rotationDrafts: { title: 'Rotation Drafts', desc: "Create multiple planning drafts for selected plots and compare different scenarios — just apply the one that fits best." },
+      journals: { title: 'Journal', desc: "Add journal entries with photos to animals and plots — for observations, events, or anything you want to keep track of." },
+      onboarding: { title: 'Detailed Onboarding', desc: "Step-by-step guides for every feature — so you get the most out of Coltivio right from the start." },
+      stats: { title: 'Stats', desc: "Detailed graphs of your field work, animal age distribution, family trees and more — understand your farm at a glance." },
     },
-    oss: { github: 'View on GitHub' },
+    memberBadge: 'Member',
+    membershipTeaser: {
+      tagline: 'Independent. Non-profit. By farmers for farmers.',
+      body: 'AgriColtivio is a non-profit association. To sustainably cover running costs, some advanced features are reserved for members.',
+      cta: 'Learn more',
+    },
+    membership: {
+      tagline: 'Join a community that stands for open and fair agriculture.',
+      body: 'Help shape the project and enjoy additional benefits. Coltivio is funded exclusively through donations and memberships — no investors, no advertising.',
+      cta: 'Become a member',
+      price: 'A membership costs CHF 50 per year and gives you access to all features.',
+    },
+    oss: { github: 'View on GitHub', vereinSubheading: 'Together for a free and independent agriculture', vereinBody: 'AgriColtivio, the organisation behind this app, is a non-profit association dedicated to strengthening small and medium-sized farms.', statutenLink: 'Read the association statutes' },
     collaborate: { title: 'Become Part of Coltivio', body: 'We are always looking for farmers and people who want to collaborate on the project. Get in touch:' },
+    donate: { title: 'Help keep this project going', sub: 'Every contribution counts — and helps us keep developing Coltivio and keep it free for everyone.', amountLabel: 'Amount (CHF)', customPlaceholder: 'Enter a custom amount', emailLabel: 'Your email address', emailPlaceholder: 'your@email.com', cta: 'Donate now', processing: 'Redirecting...', error: 'Something went wrong. Please try again.', thankYouTitle: 'Thank you for your support!', thankYouBody: 'Thank you for supporting AgriColtivio. You will receive an email with a donation confirmation shortly.', thankYouClose: 'Close' },
     newsletter: { title: 'Newsletter', sub: "Stay in the loop. We'll keep you updated on new features, releases, and everything Coltivio.", placeholder: 'your@email.com', cta: 'Subscribe', success: "Thanks for signing up! We'll keep you in the loop.", error: 'Something went wrong. Please try again.' },
     imprint: { title: 'Imprint', back: 'Back' },
     privacy: { title: 'Privacy Policy', back: 'Back' },

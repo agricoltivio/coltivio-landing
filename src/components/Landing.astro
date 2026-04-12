@@ -2,6 +2,10 @@
 import type { Translations } from '@/i18n/translations'
 import { NewsletterForm } from './NewsletterForm'
 import { LanguageSwitcher } from './LanguageSwitcher'
+import { MobileNav } from './MobileNav'
+import { StatutenDialog } from './StatutenDialog'
+import { DonationForm } from './DonationForm'
+import { AndroidBetaDialog } from './AndroidBetaDialog'
 
 interface Props {
   tr: Translations
@@ -26,6 +30,11 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
 
 <div class="min-h-screen bg-background text-foreground">
 
+  {/* ── Test phase banner ───────────────────────────────────── */}
+  <div class="bg-primary text-primary-foreground text-center text-sm font-medium py-2 px-4">
+    {tr.hero.testPhaseBanner}
+  </div>
+
   {/* ── Navbar ─────────────────────────────────────────────── */}
   <header class="sticky top-0 z-50 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
     <div class="container mx-auto flex h-14 items-center justify-between px-4">
@@ -33,16 +42,56 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
         <img src="/logo.png" alt="Coltivio" class="h-7" />
         Coltivio
       </div>
+
+      {/* Desktop nav links */}
+      <nav class="hidden lg:flex items-center gap-1 text-sm font-medium">
+        <a href="#features" class="px-3 py-1.5 rounded hover:bg-muted transition-colors">{tr.nav.features}</a>
+        <a href="#webapp" class="px-3 py-1.5 rounded hover:bg-muted transition-colors">{tr.nav.webapp}</a>
+        <a href="#membership" class="px-3 py-1.5 rounded hover:bg-muted transition-colors">{tr.nav.membership}</a>
+        <a href="#donate" class="px-3 py-1.5 rounded hover:bg-muted transition-colors">{tr.nav.donate}</a>
+        <a href="#about" class="px-3 py-1.5 rounded hover:bg-muted transition-colors">{tr.nav.about}</a>
+      </nav>
+
       <div class="flex items-center gap-2">
+        {/* Open App: desktop only */}
         <a
           href={appUrl}
+          data-auth-redirect="/dashboard"
           target="_blank"
           rel="noopener noreferrer"
-          class="rounded-md bg-primary px-4 py-1.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+          class="hidden md:inline-flex rounded-md border border-input bg-background px-4 py-1.5 text-sm font-medium hover:bg-muted transition-colors"
         >
           {tr.nav.openApp}
         </a>
-        <LanguageSwitcher client:load lang={lang} />
+        {/* Become Member: always visible */}
+        <a
+          href={`${appUrl}/membership`}
+          data-auth-redirect="/membership"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex rounded-md bg-primary px-4 py-1.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+        >
+          {tr.membership.cta}
+        </a>
+        {/* Lang switcher: desktop only */}
+        <div class="hidden lg:block">
+          <LanguageSwitcher client:load lang={lang} />
+        </div>
+        {/* Mobile hamburger */}
+        <MobileNav
+          client:load
+          lang={lang}
+          appUrl={appUrl}
+          labels={{
+            features: tr.nav.features,
+            webapp: tr.nav.webapp,
+            membership: tr.nav.membership,
+            donate: tr.nav.donate,
+            about: tr.nav.about,
+            openApp: tr.nav.openApp,
+            membershipCta: tr.membership.cta,
+          }}
+        />
       </div>
     </div>
   </header>
@@ -70,12 +119,16 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
             >
               {tr.hero.ctaIos}
             </a>
-            <a
-              href="mailto:support@coltivio.ch?subject=Android%20Beta%20Test&body=Hallo%2C%20bitte%20freischalten%20f%C3%BCr%20Android%20Test%2C%20hier%20mein%20PlayStore%20Google%20Account%20Email%20%3C%3D%3D%3D%20bitte%20Email%20angeben%20%3D%3D%3D%3E"
-              class="inline-flex items-center justify-center rounded-md border border-input bg-background px-6 py-3 text-base font-medium hover:bg-muted transition-colors"
-            >
-              {tr.hero.ctaAndroid}
-            </a>
+            <AndroidBetaDialog
+              client:load
+              label={tr.hero.ctaAndroid}
+              groupOption={tr.androidBetaDialog.groupOption}
+              groupDesc={tr.androidBetaDialog.groupDesc}
+              downloadTitle={tr.androidBetaDialog.downloadTitle}
+              emailOption={tr.androidBetaDialog.emailOption}
+              emailDesc={tr.androidBetaDialog.emailDesc}
+              issues={tr.androidBetaDialog.issues}
+            />
           </div>
         </div>
       </div>
@@ -98,8 +151,31 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
     </div>
   </section>
 
+  {/* ── Membership teaser ───────────────────────────────────── */}
+  <section class="border-t bg-primary/5 py-12">
+    <div class="container mx-auto px-4 max-w-2xl text-center space-y-4">
+      <p class="text-xs font-semibold uppercase tracking-widest text-primary">{tr.membershipTeaser.tagline}</p>
+      <p class="text-muted-foreground leading-relaxed">{tr.membershipTeaser.body}</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a
+          href={`${appUrl}/membership`}
+          data-auth-redirect="/membership"
+          class="inline-flex items-center justify-center rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+        >
+          {tr.membership.cta} →
+        </a>
+        <a
+          href="#membership"
+          class="inline-flex items-center justify-center rounded-md border border-input bg-background px-5 py-2.5 text-sm font-medium hover:bg-muted transition-colors"
+        >
+          {tr.membershipTeaser.cta} →
+        </a>
+      </div>
+    </div>
+  </section>
+
   {/* ── Features ───────────────────────────────────────────── */}
-  <section class="border-t py-20">
+  <section id="features" class="border-t py-20">
     <div class="container mx-auto px-4 space-y-20">
       <p class="text-sm font-medium text-muted-foreground uppercase tracking-wider">
         {tr.fieldwork.sub}
@@ -187,30 +263,46 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
           </div>
           <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
             <div class="pt-6 px-6 pb-6 space-y-2">
-              <h4 class="font-semibold">{tr.more.tasks.title}</h4>
+              <div class="flex items-start justify-between gap-2">
+                <h4 class="font-semibold">{tr.more.tasks.title}</h4>
+                <span class="shrink-0 inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">★ {tr.memberBadge}</span>
+              </div>
               <p class="text-sm text-muted-foreground leading-relaxed">{tr.more.tasks.desc}</p>
             </div>
           </div>
           <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
             <div class="pt-6 px-6 pb-6 space-y-2">
-              <h4 class="font-semibold">{tr.more.multiUser.title}</h4>
+              <div class="flex items-start justify-between gap-2">
+                <h4 class="font-semibold">{tr.more.multiUser.title}</h4>
+                <span class="shrink-0 inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">★ {tr.memberBadge}</span>
+              </div>
               <p class="text-sm text-muted-foreground leading-relaxed">{tr.more.multiUser.desc}</p>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Demo video */}
-      <div class="space-y-6">
-        <h3 class="text-2xl font-bold">{tr.demo.title}</h3>
-        <div class="relative w-full overflow-hidden rounded-xl aspect-video">
-          <iframe
-            src="https://www.youtube.com/embed/7dShhXfILDM"
-            title={tr.demo.title}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-            class="absolute inset-0 w-full h-full"
-          />
+          <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
+            <div class="pt-6 px-6 pb-6 space-y-2">
+              <div class="flex items-start justify-between gap-2">
+                <h4 class="font-semibold">{tr.more.rotationDrafts.title}</h4>
+                <span class="shrink-0 inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">★ {tr.memberBadge}</span>
+              </div>
+              <p class="text-sm text-muted-foreground leading-relaxed">{tr.more.rotationDrafts.desc}</p>
+            </div>
+          </div>
+          <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
+            <div class="pt-6 px-6 pb-6 space-y-2">
+              <div class="flex items-start justify-between gap-2">
+                <h4 class="font-semibold">{tr.more.journals.title}</h4>
+                <span class="shrink-0 inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">★ {tr.memberBadge}</span>
+              </div>
+              <p class="text-sm text-muted-foreground leading-relaxed">{tr.more.journals.desc}</p>
+            </div>
+          </div>
+          <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
+            <div class="pt-6 px-6 pb-6 space-y-2">
+              <h4 class="font-semibold">{tr.more.stats.title}</h4>
+              <p class="text-sm text-muted-foreground leading-relaxed">{tr.more.stats.desc}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -241,7 +333,7 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
   </section>
 
   {/* ── Web App ────────────────────────────────────────────── */}
-  <section class="border-t bg-muted/30 py-20">
+  <section id="webapp" class="border-t bg-muted/30 py-20">
     <div class="container mx-auto px-4 space-y-20">
       <p class="text-sm font-medium text-muted-foreground uppercase tracking-wider">
         {tr.webapp.label}
@@ -249,28 +341,44 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
       <div class="space-y-6 max-w-3xl">
         <h2 class="text-2xl font-bold">{tr.webapp.title}</h2>
         <p class="text-muted-foreground">{tr.webapp.body}</p>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
             <div class="pt-6 px-6 pb-6 space-y-2">
-              <h4 class="font-semibold">{tr.webapp.contacts.title}</h4>
+              <div class="flex items-start justify-between gap-2">
+                <h4 class="font-semibold">{tr.webapp.contacts.title}</h4>
+                <span class="shrink-0 inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">★ {tr.memberBadge}</span>
+              </div>
               <p class="text-sm text-muted-foreground leading-relaxed">{tr.webapp.contacts.desc}</p>
             </div>
           </div>
           <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
             <div class="pt-6 px-6 pb-6 space-y-2">
-              <h4 class="font-semibold">{tr.webapp.orders.title}</h4>
+              <div class="flex items-start justify-between gap-2">
+                <h4 class="font-semibold">{tr.webapp.orders.title}</h4>
+                <span class="shrink-0 inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">★ {tr.memberBadge}</span>
+              </div>
               <p class="text-sm text-muted-foreground leading-relaxed">{tr.webapp.orders.desc}</p>
             </div>
           </div>
           <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
             <div class="pt-6 px-6 pb-6 space-y-2">
-              <h4 class="font-semibold">{tr.webapp.sponsorships.title}</h4>
+              <div class="flex items-start justify-between gap-2">
+                <h4 class="font-semibold">{tr.webapp.sponsorships.title}</h4>
+                <span class="shrink-0 inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">★ {tr.memberBadge}</span>
+              </div>
               <p class="text-sm text-muted-foreground leading-relaxed">{tr.webapp.sponsorships.desc}</p>
+            </div>
+          </div>
+          <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
+            <div class="pt-6 px-6 pb-6 space-y-2">
+              <h4 class="font-semibold">{tr.webapp.community.title}</h4>
+              <p class="text-sm text-muted-foreground leading-relaxed">{tr.webapp.community.desc}</p>
             </div>
           </div>
         </div>
         <a
           href={appUrl}
+          data-auth-redirect="/dashboard"
           target="_blank"
           rel="noopener noreferrer"
           class="inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3 text-base font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
@@ -282,7 +390,7 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
   </section>
 
   {/* ── OSS ────────────────────────────────────────────────── */}
-  <section class="border-t py-20">
+  <section id="about" class="border-t py-20">
     <div class="container mx-auto px-4 max-w-3xl space-y-8">
       <h2 class="text-3xl font-bold">{tr.story.ossTitle}</h2>
       <div class="space-y-4 text-muted-foreground leading-relaxed">
@@ -304,14 +412,49 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
     </div>
   </section>
 
-  {/* ── Collaborate ────────────────────────────────────────── */}
-  <section class="border-t py-20">
-    <div class="container mx-auto px-4 max-w-2xl space-y-4">
-      <h2 class="text-3xl font-bold">{tr.collaborate.title}</h2>
-      <p class="text-lg text-muted-foreground leading-relaxed">{tr.collaborate.body}</p>
-      <a href="mailto:info@coltivio.ch" class="inline-block text-lg font-medium text-primary hover:underline">
-        info@coltivio.ch
+  {/* ── Membership ─────────────────────────────────────────── */}
+  <section id="membership" class="border-t bg-primary/5 py-20">
+    <div class="container mx-auto px-4 max-w-3xl space-y-6">
+      <h2 class="text-3xl font-bold md:text-4xl">{tr.membership.tagline}</h2>
+      <p class="text-lg text-muted-foreground leading-relaxed">{tr.membership.body}</p>
+      <p class="text-muted-foreground leading-relaxed">{tr.membership.price}</p>
+      <div class="border-t pt-6 space-y-3">
+        <h3 class="text-lg font-semibold">{tr.oss.vereinSubheading}</h3>
+        <p class="text-muted-foreground leading-relaxed">{tr.oss.vereinBody}</p>
+        <StatutenDialog client:load lang={lang} linkLabel={tr.oss.statutenLink} />
+      </div>
+      <a
+        href={`${appUrl}/membership`}
+        data-auth-redirect="/membership"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3 text-base font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+      >
+        {tr.membership.cta} →
       </a>
+    </div>
+  </section>
+
+{/* ── Donate ─────────────────────────────────────────────── */}
+  <section id="donate" class="border-t py-20">
+    <div class="container mx-auto px-4 max-w-2xl space-y-6">
+      <h2 class="text-3xl font-bold">{tr.donate.title}</h2>
+      <p class="text-muted-foreground">{tr.donate.sub}</p>
+      <DonationForm
+        client:load
+        apiUrl={apiUrl}
+        lang={lang}
+        amountLabel={tr.donate.amountLabel}
+        customPlaceholder={tr.donate.customPlaceholder}
+        emailLabel={tr.donate.emailLabel}
+        emailPlaceholder={tr.donate.emailPlaceholder}
+        cta={tr.donate.cta}
+        processing={tr.donate.processing}
+        error={tr.donate.error}
+        thankYouTitle={tr.donate.thankYouTitle}
+        thankYouBody={tr.donate.thankYouBody}
+        thankYouClose={tr.donate.thankYouClose}
+      />
     </div>
   </section>
 
@@ -333,6 +476,7 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
   </section>
 
   {/* ── Footer ─────────────────────────────────────────────── */}
+
   <footer class="border-t py-10">
     <div class="container mx-auto px-4 space-y-6">
       <div class="flex flex-wrap items-center justify-between gap-4">
@@ -347,9 +491,17 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
           <a href="https://testflight.apple.com/join/MZ3HNzDW" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded hover:bg-muted transition-colors text-muted-foreground hover:text-foreground">
             {tr.footer.iosBeta}
           </a>
-          <a href="mailto:support@coltivio.ch?subject=Android%20Beta%20Test&body=Hallo%2C%20bitte%20freischalten%20f%C3%BCr%20Android%20Test%2C%20hier%20mein%20PlayStore%20Google%20Account%20Email%20%3C%3D%3D%3D%20bitte%20Email%20angeben%20%3D%3D%3D%3E" class="px-3 py-1.5 rounded hover:bg-muted transition-colors text-muted-foreground hover:text-foreground">
-            {tr.footer.androidBeta}
-          </a>
+          <AndroidBetaDialog
+            client:load
+            label={tr.footer.androidBeta}
+            groupOption={tr.androidBetaDialog.groupOption}
+            groupDesc={tr.androidBetaDialog.groupDesc}
+            downloadTitle={tr.androidBetaDialog.downloadTitle}
+            emailOption={tr.androidBetaDialog.emailOption}
+            emailDesc={tr.androidBetaDialog.emailDesc}
+            issues={tr.androidBetaDialog.issues}
+            className="px-3 py-1.5 rounded hover:bg-muted transition-colors text-muted-foreground hover:text-foreground text-sm"
+          />
         </div>
       </div>
       <div class="flex flex-wrap gap-4 text-sm text-muted-foreground">
@@ -362,3 +514,30 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
   </footer>
 
 </div>
+
+<script define:vars={{ appUrl }} is:inline>
+  // Read token from hash fragment (e.g. #token=...)
+  // Hash is used so the token never reaches the server or appears in analytics/logs.
+  const hash = window.location.hash.slice(1)
+  if (hash) {
+    const params = new URLSearchParams(hash)
+    const token = params.get('token')
+    if (token) {
+      sessionStorage.setItem('coltivio_token', token)
+      // Remove hash from URL so the token doesn't linger in browser history
+      history.replaceState(null, '', window.location.pathname + window.location.search)
+    }
+  }
+
+  // Rewrite all [data-auth-redirect] links to the token-exchange URL if token exists
+  const token = sessionStorage.getItem('coltivio_token')
+  if (token) {
+    document.querySelectorAll('[data-auth-redirect]').forEach((el) => {
+      const redirect = el.getAttribute('data-auth-redirect')
+      el.setAttribute(
+        'href',
+        `${appUrl}/auth/token#token=${encodeURIComponent(token)}&redirect=${encodeURIComponent(redirect)}`
+      )
+    })
+  }
+</script>
