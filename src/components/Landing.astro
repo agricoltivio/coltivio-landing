@@ -30,6 +30,11 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
 
 <div class="min-h-screen bg-background text-foreground">
 
+  {/* ── Test phase banner ───────────────────────────────────── */}
+  <div class="bg-primary text-primary-foreground text-center text-sm font-medium py-2 px-4">
+    {tr.hero.testPhaseBanner}
+  </div>
+
   {/* ── Navbar ─────────────────────────────────────────────── */}
   <header class="sticky top-0 z-50 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
     <div class="container mx-auto flex h-14 items-center justify-between px-4">
@@ -142,6 +147,29 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
         <p>{tr.story.founders}</p>
         <p>{tr.story.problem}</p>
         <p class="text-foreground font-medium">{tr.story.born}</p>
+      </div>
+    </div>
+  </section>
+
+  {/* ── Membership teaser ───────────────────────────────────── */}
+  <section class="border-t bg-primary/5 py-12">
+    <div class="container mx-auto px-4 max-w-2xl text-center space-y-4">
+      <p class="text-xs font-semibold uppercase tracking-widest text-primary">{tr.membershipTeaser.tagline}</p>
+      <p class="text-muted-foreground leading-relaxed">{tr.membershipTeaser.body}</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a
+          href={`${appUrl}/membership`}
+          data-auth-redirect="/membership"
+          class="inline-flex items-center justify-center rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+        >
+          {tr.membership.cta} →
+        </a>
+        <a
+          href="#membership"
+          class="inline-flex items-center justify-center rounded-md border border-input bg-background px-5 py-2.5 text-sm font-medium hover:bg-muted transition-colors"
+        >
+          {tr.membershipTeaser.cta} →
+        </a>
       </div>
     </div>
   </section>
@@ -271,8 +299,8 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
           </div>
           <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
             <div class="pt-6 px-6 pb-6 space-y-2">
-              <h4 class="font-semibold">{tr.more.onboarding.title}</h4>
-              <p class="text-sm text-muted-foreground leading-relaxed">{tr.more.onboarding.desc}</p>
+              <h4 class="font-semibold">{tr.more.stats.title}</h4>
+              <p class="text-sm text-muted-foreground leading-relaxed">{tr.more.stats.desc}</p>
             </div>
           </div>
         </div>
@@ -343,10 +371,7 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
           </div>
           <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
             <div class="pt-6 px-6 pb-6 space-y-2">
-              <div class="flex items-start justify-between gap-2">
-                <h4 class="font-semibold">{tr.webapp.community.title}</h4>
-                <span class="shrink-0 inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">★ {tr.memberBadge}</span>
-              </div>
+              <h4 class="font-semibold">{tr.webapp.community.title}</h4>
               <p class="text-sm text-muted-foreground leading-relaxed">{tr.webapp.community.desc}</p>
             </div>
           </div>
@@ -392,6 +417,7 @@ const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
     <div class="container mx-auto px-4 max-w-3xl space-y-6">
       <h2 class="text-3xl font-bold md:text-4xl">{tr.membership.tagline}</h2>
       <p class="text-lg text-muted-foreground leading-relaxed">{tr.membership.body}</p>
+      <p class="text-muted-foreground leading-relaxed">{tr.membership.price}</p>
       <div class="border-t pt-6 space-y-3">
         <h3 class="text-lg font-semibold">{tr.oss.vereinSubheading}</h3>
         <p class="text-muted-foreground leading-relaxed">{tr.oss.vereinBody}</p>
