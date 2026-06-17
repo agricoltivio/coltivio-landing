@@ -69,15 +69,19 @@ export function MobileNav({ lang, appUrl, labels }: Props) {
       {/* Overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-50 bg-black/50"
+          className="fixed top-0 left-0 h-screen w-full z-50 bg-black/50"
           aria-hidden="true"
           onClick={close}
         />
       )}
 
-      {/* Drawer — z-[51] so it sits above the overlay */}
+      {/* Clip layer — viewport-sized, clips the off-screen (translated) drawer
+          so it never creates horizontal page overflow. Pointer-events pass through
+          when closed; the drawer itself re-enables them. z-[51] sits above the overlay. */}
+      <div className="fixed top-0 left-0 h-screen w-full z-[51] overflow-hidden pointer-events-none">
+      {/* Drawer */}
       <div
-        className={`fixed top-0 right-0 z-[51] h-screen w-72 bg-background shadow-xl flex flex-col transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        className={`absolute top-0 right-0 h-full w-72 bg-background shadow-xl flex flex-col pointer-events-auto transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
         role="dialog"
         aria-modal="true"
         aria-label="Navigation menu"
@@ -137,6 +141,7 @@ export function MobileNav({ lang, appUrl, labels }: Props) {
             <LanguageSwitcher lang={lang} />
           </div>
         </div>
+      </div>
       </div>
     </>
   )
