@@ -77,7 +77,7 @@ export function MobileNav({ lang, appUrl, labels }: Props) {
 
       {/* Drawer — z-[51] so it sits above the overlay */}
       <div
-        className={`fixed top-0 right-0 z-51 h-screen w-72 bg-background shadow-xl flex flex-col transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        className={`fixed top-0 right-0 z-[51] h-screen w-72 bg-background shadow-xl flex flex-col transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
         role="dialog"
         aria-modal="true"
         aria-label="Navigation menu"
