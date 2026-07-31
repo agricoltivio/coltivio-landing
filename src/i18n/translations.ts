@@ -3,7 +3,6 @@ export type Locale = 'de' | 'fr' | 'it' | 'en'
 export interface Translations {
   nav: { openApp: string; features: string; webapp: string; membership: string; donate: string; about: string }
   hero: { headline: string; sub: string; testPhase: string; testPhaseBanner: string; ctaIos: string; ctaAndroid: string }
-  androidBetaDialog: { groupOption: string; groupDesc: string; downloadTitle: string; emailOption: string; emailDesc: string; issues: string }
   story: { headline: string; founders: string; problem: string; born: string; ossTitle: string; oss: string; data: string; funding: string }
   fieldwork: {
     title: string
@@ -80,15 +79,7 @@ const translations: Record<Locale, Translations> = {
       testPhase: 'Die App befindet sich derzeit in einer Testphase — probiere sie aus und schick uns dein Feedback an feedback@coltivio.ch.',
       testPhaseBanner: 'Testphase — alle Funktionen, inkl. Mitgliederfunktionen, sind derzeit für alle kostenlos verfügbar.',
       ctaIos: 'iOS TestFlight ↗',
-      ctaAndroid: 'Android Beta',
-    },
-    androidBetaDialog: {
-      groupOption: 'Option 1 — Google Group beitreten',
-      groupDesc: 'Tritt der Google Group bei, um automatisch für den Beta-Test freigeschaltet zu werden.',
-      downloadTitle: 'Dann App im Play Store herunterladen',
-      emailOption: 'Option 2 — Per E-Mail anfragen',
-      emailDesc: 'Falls du kein Google-Konto hast, schreib uns direkt.',
-      issues: 'Probleme oder Feedback? Schreib uns an support@coltivio.ch.',
+      ctaAndroid: 'Android Beta ↗',
     },
     story: {
       headline: 'Papierkram? Excel-Chaos? Nachtragen am Abend?',
@@ -170,15 +161,7 @@ const translations: Record<Locale, Translations> = {
       testPhase: "L'app est actuellement en phase de test — essayez-la et envoyez-nous vos retours à feedback@coltivio.ch.",
       testPhaseBanner: "Phase de test — toutes les fonctionnalités, y compris les fonctionnalités membres, sont actuellement disponibles gratuitement pour tous.",
       ctaIos: 'iOS TestFlight ↗',
-      ctaAndroid: 'Android Beta',
-    },
-    androidBetaDialog: {
-      groupOption: 'Option 1 — Rejoindre le Google Group',
-      groupDesc: 'Rejoins le Google Group pour être automatiquement activé pour le test bêta.',
-      downloadTitle: 'Puis télécharger l\'app sur le Play Store',
-      emailOption: 'Option 2 — Demander par e-mail',
-      emailDesc: 'Si tu n\'as pas de compte Google, écris-nous directement.',
-      issues: 'Problèmes ou retours ? Écris-nous à support@coltivio.ch.',
+      ctaAndroid: 'Android Bêta ↗',
     },
     story: {
       headline: 'Paperasse ? Chaos Excel ? Rattrapage le soir ?',
@@ -260,15 +243,7 @@ const translations: Record<Locale, Translations> = {
       testPhase: "L'app è attualmente in fase di test — provala e inviaci il tuo feedback a feedback@coltivio.ch.",
       testPhaseBanner: "Fase di test — tutte le funzionalità, incluse quelle riservate ai membri, sono attualmente disponibili gratuitamente per tutti.",
       ctaIos: 'iOS TestFlight ↗',
-      ctaAndroid: 'Android Beta',
-    },
-    androidBetaDialog: {
-      groupOption: 'Opzione 1 — Iscriviti al Google Group',
-      groupDesc: 'Iscriviti al Google Group per essere attivato automaticamente per il test beta.',
-      downloadTitle: 'Poi scarica l\'app dal Play Store',
-      emailOption: 'Opzione 2 — Richiedi via e-mail',
-      emailDesc: 'Se non hai un account Google, scrivici direttamente.',
-      issues: 'Problemi o feedback? Scrivici a support@coltivio.ch.',
+      ctaAndroid: 'Android Beta ↗',
     },
     story: {
       headline: 'Burocrazia? Caos Excel? Aggiornare tutto la sera?',
@@ -350,15 +325,7 @@ const translations: Record<Locale, Translations> = {
       testPhase: 'The app is currently in a test phase — try it out and send us your feedback at feedback@coltivio.ch.',
       testPhaseBanner: 'Test phase — all features, including member features, are currently available for free.',
       ctaIos: 'iOS TestFlight ↗',
-      ctaAndroid: 'Android Beta',
-    },
-    androidBetaDialog: {
-      groupOption: 'Option 1 — Join the Google Group',
-      groupDesc: 'Join the Google Group to be automatically enabled for the beta test.',
-      downloadTitle: 'Then download the app from the Play Store',
-      emailOption: 'Option 2 — Request via email',
-      emailDesc: 'If you don\'t have a Google account, write to us directly.',
-      issues: 'Issues or feedback? Write to us at support@coltivio.ch.',
+      ctaAndroid: 'Android Beta ↗',
     },
     story: {
       headline: 'Paperwork? Excel chaos? Catching up in the evening?',
