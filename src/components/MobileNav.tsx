@@ -5,7 +5,6 @@ interface NavLabels {
   features: string
   webapp: string
   membership: string
-  donate: string
   about: string
   openApp: string
   membershipCta: string
@@ -24,12 +23,14 @@ function buildAuthUrl(appUrl: string, token: string, redirect: string) {
 export function MobileNav({ lang, appUrl, labels }: Props) {
   const [isOpen, setIsOpen] = useState(false)
   const [openAppHref, setOpenAppHref] = useState(appUrl)
+  const [membershipHref, setMembershipHref] = useState(`${appUrl}/membership`)
 
-  // Build auth-aware URL for "Open App" on mount
+  // Build auth-aware URLs for the two app links on mount
   useEffect(() => {
     const token = sessionStorage.getItem('coltivio_token')
     if (token) {
       setOpenAppHref(buildAuthUrl(appUrl, token, '/dashboard'))
+      setMembershipHref(buildAuthUrl(appUrl, token, '/membership'))
     }
   }, [appUrl])
 
@@ -53,7 +54,7 @@ export function MobileNav({ lang, appUrl, labels }: Props) {
 
   return (
     <>
-      {/* Hamburger button — mobile only */}
+      {/* Hamburger button, mobile only */}
       <button
         className="lg:hidden flex items-center justify-center rounded-md p-1.5 hover:bg-muted transition-colors"
         aria-label="Open menu"
@@ -75,7 +76,7 @@ export function MobileNav({ lang, appUrl, labels }: Props) {
         />
       )}
 
-      {/* Clip layer — viewport-sized, clips the off-screen (translated) drawer
+      {/* Clip layer: viewport-sized, clips the off-screen (translated) drawer
           so it never creates horizontal page overflow. Pointer-events pass through
           when closed; the drawer itself re-enables them. z-[51] sits above the overlay. */}
       <div className="fixed top-0 left-0 h-screen w-full z-[51] overflow-hidden pointer-events-none">
@@ -106,7 +107,6 @@ export function MobileNav({ lang, appUrl, labels }: Props) {
             { href: '#features', label: labels.features },
             { href: '#webapp', label: labels.webapp },
             { href: '#membership', label: labels.membership },
-            { href: '#donate', label: labels.donate },
             { href: '#about', label: labels.about },
           ] as const).map(({ href, label }) => (
             <a
@@ -122,8 +122,17 @@ export function MobileNav({ lang, appUrl, labels }: Props) {
 
         <div className="border-t mx-4" />
 
-        {/* Open App link */}
+        {/* App links */}
         <div className="p-4 flex flex-col gap-2">
+          <a
+            href={membershipHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-md bg-primary px-3 py-2 text-center text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+            onClick={close}
+          >
+            {labels.membershipCta}
+          </a>
           <a
             href={openAppHref}
             target="_blank"

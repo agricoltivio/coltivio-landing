@@ -212,7 +212,7 @@ export function DonationForm({
       >
         {isLoading
           ? processing
-          : `${cta}${effectiveAmount && effectiveAmount > 0 ? ` — CHF ${customAmount !== "" ? customAmount : selectedAmount}` : ""}`}
+          : `${cta}${effectiveAmount && effectiveAmount > 0 ? `, CHF ${customAmount !== "" ? customAmount : selectedAmount}` : ""}`}
       </button>
     </form>
     </>

@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css'
+import { APP_STORE_URL, PLAY_STORE_URL } from '@/lib/stores'
 
 interface Props {
   lang: string
@@ -55,12 +56,13 @@ const ogLocale = ogLocaleMap[lang] ?? 'de_CH'
       "name": "Coltivio",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "iOS, Android, Web",
-      "offers": { "@type": "Offer", "price": "75", "priceCurrency": "CHF" },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CHF" },
       "description": description,
       "url": "https://coltivio.ch",
-      "author": { "@type": "Organization", "name": "Coltivio", "url": "https://coltivio.ch" },
+      "author": { "@type": "Organization", "name": "Verein AgriColtivio", "url": "https://coltivio.ch" },
       "license": "https://www.gnu.org/licenses/agpl-3.0.html",
-      "downloadUrl": "https://testflight.apple.com/join/MZ3HNzDW",
+      "downloadUrl": APP_STORE_URL,
+      "installUrl": PLAY_STORE_URL,
     })} />
   </head>
   <body>

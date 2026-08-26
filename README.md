@@ -47,7 +47,22 @@ All copy is in `src/i18n/translations.ts`. To add a locale, extend the `Locale` 
 ## Deployment
 
 Deployed via Cloudflare Pages. Deployments are triggered automatically on push to `main`.
+Pushing any other branch produces a preview deployment at its own URL, which is the way to
+review changes before they reach production.
+
+Build command `pnpm build`, output directory `dist`. `PUBLIC_API_URL` and `PUBLIC_APP_URL` have
+to be set for the preview environment as well, otherwise the fallbacks in the code point at
+production.
+
+## Writing style
+
+No em dashes, no en dashes, no middots in copy. Use a comma, a colon, or a new sentence instead.
+This applies to all four locales. Check with:
+
+```sh
+grep -rn "—\|–\|·" src/
+```
 
 ## License
 
-AGPL-3.0 with Commons Clause — see [LICENSE](./LICENSE). The name "Coltivio" and related branding require explicit permission to use.
+AGPL-3.0 with Commons Clause, see [LICENSE](./LICENSE). The name "Coltivio" and related branding require explicit permission to use.
