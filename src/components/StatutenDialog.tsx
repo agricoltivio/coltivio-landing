@@ -32,9 +32,9 @@ export function StatutenDialog({ lang, linkLabel }: Props) {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="text-sm text-primary hover:underline underline-offset-4"
+        className="inline-flex items-center justify-center rounded-md border border-input bg-background px-6 py-3 text-base font-medium hover:bg-muted transition-colors"
       >
-        {linkLabel} →
+        {linkLabel}
       </button>
 
       {isOpen && (

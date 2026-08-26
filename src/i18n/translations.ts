@@ -62,7 +62,7 @@ export interface Translations {
       webapp: { title: string; desc: string }
     }
   }
-  oss: { github: string; vereinSubheading: string; vereinBody: string; statutenLink: string }
+  oss: { github: string; statutenLink: string }
   donate: {
     title: string
     sub: string
@@ -152,7 +152,7 @@ const translations: Record<Locale, Translations> = {
     membership: {
       eyebrow: 'Unabhängig. Gemeinnützig. Von Landwirt:innen für Landwirt:innen.',
       tagline: 'Werde Mitglied, trag die Software mit und bestimme mit, wohin sie geht.',
-      body: 'Coltivio wird ausschliesslich durch Mitgliederbeiträge und Spenden finanziert: keine Investoren, keine Werbung, kein Datenverkauf. Wer Mitglied wird, hält eine Software am Leben, die den Betrieben gehört und nicht dem Kapital.',
+      body: 'Coltivio wird ausschliesslich durch Mitgliederbeiträge und Spenden finanziert: keine Investoren, keine Werbung, kein Datenverkauf. Wer Mitglied wird, hält eine Software am Leben, die den Betrieben gehört.',
       cta: 'Mitglied werden',
       price: 'Die Mitgliedschaft kostet CHF 75 pro Jahr.',
       benefits: {
@@ -162,7 +162,7 @@ const translations: Record<Locale, Translations> = {
         webapp: { title: 'Zugang zur Web App', desc: 'Kontakte, Bestellbuch und Patenschaften am grossen Bildschirm.' },
       },
     },
-    oss: { github: 'Auf GitHub ansehen', vereinSubheading: 'Gemeinsam für eine freie und unabhängige Landwirtschaft', vereinBody: 'AgriColtivio, welcher diese App entwickelt, ist ein gemeinnütziger Verein, der zum Ziel hat, kleine und mittelgrosse landwirtschaftliche Betriebe zu stärken.', statutenLink: 'Vereinsstatuten lesen' },
+    oss: { github: 'Auf GitHub ansehen', statutenLink: 'Vereinsstatuten lesen' },
     donate: { title: 'Coltivio unterstützen', sub: 'Jeder Beitrag zählt und hilft uns, eine unabhängige Alternative aufzubauen, bei der die Interessen der Bäuerinnen und Bauern im Vordergrund stehen.', amountLabel: 'Betrag (CHF)', customPlaceholder: 'Anderen Betrag eingeben', emailLabel: 'Deine E-Mail-Adresse', emailPlaceholder: 'deine@email.ch', cta: 'Jetzt spenden', processing: 'Weiterleitung...', error: 'Etwas ist schiefgelaufen. Bitte versuche es erneut.', thankYouTitle: 'Danke für deine Unterstützung!', thankYouBody: 'Danke, dass du AgriColtivio unterstützt. Du erhältst in Kürze eine E-Mail mit einer Spendenbestätigung.', thankYouClose: 'Schliessen' },
     newsletter: { title: 'Newsletter', sub: 'Bleib auf dem Laufenden. Wir informieren dich über neue Funktionen, Updates und alles rund um Coltivio.', placeholder: 'deine@email.ch', cta: 'Anmelden', success: 'Danke für deine Anmeldung! Wir halten dich auf dem Laufenden.', error: 'Etwas ist schiefgelaufen. Bitte versuche es erneut.' },
     imprint: { title: 'Impressum', back: 'Zurück' },
@@ -238,7 +238,7 @@ const translations: Record<Locale, Translations> = {
     membership: {
       eyebrow: 'Indépendant. À but non lucratif. Par des agriculteurs pour des agriculteurs.',
       tagline: "Deviens membre, porte le logiciel et décide de son orientation.",
-      body: "Coltivio est financé exclusivement par les cotisations et les dons : pas d'investisseurs, pas de publicité, pas de commerce des données. Devenir membre, c'est faire vivre un logiciel qui appartient aux exploitations et non au capital.",
+      body: "Coltivio est financé exclusivement par les cotisations et les dons : pas d'investisseurs, pas de publicité, pas de commerce des données. Devenir membre, c'est faire vivre un logiciel qui appartient aux exploitations.",
       cta: 'Devenir membre',
       price: "L'adhésion coûte CHF 75 par an.",
       benefits: {
@@ -248,7 +248,7 @@ const translations: Record<Locale, Translations> = {
         webapp: { title: "Accès à l'application Web", desc: 'Contacts, carnet de commandes et parrainages sur grand écran.' },
       },
     },
-    oss: { github: 'Voir sur GitHub', vereinSubheading: 'Ensemble pour une agriculture libre et indépendante', vereinBody: "AgriColtivio, qui développe cette application, est une association à but non lucratif dont l'objectif est de renforcer les petites et moyennes exploitations agricoles.", statutenLink: "Lire les statuts de l'association" },
+    oss: { github: 'Voir sur GitHub', statutenLink: "Lire les statuts de l'association" },
     donate: { title: 'Aidez à faire vivre ce projet', sub: 'Chaque contribution compte et nous aide à développer Coltivio et à le garder ouvert à tous.', amountLabel: 'Montant (CHF)', customPlaceholder: 'Saisir un autre montant', emailLabel: 'Votre adresse e-mail', emailPlaceholder: 'votre@email.ch', cta: 'Faire un don', processing: 'Redirection...', error: "Une erreur s'est produite. Veuillez réessayer.", thankYouTitle: 'Merci pour votre soutien !', thankYouBody: "Merci de soutenir AgriColtivio. Vous recevrez bientôt un e-mail de confirmation de don.", thankYouClose: 'Fermer' },
     newsletter: { title: 'Newsletter', sub: 'Restez informé. Nous vous tiendrons au courant des nouvelles fonctionnalités, mises à jour et tout ce qui concerne Coltivio.', placeholder: 'votre@email.ch', cta: "S'inscrire", success: 'Merci pour votre inscription ! Nous vous tiendrons informé.', error: "Une erreur s'est produite. Veuillez réessayer." },
     imprint: { title: 'Mentions légales', back: 'Retour' },
@@ -324,7 +324,7 @@ const translations: Record<Locale, Translations> = {
     membership: {
       eyebrow: 'Indipendente. Non-profit. Da agricoltori per agricoltori.',
       tagline: 'Diventa socio, sostieni il software e decidi dove va.',
-      body: "Coltivio è finanziato esclusivamente da quote sociali e donazioni: nessun investitore, nessuna pubblicità, nessuna vendita di dati. Chi diventa socio tiene in vita un software che appartiene alle aziende agricole e non al capitale.",
+      body: "Coltivio è finanziato esclusivamente da quote sociali e donazioni: nessun investitore, nessuna pubblicità, nessuna vendita di dati. Chi diventa socio tiene in vita un software che appartiene alle aziende agricole.",
       cta: 'Diventa membro',
       price: "L'iscrizione costa CHF 75 all'anno.",
       benefits: {
@@ -334,7 +334,7 @@ const translations: Record<Locale, Translations> = {
         webapp: { title: "Accesso all'app Web", desc: 'Contatti, registro ordini e sponsorizzazioni su schermo grande.' },
       },
     },
-    oss: { github: 'Vedi su GitHub', vereinSubheading: "Insieme per un'agricoltura libera e indipendente", vereinBody: "AgriColtivio, che sviluppa questa app, è un'associazione senza scopo di lucro il cui obiettivo è rafforzare le piccole e medie aziende agricole.", statutenLink: "Leggi lo statuto dell'associazione" },
+    oss: { github: 'Vedi su GitHub', statutenLink: "Leggi lo statuto dell'associazione" },
     donate: { title: 'Aiuta a mantenere vivo questo progetto', sub: 'Ogni contributo conta e ci aiuta a sviluppare Coltivio e a mantenerlo aperto a tutti.', amountLabel: 'Importo (CHF)', customPlaceholder: 'Inserisci un altro importo', emailLabel: 'Il tuo indirizzo e-mail', emailPlaceholder: 'tua@email.ch', cta: 'Dona ora', processing: 'Reindirizzamento...', error: 'Qualcosa è andato storto. Riprova.', thankYouTitle: 'Grazie per il tuo sostegno!', thankYouBody: 'Grazie per sostenere AgriColtivio. Riceverai a breve una e-mail di conferma della donazione.', thankYouClose: 'Chiudi' },
     newsletter: { title: 'Newsletter', sub: 'Rimani aggiornato. Ti terremo informato su nuove funzionalità, aggiornamenti e tutto ciò che riguarda Coltivio.', placeholder: 'tua@email.ch', cta: 'Iscriviti', success: "Grazie per l'iscrizione! Ti terremo aggiornato.", error: 'Qualcosa è andato storto. Riprova.' },
     imprint: { title: 'Impronta', back: 'Indietro' },
@@ -410,7 +410,7 @@ const translations: Record<Locale, Translations> = {
     membership: {
       eyebrow: 'Independent. Non-profit. By farmers for farmers.',
       tagline: 'Become a member, carry the software and help decide where it goes.',
-      body: 'Coltivio is funded exclusively through membership fees and donations: no investors, no advertising, no data trading. Becoming a member keeps alive a piece of software that belongs to the farms and not to capital.',
+      body: 'Coltivio is funded exclusively through membership fees and donations: no investors, no advertising, no data trading. Becoming a member keeps alive a piece of software that belongs to the farms.',
       cta: 'Become a member',
       price: 'Membership costs CHF 75 per year.',
       benefits: {
@@ -420,7 +420,7 @@ const translations: Record<Locale, Translations> = {
         webapp: { title: 'Access to the web app', desc: 'Contacts, order book, and sponsorships on a big screen.' },
       },
     },
-    oss: { github: 'View on GitHub', vereinSubheading: 'Together for a free and independent agriculture', vereinBody: 'AgriColtivio, the organisation behind this app, is a non-profit association dedicated to strengthening small and medium-sized farms.', statutenLink: 'Read the association statutes' },
+    oss: { github: 'View on GitHub', statutenLink: 'Read the association statutes' },
     donate: { title: 'Help keep this project going', sub: 'Every contribution counts and helps us keep developing Coltivio and keep it open to everyone.', amountLabel: 'Amount (CHF)', customPlaceholder: 'Enter a custom amount', emailLabel: 'Your email address', emailPlaceholder: 'your@email.com', cta: 'Donate now', processing: 'Redirecting...', error: 'Something went wrong. Please try again.', thankYouTitle: 'Thank you for your support!', thankYouBody: 'Thank you for supporting AgriColtivio. You will receive an email with a donation confirmation shortly.', thankYouClose: 'Close' },
     newsletter: { title: 'Newsletter', sub: "Stay in the loop. We'll keep you updated on new features, releases, and everything Coltivio.", placeholder: 'your@email.com', cta: 'Subscribe', success: "Thanks for signing up! We'll keep you in the loop.", error: 'Something went wrong. Please try again.' },
     imprint: { title: 'Imprint', back: 'Back' },
