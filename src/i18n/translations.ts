@@ -2,7 +2,7 @@ export type Locale = 'de' | 'fr' | 'it' | 'en'
 
 export interface Translations {
   nav: { openApp: string; features: string; webapp: string; membership: string; about: string }
-  hero: { headline: string; sub: string; note: string; ctaIos: string; ctaAndroid: string }
+  hero: { headline: string; sub: string; note: string; ctaIos: string; ctaAndroid: string; imageAlt: string }
   pillars: {
     admin: { title: string; desc: string }
     oss: { title: string; desc: string }
@@ -12,6 +12,7 @@ export interface Translations {
   fieldwork: {
     title: string
     sub: string
+    imageAlt: string
     plots: { title: string; desc: string }
     protection: { title: string; desc: string }
     harvest: { title: string; desc: string }
@@ -19,6 +20,7 @@ export interface Translations {
   }
   animals: {
     title: string
+    imageAlt: string
     import: { title: string; desc: string }
     treatments: { title: string; desc: string }
     turnout: { title: string; desc: string }
@@ -95,6 +97,7 @@ const translations: Record<Locale, Translations> = {
       note: 'Für iPhone und Android, ohne Abo. Auf Deutsch, Französisch, Italienisch und Englisch.',
       ctaIos: 'Im App Store laden',
       ctaAndroid: 'Bei Google Play laden',
+      imageAlt: 'Coltivio auf einem Smartphone: Startbildschirm mit Betriebskarte und Schnellzugriffen.',
     },
     pillars: {
       admin: { title: 'Weniger Papierkram', desc: 'Feldarbeiten, Behandlungen und Auslauf direkt auf dem Hof erfassen, statt am Abend am PC nachzutragen. Kontrollexporte im geforderten Format auf Knopfdruck.' },
@@ -114,6 +117,7 @@ const translations: Record<Locale, Translations> = {
     fieldwork: {
       title: 'Feldarbeit',
       sub: 'Dein Hof in der Hosentasche, die Mobile App',
+      imageAlt: 'Fruchtfolgeplanung in der Coltivio-App, Kulturen über mehrere Jahre im Kalender.',
       plots: { title: 'Flächenverwaltung', desc: 'Automatische Erfassung deiner Flächen. Passe sie nach deinen Bedürfnissen an: aufteilen, zusammenführen oder neu einzeichnen, ganz wie du es brauchst.' },
       protection: { title: 'Fruchtfolgeplanung', desc: 'Plane deine Fruchtfolgen ganz einfach mit wiederkehrenden Mustern, automatischer Erkennung von Konflikten und Wartezeiten, und sieh das Ergebnis in Echtzeit im Kalender.' },
       harvest: { title: 'Feldarbeiten', desc: 'Erfasse deine Feldarbeiten in wenigen Schritten. Pflügen, Düngeraustrag, Pflanzenschutz oder Ernte, alles sofort erfasst.' },
@@ -121,6 +125,7 @@ const translations: Record<Locale, Translations> = {
     },
     animals: {
       title: 'Tierhaltung',
+      imageAlt: 'Tierbestand in der Coltivio-App, Liste der Tiere mit Herde und Wartezeiten.',
       import: { title: 'Tierbestand', desc: 'Dein ganzer Tierbestand im Überblick. Erstelle Herden mit Auslauf und Weidezeiten. Import der Tiere mittels Tierlisten-Export aus TVD.' },
       treatments: { title: 'Behandlungsjournal', desc: 'Vollständiges Medikamentenprotokoll pro Tier: Präparat, Dosis, Grund und Tierarzt. Milch- und Fleischwartezeiten werden automatisch berechnet und mit Absetzfristen angezeigt.' },
       turnout: { title: 'Auslaufjournal', desc: 'Automatisch generiertes Auslaufjournal basierend auf definierten Herden. Einmal konfiguriert und vergessen.' },
@@ -181,6 +186,7 @@ const translations: Record<Locale, Translations> = {
       note: 'Pour iPhone et Android, sans abonnement. En allemand, français, italien et anglais.',
       ctaIos: "Télécharger sur l'App Store",
       ctaAndroid: 'Disponible sur Google Play',
+      imageAlt: "Coltivio sur un smartphone : écran d'accueil avec la carte de l'exploitation et les raccourcis.",
     },
     pillars: {
       admin: { title: 'Moins de paperasse', desc: "Saisir les travaux des champs, les traitements et les sorties directement à la ferme, au lieu de tout rattraper le soir sur le PC. Les exports pour les contrôles sortent dans le format exigé, en un clic." },
@@ -200,6 +206,7 @@ const translations: Record<Locale, Translations> = {
     fieldwork: {
       title: 'Travaux des Champs',
       sub: "Votre exploitation dans votre poche, l'App Mobile",
+      imageAlt: "Planification des rotations culturales dans Coltivio, les cultures sur plusieurs années dans le calendrier.",
       plots: { title: 'Gestion des surfaces', desc: 'Saisie automatique de vos surfaces. Adaptez-les à vos besoins : divisez, fusionnez ou dessinez de nouvelles parcelles, exactement comme il vous faut.' },
       protection: { title: 'Planification de la rotation des cultures', desc: "Planifiez vos rotations culturales facilement grâce aux schémas récurrents, la détection automatique des conflits et des violations des délais d'attente, et visualisez le résultat en temps réel dans le calendrier." },
       harvest: { title: 'Travaux des champs', desc: "Enregistrez vos travaux des champs en quelques étapes : labour, épandage d'engrais, protection des cultures ou récolte, tout noté immédiatement sur place." },
@@ -207,6 +214,7 @@ const translations: Record<Locale, Translations> = {
     },
     animals: {
       title: 'Élevage',
+      imageAlt: "Cheptel dans Coltivio, liste des animaux avec troupeau et délais d'attente.",
       import: { title: 'Cheptel', desc: "Tout votre cheptel en un coup d'œil. Créez des troupeaux avec des sorties et des temps de pâturage définis. Importez les animaux via l'export des listes animaux depuis TVD." },
       treatments: { title: 'Journal des traitements', desc: "Journal complet des médicaments par animal : produit, dose, motif et vétérinaire. Les délais d'attente (Absetzfristen) lait et viande sont calculés automatiquement avec alertes avant expiration." },
       turnout: { title: 'Journal de pâturage', desc: 'Journal de pâturage généré automatiquement en fonction des troupeaux configurés. Configurez-le une fois et oubliez-le.' },
@@ -267,6 +275,7 @@ const translations: Record<Locale, Translations> = {
       note: 'Per iPhone e Android, senza abbonamento. In tedesco, francese, italiano e inglese.',
       ctaIos: "Scarica dall'App Store",
       ctaAndroid: 'Disponibile su Google Play',
+      imageAlt: "Coltivio su uno smartphone: schermata iniziale con la mappa aziendale e le scorciatoie.",
     },
     pillars: {
       admin: { title: 'Meno burocrazia', desc: 'Registra lavori in campo, trattamenti e uscite direttamente in azienda, invece di recuperare tutto la sera al PC. Gli export per i controlli escono nel formato richiesto con un tocco.' },
@@ -286,6 +295,7 @@ const translations: Record<Locale, Translations> = {
     fieldwork: {
       title: 'Lavoro in Campo',
       sub: "Il tuo podere in tasca, l'App Mobile",
+      imageAlt: "Pianificazione della rotazione colturale in Coltivio, le colture su più anni nel calendario.",
       plots: { title: 'Gestione delle superfici', desc: 'Acquisizione automatica delle tue superfici. Adattale alle tue esigenze: dividile, uniscile o disegnane di nuove, esattamente come ti serve.' },
       protection: { title: 'Pianificazione della rotazione colturale', desc: 'Pianifica le rotazioni colturali con facilità usando schemi ricorrenti, rilevamento automatico di conflitti e violazioni dei tempi di attesa, e vedi il risultato in tempo reale nel calendario.' },
       harvest: { title: 'Attività di campo', desc: 'Registra le tue attività di campo in pochi passi: aratura, spargimento di fertilizzanti, protezione delle colture o raccolta, tutto catturato immediatamente sul posto.' },
@@ -293,6 +303,7 @@ const translations: Record<Locale, Translations> = {
     },
     animals: {
       title: 'Zootecnia',
+      imageAlt: 'Patrimonio zootecnico in Coltivio, elenco degli animali con mandria e tempi di attesa.',
       import: { title: 'Patrimonio zootecnico', desc: "Tutto il tuo bestiame a colpo d'occhio. Crea mandrie con uscite e tempi di pascolo definiti. Importa gli animali tramite l'esportazione delle liste animali da TVD." },
       treatments: { title: 'Giornale trattamenti', desc: 'Registro completo dei farmaci per animale: prodotto, dose, motivo e veterinario. I periodi di attesa (Absetzfristen) per latte e carne vengono calcolati automaticamente con avvisi prima della scadenza.' },
       turnout: { title: 'Giornale di pascolo', desc: "Giornale di pascolo generato automaticamente in base alle mandrie configurate. Configuralo una volta e lascia fare all'app." },
@@ -353,6 +364,7 @@ const translations: Record<Locale, Translations> = {
       note: 'For iPhone and Android, no subscription. In German, French, Italian and English.',
       ctaIos: 'Download on the App Store',
       ctaAndroid: 'Get it on Google Play',
+      imageAlt: 'Coltivio on a smartphone: home screen with the farm map and quick actions.',
     },
     pillars: {
       admin: { title: 'Less paperwork', desc: 'Record field work, treatments and turnout right on the farm instead of catching up at the PC in the evening. Inspection exports come out in the required format at the tap of a button.' },
@@ -372,6 +384,7 @@ const translations: Record<Locale, Translations> = {
     fieldwork: {
       title: 'Field Work',
       sub: 'Your Farm in Your Pocket, the Mobile App',
+      imageAlt: 'Crop rotation planning in Coltivio, crops across several years in the calendar.',
       plots: { title: 'Plot Management', desc: 'Automatic capture of your plots. Adjust them to your needs: split, merge or draw new ones, exactly as you need it.' },
       protection: { title: 'Crop Rotation Planning', desc: 'Plan your crop rotations with ease using recurring patterns, conflict and waiting time violation detection, and see the result in real time in the calendar.' },
       harvest: { title: 'Field Activities', desc: 'Log your field activities in just a few steps: ploughing, fertiliser spreading, crop protection or harvest, all captured on the spot.' },
@@ -379,6 +392,7 @@ const translations: Record<Locale, Translations> = {
     },
     animals: {
       title: 'Animal Husbandry',
+      imageAlt: 'Livestock in Coltivio, list of animals with herd and withdrawal periods.',
       import: { title: 'Livestock Overview', desc: 'Your entire livestock at a glance. Create herds with defined turnout and grazing times. Import animals from a TVD herd list export.' },
       treatments: { title: 'Treatments Journal', desc: 'A complete medication log per animal: drug, dose, reason, and vet. Milk and meat withdrawal periods (Absetzfristen) are tracked automatically, with alerts before deadlines pass.' },
       turnout: { title: 'Turnout Journal', desc: 'Automatically generated turnout journal based on your configured herds. Set it up once and let it run.' },

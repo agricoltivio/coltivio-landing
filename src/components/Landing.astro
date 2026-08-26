@@ -6,6 +6,10 @@ import { LanguageSwitcher } from './LanguageSwitcher'
 import { MobileNav } from './MobileNav'
 import { StatutenDialog } from './StatutenDialog'
 import { DonationForm } from './DonationForm'
+import PhoneMockup from './PhoneMockup.astro'
+import homeShot from '@/assets/screenshots/home.png'
+import fieldworkShot from '@/assets/screenshots/fieldwork.png'
+import animalsShot from '@/assets/screenshots/animals.png'
 
 interface Props {
   tr: Translations
@@ -16,16 +20,6 @@ const { tr, lang } = Astro.props
 
 const appUrl = import.meta.env.PUBLIC_APP_URL ?? 'https://app.coltivio.ch'
 const apiUrl = import.meta.env.PUBLIC_API_URL ?? 'https://api.coltivio.ch'
-
-// Reusable phone mockup markup
-const phoneMockup = (src: string, rotateCls: string, wrapCls = '') => `
-  <div class="flex justify-center ${wrapCls}">
-    <div class="${rotateCls} relative w-52 rounded-[2.5rem] border-4 border-foreground/15 shadow-2xl overflow-hidden aspect-[9/19]" style="background-color:#f6f6f6">
-      <div class="absolute top-3 left-1/2 -translate-x-1/2 w-16 h-4 rounded-full bg-foreground/10 z-10"></div>
-      <img src="${src}" alt="" class="absolute inset-0 h-full w-full object-cover" onerror="this.style.display='none'" />
-    </div>
-  </div>
-`
 
 // Each pillar carries its own CTA: the app itself, the source, the association.
 interface PillarLink {
@@ -157,7 +151,7 @@ const membershipBenefits = [
       </div>
 
       <div class="flex justify-center md:justify-end lg:justify-center">
-        <Fragment set:html={phoneMockup('/screenshots/home.png', 'md:-rotate-3', 'md:order-first')} />
+        <PhoneMockup src={homeShot} alt={tr.hero.imageAlt} rotate="md:-rotate-3" wrapper="flex md:order-first" eager />
       </div>
     </div>
   </section>
@@ -278,13 +272,13 @@ const membershipBenefits = [
             </div>
           </div>
         </div>
-        <Fragment set:html={phoneMockup('/screenshots/fieldwork.png', 'lg:rotate-3')} />
+        <PhoneMockup src={fieldworkShot} alt={tr.fieldwork.imageAlt} rotate="lg:rotate-3" />
       </div>
 
       {/* Animal Husbandry */}
       <div class="grid gap-12 lg:grid-cols-2 md:items-center">
         {/* Desktop: image left */}
-        <Fragment set:html={phoneMockup('/screenshots/animals.png', 'lg:-rotate-3', 'hidden lg:flex')} />
+        <PhoneMockup src={animalsShot} alt={tr.animals.imageAlt} rotate="lg:-rotate-3" wrapper="hidden lg:flex" />
         <div class="space-y-6">
           <h3 class="text-2xl font-bold">{tr.animals.title}</h3>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -314,8 +308,8 @@ const membershipBenefits = [
             </div>
           </div>
         </div>
-        {/* Mobile: image below text */}
-        <Fragment set:html={phoneMockup('/screenshots/animals.png', '', 'sm:flex lg:hidden')} />
+        {/* Below lg the image sits under the text instead of beside it */}
+        <PhoneMockup src={animalsShot} alt={tr.animals.imageAlt} wrapper="flex lg:hidden" />
       </div>
 
       {/* More features */}
