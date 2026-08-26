@@ -49,8 +49,8 @@ export interface Translations {
     stats: { title: string; desc: string }
   }
   memberBadge: string
-  membershipTeaser: { tagline: string; body: string; cta: string }
   membership: {
+    eyebrow: string
     tagline: string
     body: string
     cta: string
@@ -149,12 +149,8 @@ const translations: Record<Locale, Translations> = {
       stats: { title: 'Statistiken', desc: 'Detaillierte Grafiken zur Feldarbeit, zur Altersverteilung im Tierbestand oder Familienstammbäume. Verstehe deinen Betrieb auf einen Blick.' },
     },
     memberBadge: 'Mitglied',
-    membershipTeaser: {
-      tagline: 'Unabhängig. Gemeinnützig. Von Landwirt:innen für Landwirt:innen.',
-      body: 'Coltivio gehört dem Verein AgriColtivio und damit seinen Mitgliedern. Sie finanzieren die Entwicklung, halten die App allen Landwirt:innen offen und entscheiden mit, wohin sie geht.',
-      cta: 'Erfahre mehr',
-    },
     membership: {
+      eyebrow: 'Unabhängig. Gemeinnützig. Von Landwirt:innen für Landwirt:innen.',
       tagline: 'Werde Mitglied, trag die Software mit und bestimme mit, wohin sie geht.',
       body: 'Coltivio wird ausschliesslich durch Mitgliederbeiträge und Spenden finanziert: keine Investoren, keine Werbung, kein Datenverkauf. Wer Mitglied wird, hält eine Software am Leben, die den Betrieben gehört und nicht dem Kapital.',
       cta: 'Mitglied werden',
@@ -239,12 +235,8 @@ const translations: Record<Locale, Translations> = {
       stats: { title: 'Statistiques', desc: "Graphiques détaillés sur les travaux des champs, la répartition par âge du cheptel ou les arbres généalogiques. Comprenez votre exploitation en un coup d'œil." },
     },
     memberBadge: 'Membre',
-    membershipTeaser: {
-      tagline: 'Indépendant. À but non lucratif. Par des agriculteurs pour des agriculteurs.',
-      body: "Coltivio appartient à l'association AgriColtivio et donc à ses membres. Ce sont eux qui financent le développement, qui gardent l'app ouverte à tous les agriculteurs et qui décident de son orientation.",
-      cta: 'En savoir plus',
-    },
     membership: {
+      eyebrow: 'Indépendant. À but non lucratif. Par des agriculteurs pour des agriculteurs.',
       tagline: "Deviens membre, porte le logiciel et décide de son orientation.",
       body: "Coltivio est financé exclusivement par les cotisations et les dons : pas d'investisseurs, pas de publicité, pas de commerce des données. Devenir membre, c'est faire vivre un logiciel qui appartient aux exploitations et non au capital.",
       cta: 'Devenir membre',
@@ -329,12 +321,8 @@ const translations: Record<Locale, Translations> = {
       stats: { title: 'Statistiche', desc: "Grafici dettagliati sui lavori in campo, sulla distribuzione per età del bestiame o sugli alberi genealogici. Comprendi la tua azienda a colpo d'occhio." },
     },
     memberBadge: 'Membro',
-    membershipTeaser: {
-      tagline: 'Indipendente. Non-profit. Da agricoltori per agricoltori.',
-      body: "Coltivio appartiene all'associazione AgriColtivio e quindi ai suoi soci. Sono loro a finanziare lo sviluppo, a tenere l'app aperta a tutti gli agricoltori e a decidere dove va.",
-      cta: 'Scopri di più',
-    },
     membership: {
+      eyebrow: 'Indipendente. Non-profit. Da agricoltori per agricoltori.',
       tagline: 'Diventa socio, sostieni il software e decidi dove va.',
       body: "Coltivio è finanziato esclusivamente da quote sociali e donazioni: nessun investitore, nessuna pubblicità, nessuna vendita di dati. Chi diventa socio tiene in vita un software che appartiene alle aziende agricole e non al capitale.",
       cta: 'Diventa membro',
@@ -419,12 +407,8 @@ const translations: Record<Locale, Translations> = {
       stats: { title: 'Stats', desc: 'Detailed graphs of your field work, animal age distribution, family trees and more. Understand your farm at a glance.' },
     },
     memberBadge: 'Member',
-    membershipTeaser: {
-      tagline: 'Independent. Non-profit. By farmers for farmers.',
-      body: 'Coltivio belongs to the AgriColtivio association and therefore to its members. They fund the development, keep the app open to every farmer, and decide where it goes.',
-      cta: 'Learn more',
-    },
     membership: {
+      eyebrow: 'Independent. Non-profit. By farmers for farmers.',
       tagline: 'Become a member, carry the software and help decide where it goes.',
       body: 'Coltivio is funded exclusively through membership fees and donations: no investors, no advertising, no data trading. Becoming a member keeps alive a piece of software that belongs to the farms and not to capital.',
       cta: 'Become a member',
