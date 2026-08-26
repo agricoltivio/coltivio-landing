@@ -1,4 +1,5 @@
 import { useState, useEffect, useId } from 'react'
+import { buttonClass } from '@/lib/button'
 
 const TURNSTILE_SITE_KEY = '0x4AAAAAACgTy04qy1vutytf'
 const BREVO_ACTION =
@@ -90,7 +91,7 @@ export function NewsletterForm({ apiUrl, lang, label, placeholder, cta, successM
           <button
             type="submit"
             disabled={status === 'loading'}
-            className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 disabled:opacity-50 transition-colors"
+            className={buttonClass('primary', 'sm')}
           >
             {status === 'loading' ? '…' : cta}
           </button>

@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { LanguageSwitcher } from './LanguageSwitcher'
 import { useDialog } from '@/lib/useDialog'
+import { buttonClass } from '@/lib/button'
 
 interface NavLabels {
   features: string
@@ -121,7 +122,7 @@ export function MobileNav({ lang, appUrl, labels }: Props) {
             href={membershipHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-md bg-primary px-3 py-2 text-center text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+            className={buttonClass('primary', 'sm')}
             onClick={close}
           >
             {labels.membershipCta}

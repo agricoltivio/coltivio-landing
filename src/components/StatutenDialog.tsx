@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react'
 import { statutenText } from '@/i18n/statuten'
 import type { Locale } from '@/i18n/translations'
 import { useDialog } from '@/lib/useDialog'
+import { buttonClass } from '@/lib/button'
 
 interface Props {
   lang: string
@@ -21,7 +22,7 @@ export function StatutenDialog({ lang, linkLabel, closeLabel }: Props) {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="inline-flex items-center justify-center rounded-md border border-input bg-background px-6 py-3 text-base font-medium hover:bg-muted transition-colors"
+        className={buttonClass('secondary')}
       >
         {linkLabel}
       </button>

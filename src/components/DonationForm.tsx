@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useId } from "react";
 import { useDialog } from "@/lib/useDialog";
+import { buttonClass } from "@/lib/button";
 
 const PRESET_AMOUNTS = [10, 25, 50, 100];
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -137,7 +138,7 @@ export function DonationForm({
             <button
               onClick={closeThankYou}
               aria-label={closeLabel}
-              className="mt-2 inline-flex rounded-md bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+              className={buttonClass("primary", "sm", "mt-2")}
             >
               {thankYouClose}
             </button>
@@ -159,11 +160,11 @@ export function DonationForm({
                 setCustomAmount("");
                 setTouched((t) => ({ ...t, amount: false }));
               }}
-              className={`rounded-md border px-4 py-2 text-sm font-medium transition-colors ${
-                selectedAmount === amount && customAmount === ""
-                  ? "border-primary bg-primary text-primary-foreground"
-                  : "border-input bg-background hover:bg-muted"
-              }`}
+              aria-pressed={selectedAmount === amount && customAmount === ""}
+              className={buttonClass(
+                selectedAmount === amount && customAmount === "" ? "primary" : "secondary",
+                "sm",
+              )}
             >
               CHF {amount}
             </button>
@@ -212,7 +213,7 @@ export function DonationForm({
       <button
         type="submit"
         disabled={isLoading}
-        className="inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3 text-base font-medium text-primary-foreground hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        className={buttonClass("primary")}
       >
         {isLoading
           ? processing
