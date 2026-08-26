@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css'
 import { IOS_DOWNLOAD_URL, PLAY_STORE_URL } from '@/lib/links'
+import { getTranslations } from '@/i18n/translations'
 
 interface Props {
   lang: string
@@ -19,6 +20,7 @@ const ogLocaleMap: Record<string, string> = {
   en: 'en_US',
 }
 const ogLocale = ogLocaleMap[lang] ?? 'de_CH'
+const tr = getTranslations(lang)
 ---
 
 <!doctype html>
@@ -66,6 +68,12 @@ const ogLocale = ogLocaleMap[lang] ?? 'de_CH'
     })} />
   </head>
   <body>
+    <a
+      href="#main"
+      class="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:top-3 focus-visible:left-3 focus-visible:z-[60] focus-visible:rounded-md focus-visible:bg-background focus-visible:px-4 focus-visible:py-2 focus-visible:text-sm focus-visible:font-medium focus-visible:shadow-md"
+    >
+      {tr.a11y.skipToContent}
+    </a>
     <slot />
   </body>
 </html>

@@ -60,7 +60,7 @@ export function MobileNav({ lang, appUrl, labels }: Props) {
       {/* Overlay */}
       {isOpen && (
         <div
-          className="fixed top-0 left-0 h-screen w-full z-50 bg-black/50"
+          className="fixed top-0 left-0 h-dvh w-full z-50 bg-black/50"
           aria-hidden="true"
           onClick={close}
         />
@@ -69,7 +69,7 @@ export function MobileNav({ lang, appUrl, labels }: Props) {
       {/* Clip layer: viewport-sized, clips the off-screen (translated) drawer
           so it never creates horizontal page overflow. Pointer-events pass through
           when closed; the drawer itself re-enables them. z-[51] sits above the overlay. */}
-      <div className="lg:hidden fixed top-0 left-0 h-screen w-full z-[51] overflow-hidden pointer-events-none">
+      <div className="lg:hidden fixed top-0 left-0 h-dvh w-full z-[51] overflow-hidden pointer-events-none">
       {/* Drawer */}
       <div
         ref={drawerRef}
