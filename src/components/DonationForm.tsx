@@ -13,6 +13,8 @@ interface Props {
   cta: string;
   processing: string;
   error: string;
+  errorAmount: string;
+  errorEmail: string;
   thankYouTitle: string;
   thankYouBody: string;
   thankYouClose: string;
@@ -28,6 +30,8 @@ export function DonationForm({
   cta,
   processing,
   error,
+  errorAmount,
+  errorEmail,
   thankYouTitle,
   thankYouBody,
   thankYouClose,
@@ -176,7 +180,7 @@ export function DonationForm({
           />
         </div>
         {amountInvalid && (
-          <p className="text-xs text-destructive">Mindestbetrag: CHF 1</p>
+          <p className="text-xs text-destructive">{errorAmount}</p>
         )}
       </div>
 
@@ -195,11 +199,7 @@ export function DonationForm({
           className={`block w-full max-w-sm rounded-md border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring ${emailInvalid ? "border-destructive" : "border-input"}`}
         />
         {emailInvalid && (
-          <p className="text-xs text-destructive">
-            {emailPlaceholder.includes("@")
-              ? "Bitte eine gültige E-Mail-Adresse eingeben."
-              : "Invalid email address."}
-          </p>
+          <p className="text-xs text-destructive">{errorEmail}</p>
         )}
       </div>
 

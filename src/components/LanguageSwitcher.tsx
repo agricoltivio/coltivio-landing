@@ -1,11 +1,25 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 
 const LANGUAGES = [
-  { code: 'de', label: 'DE', href: '/' },
-  { code: 'fr', label: 'FR', href: '/fr' },
-  { code: 'it', label: 'IT', href: '/it' },
-  { code: 'en', label: 'EN', href: '/en' },
+  { code: 'de', label: 'DE' },
+  { code: 'fr', label: 'FR' },
+  { code: 'it', label: 'IT' },
+  { code: 'en', label: 'EN' },
 ] as const
+
+const PREFIXED = ['fr', 'it', 'en']
+
+/**
+ * Swaps the locale prefix while keeping the current page. `de` is the default
+ * locale and carries no prefix, so /fr/imprint and /imprint are the same page.
+ */
+function localizePath(pathname: string, target: string) {
+  const segments = pathname.split('/').filter(Boolean)
+  if (PREFIXED.includes(segments[0])) segments.shift()
+  const rest = segments.join('/')
+  const prefix = target === 'de' ? '' : `/${target}`
+  return rest ? `${prefix}/${rest}` : prefix || '/'
+}
 
 interface Props {
   lang: string
@@ -14,6 +28,10 @@ interface Props {
 export function LanguageSwitcher({ lang }: Props) {
   const currentLabel = LANGUAGES.find((l) => l.code === lang)?.label ?? 'DE'
   const detailsRef = useRef<HTMLDetailsElement>(null)
+  // Server-rendered fallback is the locale home; hydration upgrades it to the current page.
+  const [pathname, setPathname] = useState('/')
+
+  useEffect(() => setPathname(window.location.pathname), [])
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -41,8 +59,10 @@ export function LanguageSwitcher({ lang }: Props) {
         {LANGUAGES.map((l) => (
           <li key={l.code}>
             <a
-              href={l.href}
-              className={`block px-3 py-1.5 text-sm hover:bg-muted transition-colors ${lang === l.code ? 'font-semibold' : 'text-muted-foreground'}`}
+              href={localizePath(pathname, l.code)}
+              hrefLang={l.code}
+              aria-current={lang === l.code ? 'true' : undefined}
+              className={`block rounded px-3 py-1.5 text-sm hover:bg-muted transition-colors ${lang === l.code ? 'font-semibold' : 'text-muted-foreground'}`}
             >
               {l.label}
             </a>

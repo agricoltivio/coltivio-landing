@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useId } from 'react'
 
 const TURNSTILE_SITE_KEY = '0x4AAAAAACgTy04qy1vutytf'
 const BREVO_ACTION =
@@ -7,15 +7,18 @@ const BREVO_ACTION =
 interface Props {
   apiUrl: string
   lang: string
+  label: string
   placeholder: string
   cta: string
   successMsg: string
   errorMsg: string
+  captchaMsg: string
 }
 
-export function NewsletterForm({ apiUrl, lang, placeholder, cta, successMsg, errorMsg }: Props) {
+export function NewsletterForm({ apiUrl, lang, label, placeholder, cta, successMsg, errorMsg, captchaMsg }: Props) {
   const [email, setEmail] = useState('')
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error' | 'captcha'>('idle')
+  const inputId = useId()
 
   useEffect(() => {
     if (document.querySelector('script[src*="turnstile"]')) return
@@ -30,7 +33,11 @@ export function NewsletterForm({ apiUrl, lang, placeholder, cta, successMsg, err
     e.preventDefault()
 
     const token = new FormData(e.currentTarget).get('cf-turnstile-response') as string
-    if (!token) return
+    // Without a token the submit would silently do nothing, so say why instead.
+    if (!token) {
+      setStatus('captcha')
+      return
+    }
 
     setStatus('loading')
 
@@ -57,31 +64,43 @@ export function NewsletterForm({ apiUrl, lang, placeholder, cta, successMsg, err
   }
 
   if (status === 'success') {
-    return <p className="text-sm font-medium text-green-600">{successMsg}</p>
+    return (
+      <p className="text-sm font-medium text-primary" role="status">
+        {successMsg}
+      </p>
+    )
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="flex flex-wrap gap-2">
-        <input
-          type="email"
-          required
-          placeholder={placeholder}
-          value={email}
-          onChange={(e) => setEmail(e.currentTarget.value)}
-          className="max-w-xs rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-        />
-        <button
-          type="submit"
-          disabled={status === 'loading'}
-          className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 disabled:opacity-50 transition-colors"
-        >
-          {status === 'loading' ? '…' : cta}
-        </button>
+      <div className="space-y-2">
+        <label htmlFor={inputId} className="block text-sm font-medium">
+          {label}
+        </label>
+        <div className="flex flex-wrap gap-2">
+          <input
+            id={inputId}
+            type="email"
+            required
+            placeholder={placeholder}
+            value={email}
+            onChange={(e) => setEmail(e.currentTarget.value)}
+            className="max-w-xs rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground"
+          />
+          <button
+            type="submit"
+            disabled={status === 'loading'}
+            className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 disabled:opacity-50 transition-colors"
+          >
+            {status === 'loading' ? '…' : cta}
+          </button>
+        </div>
       </div>
       <div className="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} />
-      {status === 'error' && (
-        <p className="text-sm text-destructive">{errorMsg}</p>
+      {(status === 'error' || status === 'captcha') && (
+        <p className="text-sm text-destructive" role="alert">
+          {status === 'captcha' ? captchaMsg : errorMsg}
+        </p>
       )}
     </form>
   )

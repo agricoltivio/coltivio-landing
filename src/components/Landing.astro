@@ -483,6 +483,8 @@ const membershipBenefits = [
         cta={tr.donate.cta}
         processing={tr.donate.processing}
         error={tr.donate.error}
+        errorAmount={tr.donate.errorAmount}
+        errorEmail={tr.donate.errorEmail}
         thankYouTitle={tr.donate.thankYouTitle}
         thankYouBody={tr.donate.thankYouBody}
         thankYouClose={tr.donate.thankYouClose}
@@ -499,10 +501,12 @@ const membershipBenefits = [
         client:load
         apiUrl={apiUrl}
         lang={lang}
+        label={tr.newsletter.label}
         placeholder={tr.newsletter.placeholder}
         cta={tr.newsletter.cta}
         successMsg={tr.newsletter.success}
         errorMsg={tr.newsletter.error}
+        captchaMsg={tr.newsletter.captcha}
       />
     </div>
   </section>
