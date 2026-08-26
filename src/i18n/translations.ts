@@ -167,9 +167,9 @@ const translations: Record<Locale, Translations> = {
       price: 'Die Mitgliedschaft kostet CHF 75 pro Jahr.',
       benefits: {
         carry: { title: 'Du trägst die Software mit', desc: 'Dein Beitrag finanziert Entwicklung und Betrieb und hält die App für alle Höfe offen.' },
-        voice: { title: 'Du bestimmst mit', desc: 'Stimmrecht an der Mitgliederversammlung: über Beiträge, Vorstand und die Ausrichtung der Software. Ein Wechsel zu einer proprietären Lizenz braucht eine Zweidrittelmehrheit der Mitglieder.' },
+        voice: { title: 'Du bestimmst mit', desc: 'Stimmrecht an der Mitgliederversammlung: über Beiträge, Vorstand und die Ausrichtung der Software.' },
         support: { title: 'Persönlicher Support', desc: 'Fragen zur App, zum Betrieb oder zur nächsten Kontrolle? Mitglieder erreichen uns direkt.' },
-        webapp: { title: 'Zugang zur Web-App', desc: 'Kontakte, Bestellbuch und Patenschaften am grossen Bildschirm.' },
+        webapp: { title: 'Zugang zur Web-App', desc: 'Alle Funktionen der App, dazu Kontakte, Bestellbuch und Patenschaften am grossen Bildschirm.' },
       },
     },
     oss: { github: 'Auf GitHub ansehen', statutenLink: 'Vereinsstatuten lesen' },
@@ -258,7 +258,7 @@ const translations: Record<Locale, Translations> = {
       price: "L'adhésion coûte CHF 75 par an.",
       benefits: {
         carry: { title: 'Tu portes le logiciel', desc: "Ta cotisation finance le développement et l'exploitation, et garde l'app ouverte à tous les agriculteurs." },
-        voice: { title: 'Tu décides', desc: "Droit de vote à l'assemblée générale : sur les cotisations, le comité et l'orientation du logiciel. Un passage à une licence propriétaire exige une majorité des deux tiers des membres." },
+        voice: { title: 'Tu décides', desc: "Droit de vote à l'assemblée générale : sur les cotisations, le comité et l'orientation du logiciel." },
         support: { title: 'Support personnel', desc: "Une question sur l'app, sur ton exploitation ou sur le prochain contrôle ? Les membres disposent d'un canal direct vers nous." },
         webapp: { title: "Accès à l'application Web", desc: 'Contacts, carnet de commandes et parrainages sur grand écran.' },
       },
@@ -349,7 +349,7 @@ const translations: Record<Locale, Translations> = {
       price: "L'iscrizione costa CHF 75 all'anno.",
       benefits: {
         carry: { title: 'Sostieni il software', desc: "La tua quota finanzia sviluppo e gestione e tiene l'app aperta a tutti gli agricoltori." },
-        voice: { title: 'Decidi con noi', desc: "Diritto di voto all'assemblea dei soci: su quote, comitato e direzione del software. Un passaggio a una licenza proprietaria richiede la maggioranza dei due terzi dei soci." },
+        voice: { title: 'Decidi con noi', desc: "Diritto di voto all'assemblea dei soci: su quote, comitato e direzione del software." },
         support: { title: 'Supporto personale', desc: "Domande sull'app, sull'azienda o sul prossimo controllo? I soci hanno un canale diretto con noi." },
         webapp: { title: "Accesso all'app Web", desc: 'Contatti, registro ordini e sponsorizzazioni su schermo grande.' },
       },
@@ -440,7 +440,7 @@ const translations: Record<Locale, Translations> = {
       price: 'Membership costs CHF 75 per year.',
       benefits: {
         carry: { title: 'You carry the software', desc: 'Your contribution funds development and operation, and keeps the app open to every farmer.' },
-        voice: { title: 'You have a say', desc: 'Voting rights at the general assembly: on fees, the board, and the direction of the software. Switching to a proprietary licence requires a two-thirds majority of the members.' },
+        voice: { title: 'You have a say', desc: 'Voting rights at the general assembly: on fees, the board, and the direction of the software.' },
         support: { title: 'Personal support', desc: 'Questions about the app, your farm, or the next inspection? Members have a direct channel to us.' },
         webapp: { title: 'Access to the web app', desc: 'Contacts, order book, and sponsorships on a big screen.' },
       },
