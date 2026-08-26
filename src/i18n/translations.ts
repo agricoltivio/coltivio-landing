@@ -95,7 +95,7 @@ const translations: Record<Locale, Translations> = {
     nav: { openApp: 'App öffnen', features: 'Funktionen', webapp: 'Web App', membership: 'Mitgliedschaft', about: 'Über uns' },
     hero: {
       headline: 'Hofverwaltung,\nvon Bauern entwickelt.',
-      sub: 'Felder, Tiere und Direktvermarktung in einer App, erfasst auf dem Hof statt am Abend am PC. Quelloffen und getragen vom Verein AgriColtivio: keine Investoren, keine Agrarindustrie, deine Daten gehören dir.',
+      sub: 'Felder und Tiere in einer App, erfasst auf dem Hof statt am Abend am PC. Quelloffen und getragen vom Verein AgriColtivio: keine Investoren, keine Agrarindustrie, deine Daten gehören dir.',
       note: 'Für iPhone und Android, ohne Abo. Auf Deutsch, Französisch, Italienisch und Englisch.',
       ctaIos: 'Im App Store laden',
       ctaAndroid: 'Bei Google Play laden',
@@ -109,7 +109,7 @@ const translations: Record<Locale, Translations> = {
     },
     story: {
       headline: 'Papierkram? Excel-Chaos? Nachtragen am Abend?',
-      founders: 'Curdin und Sarah, Berglandwirt:innen, standen täglich vor der Herausforderung: zu viel Dokumentationsaufwand, zu wenig Zeit und keine passende digitale Lösung für Kleinbetriebe.',
+      founders: 'Curdin und Sarah, Berglandwirt:innen, standen täglich vor der Herausforderung: zu viel Dokumentationsaufwand, zu wenig Zeit und keine passende digitale Lösung für den Alltag auf dem Hof.',
       problem: 'Die bestehende Software war kompliziert, oft nur am PC nutzbar und damit nicht praxistauglich für den Alltag auf dem Hof. Die Lösung war klar: Eine einfache, mobile und effiziente App muss her.',
       born: 'So entstand Coltivio: die Open-Source-App, die Betriebsdokumentation erleichtert und Zeit spart.',
       ossTitle: 'Offen, unabhängig und gemeinsam entwickelt',
@@ -168,7 +168,7 @@ const translations: Record<Locale, Translations> = {
       benefits: {
         carry: { title: 'Du trägst die Software mit', desc: 'Dein Beitrag finanziert Entwicklung und Betrieb und hält die App allen Landwirt:innen offen.' },
         voice: { title: 'Du bestimmst mit', desc: 'Stimmrecht an der Mitgliederversammlung: über Beiträge, Vorstand und die Ausrichtung der Software. Ein Wechsel zu einer proprietären Lizenz braucht eine Zweidrittelmehrheit der Mitglieder.' },
-        support: { title: 'Persönlicher Support', desc: 'Fragen zur App, zum Betrieb oder zur nächsten Kontrolle? Mitglieder erreichen uns direkt per E-Mail und Telefon.' },
+        support: { title: 'Persönlicher Support', desc: 'Fragen zur App, zum Betrieb oder zur nächsten Kontrolle? Mitglieder haben einen direkten Kanal zu uns.' },
         webapp: { title: 'Zugang zur Web App', desc: 'Kontakte, Bestellbuch und Patenschaften am grossen Bildschirm.' },
       },
     },
@@ -186,7 +186,7 @@ const translations: Record<Locale, Translations> = {
     nav: { openApp: "Ouvrir l'App", features: 'Fonctionnalités', webapp: 'Web App', membership: 'Adhésion', about: 'À propos' },
     hero: {
       headline: 'Gestion agricole,\ncréée par des agriculteurs.',
-      sub: "Champs, animaux et vente directe dans une seule app, saisis à la ferme plutôt que le soir devant l'ordinateur. Open source et porté par l'association AgriColtivio : pas d'investisseurs, pas d'agro-industrie, tes données t'appartiennent.",
+      sub: "Champs et animaux dans une seule app, saisis à la ferme plutôt que le soir devant l'ordinateur. Open source et porté par l'association AgriColtivio : pas d'investisseurs, pas d'agro-industrie, tes données t'appartiennent.",
       note: 'Pour iPhone et Android, sans abonnement. En allemand, français, italien et anglais.',
       ctaIos: "Télécharger sur l'App Store",
       ctaAndroid: 'Disponible sur Google Play',
@@ -200,7 +200,7 @@ const translations: Record<Locale, Translations> = {
     },
     story: {
       headline: 'Paperasse ? Chaos Excel ? Rattrapage le soir ?',
-      founders: "Curdin et Sarah, agriculteurs de montagne, faisaient face chaque jour au même défi : trop de documentation, trop peu de temps, et aucun outil numérique vraiment adapté aux petites exploitations.",
+      founders: "Curdin et Sarah, agriculteurs de montagne, faisaient face chaque jour au même défi : trop de documentation, trop peu de temps, et aucun outil numérique vraiment adapté au quotidien à la ferme.",
       problem: "Les logiciels existants étaient compliqués, souvent utilisables uniquement sur PC, peu pratiques pour le quotidien à la ferme. La réponse était évidente : il fallait créer une app simple, mobile et efficace.",
       born: "C'est ainsi qu'est né Coltivio : l'app open source qui simplifie la documentation agricole, fait gagner du temps et connecte les agriculteurs.",
       ossTitle: 'Ouvert, indépendant et développé ensemble',
@@ -259,7 +259,7 @@ const translations: Record<Locale, Translations> = {
       benefits: {
         carry: { title: 'Tu portes le logiciel', desc: "Ta cotisation finance le développement et l'exploitation, et garde l'app ouverte à tous les agriculteurs." },
         voice: { title: 'Tu décides', desc: "Droit de vote à l'assemblée générale : sur les cotisations, le comité et l'orientation du logiciel. Un passage à une licence propriétaire exige une majorité des deux tiers des membres." },
-        support: { title: 'Support personnel', desc: "Une question sur l'app, sur ton exploitation ou sur le prochain contrôle ? Les membres nous joignent directement par e-mail et par téléphone." },
+        support: { title: 'Support personnel', desc: "Une question sur l'app, sur ton exploitation ou sur le prochain contrôle ? Les membres disposent d'un canal direct vers nous." },
         webapp: { title: "Accès à l'application Web", desc: 'Contacts, carnet de commandes et parrainages sur grand écran.' },
       },
     },
@@ -277,7 +277,7 @@ const translations: Record<Locale, Translations> = {
     nav: { openApp: 'Apri App', features: 'Funzionalità', webapp: 'Web App', membership: 'Iscrizione', about: 'Chi siamo' },
     hero: {
       headline: 'Gestione agricola,\nfatta da agricoltori.',
-      sub: "Campi, animali e vendita diretta in un'unica app, registrati in azienda invece che la sera al PC. Open source e sostenuta dall'associazione AgriColtivio: nessun investitore, nessuna industria agroalimentare, i tuoi dati sono tuoi.",
+      sub: "Campi e animali in un'unica app, registrati in azienda invece che la sera al PC. Open source e sostenuta dall'associazione AgriColtivio: nessun investitore, nessuna industria agroalimentare, i tuoi dati sono tuoi.",
       note: 'Per iPhone e Android, senza abbonamento. In tedesco, francese, italiano e inglese.',
       ctaIos: "Scarica dall'App Store",
       ctaAndroid: 'Disponibile su Google Play',
@@ -291,7 +291,7 @@ const translations: Record<Locale, Translations> = {
     },
     story: {
       headline: 'Burocrazia? Caos Excel? Aggiornare tutto la sera?',
-      founders: "Curdin e Sarah, agricoltori di montagna, affrontavano ogni giorno la stessa sfida: troppa documentazione, troppo poco tempo e nessun strumento digitale adatto alla realtà di una piccola azienda agricola.",
+      founders: "Curdin e Sarah, agricoltori di montagna, affrontavano ogni giorno la stessa sfida: troppa documentazione, troppo poco tempo e nessuno strumento digitale adatto alla vita quotidiana in azienda.",
       problem: "Il software esistente era complicato, spesso utilizzabile solo su PC, poco pratico per la vita quotidiana in fattoria. La soluzione era evidente: bisognava costruire un'app semplice, mobile ed efficiente.",
       born: "Così è nato Coltivio: l'app open source che semplifica la documentazione agricola, fa risparmiare tempo e mette in rete gli agricoltori.",
       ossTitle: 'Aperto, indipendente e sviluppato insieme',
@@ -350,7 +350,7 @@ const translations: Record<Locale, Translations> = {
       benefits: {
         carry: { title: 'Sostieni il software', desc: "La tua quota finanzia sviluppo e gestione e tiene l'app aperta a tutti gli agricoltori." },
         voice: { title: 'Decidi con noi', desc: "Diritto di voto all'assemblea dei soci: su quote, comitato e direzione del software. Un passaggio a una licenza proprietaria richiede la maggioranza dei due terzi dei soci." },
-        support: { title: 'Supporto personale', desc: "Domande sull'app, sull'azienda o sul prossimo controllo? I soci ci raggiungono direttamente per e-mail e telefono." },
+        support: { title: 'Supporto personale', desc: "Domande sull'app, sull'azienda o sul prossimo controllo? I soci hanno un canale diretto con noi." },
         webapp: { title: "Accesso all'app Web", desc: 'Contatti, registro ordini e sponsorizzazioni su schermo grande.' },
       },
     },
@@ -368,7 +368,7 @@ const translations: Record<Locale, Translations> = {
     nav: { openApp: 'Open App', features: 'Features', webapp: 'Web App', membership: 'Membership', about: 'About' },
     hero: {
       headline: 'Farm Management,\nBuilt by Farmers.',
-      sub: 'Fields, animals and direct sales in one app, recorded on the farm instead of at the PC in the evening. Open source and carried by the AgriColtivio association: no investors, no agribusiness, your data belongs to you.',
+      sub: 'Fields and animals in one app, recorded on the farm instead of at the PC in the evening. Open source and carried by the AgriColtivio association: no investors, no agribusiness, your data belongs to you.',
       note: 'For iPhone and Android, no subscription. In German, French, Italian and English.',
       ctaIos: 'Download on the App Store',
       ctaAndroid: 'Get it on Google Play',
@@ -382,7 +382,7 @@ const translations: Record<Locale, Translations> = {
     },
     story: {
       headline: 'Paperwork? Excel chaos? Catching up in the evening?',
-      founders: 'Curdin and Sarah, mountain farmers, faced the same challenge every day: too much documentation, too little time, and no digital tool that actually fit the reality of a small farm.',
+      founders: 'Curdin and Sarah, mountain farmers, faced the same challenge every day: too much documentation, too little time, and no digital tool that actually fit daily life on the farm.',
       problem: 'Existing software was complicated, mostly desktop-only, not practical for daily life on the farm. The answer was obvious: a simple, mobile, and efficient app had to be built.',
       born: "That's how Coltivio came to be: the open-source app that makes farm documentation easier, saves time, and connects farmers.",
       ossTitle: 'Open, independent, and built together',
@@ -441,7 +441,7 @@ const translations: Record<Locale, Translations> = {
       benefits: {
         carry: { title: 'You carry the software', desc: 'Your contribution funds development and operation, and keeps the app open to every farmer.' },
         voice: { title: 'You have a say', desc: 'Voting rights at the general assembly: on fees, the board, and the direction of the software. Switching to a proprietary licence requires a two-thirds majority of the members.' },
-        support: { title: 'Personal support', desc: 'Questions about the app, your farm, or the next inspection? Members reach us directly by email and phone.' },
+        support: { title: 'Personal support', desc: 'Questions about the app, your farm, or the next inspection? Members have a direct channel to us.' },
         webapp: { title: 'Access to the web app', desc: 'Contacts, order book, and sponsorships on a big screen.' },
       },
     },
