@@ -86,6 +86,7 @@ export interface Translations {
   privacy: { title: string; back: string }
   dataDeletion: { title: string; back: string }
   footer: { tagline: string; github: string; appStore: string; playStore: string }
+  a11y: { menu: string; openMenu: string; closeMenu: string; close: string }
 }
 
 const translations: Record<Locale, Translations> = {
@@ -176,6 +177,7 @@ const translations: Record<Locale, Translations> = {
     privacy: { title: 'Datenschutzerklärung', back: 'Zurück' },
     dataDeletion: { title: 'Datenlöschung', back: 'Zurück' },
     footer: { tagline: 'Open-Source Hofverwaltung', github: 'GitHub', appStore: 'App Store', playStore: 'Google Play' },
+    a11y: { menu: 'Navigation', openMenu: 'Menü öffnen', closeMenu: 'Menü schliessen', close: 'Schliessen' },
   },
 
   fr: {
@@ -265,6 +267,7 @@ const translations: Record<Locale, Translations> = {
     privacy: { title: 'Politique de confidentialité', back: 'Retour' },
     dataDeletion: { title: 'Suppression des données', back: 'Retour' },
     footer: { tagline: 'Gestion agricole open source', github: 'GitHub', appStore: 'App Store', playStore: 'Google Play' },
+    a11y: { menu: 'Navigation', openMenu: 'Ouvrir le menu', closeMenu: 'Fermer le menu', close: 'Fermer' },
   },
 
   it: {
@@ -354,6 +357,7 @@ const translations: Record<Locale, Translations> = {
     privacy: { title: 'Informativa sulla privacy', back: 'Indietro' },
     dataDeletion: { title: 'Cancellazione dei dati', back: 'Indietro' },
     footer: { tagline: 'Gestione agricola open source', github: 'GitHub', appStore: 'App Store', playStore: 'Google Play' },
+    a11y: { menu: 'Navigazione', openMenu: 'Apri il menu', closeMenu: 'Chiudi il menu', close: 'Chiudi' },
   },
 
   en: {
@@ -443,6 +447,7 @@ const translations: Record<Locale, Translations> = {
     privacy: { title: 'Privacy Policy', back: 'Back' },
     dataDeletion: { title: 'Data Deletion', back: 'Back' },
     footer: { tagline: 'Open source farm management', github: 'GitHub', appStore: 'App Store', playStore: 'Google Play' },
+    a11y: { menu: 'Navigation', openMenu: 'Open menu', closeMenu: 'Close menu', close: 'Close' },
   },
 }
 

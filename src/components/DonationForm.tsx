@@ -1,4 +1,5 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useId } from "react";
+import { useDialog } from "@/lib/useDialog";
 
 const PRESET_AMOUNTS = [10, 25, 50, 100];
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -18,6 +19,7 @@ interface Props {
   thankYouTitle: string;
   thankYouBody: string;
   thankYouClose: string;
+  closeLabel: string;
 }
 
 export function DonationForm({
@@ -35,6 +37,7 @@ export function DonationForm({
   thankYouTitle,
   thankYouBody,
   thankYouClose,
+  closeLabel,
 }: Props) {
   const [selectedAmount, setSelectedAmount] = useState<number | null>(25);
   const [customAmount, setCustomAmount] = useState("");
@@ -56,13 +59,8 @@ export function DonationForm({
   }, []);
 
   const closeThankYou = useCallback(() => setShowThankYou(false), []);
-
-  useEffect(() => {
-    if (!showThankYou) return;
-    function onKey(e: KeyboardEvent) { if (e.key === "Escape") closeThankYou(); }
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [showThankYou, closeThankYou]);
+  const thankYouRef = useDialog<HTMLDivElement>(showThankYou, closeThankYou);
+  const thankYouTitleId = useId();
 
   // The effective amount: custom input takes precedence over preset when it has a value
   const effectiveAmount =
@@ -126,13 +124,19 @@ export function DonationForm({
     {showThankYou && (
       <>
         <div className="fixed inset-0 z-50 bg-black/50" aria-hidden="true" onClick={closeThankYou} />
-        <div className="fixed inset-0 z-51 flex items-center justify-center p-4">
+        <div
+          ref={thankYouRef}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby={thankYouTitleId}
+          className="fixed inset-0 z-[51] flex items-center justify-center p-4"
+        >
           <div className="w-full max-w-md rounded-xl border bg-background shadow-xl p-8 space-y-4 text-center">
-            <div className="text-4xl">🌱</div>
-            <h2 className="text-xl font-bold">{thankYouTitle}</h2>
+            <h2 id={thankYouTitleId} className="text-xl font-bold">{thankYouTitle}</h2>
             <p className="text-muted-foreground leading-relaxed">{thankYouBody}</p>
             <button
               onClick={closeThankYou}
+              aria-label={closeLabel}
               className="mt-2 inline-flex rounded-md bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
             >
               {thankYouClose}
@@ -143,8 +147,8 @@ export function DonationForm({
     )}
     <form onSubmit={handleSubmit} className="space-y-5">
       {/* Preset amount buttons */}
-      <div className="space-y-2">
-        <label className="text-sm font-medium">{amountLabel}</label>
+      <fieldset className="space-y-2">
+        <legend className="text-sm font-medium">{amountLabel}</legend>
         <div className="flex flex-wrap gap-2">
           {PRESET_AMOUNTS.map((amount) => (
             <button
@@ -180,9 +184,9 @@ export function DonationForm({
           />
         </div>
         {amountInvalid && (
-          <p className="text-xs text-destructive">{errorAmount}</p>
+          <p className="text-xs text-destructive" role="alert">{errorAmount}</p>
         )}
-      </div>
+      </fieldset>
 
       {/* Email */}
       <div className="space-y-2">
@@ -199,11 +203,11 @@ export function DonationForm({
           className={`block w-full max-w-sm rounded-md border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring ${emailInvalid ? "border-destructive" : "border-input"}`}
         />
         {emailInvalid && (
-          <p className="text-xs text-destructive">{errorEmail}</p>
+          <p className="text-xs text-destructive" role="alert">{errorEmail}</p>
         )}
       </div>
 
-      {errorMsg && <p className="text-sm text-destructive">{errorMsg}</p>}
+      {errorMsg && <p className="text-sm text-destructive" role="alert">{errorMsg}</p>}
 
       <button
         type="submit"

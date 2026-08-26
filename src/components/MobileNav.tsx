@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { LanguageSwitcher } from './LanguageSwitcher'
+import { useDialog } from '@/lib/useDialog'
 
 interface NavLabels {
   features: string
@@ -8,6 +9,9 @@ interface NavLabels {
   about: string
   openApp: string
   membershipCta: string
+  menu: string
+  openMenu: string
+  closeMenu: string
 }
 
 interface Props {
@@ -35,29 +39,14 @@ export function MobileNav({ lang, appUrl, labels }: Props) {
   }, [appUrl])
 
   const close = useCallback(() => setIsOpen(false), [])
-
-  // Close on Escape key
-  useEffect(() => {
-    if (!isOpen) return
-    function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === 'Escape') close()
-    }
-    document.addEventListener('keydown', handleKeyDown)
-    return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [isOpen, close])
-
-  // Prevent body scroll when drawer is open
-  useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
-  }, [isOpen])
+  const drawerRef = useDialog<HTMLDivElement>(isOpen, close)
 
   return (
     <>
       {/* Hamburger button, mobile only */}
       <button
         className="lg:hidden flex items-center justify-center rounded-md p-1.5 hover:bg-muted transition-colors"
-        aria-label="Open menu"
+        aria-label={labels.openMenu}
         onClick={() => setIsOpen(true)}
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -79,19 +68,23 @@ export function MobileNav({ lang, appUrl, labels }: Props) {
       {/* Clip layer: viewport-sized, clips the off-screen (translated) drawer
           so it never creates horizontal page overflow. Pointer-events pass through
           when closed; the drawer itself re-enables them. z-[51] sits above the overlay. */}
-      <div className="fixed top-0 left-0 h-screen w-full z-[51] overflow-hidden pointer-events-none">
+      <div className="lg:hidden fixed top-0 left-0 h-screen w-full z-[51] overflow-hidden pointer-events-none">
       {/* Drawer */}
       <div
+        ref={drawerRef}
+        // The drawer stays mounted so it can slide, so it must be inert while
+        // closed. Otherwise its links stay tabbable behind the page.
+        inert={!isOpen}
         className={`absolute top-0 right-0 h-full w-72 bg-background shadow-xl flex flex-col pointer-events-auto transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
         role="dialog"
         aria-modal="true"
-        aria-label="Navigation menu"
+        aria-label={labels.menu}
       >
         {/* Close button */}
         <div className="flex items-center justify-end p-4 border-b">
           <button
             className="flex items-center justify-center rounded-md p-1.5 hover:bg-muted transition-colors"
-            aria-label="Close menu"
+            aria-label={labels.closeMenu}
             onClick={close}
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

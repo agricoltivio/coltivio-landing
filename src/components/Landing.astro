@@ -109,6 +109,9 @@ const membershipBenefits = [
             about: tr.nav.about,
             openApp: tr.nav.openApp,
             membershipCta: tr.membership.cta,
+            menu: tr.a11y.menu,
+            openMenu: tr.a11y.openMenu,
+            closeMenu: tr.a11y.closeMenu,
           }}
         />
       </div>
@@ -229,7 +232,7 @@ const membershipBenefits = [
         >
           {tr.membership.cta}
         </a>
-        <StatutenDialog client:load lang={lang} linkLabel={tr.oss.statutenLink} />
+        <StatutenDialog client:load lang={lang} linkLabel={tr.oss.statutenLink} closeLabel={tr.a11y.close} />
       </div>
     </div>
   </section>
@@ -482,6 +485,7 @@ const membershipBenefits = [
         thankYouTitle={tr.donate.thankYouTitle}
         thankYouBody={tr.donate.thankYouBody}
         thankYouClose={tr.donate.thankYouClose}
+        closeLabel={tr.a11y.close}
       />
     </div>
   </section>
