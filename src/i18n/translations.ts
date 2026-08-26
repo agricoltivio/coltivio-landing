@@ -4,6 +4,7 @@ export interface Translations {
   nav: { openApp: string; features: string; webapp: string; membership: string; about: string }
   hero: { headline: string; sub: string; note: string; ctaIos: string; ctaAndroid: string; imageAlt: string }
   pillars: {
+    title: string
     admin: { title: string; desc: string }
     oss: { title: string; desc: string }
     verein: { title: string; desc: string }
@@ -101,6 +102,7 @@ const translations: Record<Locale, Translations> = {
       imageAlt: 'Coltivio auf einem Smartphone: Startbildschirm mit Betriebskarte und Schnellzugriffen.',
     },
     pillars: {
+      title: 'Warum Coltivio',
       admin: { title: 'Weniger Papierkram', desc: 'Feldarbeiten, Behandlungen und Auslauf direkt auf dem Hof erfassen, statt am Abend am PC nachzutragen. Kontrollexporte im geforderten Format auf Knopfdruck.' },
       oss: { title: 'Quelloffen und überprüfbar', desc: 'Der ganze Quellcode ist öffentlich. Jede:r kann nachlesen, was mit den Daten passiert, und mitentwickeln.' },
       verein: { title: 'Verein statt Investoren', desc: 'Coltivio gehört einem gemeinnützigen Verein, nicht einem Investor. Die Mitglieder bestimmen über die Ausrichtung der Software: kein Exit, keine Renditeerwartung, kein Datenverkauf.' },
@@ -191,6 +193,7 @@ const translations: Record<Locale, Translations> = {
       imageAlt: "Coltivio sur un smartphone : écran d'accueil avec la carte de l'exploitation et les raccourcis.",
     },
     pillars: {
+      title: 'Pourquoi Coltivio',
       admin: { title: 'Moins de paperasse', desc: "Saisir les travaux des champs, les traitements et les sorties directement à la ferme, au lieu de tout rattraper le soir sur le PC. Les exports pour les contrôles sortent dans le format exigé, en un clic." },
       oss: { title: 'Open source et vérifiable', desc: "L'intégralité du code source est publique. Chacun peut vérifier ce qu'il advient des données, et contribuer au développement." },
       verein: { title: 'Une association, pas des investisseurs', desc: "Coltivio appartient à une association à but non lucratif, pas à un investisseur. Les membres décident de l'orientation du logiciel : pas de revente, pas d'attente de rendement, pas de commerce des données." },
@@ -281,6 +284,7 @@ const translations: Record<Locale, Translations> = {
       imageAlt: "Coltivio su uno smartphone: schermata iniziale con la mappa aziendale e le scorciatoie.",
     },
     pillars: {
+      title: 'Perché Coltivio',
       admin: { title: 'Meno burocrazia', desc: 'Registra lavori in campo, trattamenti e uscite direttamente in azienda, invece di recuperare tutto la sera al PC. Gli export per i controlli escono nel formato richiesto con un tocco.' },
       oss: { title: 'Open source e verificabile', desc: "L'intero codice sorgente è pubblico. Chiunque può leggere cosa succede ai dati e contribuire allo sviluppo." },
       verein: { title: 'Associazione, non investitori', desc: "Coltivio appartiene a un'associazione senza scopo di lucro, non a un investitore. Sono i soci a decidere la direzione del software: nessuna exit, nessuna aspettativa di rendimento, nessuna vendita di dati." },
@@ -371,6 +375,7 @@ const translations: Record<Locale, Translations> = {
       imageAlt: 'Coltivio on a smartphone: home screen with the farm map and quick actions.',
     },
     pillars: {
+      title: 'Why Coltivio',
       admin: { title: 'Less paperwork', desc: 'Record field work, treatments and turnout right on the farm instead of catching up at the PC in the evening. Inspection exports come out in the required format at the tap of a button.' },
       oss: { title: 'Open source and verifiable', desc: 'The entire source code is public. Anyone can read what happens to the data, and contribute to it.' },
       verein: { title: 'An association, not investors', desc: 'Coltivio belongs to a non-profit association, not to an investor. The members decide where the software goes: no exit, no return expectations, no data trading.' },
