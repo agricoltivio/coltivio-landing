@@ -51,7 +51,6 @@ export interface Translations {
     journals: { title: string; desc: string }
     stats: { title: string; desc: string }
   }
-  memberBadge: string
   membership: {
     eyebrow: string
     tagline: string
@@ -158,7 +157,6 @@ const translations: Record<Locale, Translations> = {
       journals: { title: 'Journal', desc: 'Füge Tieren und Flächen Journaleinträge mit Bildern hinzu, für Beobachtungen, Ereignisse oder alles, was du festhalten möchtest.' },
       stats: { title: 'Statistiken', desc: 'Detaillierte Grafiken zur Feldarbeit, zur Altersverteilung im Tierbestand oder Stammbäume. Verstehe deinen Betrieb auf einen Blick.' },
     },
-    memberBadge: 'Mitglied',
     membership: {
       eyebrow: 'Unabhängig. Gemeinnützig. Von Bäuerinnen und Bauern für Bäuerinnen und Bauern.',
       tagline: 'Werde Mitglied und bestimme mit, wohin die Software geht.',
@@ -249,7 +247,6 @@ const translations: Record<Locale, Translations> = {
       journals: { title: 'Journal', desc: "Ajoutez des entrées de journal avec photos à vos animaux et parcelles, pour des observations, des événements ou tout ce que vous souhaitez noter." },
       stats: { title: 'Statistiques', desc: "Graphiques détaillés sur les travaux des champs, la répartition par âge du cheptel ou les arbres généalogiques. Comprenez votre exploitation en un coup d'œil." },
     },
-    memberBadge: 'Membre',
     membership: {
       eyebrow: 'Indépendant. À but non lucratif. Par des agriculteurs pour des agriculteurs.',
       tagline: "Deviens membre, porte le logiciel et décide de son orientation.",
@@ -340,7 +337,6 @@ const translations: Record<Locale, Translations> = {
       journals: { title: 'Diario', desc: "Aggiungi voci di diario con immagini ad animali e superfici, per osservazioni, eventi o tutto ciò che vuoi annotare." },
       stats: { title: 'Statistiche', desc: "Grafici dettagliati sui lavori in campo, sulla distribuzione per età del bestiame o sugli alberi genealogici. Comprendi la tua azienda a colpo d'occhio." },
     },
-    memberBadge: 'Membro',
     membership: {
       eyebrow: 'Indipendente. Non-profit. Da agricoltori per agricoltori.',
       tagline: 'Diventa socio, sostieni il software e decidi dove va.',
@@ -431,7 +427,6 @@ const translations: Record<Locale, Translations> = {
       journals: { title: 'Journal', desc: 'Add journal entries with photos to animals and plots, for observations, events, or anything you want to keep track of.' },
       stats: { title: 'Stats', desc: 'Detailed graphs of your field work, animal age distribution, family trees and more. Understand your farm at a glance.' },
     },
-    memberBadge: 'Member',
     membership: {
       eyebrow: 'Independent. Non-profit. By farmers for farmers.',
       tagline: 'Become a member, carry the software and help decide where it goes.',
