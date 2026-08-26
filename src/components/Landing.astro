@@ -1,6 +1,6 @@
 ---
 import type { Translations } from '@/i18n/translations'
-import { APP_STORE_URL, PLAY_STORE_URL } from '@/lib/stores'
+import { IOS_DOWNLOAD_URL, PLAY_STORE_URL } from '@/lib/stores'
 import { NewsletterForm } from './NewsletterForm'
 import { LanguageSwitcher } from './LanguageSwitcher'
 import { MobileNav } from './MobileNav'
@@ -111,7 +111,7 @@ const membershipBenefits = [
         <div class="space-y-4">
           <div class="flex flex-wrap gap-3">
             <a
-              href={APP_STORE_URL}
+              href={IOS_DOWNLOAD_URL}
               target="_blank"
               rel="noopener noreferrer"
               class="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-base font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
@@ -506,7 +506,7 @@ const membershipBenefits = [
           <a href="https://github.com/orgs/agricoltivio/repositories" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded hover:bg-muted transition-colors text-muted-foreground hover:text-foreground">
             {tr.footer.github}
           </a>
-          <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded hover:bg-muted transition-colors text-muted-foreground hover:text-foreground">
+          <a href={IOS_DOWNLOAD_URL} target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded hover:bg-muted transition-colors text-muted-foreground hover:text-foreground">
             {tr.footer.appStore}
           </a>
           <a href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded hover:bg-muted transition-colors text-muted-foreground hover:text-foreground">

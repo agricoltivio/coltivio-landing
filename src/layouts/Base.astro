@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css'
-import { APP_STORE_URL, PLAY_STORE_URL } from '@/lib/stores'
+import { IOS_DOWNLOAD_URL, PLAY_STORE_URL } from '@/lib/stores'
 
 interface Props {
   lang: string
@@ -61,7 +61,7 @@ const ogLocale = ogLocaleMap[lang] ?? 'de_CH'
       "url": "https://coltivio.ch",
       "author": { "@type": "Organization", "name": "Verein AgriColtivio", "url": "https://coltivio.ch" },
       "license": "https://www.gnu.org/licenses/agpl-3.0.html",
-      "downloadUrl": APP_STORE_URL,
+      "downloadUrl": IOS_DOWNLOAD_URL,
       "installUrl": PLAY_STORE_URL,
     })} />
   </head>
