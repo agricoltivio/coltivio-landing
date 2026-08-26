@@ -106,7 +106,7 @@ export function MobileNav({ lang, appUrl, labels }: Props) {
             <a
               key={href}
               href={href}
-              className="px-3 py-2 rounded text-sm font-medium hover:bg-muted transition-colors"
+              className="px-3 py-2 rounded-md text-sm font-medium hover:bg-muted transition-colors"
               onClick={close}
             >
               {label}
@@ -131,7 +131,7 @@ export function MobileNav({ lang, appUrl, labels }: Props) {
             href={openAppHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-3 py-2 rounded text-sm font-medium hover:bg-muted transition-colors"
+            className="px-3 py-2 rounded-md text-sm font-medium hover:bg-muted transition-colors"
             onClick={close}
           >
             {labels.openApp}

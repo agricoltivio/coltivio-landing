@@ -1,5 +1,6 @@
 import { useState, useEffect, useId } from 'react'
 import { buttonClass } from '@/lib/button'
+import { inputClass } from '@/lib/input'
 
 const TURNSTILE_SITE_KEY = '0x4AAAAAACgTy04qy1vutytf'
 const BREVO_ACTION =
@@ -86,7 +87,7 @@ export function NewsletterForm({ apiUrl, lang, label, placeholder, cta, successM
             placeholder={placeholder}
             value={email}
             onChange={(e) => setEmail(e.currentTarget.value)}
-            className="max-w-xs rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground"
+            className={inputClass(false, 'max-w-xs')}
           />
           <button
             type="submit"

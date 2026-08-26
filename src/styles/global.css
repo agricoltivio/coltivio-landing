@@ -53,4 +53,13 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+
+  /* One focus treatment for every interactive element. Previously only three
+     form inputs declared one, so buttons and links fell back to the browser
+     default and keyboard users saw two different rings on the same page. */
+  *:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: var(--radius-md);
+  }
 }

@@ -62,7 +62,7 @@ export function LanguageSwitcher({ lang }: Props) {
               href={localizePath(pathname, l.code)}
               hrefLang={l.code}
               aria-current={lang === l.code ? 'true' : undefined}
-              className={`block rounded px-3 py-1.5 text-sm hover:bg-muted transition-colors ${lang === l.code ? 'font-semibold' : 'text-muted-foreground'}`}
+              className={`block rounded-md px-3 py-1.5 text-sm hover:bg-muted transition-colors ${lang === l.code ? 'font-semibold' : 'text-muted-foreground'}`}
             >
               {l.label}
             </a>

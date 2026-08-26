@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useId } from "react";
 import { useDialog } from "@/lib/useDialog";
 import { buttonClass } from "@/lib/button";
+import { inputClass } from "@/lib/input";
 
 const PRESET_AMOUNTS = [10, 25, 50, 100];
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -181,7 +182,7 @@ export function DonationForm({
             }}
             onBlur={() => setTouched((t) => ({ ...t, amount: true }))}
             placeholder={customPlaceholder}
-            className={`rounded-md border bg-background px-3 py-2 text-sm w-44 focus:outline-none focus:ring-2 focus:ring-ring ${amountInvalid ? "border-destructive" : "border-input"}`}
+            className={inputClass(amountInvalid, "w-44")}
           />
         </div>
         {amountInvalid && (
@@ -201,7 +202,7 @@ export function DonationForm({
           onChange={(e) => setEmail(e.target.value)}
           onBlur={() => setTouched((t) => ({ ...t, email: true }))}
           placeholder={emailPlaceholder}
-          className={`block w-full max-w-sm rounded-md border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring ${emailInvalid ? "border-destructive" : "border-input"}`}
+          className={inputClass(emailInvalid, "block w-full max-w-sm")}
         />
         {emailInvalid && (
           <p className="text-xs text-destructive" role="alert">{errorEmail}</p>
