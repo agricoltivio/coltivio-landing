@@ -27,7 +27,7 @@ export const privacyContent: Record<Locale, PrivacyContent> = {
         subheadings: [
           {
             title: 'App-Nutzung',
-            content: 'Bei der Nutzung der Coltivio-App und des Web-Portals verarbeiten wir ausschliesslich die Daten, die Sie selbst eingeben — z.\u202fB. Tierdaten, Felddaten, Behandlungseinträge und Hofkonfiguration. Diese Daten werden Ihrem Konto zugeordnet und dienen ausschliesslich der Bereitstellung der App-Funktionalität.',
+            content: 'Bei der Nutzung der Coltivio-App und des Web-Portals verarbeiten wir ausschliesslich die Daten, die Sie selbst eingeben, z.\u202fB. Tierdaten, Felddaten, Behandlungseinträge und Hofkonfiguration. Diese Daten werden Ihrem Konto zugeordnet und dienen ausschliesslich der Bereitstellung der App-Funktionalität.',
           },
           {
             title: 'Kontaktaufnahme',
@@ -79,7 +79,7 @@ export const privacyContent: Record<Locale, PrivacyContent> = {
         subheadings: [
           {
             title: 'Utilisation de l\'application',
-            content: 'Lors de l\'utilisation de l\'application Coltivio et du portail web, nous traitons uniquement les données que vous saisissez vous-même — par ex. données sur les animaux, les parcelles, les traitements et la configuration de l\'exploitation. Ces données sont associées à votre compte et servent exclusivement à fournir les fonctionnalités de l\'application.',
+            content: 'Lors de l\'utilisation de l\'application Coltivio et du portail web, nous traitons uniquement les données que vous saisissez vous-même, par ex. données sur les animaux, les parcelles, les traitements et la configuration de l\'exploitation. Ces données sont associées à votre compte et servent exclusivement à fournir les fonctionnalités de l\'application.',
           },
           {
             title: 'Prise de contact',
@@ -131,7 +131,7 @@ export const privacyContent: Record<Locale, PrivacyContent> = {
         subheadings: [
           {
             title: 'Utilizzo dell\'app',
-            content: 'Durante l\'utilizzo dell\'app Coltivio e del portale web, trattiamo esclusivamente i dati che inserite voi stessi — ad es. dati sugli animali, sui campi, sui trattamenti e sulla configurazione dell\'azienda. Questi dati sono associati al vostro account e servono esclusivamente a fornire le funzionalità dell\'app.',
+            content: 'Durante l\'utilizzo dell\'app Coltivio e del portale web, trattiamo esclusivamente i dati che inserite voi stessi, ad es. dati sugli animali, sui campi, sui trattamenti e sulla configurazione dell\'azienda. Questi dati sono associati al vostro account e servono esclusivamente a fornire le funzionalità dell\'app.',
           },
           {
             title: 'Contatto',
@@ -183,7 +183,7 @@ export const privacyContent: Record<Locale, PrivacyContent> = {
         subheadings: [
           {
             title: 'App usage',
-            content: 'When using the Coltivio app and web portal, we process only the data you enter yourself — e.g. animal data, field data, treatment entries and farm configuration. This data is associated with your account and is used solely to provide the app\'s functionality.',
+            content: 'When using the Coltivio app and web portal, we process only the data you enter yourself, e.g. animal data, field data, treatment entries and farm configuration. This data is associated with your account and is used solely to provide the app\'s functionality.',
           },
           {
             title: 'Contact',

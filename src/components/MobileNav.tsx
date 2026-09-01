@@ -1,14 +1,18 @@
 import { useState, useEffect, useCallback } from 'react'
 import { LanguageSwitcher } from './LanguageSwitcher'
+import { useDialog } from '@/lib/useDialog'
+import { buttonClass } from '@/lib/button'
 
 interface NavLabels {
   features: string
   webapp: string
   membership: string
-  donate: string
   about: string
   openApp: string
   membershipCta: string
+  menu: string
+  openMenu: string
+  closeMenu: string
 }
 
 interface Props {
@@ -24,39 +28,26 @@ function buildAuthUrl(appUrl: string, token: string, redirect: string) {
 export function MobileNav({ lang, appUrl, labels }: Props) {
   const [isOpen, setIsOpen] = useState(false)
   const [openAppHref, setOpenAppHref] = useState(appUrl)
+  const [membershipHref, setMembershipHref] = useState(`${appUrl}/membership`)
 
-  // Build auth-aware URL for "Open App" on mount
+  // Build auth-aware URLs for the two app links on mount
   useEffect(() => {
     const token = sessionStorage.getItem('coltivio_token')
     if (token) {
       setOpenAppHref(buildAuthUrl(appUrl, token, '/dashboard'))
+      setMembershipHref(buildAuthUrl(appUrl, token, '/membership'))
     }
   }, [appUrl])
 
   const close = useCallback(() => setIsOpen(false), [])
-
-  // Close on Escape key
-  useEffect(() => {
-    if (!isOpen) return
-    function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === 'Escape') close()
-    }
-    document.addEventListener('keydown', handleKeyDown)
-    return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [isOpen, close])
-
-  // Prevent body scroll when drawer is open
-  useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
-  }, [isOpen])
+  const drawerRef = useDialog<HTMLDivElement>(isOpen, close)
 
   return (
     <>
-      {/* Hamburger button — mobile only */}
+      {/* Hamburger button, mobile only */}
       <button
         className="lg:hidden flex items-center justify-center rounded-md p-1.5 hover:bg-muted transition-colors"
-        aria-label="Open menu"
+        aria-label={labels.openMenu}
         onClick={() => setIsOpen(true)}
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -69,28 +60,32 @@ export function MobileNav({ lang, appUrl, labels }: Props) {
       {/* Overlay */}
       {isOpen && (
         <div
-          className="fixed top-0 left-0 h-screen w-full z-50 bg-black/50"
+          className="fixed top-0 left-0 h-dvh w-full z-50 bg-black/50"
           aria-hidden="true"
           onClick={close}
         />
       )}
 
-      {/* Clip layer — viewport-sized, clips the off-screen (translated) drawer
+      {/* Clip layer: viewport-sized, clips the off-screen (translated) drawer
           so it never creates horizontal page overflow. Pointer-events pass through
           when closed; the drawer itself re-enables them. z-[51] sits above the overlay. */}
-      <div className="fixed top-0 left-0 h-screen w-full z-[51] overflow-hidden pointer-events-none">
+      <div className="lg:hidden fixed top-0 left-0 h-dvh w-full z-[51] overflow-hidden pointer-events-none">
       {/* Drawer */}
       <div
+        ref={drawerRef}
+        // The drawer stays mounted so it can slide, so it must be inert while
+        // closed. Otherwise its links stay tabbable behind the page.
+        inert={!isOpen}
         className={`absolute top-0 right-0 h-full w-72 bg-background shadow-xl flex flex-col pointer-events-auto transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
         role="dialog"
         aria-modal="true"
-        aria-label="Navigation menu"
+        aria-label={labels.menu}
       >
         {/* Close button */}
         <div className="flex items-center justify-end p-4 border-b">
           <button
             className="flex items-center justify-center rounded-md p-1.5 hover:bg-muted transition-colors"
-            aria-label="Close menu"
+            aria-label={labels.closeMenu}
             onClick={close}
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -106,13 +101,12 @@ export function MobileNav({ lang, appUrl, labels }: Props) {
             { href: '#features', label: labels.features },
             { href: '#webapp', label: labels.webapp },
             { href: '#membership', label: labels.membership },
-            { href: '#donate', label: labels.donate },
             { href: '#about', label: labels.about },
           ] as const).map(({ href, label }) => (
             <a
               key={href}
               href={href}
-              className="px-3 py-2 rounded text-sm font-medium hover:bg-muted transition-colors"
+              className="px-3 py-2 rounded-md text-sm font-medium hover:bg-muted transition-colors"
               onClick={close}
             >
               {label}
@@ -122,13 +116,22 @@ export function MobileNav({ lang, appUrl, labels }: Props) {
 
         <div className="border-t mx-4" />
 
-        {/* Open App link */}
+        {/* App links */}
         <div className="p-4 flex flex-col gap-2">
+          <a
+            href={membershipHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={buttonClass('primary', 'sm')}
+            onClick={close}
+          >
+            {labels.membershipCta}
+          </a>
           <a
             href={openAppHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-3 py-2 rounded text-sm font-medium hover:bg-muted transition-colors"
+            className="px-3 py-2 rounded-md text-sm font-medium hover:bg-muted transition-colors"
             onClick={close}
           >
             {labels.openApp}

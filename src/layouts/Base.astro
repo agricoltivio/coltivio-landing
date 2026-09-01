@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css'
+import { IOS_DOWNLOAD_URL, PLAY_STORE_URL } from '@/lib/links'
+import { getTranslations } from '@/i18n/translations'
 
 interface Props {
   lang: string
@@ -18,6 +20,7 @@ const ogLocaleMap: Record<string, string> = {
   en: 'en_US',
 }
 const ogLocale = ogLocaleMap[lang] ?? 'de_CH'
+const tr = getTranslations(lang)
 ---
 
 <!doctype html>
@@ -25,10 +28,11 @@ const ogLocale = ogLocaleMap[lang] ?? 'de_CH'
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" href="/logo.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icon-180.png" />
     <link rel="manifest" href="/manifest.json" />
-    <meta name="theme-color" content="#2a5159" />
+    <meta name="theme-color" content="#004a4c" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
@@ -55,15 +59,22 @@ const ogLocale = ogLocaleMap[lang] ?? 'de_CH'
       "name": "Coltivio",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "iOS, Android, Web",
-      "offers": { "@type": "Offer", "price": "75", "priceCurrency": "CHF" },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CHF" },
       "description": description,
       "url": "https://coltivio.ch",
-      "author": { "@type": "Organization", "name": "Coltivio", "url": "https://coltivio.ch" },
+      "author": { "@type": "Organization", "name": "Verein AgriColtivio", "url": "https://coltivio.ch" },
       "license": "https://www.gnu.org/licenses/agpl-3.0.html",
-      "downloadUrl": "https://testflight.apple.com/join/MZ3HNzDW",
+      "downloadUrl": IOS_DOWNLOAD_URL,
+      "installUrl": PLAY_STORE_URL,
     })} />
   </head>
   <body>
+    <a
+      href="#main"
+      class="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:top-3 focus-visible:left-3 focus-visible:z-[60] focus-visible:rounded-md focus-visible:bg-background focus-visible:px-4 focus-visible:py-2 focus-visible:text-sm focus-visible:font-medium focus-visible:shadow-md"
+    >
+      {tr.a11y.skipToContent}
+    </a>
     <slot />
   </body>
 </html>

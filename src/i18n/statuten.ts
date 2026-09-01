@@ -12,7 +12,7 @@ Art. 1 – Name und Sitz
 Unter dem Namen «AgriColtivio» besteht ein Verein im Sinne von Art. 60 ff. ZGB mit gemeinnützigem Zweck. Sein Sitz ist in Braggio, Comune di Calanca, Kanton Graubünden. Der Verein ist politisch unabhängig und konfessionell neutral.
 
 Art. 2 – Zweck
-Der Verein bezweckt die Förderung einer offenen, transparenten und nachhaltigen Landwirtschaft mit besonderem Fokus auf kleinen und mittleren Schweizer Betrieben. Insbesondere verfolgt der Verein folgende Ziele:
+Der Verein bezweckt die Förderung einer offenen, transparenten und nachhaltigen Landwirtschaft in der Schweiz. Insbesondere verfolgt der Verein folgende Ziele:
 a. Entwicklung, Pflege und Bereitstellung der Open-Source-Software «Coltivio», die Landwirt:innen ihre betriebliche Verwaltung erleichtert und bürokratische Hürden reduziert. Der Quellcode wird unter einer freien Lizenz (AGPL-3.0 oder kompatibel) öffentlich zugänglich gemacht.
 b. Mitbestimmung der Mitglieder bei der Ausrichtung und Weiterentwicklung der Software.
 c. Vernetzung von Landwirt:innen für Wissens-, Erfahrungs- und Ressourcenaustausch.
@@ -128,7 +128,7 @@ Die offizielle Vereinssprache ist Deutsch. Vereinsdokumente werden nach Möglich
 
 Art. 17 – Auflösung des Vereins
 Die Auflösung des Vereins kann durch Beschluss einer Mitgliederversammlung mit 3/4-Mehrheit der anwesenden Stimmberechtigten erfolgen.
-Bei einer Auflösung fällt das Vereinsvermögen nach Begleichung aller Verbindlichkeiten an eine steuerbefreite Schweizer Organisation, die einen ähnlichen Zweck verfolgt, vorzugsweise eine Organisation aus dem Bereich Open-Source-Software für die Landwirtschaft oder allgemein die Förderung kleinerer und mittlerer Landwirtschaftsbetriebe.
+Bei einer Auflösung fällt das Vereinsvermögen nach Begleichung aller Verbindlichkeiten an eine steuerbefreite Schweizer Organisation, die einen ähnlichen Zweck verfolgt, vorzugsweise eine Organisation aus dem Bereich Open-Source-Software für die Landwirtschaft oder allgemein die Förderung der Landwirtschaft.
 Die Verteilung des Vereinsvermögens unter den Mitgliedern ist ausgeschlossen.
 
 Art. 18 – Inkrafttreten
@@ -147,7 +147,7 @@ Art. 1 – Nom et siège
 Sous le nom «AgriColtivio» existe une association au sens des art. 60 ss CC, à but non lucratif. Son siège est à Braggio, Comune di Calanca, canton des Grisons. L'association est politiquement indépendante et confessionnellement neutre.
 
 Art. 2 – But
-L'association a pour but de promouvoir une agriculture ouverte, transparente et durable, avec un accent particulier sur les petites et moyennes exploitations suisses. L'association poursuit notamment les objectifs suivants :
+L'association a pour but de promouvoir une agriculture ouverte, transparente et durable en Suisse. L'association poursuit notamment les objectifs suivants :
 a. Développement, maintenance et mise à disposition du logiciel open source «Coltivio», qui facilite la gestion d'exploitation des agriculteur·trice·s et réduit les obstacles bureaucratiques. Le code source est rendu public sous une licence libre (AGPL-3.0 ou compatible).
 b. Participation des membres aux décisions concernant l'orientation et le développement du logiciel.
 c. Mise en réseau des agriculteur·trice·s pour l'échange de connaissances, d'expériences et de ressources.
@@ -263,7 +263,7 @@ La langue officielle de l'association est l'allemand. Dans la mesure du possible
 
 Art. 17 – Dissolution de l'association
 La dissolution de l'association peut être décidée par une assemblée générale à la majorité des 3/4 des membres présents ayant droit de vote.
-En cas de dissolution, le patrimoine de l'association, après règlement de toutes les dettes, est attribué à une organisation suisse exonérée d'impôts poursuivant un but similaire, de préférence une organisation du domaine des logiciels open source pour l'agriculture ou, de manière générale, de la promotion des petites et moyennes exploitations agricoles.
+En cas de dissolution, le patrimoine de l'association, après règlement de toutes les dettes, est attribué à une organisation suisse exonérée d'impôts poursuivant un but similaire, de préférence une organisation du domaine des logiciels open source pour l'agriculture ou, de manière générale, de la promotion de l'agriculture.
 La répartition du patrimoine de l'association entre les membres est exclue.
 
 Art. 18 – Entrée en vigueur
@@ -282,7 +282,7 @@ Art. 1 – Nome e sede
 Sotto la denominazione «AgriColtivio» esiste un'associazione ai sensi degli art. 60 e segg. CC, con scopo di pubblica utilità. La sua sede è a Braggio, Comune di Calanca, Cantone dei Grigioni. L'associazione è politicamente indipendente e confessionalmente neutrale.
 
 Art. 2 – Scopo
-L'associazione ha lo scopo di promuovere un'agricoltura aperta, trasparente e sostenibile, con particolare attenzione alle piccole e medie aziende agricole svizzere. In particolare, l'associazione persegue i seguenti obiettivi:
+L'associazione ha lo scopo di promuovere un'agricoltura aperta, trasparente e sostenibile in Svizzera. In particolare, l'associazione persegue i seguenti obiettivi:
 a. Sviluppo, manutenzione e messa a disposizione del software open source «Coltivio», che facilita la gestione aziendale degli agricoltori e delle agricoltrici e riduce gli ostacoli burocratici. Il codice sorgente è reso pubblicamente accessibile sotto una licenza libera (AGPL-3.0 o compatibile).
 b. Partecipazione dei soci alle decisioni sull'orientamento e sullo sviluppo del software.
 c. Messa in rete di agricoltori e agricoltrici per lo scambio di conoscenze, esperienze e risorse.
@@ -398,7 +398,7 @@ La lingua ufficiale dell'associazione è il tedesco. Nella misura del possibile,
 
 Art. 17 – Scioglimento dell'associazione
 Lo scioglimento dell'associazione può essere deciso da un'assemblea dei soci con la maggioranza dei 3/4 degli aventi diritto di voto presenti.
-In caso di scioglimento, il patrimonio associativo, dopo il pagamento di tutti i debiti, è devoluto a un'organizzazione svizzera esente da imposte che persegue uno scopo analogo, preferibilmente un'organizzazione attiva nel campo del software open source per l'agricoltura o, in generale, della promozione delle piccole e medie aziende agricole.
+In caso di scioglimento, il patrimonio associativo, dopo il pagamento di tutti i debiti, è devoluto a un'organizzazione svizzera esente da imposte che persegue uno scopo analogo, preferibilmente un'organizzazione attiva nel campo del software open source per l'agricoltura o, in generale, della promozione dell'agricoltura.
 La distribuzione del patrimonio associativo tra i soci è esclusa.
 
 Art. 18 – Entrata in vigore
@@ -417,7 +417,7 @@ Art. 1 – Name and Registered Office
 Under the name «AgriColtivio» an association exists within the meaning of Art. 60 et seq. SCC, with a non-profit purpose. Its registered office is in Braggio, Comune di Calanca, Canton of Graubünden. The association is politically independent and denominationally neutral.
 
 Art. 2 – Purpose
-The association aims to promote open, transparent, and sustainable agriculture with a particular focus on small and medium-sized Swiss farms. In particular, the association pursues the following goals:
+The association aims to promote open, transparent, and sustainable agriculture in Switzerland. In particular, the association pursues the following goals:
 a. Development, maintenance, and provision of the open-source software «Coltivio», which makes farm administration easier for farmers and reduces bureaucratic hurdles. The source code is made publicly available under a free licence (AGPL-3.0 or compatible).
 b. Member participation in decisions on the direction and further development of the software.
 c. Networking of farmers for the exchange of knowledge, experience, and resources.
@@ -533,7 +533,7 @@ The official language of the association is German. Where possible, association 
 
 Art. 17 – Dissolution of the Association
 The dissolution of the association may be resolved by a general assembly with a 3/4 majority of the members present and entitled to vote.
-Upon dissolution, the association's assets, after settlement of all liabilities, shall be transferred to a tax-exempt Swiss organisation pursuing a similar purpose, preferably an organisation in the field of open-source software for agriculture or, more generally, the promotion of small and medium-sized farms.
+Upon dissolution, the association's assets, after settlement of all liabilities, shall be transferred to a tax-exempt Swiss organisation pursuing a similar purpose, preferably an organisation in the field of open-source software for agriculture or, more generally, the promotion of agriculture.
 Distribution of the association's assets among the members is excluded.
 
 Art. 18 – Entry into Force

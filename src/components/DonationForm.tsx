@@ -1,4 +1,7 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useId } from "react";
+import { useDialog } from "@/lib/useDialog";
+import { buttonClass } from "@/lib/button";
+import { inputClass } from "@/lib/input";
 
 const PRESET_AMOUNTS = [10, 25, 50, 100];
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -13,9 +16,12 @@ interface Props {
   cta: string;
   processing: string;
   error: string;
+  errorAmount: string;
+  errorEmail: string;
   thankYouTitle: string;
   thankYouBody: string;
   thankYouClose: string;
+  closeLabel: string;
 }
 
 export function DonationForm({
@@ -28,9 +34,12 @@ export function DonationForm({
   cta,
   processing,
   error,
+  errorAmount,
+  errorEmail,
   thankYouTitle,
   thankYouBody,
   thankYouClose,
+  closeLabel,
 }: Props) {
   const [selectedAmount, setSelectedAmount] = useState<number | null>(25);
   const [customAmount, setCustomAmount] = useState("");
@@ -52,13 +61,8 @@ export function DonationForm({
   }, []);
 
   const closeThankYou = useCallback(() => setShowThankYou(false), []);
-
-  useEffect(() => {
-    if (!showThankYou) return;
-    function onKey(e: KeyboardEvent) { if (e.key === "Escape") closeThankYou(); }
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [showThankYou, closeThankYou]);
+  const thankYouRef = useDialog<HTMLDivElement>(showThankYou, closeThankYou);
+  const thankYouTitleId = useId();
 
   // The effective amount: custom input takes precedence over preset when it has a value
   const effectiveAmount =
@@ -122,14 +126,20 @@ export function DonationForm({
     {showThankYou && (
       <>
         <div className="fixed inset-0 z-50 bg-black/50" aria-hidden="true" onClick={closeThankYou} />
-        <div className="fixed inset-0 z-51 flex items-center justify-center p-4">
+        <div
+          ref={thankYouRef}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby={thankYouTitleId}
+          className="fixed inset-0 z-[51] flex items-center justify-center p-4"
+        >
           <div className="w-full max-w-md rounded-xl border bg-background shadow-xl p-8 space-y-4 text-center">
-            <div className="text-4xl">🌱</div>
-            <h2 className="text-xl font-bold">{thankYouTitle}</h2>
+            <h2 id={thankYouTitleId} className="text-xl font-bold">{thankYouTitle}</h2>
             <p className="text-muted-foreground leading-relaxed">{thankYouBody}</p>
             <button
               onClick={closeThankYou}
-              className="mt-2 inline-flex rounded-md bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+              aria-label={closeLabel}
+              className={buttonClass("primary", "sm", "mt-2")}
             >
               {thankYouClose}
             </button>
@@ -139,8 +149,8 @@ export function DonationForm({
     )}
     <form onSubmit={handleSubmit} className="space-y-5">
       {/* Preset amount buttons */}
-      <div className="space-y-2">
-        <label className="text-sm font-medium">{amountLabel}</label>
+      <fieldset className="space-y-2">
+        <legend className="text-sm font-medium">{amountLabel}</legend>
         <div className="flex flex-wrap gap-2">
           {PRESET_AMOUNTS.map((amount) => (
             <button
@@ -151,11 +161,11 @@ export function DonationForm({
                 setCustomAmount("");
                 setTouched((t) => ({ ...t, amount: false }));
               }}
-              className={`rounded-md border px-4 py-2 text-sm font-medium transition-colors ${
-                selectedAmount === amount && customAmount === ""
-                  ? "border-primary bg-primary text-primary-foreground"
-                  : "border-input bg-background hover:bg-muted"
-              }`}
+              aria-pressed={selectedAmount === amount && customAmount === ""}
+              className={buttonClass(
+                selectedAmount === amount && customAmount === "" ? "primary" : "secondary",
+                "sm",
+              )}
             >
               CHF {amount}
             </button>
@@ -172,13 +182,13 @@ export function DonationForm({
             }}
             onBlur={() => setTouched((t) => ({ ...t, amount: true }))}
             placeholder={customPlaceholder}
-            className={`rounded-md border bg-background px-3 py-2 text-sm w-44 focus:outline-none focus:ring-2 focus:ring-ring ${amountInvalid ? "border-destructive" : "border-input"}`}
+            className={inputClass(amountInvalid, "w-44")}
           />
         </div>
         {amountInvalid && (
-          <p className="text-xs text-destructive">Mindestbetrag: CHF 1</p>
+          <p className="text-xs text-destructive" role="alert">{errorAmount}</p>
         )}
-      </div>
+      </fieldset>
 
       {/* Email */}
       <div className="space-y-2">
@@ -192,27 +202,23 @@ export function DonationForm({
           onChange={(e) => setEmail(e.target.value)}
           onBlur={() => setTouched((t) => ({ ...t, email: true }))}
           placeholder={emailPlaceholder}
-          className={`block w-full max-w-sm rounded-md border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring ${emailInvalid ? "border-destructive" : "border-input"}`}
+          className={inputClass(emailInvalid, "block w-full max-w-sm")}
         />
         {emailInvalid && (
-          <p className="text-xs text-destructive">
-            {emailPlaceholder.includes("@")
-              ? "Bitte eine gültige E-Mail-Adresse eingeben."
-              : "Invalid email address."}
-          </p>
+          <p className="text-xs text-destructive" role="alert">{errorEmail}</p>
         )}
       </div>
 
-      {errorMsg && <p className="text-sm text-destructive">{errorMsg}</p>}
+      {errorMsg && <p className="text-sm text-destructive" role="alert">{errorMsg}</p>}
 
       <button
         type="submit"
         disabled={isLoading}
-        className="inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3 text-base font-medium text-primary-foreground hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        className={buttonClass("primary")}
       >
         {isLoading
           ? processing
-          : `${cta}${effectiveAmount && effectiveAmount > 0 ? ` — CHF ${customAmount !== "" ? customAmount : selectedAmount}` : ""}`}
+          : `${cta}${effectiveAmount && effectiveAmount > 0 ? `, CHF ${customAmount !== "" ? customAmount : selectedAmount}` : ""}`}
       </button>
     </form>
     </>
