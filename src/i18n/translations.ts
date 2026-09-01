@@ -9,7 +9,7 @@ export interface Translations {
     oss: { title: string; desc: string }
     verein: { title: string; desc: string }
   }
-  story: { headline: string; founders: string; problem: string; born: string; ossTitle: string; oss: string; data: string; funding: string }
+  story: { headline: string; founders: string; problem: string; born: string; ossTitle: string; verein: string; vereinPurpose: string; vereinGovernance: string; oss: string; data: string; funding: string }
   fieldwork: {
     title: string
     sub: string
@@ -37,7 +37,6 @@ export interface Translations {
     label: string
     title: string
     body: string
-    memberNote: string
     contacts: { title: string; desc: string }
     orders: { title: string; desc: string }
     sponsorships: { title: string; desc: string }
@@ -47,7 +46,7 @@ export interface Translations {
     wiki: { title: string; desc: string }
     tasks: { title: string; desc: string }
     multiUser: { title: string; desc: string }
-    rotationDrafts: { title: string; desc: string }
+    multiFarm: { title: string; desc: string }
     journals: { title: string; desc: string }
     stats: { title: string; desc: string }
   }
@@ -61,7 +60,7 @@ export interface Translations {
       carry: { title: string; desc: string }
       voice: { title: string; desc: string }
       support: { title: string; desc: string }
-      webapp: { title: string; desc: string }
+      community: { title: string; desc: string }
     }
   }
   oss: { github: string; statutenLink: string }
@@ -91,7 +90,7 @@ export interface Translations {
 
 const translations: Record<Locale, Translations> = {
   de: {
-    nav: { openApp: 'App öffnen', features: 'Funktionen', webapp: 'Web-App', membership: 'Mitgliedschaft', about: 'Über uns' },
+    nav: { openApp: 'Web-App öffnen', features: 'Funktionen', webapp: 'Web-App', membership: 'Mitgliedschaft', about: 'Über uns' },
     hero: {
       headline: 'Hofverwaltung,\nvon Bauernhand entwickelt.',
       sub: 'Felder und Tiere in einer App, erfasst auf dem Hof statt am Abend am PC. Quelloffen und getragen vom Verein AgriColtivio: keine Investoren, keine Agrarindustrie, deine Daten gehören dir.',
@@ -111,7 +110,10 @@ const translations: Record<Locale, Translations> = {
       founders: 'Curdin und Sarah, Bergbauer und Bergbäuerin, hatten täglich dasselbe Problem: zu viel zu dokumentieren, zu wenig Zeit und kein Programm, das zum Hofalltag passt.',
       problem: 'Die bestehende Software war kompliziert, oft nur am PC nutzbar und damit nicht praxistauglich. Was fehlte, war klar: eine einfache App fürs Handy, die im Stall und auf dem Feld funktioniert.',
       born: 'So entstand Coltivio: die Open-Source-App, die Betriebsdokumentation erleichtert und Zeit spart.',
-      ossTitle: 'Offen, unabhängig und gemeinsam entwickelt',
+      ossTitle: 'Offen, unabhängig und von einem Verein getragen',
+      verein: 'Coltivio wird vom Verein AgriColtivio entwickelt und betrieben, einem gemeinnützigen Verein nach Schweizer Recht mit Sitz in Braggio im Calancatal. Der Verein ist politisch unabhängig und hat keine kommerziellen Eigeninteressen: keine Investoren, kein Weiterverkauf, keine Renditeerwartung.',
+      vereinPurpose: 'Sein Zweck ist eine offene, transparente und nachhaltige Landwirtschaft. Im Zentrum steht, den administrativen Aufwand auf den Betrieben durch Digitalisierung zu senken und den Bäuerinnen und Bauern die Hoheit über ihre Daten und Werkzeuge zurückzugeben.',
+      vereinGovernance: 'Die Mitglieder bestimmen mit: An der jährlichen Mitgliederversammlung entscheiden sie über Beiträge, Vorstand und die Ausrichtung der Software.',
       oss: 'Coltivio ist Open Source. Davon profitieren nicht nur die Höfe: Entwicklerinnen und Entwickler können mitbauen. So wächst die App weiter, unabhängig und nah an dem, was auf dem Hof wirklich gebraucht wird.',
       data: 'Alle Daten liegen ausschliesslich auf Servern innerhalb der EU und unterliegen den strengen Vorgaben der DSGVO. Weil der Quellcode offen liegt, lässt sich jederzeit überprüfen, wie Coltivio damit umgeht.',
       funding: 'Getragen wird Coltivio von den Beiträgen der Vereinsmitglieder und von Spenden. Kein Investor, der eine Rendite erwartet, und niemand, der aus deinen Daten ein Geschäft macht.',
@@ -143,17 +145,16 @@ const translations: Record<Locale, Translations> = {
       label: 'Wenn das Handy zu klein wird: die Web-App',
       title: 'Am Computer weiterarbeiten',
       body: 'Gleiche Daten, grösserer Bildschirm, und dazu:',
-      memberNote: 'Die Web-App ist Teil der Mitgliedschaft im Verein AgriColtivio.',
       contacts: { title: 'Kontaktverwaltung', desc: 'Verwalte alle Hofkontakte. Mit Labels behältst du im Blick, wer sich für ein Fleischpaket interessiert oder bei der Ernte mithelfen will.' },
       orders: { title: 'Einfaches Bestellbuch', desc: 'Trag Bestellungen deiner Kontakte ein und behalte im Blick, ob geliefert und bezahlt wurde. Zu jeder Bestellung druckst du eine Rechnung mit eigenem Text.' },
       sponsorships: { title: 'Patenschaftsverwaltung', desc: 'Alle Tierpatenschaften auf einen Blick: Wer hat für welches Tier eine Patenschaft, welches Modell läuft, und ist die Zahlung eingegangen? Personalisierte Newsletter gehen direkt an alle Patinnen und Paten.' },
-      community: { title: 'Treffpunkt', desc: 'Stell Fragen, schlage neue Funktionen vor, melde Probleme und vernetze dich mit anderen Bäuerinnen und Bauern.' },
+      community: { title: 'Treffpunkt', desc: 'Der Treffpunkt ist Mitgliedern vorbehalten: stell Fragen, schlage neue Funktionen vor, melde Probleme und vernetze dich mit anderen Bäuerinnen und Bauern.' },
     },
     more: {
       wiki: { title: 'Wiki', desc: 'Dein persönliches Wissensarchiv auf dem Hof. Halte Notizen, Anleitungen und Erfahrungen fest, und teile einzelne Einträge im Treffpunkt, wenn du möchtest.' },
       tasks: { title: 'Aufgaben', desc: 'Erstelle Aufgaben und weise Tiere, Flächen oder Ausrüstung direkt zu. Bei 50 Ziegen die Klauen schneiden? Zuweisen, Checkliste bekommen, Tier für Tier abhaken.' },
       multiUser: { title: 'Mehrere Benutzer', desc: 'Lade andere Personen zu deinem Betrieb ein und vergib Lese- und Schreibrechte pro Funktion, so hat jede Person genau den Zugriff, den sie braucht. Ihr plant gemeinsam, alle sehen denselben Stand, und das Hin und Her im Alltag wird weniger.' },
-      rotationDrafts: { title: 'Fruchtfolge-Entwürfe', desc: 'Erstelle mehrere Planungsentwürfe für ausgewählte Flächen, vergleiche verschiedene Szenarien und übernimm den Entwurf, der am besten passt.' },
+      multiFarm: { title: 'Mehrere Betriebe', desc: 'Jeder Hof ist anders. Hast du eine Betriebskooperation oder verwaltest du mehrere Betriebe? Kein Problem: erstelle mehrere Betriebe oder tritt ihnen bei, mit angepassten Berechtigungen.' },
       journals: { title: 'Journal', desc: 'Füge Tieren und Flächen Journaleinträge mit Bildern hinzu, für Beobachtungen, Ereignisse oder alles, was du festhalten möchtest.' },
       stats: { title: 'Statistiken', desc: 'Detaillierte Grafiken zur Feldarbeit, zur Altersverteilung im Tierbestand oder Stammbäume. Verstehe deinen Betrieb auf einen Blick.' },
     },
@@ -167,7 +168,7 @@ const translations: Record<Locale, Translations> = {
         carry: { title: 'Du trägst die Software mit', desc: 'Dein Beitrag finanziert Entwicklung und Betrieb und hält die App für alle Höfe offen.' },
         voice: { title: 'Du bestimmst mit', desc: 'Stimmrecht an der Mitgliederversammlung: über Beiträge, Vorstand und die Ausrichtung der Software.' },
         support: { title: 'Persönlicher Support', desc: 'Fragen zur App, zum Betrieb oder zur nächsten Kontrolle? Mitglieder erreichen uns direkt.' },
-        webapp: { title: 'Zugang zur Web-App', desc: 'Alle Funktionen der App, dazu Kontakte, Bestellbuch und Patenschaften am grossen Bildschirm.' },
+        community: { title: 'Zugang zum Treffpunkt', desc: 'Der Treffpunkt in der Web-App ist Mitgliedern vorbehalten: stell Fragen, schlage neue Funktionen vor und vernetze dich mit anderen Bäuerinnen und Bauern.' },
       },
     },
     oss: { github: 'Auf GitHub ansehen', statutenLink: 'Vereinsstatuten lesen' },
@@ -181,7 +182,7 @@ const translations: Record<Locale, Translations> = {
   },
 
   fr: {
-    nav: { openApp: "Ouvrir l'App", features: 'Fonctionnalités', webapp: 'Web App', membership: 'Adhésion', about: 'À propos' },
+    nav: { openApp: 'Ouvrir la Web App', features: 'Fonctionnalités', webapp: 'Web App', membership: 'Adhésion', about: 'À propos' },
     hero: {
       headline: 'Gestion agricole,\ncréée par des agriculteurs.',
       sub: "Champs et animaux dans une seule app, saisis à la ferme plutôt que le soir devant l'ordinateur. Open source et porté par l'association AgriColtivio : pas d'investisseurs, pas d'agro-industrie, tes données t'appartiennent.",
@@ -201,7 +202,10 @@ const translations: Record<Locale, Translations> = {
       founders: "Curdin et Sarah, agriculteurs de montagne, faisaient face chaque jour au même défi : trop de documentation, trop peu de temps, et aucun outil numérique vraiment adapté au quotidien à la ferme.",
       problem: "Les logiciels existants étaient compliqués, souvent utilisables uniquement sur PC, peu pratiques pour le quotidien à la ferme. La réponse était évidente : il fallait créer une app simple, mobile et efficace.",
       born: "C'est ainsi qu'est né Coltivio : l'app open source qui simplifie la documentation agricole, fait gagner du temps et connecte les agriculteurs.",
-      ossTitle: 'Ouvert, indépendant et développé ensemble',
+      ossTitle: 'Ouvert, indépendant et porté par une association',
+      verein: "Coltivio est développé et exploité par l'association AgriColtivio, une association à but non lucratif de droit suisse dont le siège est à Braggio, dans le val Calanca. L'association est politiquement indépendante et n'a aucun intérêt commercial propre : pas d'investisseurs, pas de revente, pas d'attente de rendement.",
+      vereinPurpose: "Son but est une agriculture ouverte, transparente et durable. L'accent est mis sur la réduction de la charge administrative des exploitations grâce à la numérisation et sur la restitution aux agriculteurs de la maîtrise de leurs données et de leurs outils.",
+      vereinGovernance: "Les membres décident : lors de l'assemblée générale annuelle, ils se prononcent sur les cotisations, le comité et l'orientation du logiciel.",
       oss: "Coltivio est open source. Cela signifie que non seulement les agriculteurs en bénéficient, mais aussi que les développeurs peuvent contribuer activement à son évolution. L'app grandit ainsi en continu, de manière indépendante et au plus proche des besoins réels de l'agriculture.",
       data: "La sécurité des données est la priorité absolue. Toutes les données sont stockées exclusivement sur des serveurs au sein de l'UE et soumises aux strictes réglementations RGPD. Le code source étant publiquement visible, Coltivio reste transparent et vérifiable : chacun peut voir exactement comment fonctionne le logiciel.",
       funding: "Coltivio est porté par les cotisations des membres de l'association et par les dons. Aucun investisseur n'attend de rendement, et personne ne fait commerce de tes données.",
@@ -233,17 +237,16 @@ const translations: Record<Locale, Translations> = {
       label: "Quand le téléphone n'est pas le bon outil, l'application Web",
       title: 'Le Compagnon Bureau',
       body: 'Mêmes données, écran plus grand, plus ces fonctionnalités supplémentaires :',
-      memberNote: "L'application Web fait partie de l'adhésion à l'association AgriColtivio.",
       contacts: { title: 'Gestion des contacts', desc: 'Gérez tous vos contacts agricoles. Ajoutez des labels pour savoir qui est intéressé par un colis de viande ou veut aider pendant la récolte.' },
       orders: { title: 'Carnet de commandes', desc: "Enregistrez les commandes de vos contacts et suivez si elles ont été livrées et payées. Imprimez des factures personnalisées avec votre propre contenu pour chaque commande." },
       sponsorships: { title: 'Gestion des parrainages', desc: "Gérez vos parrainages d'animaux en un coup d'œil : qui parraine quel animal, quel programme est actif, et le paiement est-il arrivé ? Envoyez des newsletters personnalisées directement à tous les parrains." },
-      community: { title: 'Point de Rencontre', desc: "Posez des questions, proposez de nouvelles fonctionnalités, signalez des problèmes et échangez avec d'autres agriculteurs." },
+      community: { title: 'Point de Rencontre', desc: "Le Point de Rencontre est réservé aux membres : posez des questions, proposez de nouvelles fonctionnalités, signalez des problèmes et échangez avec d'autres agriculteurs." },
     },
     more: {
       wiki: { title: 'Wiki', desc: "Votre base de connaissances personnelle à la ferme. Notez guides, astuces et expériences, et partagez certaines entrées avec la communauté si vous le souhaitez." },
       tasks: { title: 'Tâches', desc: "Créez des tâches et attribuez-leur animaux, surfaces ou équipements. Sabots de 50 chèvres à couper ? Assignez-les et obtenez une liste de contrôle automatique, à cocher animal par animal." },
       multiUser: { title: 'Multi-utilisateurs', desc: "Invitez d'autres personnes dans votre exploitation. Attribuez des droits de lecture et d'écriture par fonctionnalité, chacun a exactement les accès dont il a besoin. Planifiez ensemble, synchronisez vos données et réduisez les allers-retours dans le travail quotidien." },
-      rotationDrafts: { title: 'Brouillons de rotation', desc: "Créez plusieurs brouillons de planification pour les parcelles sélectionnées, comparez différents scénarios et appliquez celui qui convient le mieux." },
+      multiFarm: { title: 'Plusieurs exploitations', desc: "Chaque ferme est différente. Vous avez une coopération d'exploitation ou gérez plusieurs fermes ? Aucun problème : créez plusieurs exploitations ou rejoignez-les, avec des autorisations adaptées." },
       journals: { title: 'Journal', desc: "Ajoutez des entrées de journal avec photos à vos animaux et parcelles, pour des observations, des événements ou tout ce que vous souhaitez noter." },
       stats: { title: 'Statistiques', desc: "Graphiques détaillés sur les travaux des champs, la répartition par âge du cheptel ou les arbres généalogiques. Comprenez votre exploitation en un coup d'œil." },
     },
@@ -257,7 +260,7 @@ const translations: Record<Locale, Translations> = {
         carry: { title: 'Tu portes le logiciel', desc: "Ta cotisation finance le développement et l'exploitation, et garde l'app ouverte à tous les agriculteurs." },
         voice: { title: 'Tu décides', desc: "Droit de vote à l'assemblée générale : sur les cotisations, le comité et l'orientation du logiciel." },
         support: { title: 'Support personnel', desc: "Une question sur l'app, sur ton exploitation ou sur le prochain contrôle ? Les membres disposent d'un canal direct vers nous." },
-        webapp: { title: "Accès à l'application Web", desc: "Toutes les fonctions de l'app, ainsi que les contacts, le carnet de commandes et les parrainages, sur grand écran." },
+        community: { title: 'Accès au Point de Rencontre', desc: "Le Point de Rencontre dans l'application Web est réservé aux membres : posez des questions, proposez de nouvelles fonctionnalités et échangez avec d'autres agriculteurs." },
       },
     },
     oss: { github: 'Voir sur GitHub', statutenLink: "Lire les statuts de l'association" },
@@ -271,7 +274,7 @@ const translations: Record<Locale, Translations> = {
   },
 
   it: {
-    nav: { openApp: 'Apri App', features: 'Funzionalità', webapp: 'Web App', membership: 'Iscrizione', about: 'Chi siamo' },
+    nav: { openApp: 'Apri la Web App', features: 'Funzionalità', webapp: 'Web App', membership: 'Iscrizione', about: 'Chi siamo' },
     hero: {
       headline: 'Gestione agricola,\nfatta da agricoltori.',
       sub: "Campi e animali in un'unica app, registrati in azienda invece che la sera al PC. Open source e sostenuta dall'associazione AgriColtivio: nessun investitore, nessuna industria agroalimentare, i tuoi dati sono tuoi.",
@@ -291,7 +294,10 @@ const translations: Record<Locale, Translations> = {
       founders: "Curdin e Sarah, agricoltori di montagna, affrontavano ogni giorno la stessa sfida: troppa documentazione, troppo poco tempo e nessuno strumento digitale adatto alla vita quotidiana in azienda.",
       problem: "Il software esistente era complicato, spesso utilizzabile solo su PC, poco pratico per la vita quotidiana in fattoria. La soluzione era evidente: bisognava costruire un'app semplice, mobile ed efficiente.",
       born: "Così è nato Coltivio: l'app open source che semplifica la documentazione agricola, fa risparmiare tempo e mette in rete gli agricoltori.",
-      ossTitle: 'Aperto, indipendente e sviluppato insieme',
+      ossTitle: "Aperto, indipendente e sostenuto da un'associazione",
+      verein: "Coltivio è sviluppato e gestito dall'associazione AgriColtivio, un'associazione senza scopo di lucro di diritto svizzero con sede a Braggio, in Val Calanca. L'associazione è politicamente indipendente e non ha interessi commerciali propri: nessun investitore, nessuna rivendita, nessuna aspettativa di rendimento.",
+      vereinPurpose: "Il suo scopo è un'agricoltura aperta, trasparente e sostenibile. Al centro c'è la riduzione del carico amministrativo delle aziende attraverso la digitalizzazione e la restituzione agli agricoltori del controllo sui propri dati e strumenti.",
+      vereinGovernance: "I soci decidono: all'assemblea annuale si esprimono su quote, comitato e orientamento del software.",
       oss: "Coltivio è open source. Questo significa che non solo gli agricoltori beneficiano del progetto, ma anche gli sviluppatori possono contribuire attivamente alla sua crescita. L'app evolve continuamente, in modo indipendente e vicino alle reali esigenze agricole.",
       data: "La sicurezza dei dati è la massima priorità. Tutti i dati sono archiviati esclusivamente su server all'interno dell'UE e soggetti alle rigide normative GDPR. Poiché il codice sorgente è pubblicamente visibile, Coltivio rimane trasparente e verificabile: chiunque può vedere esattamente come funziona.",
       funding: "Coltivio è sostenuta dalle quote dei soci e dalle donazioni. Nessun investitore che si aspetta un rendimento e nessuno che faccia affari con i tuoi dati.",
@@ -323,17 +329,16 @@ const translations: Record<Locale, Translations> = {
       label: "Quando il telefono non è lo strumento giusto, l'app Web",
       title: 'Il Compagno Desktop',
       body: 'Stessi dati, schermo più grande, più queste funzioni aggiuntive:',
-      memberNote: "L'app Web fa parte dell'iscrizione all'associazione AgriColtivio.",
       contacts: { title: 'Gestione contatti', desc: 'Gestisci tutti i tuoi contatti agricoli. Aggiungi etichette per ricordare chi è interessato a un pacco di carne o vuole aiutare durante il raccolto.' },
       orders: { title: 'Registro ordini semplice', desc: 'Aggiungi ordini dai tuoi contatti e traccia se sono stati consegnati e pagati. Stampa fatture personalizzate con contenuto su misura per ogni ordine.' },
       sponsorships: { title: 'Gestione sponsorizzazioni', desc: "Gestisci le tue sponsorizzazioni animali a colpo d'occhio: chi sponsorizza quale animale, quale piano è attivo, e il pagamento è arrivato? Invia newsletter personalizzate direttamente a tutti gli sponsor." },
-      community: { title: "Punto d'Incontro", desc: 'Fai domande, proponi nuove funzionalità, segnala problemi e connettiti con altri agricoltori.' },
+      community: { title: "Punto d'Incontro", desc: "Il Punto d'Incontro è riservato ai soci: fai domande, proponi nuove funzionalità, segnala problemi e connettiti con altri agricoltori." },
     },
     more: {
       wiki: { title: 'Wiki', desc: "La tua base di conoscenze in fattoria. Raccogli note, guide e buone pratiche, e condividi singole voci con la community se vuoi." },
       tasks: { title: 'Attività', desc: "Crea attività e assegna animali, superfici o attrezzatura. Zoccoli da tagliare a 50 capre? Assegnale e ottieni una checklist automatica, una spunta per ogni animale." },
       multiUser: { title: 'Multi-utente', desc: "Invita altre persone nella tua azienda. Assegna permessi di lettura e scrittura per singola funzionalità, ognuno ha esattamente gli accessi di cui ha bisogno. Pianificate insieme, mantenete i dati sincronizzati e riducete il coordinamento nel lavoro quotidiano." },
-      rotationDrafts: { title: 'Bozze di rotazione', desc: "Crea più bozze di pianificazione per le superfici selezionate, confronta diversi scenari e applica quella che si adatta meglio." },
+      multiFarm: { title: 'Più aziende', desc: "Ogni azienda è diversa. Hai una cooperazione aziendale o gestisci più aziende? Nessun problema: crea più aziende o uniscici, con autorizzazioni personalizzate." },
       journals: { title: 'Diario', desc: "Aggiungi voci di diario con immagini ad animali e superfici, per osservazioni, eventi o tutto ciò che vuoi annotare." },
       stats: { title: 'Statistiche', desc: "Grafici dettagliati sui lavori in campo, sulla distribuzione per età del bestiame o sugli alberi genealogici. Comprendi la tua azienda a colpo d'occhio." },
     },
@@ -347,7 +352,7 @@ const translations: Record<Locale, Translations> = {
         carry: { title: 'Sostieni il software', desc: "La tua quota finanzia sviluppo e gestione e tiene l'app aperta a tutti gli agricoltori." },
         voice: { title: 'Decidi con noi', desc: "Diritto di voto all'assemblea dei soci: su quote, comitato e direzione del software." },
         support: { title: 'Supporto personale', desc: "Domande sull'app, sull'azienda o sul prossimo controllo? I soci hanno un canale diretto con noi." },
-        webapp: { title: "Accesso all'app Web", desc: "Tutte le funzioni dell'app, più contatti, registro ordini e sponsorizzazioni su schermo grande." },
+        community: { title: "Accesso al Punto d'Incontro", desc: "Il Punto d'Incontro nell'app Web è riservato ai soci: fai domande, proponi nuove funzionalità e connettiti con altri agricoltori." },
       },
     },
     oss: { github: 'Vedi su GitHub', statutenLink: "Leggi lo statuto dell'associazione" },
@@ -361,7 +366,7 @@ const translations: Record<Locale, Translations> = {
   },
 
   en: {
-    nav: { openApp: 'Open App', features: 'Features', webapp: 'Web App', membership: 'Membership', about: 'About' },
+    nav: { openApp: 'Open Web App', features: 'Features', webapp: 'Web App', membership: 'Membership', about: 'About' },
     hero: {
       headline: 'Farm Management,\nBuilt by Farmers.',
       sub: 'Fields and animals in one app, recorded on the farm instead of at the PC in the evening. Open source and carried by the AgriColtivio association: no investors, no agribusiness, your data belongs to you.',
@@ -381,7 +386,10 @@ const translations: Record<Locale, Translations> = {
       founders: 'Curdin and Sarah, mountain farmers, faced the same challenge every day: too much documentation, too little time, and no digital tool that actually fit daily life on the farm.',
       problem: 'Existing software was complicated, mostly desktop-only, not practical for daily life on the farm. The answer was obvious: a simple, mobile, and efficient app had to be built.',
       born: "That's how Coltivio came to be: the open-source app that makes farm documentation easier, saves time, and connects farmers.",
-      ossTitle: 'Open, independent, and built together',
+      ossTitle: 'Open, independent, and run by an association',
+      verein: 'Coltivio is developed and operated by the AgriColtivio association, a non-profit association under Swiss law based in Braggio in the Calanca valley. The association is politically independent and has no commercial interests of its own: no investors, no resale, no expectation of return.',
+      vereinPurpose: 'Its purpose is open, transparent, and sustainable agriculture. The focus is on lowering the administrative burden on farms through digitalisation and on giving farmers back control over their own data and tools.',
+      vereinGovernance: 'Members have a say: at the annual general assembly they decide on fees, the board, and the direction of the software.',
       oss: 'Coltivio is open source. That means not only farmers benefit, but developers can actively contribute to its growth. The app evolves continuously, independently, and close to real farming needs.',
       data: 'Data security is the top priority. All data is stored exclusively on servers within the EU and subject to strict GDPR regulations. Because the source code is publicly visible, Coltivio stays transparent and verifiable: anyone can see exactly how it works.',
       funding: 'Coltivio is carried by the membership fees of the association and by donations. No investor expecting a return, and nobody making a business out of your data.',
@@ -413,17 +421,16 @@ const translations: Record<Locale, Translations> = {
       label: "When the Phone Isn't the Right Tool, the Web App",
       title: 'The Desktop Companion',
       body: 'Same data, bigger screen, plus these additional features:',
-      memberNote: 'The web app is part of membership in the AgriColtivio association.',
       contacts: { title: 'Contact Management', desc: "Manage all your farm contacts. Add labels to remember who's interested in a meat package or wants to help during harvest." },
       orders: { title: 'Simple Order Book', desc: "Add orders from your contacts and track whether they've been delivered and paid. Print custom invoices with your own content for each order." },
       sponsorships: { title: 'Sponsorship Management', desc: 'Manage your animal sponsorships at a glance: who sponsors which animal, which plan is active, and has the payment come in? Send personalised newsletters directly to all sponsors.' },
-      community: { title: 'Community Hub', desc: 'Ask questions, suggest new features, report issues, and connect with other farmers.' },
+      community: { title: 'Community Hub', desc: 'The Community Hub is members-only: ask questions, suggest new features, report issues, and connect with other farmers.' },
     },
     more: {
       wiki: { title: 'Wiki', desc: 'Your personal knowledge base on the farm. Collect notes, guides, and best practices, and share individual entries with the community if you want.' },
       tasks: { title: 'Tasks', desc: 'Create tasks and attach animals, plots, or equipment. Need to cut the hooves of 50 goats? Assign them and get an auto-generated checklist, tick off each animal as you go.' },
       multiUser: { title: 'Multi-User', desc: 'Invite others to your farm and assign feature-specific read and write permissions, so everyone has exactly the access they need. Plan together, keep records in sync, and reduce back-and-forth in daily work.' },
-      rotationDrafts: { title: 'Rotation Drafts', desc: 'Create multiple planning drafts for selected plots, compare different scenarios and apply the one that fits best.' },
+      multiFarm: { title: 'Multiple Farms', desc: 'Every farm is different. Do you run a farming cooperative or manage several farms? No problem: create or join multiple farms, with tailored permissions.' },
       journals: { title: 'Journal', desc: 'Add journal entries with photos to animals and plots, for observations, events, or anything you want to keep track of.' },
       stats: { title: 'Stats', desc: 'Detailed graphs of your field work, animal age distribution, family trees and more. Understand your farm at a glance.' },
     },
@@ -437,7 +444,7 @@ const translations: Record<Locale, Translations> = {
         carry: { title: 'You carry the software', desc: 'Your contribution funds development and operation, and keeps the app open to every farmer.' },
         voice: { title: 'You have a say', desc: 'Voting rights at the general assembly: on fees, the board, and the direction of the software.' },
         support: { title: 'Personal support', desc: 'Questions about the app, your farm, or the next inspection? Members have a direct channel to us.' },
-        webapp: { title: 'Access to the web app', desc: 'Everything the mobile app does, plus contacts, order book, and sponsorships on a big screen.' },
+        community: { title: 'Access to the Community Hub', desc: 'The Community Hub in the web app is members-only: ask questions, suggest new features, and connect with other farmers.' },
       },
     },
     oss: { github: 'View on GitHub', statutenLink: 'Read the association statutes' },
