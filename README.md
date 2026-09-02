@@ -60,6 +60,36 @@ Build command `pnpm build`, output directory `dist`. `PUBLIC_API_URL` and `PUBLI
 to be set for the preview environment as well, otherwise the fallbacks in the code point at
 production.
 
+## QR campaigns and analytics
+
+Printed QR codes point at `coltivio.ch/go/<ref>`, for example `/go/bioaktuell` for the Bioaktuell
+article. Astro builds a single `src/pages/go.astro`, and the rewrite in `public/_redirects` serves
+it for every ref, so a new campaign needs a new QR code and no code change.
+
+The page detects the platform in a synchronous head script, rewrites the URL to
+`/go/<ref>/<platform>` via `history.replaceState`, and only then redirects: iOS to the store link
+in `src/lib/links.ts`, Android to Google Play, everything else to the landing page. The short delay
+before the redirect is deliberate, it gives the analytics beacon time to fire.
+
+Analytics is Cloudflare Web Analytics, enabled per project under **Workers & Pages** > the project >
+**Metrics** > **Enable**. Cloudflare injects the beacon into the HTML itself, which is why there is
+no snippet and no token anywhere in this repo. It is cookieless and needs no consent banner. Because
+the beacon runs deferred, it reports the already rewritten path, and campaign plus platform arrive as
+one page view. Web Analytics has no custom events, this is how the split is obtained.
+
+Note: Cloudflare cannot inject the beacon into a response served with
+`Cache-Control: public, no-transform`. If a `public/_headers` file is ever added, keep that in mind.
+
+Generating a code, output goes to `assets/qr/` in the monorepo, next to the brand assets, since it
+is a print deliverable rather than a website asset:
+
+```sh
+node scripts/generate-qr.mjs bioaktuell
+```
+
+Error correction level H and a centre knockout of well under ten percent of the area are what let the
+Coltivio mark sit in the middle without breaking the code. Do not lower the level or enlarge the logo.
+
 ## Writing style
 
 No em dashes, no en dashes, no middots in copy. Use a comma, a colon, or a new sentence instead.

@@ -15,7 +15,7 @@ export interface PrivacyContent {
 
 export const privacyContent: Record<Locale, PrivacyContent> = {
   de: {
-    date: 'Stand: März 2025',
+    date: 'Stand: September 2026',
     sections: [
       {
         heading: '1. Verantwortliche Stelle',
@@ -33,11 +33,15 @@ export const privacyContent: Record<Locale, PrivacyContent> = {
             title: 'Kontaktaufnahme',
             content: 'Wenn Sie uns per E-Mail kontaktieren, speichern wir Ihre E-Mail-Adresse und den Inhalt Ihrer Nachricht, um Ihre Anfrage zu bearbeiten.',
           },
+          {
+            title: 'Website-Statistik',
+            content: 'Auf coltivio.ch setzen wir Cloudflare Web Analytics ein, um zu sehen, wie oft welche Seite aufgerufen wird. Der Dienst kommt ohne Cookies aus, speichert keine IP-Adressen und bildet kein Profil über mehrere Geräte hinweg. Einzelne Besucherinnen und Besucher lassen sich damit nicht wiedererkennen. In der App und im Web-Portal kommt nichts davon zum Einsatz.',
+          },
         ],
       },
       {
         heading: '3. Weitergabe an Dritte',
-        content: 'Ihre Daten werden nicht an Dritte weitergegeben, verkauft oder für Werbezwecke verwendet. Es gibt keine Analyse- oder Tracking-Dienste von Drittanbietern in der App.',
+        content: 'Ihre Daten werden nicht an Dritte weitergegeben, verkauft oder für Werbezwecke verwendet. Es gibt keine Analyse- oder Tracking-Dienste von Drittanbietern in der App. Für die Website gilt die unter Punkt 2 beschriebene, cookiefreie Statistik.',
       },
       {
         heading: '4. Hosting',
@@ -67,7 +71,7 @@ export const privacyContent: Record<Locale, PrivacyContent> = {
   },
 
   fr: {
-    date: 'Mise à jour : mars 2025',
+    date: 'Mise à jour : septembre 2026',
     sections: [
       {
         heading: '1. Responsable du traitement',
@@ -85,11 +89,15 @@ export const privacyContent: Record<Locale, PrivacyContent> = {
             title: 'Prise de contact',
             content: 'Lorsque vous nous contactez par e-mail, nous enregistrons votre adresse e-mail et le contenu de votre message afin de traiter votre demande.',
           },
+          {
+            title: 'Statistiques du site',
+            content: 'Sur coltivio.ch, nous utilisons Cloudflare Web Analytics pour savoir combien de fois chaque page est consultée. Ce service fonctionne sans cookies, n\'enregistre aucune adresse IP et ne constitue aucun profil entre plusieurs appareils. Il ne permet donc pas de reconnaître un visiteur en particulier. Rien de tout cela n\'est utilisé dans l\'application ni dans le portail web.',
+          },
         ],
       },
       {
         heading: '3. Transmission à des tiers',
-        content: 'Vos données ne sont pas transmises à des tiers, ni vendues, ni utilisées à des fins publicitaires. Il n\'existe aucun service d\'analyse ou de suivi tiers dans l\'application.',
+        content: 'Vos données ne sont pas transmises à des tiers, ni vendues, ni utilisées à des fins publicitaires. Il n\'existe aucun service d\'analyse ou de suivi tiers dans l\'application. Pour le site web, les statistiques sans cookies décrites au point 2 s\'appliquent.',
       },
       {
         heading: '4. Hébergement',
@@ -119,7 +127,7 @@ export const privacyContent: Record<Locale, PrivacyContent> = {
   },
 
   it: {
-    date: 'Aggiornamento: marzo 2025',
+    date: 'Aggiornamento: settembre 2026',
     sections: [
       {
         heading: '1. Responsabile del trattamento',
@@ -137,11 +145,15 @@ export const privacyContent: Record<Locale, PrivacyContent> = {
             title: 'Contatto',
             content: 'Se ci contattate via e-mail, salviamo il vostro indirizzo e-mail e il contenuto del messaggio per elaborare la vostra richiesta.',
           },
+          {
+            title: 'Statistiche del sito',
+            content: 'Su coltivio.ch utilizziamo Cloudflare Web Analytics per sapere quante volte viene consultata ogni pagina. Il servizio funziona senza cookie, non memorizza indirizzi IP e non crea profili su più dispositivi. Non è quindi possibile riconoscere un singolo visitatore. Nulla di tutto ciò viene utilizzato nell\'app o nel portale web.',
+          },
         ],
       },
       {
         heading: '3. Trasmissione a terzi',
-        content: 'I vostri dati non vengono trasmessi a terzi, venduti né utilizzati a fini pubblicitari. Nell\'app non sono presenti servizi di analisi o tracciamento di terze parti.',
+        content: 'I vostri dati non vengono trasmessi a terzi, venduti né utilizzati a fini pubblicitari. Nell\'app non sono presenti servizi di analisi o tracciamento di terze parti. Per il sito web valgono le statistiche senza cookie descritte al punto 2.',
       },
       {
         heading: '4. Hosting',
@@ -171,7 +183,7 @@ export const privacyContent: Record<Locale, PrivacyContent> = {
   },
 
   en: {
-    date: 'Last updated: March 2025',
+    date: 'Last updated: September 2026',
     sections: [
       {
         heading: '1. Data Controller',
@@ -189,11 +201,15 @@ export const privacyContent: Record<Locale, PrivacyContent> = {
             title: 'Contact',
             content: 'When you contact us by email, we store your email address and the content of your message in order to process your request.',
           },
+          {
+            title: 'Website statistics',
+            content: 'On coltivio.ch we use Cloudflare Web Analytics to see how often each page is opened. The service works without cookies, stores no IP addresses and builds no profile across devices, so it cannot recognise an individual visitor. None of this is used in the app or the web portal.',
+          },
         ],
       },
       {
         heading: '3. Sharing with Third Parties',
-        content: 'Your data is not shared with third parties, sold, or used for advertising purposes. There are no third-party analytics or tracking services in the app.',
+        content: 'Your data is not shared with third parties, sold, or used for advertising purposes. There are no third-party analytics or tracking services in the app. For the website, the cookieless statistics described under point 2 apply.',
       },
       {
         heading: '4. Hosting',
