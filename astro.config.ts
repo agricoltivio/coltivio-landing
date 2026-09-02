@@ -8,7 +8,8 @@ export default defineConfig({
   site: 'https://coltivio.ch',
   output: 'static',
   publicDir: './public',
-  integrations: [react(), sitemap()],
+  // /go is a scan target for printed QR codes, not a page anyone should find in a search result.
+  integrations: [react(), sitemap({ filter: (page) => !page.includes('/go') })],
   vite: {
     plugins: [tailwindcss()],
     resolve: {

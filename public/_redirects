@@ -1,0 +1,9 @@
+# Printed QR codes point at /go/<ref>. Astro builds a single /go/index.html, and these
+# rewrites serve it for every campaign ref without a build step per campaign.
+# Status 200 is a rewrite, not a redirect, so the ref stays in the URL and Cloudflare
+# Web Analytics can group scans by it. The second rule covers a reload on
+# /go/<ref>/<platform>, which the page itself writes via history.replaceState.
+# Named placeholders rather than a splat: /go/* would also match the destination and
+# Cloudflare rejects the rule as an infinite loop.
+/go/:ref            /go/  200
+/go/:ref/:platform  /go/  200

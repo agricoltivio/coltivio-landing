@@ -8,9 +8,10 @@ interface Props {
   title: string
   description: string
   canonicalUrl?: string
+  noindex?: boolean
 }
 
-const { lang, title, description, canonicalUrl = Astro.url.href } = Astro.props
+const { lang, title, description, canonicalUrl = Astro.url.href, noindex = false } = Astro.props
 const ogImage = 'https://coltivio.ch/og-image.png'
 
 const ogLocaleMap: Record<string, string> = {
@@ -43,6 +44,7 @@ const tr = getTranslations(lang)
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
+    {noindex && <meta name="robots" content="noindex,follow" />}
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />

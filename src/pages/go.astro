@@ -1,0 +1,88 @@
+---
+/**
+ * Scan target for printed QR codes: coltivio.ch/go/<ref>
+ *
+ * Astro builds exactly one page here. A Cloudflare Pages rewrite (public/_redirects)
+ * serves this same HTML for every sub path, so a new campaign needs a new QR code and
+ * no code at all.
+ *
+ * The head script below runs synchronously, before the analytics beacon that Cloudflare
+ * injects at the end of the body. That ordering is the whole trick: by the time the
+ * beacon reports a page view, the URL already carries the detected platform, so a scan
+ * shows up as /go/bioaktuell/ios and campaign plus platform land in one hit. Cloudflare
+ * Web Analytics has no custom events, this is how we get the split.
+ */
+import Base from '@/layouts/Base.astro'
+import { getTranslations, supportedLocales } from '@/i18n/translations'
+import { IOS_DOWNLOAD_URL, PLAY_STORE_URL } from '@/lib/links'
+
+const lang = 'de'
+const tr = getTranslations(lang)
+
+// The page is one static file for every locale, so the copy travels as data and the
+// script picks a locale from the browser. A printed QR code carries only one URL.
+const copy = Object.fromEntries(
+  supportedLocales.map((locale) => {
+    const t = getTranslations(locale)
+    return [locale, { title: t.download.title, redirecting: t.download.redirecting }]
+  }),
+)
+
+const targets = {
+  ios: IOS_DOWNLOAD_URL,
+  android: PLAY_STORE_URL,
+  // Desktop and anything unrecognised go to the landing page. It already carries both
+  // store CTAs, so there is no second place where store links could drift out of sync.
+  other: '/',
+}
+---
+
+<Base
+  lang={lang}
+  title={`${tr.download.title} | Coltivio`}
+  description={tr.download.redirecting}
+  noindex
+>
+  <script is:inline define:vars={{ copy, targets }}>
+    ;(function () {
+      var ua = navigator.userAgent
+      var isIOS =
+        /iPad|iPhone|iPod/.test(ua) ||
+        // iPadOS 13 and later reports itself as a Mac. Touch points give it away.
+        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+      var platform = isIOS ? 'ios' : /Android/.test(ua) ? 'android' : 'other'
+
+      // "/go/bioaktuell" or "/go/bioaktuell/ios" on a reload. Keep the first segment only.
+      var ref = location.pathname.replace(/^\/go\/?/, '').split('/')[0]
+      ref = /^[a-z0-9-]{1,40}$/.test(ref) ? ref : 'direct'
+
+      // Rewrite before the beacon runs so the page view is recorded under the platform.
+      history.replaceState(null, '', '/go/' + ref + '/' + platform)
+
+      var locale = (navigator.language || 'de').slice(0, 2)
+      var t = copy[locale] || copy.de
+      document.documentElement.lang = locale in copy ? locale : 'de'
+      document.title = t.title + ' | Coltivio'
+      document.addEventListener('DOMContentLoaded', function () {
+        var el = document.getElementById('redirect-message')
+        if (el) el.textContent = t.redirecting
+      })
+
+      // The delay is not decoration: it gives the deferred beacon time to fire before
+      // the document is torn down by the navigation.
+      setTimeout(function () {
+        location.replace(targets[platform])
+      }, 1200)
+    })()
+  </script>
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=/" />
+  </noscript>
+
+  <main id="main" class="flex min-h-svh flex-col items-center justify-center gap-6 px-6 text-center">
+    <img src="/logo.png" alt="Coltivio" class="h-12 w-auto" />
+    <p id="redirect-message" class="text-muted-foreground" role="status" aria-live="polite">
+      {tr.download.redirecting}
+    </p>
+  </main>
+</Base>
