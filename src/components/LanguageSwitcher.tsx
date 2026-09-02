@@ -23,9 +23,14 @@ function localizePath(pathname: string, target: string) {
 
 interface Props {
   lang: string
+  /**
+   * The mobile drawer parks the switcher at the bottom of the viewport, where a
+   * downward list is cut off by the drawer's clip layer. `up` flips it.
+   */
+  placement?: 'down' | 'up'
 }
 
-export function LanguageSwitcher({ lang }: Props) {
+export function LanguageSwitcher({ lang, placement = 'down' }: Props) {
   const currentLabel = LANGUAGES.find((l) => l.code === lang)?.label ?? 'DE'
   const detailsRef = useRef<HTMLDetailsElement>(null)
   // Server-rendered fallback is the locale home; hydration upgrades it to the current page.
@@ -55,7 +60,7 @@ export function LanguageSwitcher({ lang }: Props) {
         </svg>
         <span>{currentLabel}</span>
       </summary>
-      <ul className="absolute right-0 top-full z-50 mt-1 min-w-[6rem] rounded-md border bg-background shadow-md py-1">
+      <ul className={`absolute right-0 z-50 min-w-[6rem] rounded-md border bg-background shadow-md py-1 ${placement === 'up' ? 'bottom-full mb-1' : 'top-full mt-1'}`}>
         {LANGUAGES.map((l) => (
           <li key={l.code}>
             <a

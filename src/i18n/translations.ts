@@ -93,7 +93,7 @@ const translations: Record<Locale, Translations> = {
   de: {
     nav: { openApp: 'Web-App öffnen', features: 'Funktionen', webapp: 'Web-App', membership: 'Mitgliedschaft', about: 'Über uns' },
     hero: {
-      headline: 'Hofverwaltung,\nvon Bauernhand entwickelt.',
+      headline: 'Hofverwaltung,\nvon Bauern,\nfür Bauern.',
       sub: 'Felder und Tiere in einer App, erfasst auf dem Hof statt am Abend am PC. Quelloffen und getragen vom Verein AgriColtivio: keine Investoren, keine Agrarindustrie, deine Daten gehören dir.',
       note: 'Für iPhone und Android, ohne Abo. Auf Deutsch, Französisch, Italienisch und Englisch.',
       ctaIos: 'Im App Store laden',
@@ -186,7 +186,7 @@ const translations: Record<Locale, Translations> = {
   fr: {
     nav: { openApp: 'Ouvrir la Web App', features: 'Fonctionnalités', webapp: 'Web App', membership: 'Adhésion', about: 'À propos' },
     hero: {
-      headline: 'Gestion agricole,\ncréée par des agriculteurs.',
+      headline: 'Gestion agricole,\npar des paysans,\npour des paysans.',
       sub: "Champs et animaux dans une seule app, saisis à la ferme plutôt que le soir devant l'ordinateur. Open source et porté par l'association AgriColtivio : pas d'investisseurs, pas d'agro-industrie, tes données t'appartiennent.",
       note: 'Pour iPhone et Android, sans abonnement. En allemand, français, italien et anglais.',
       ctaIos: "Télécharger sur l'App Store",
@@ -279,7 +279,7 @@ const translations: Record<Locale, Translations> = {
   it: {
     nav: { openApp: 'Apri la Web App', features: 'Funzionalità', webapp: 'Web App', membership: 'Iscrizione', about: 'Chi siamo' },
     hero: {
-      headline: 'Gestione agricola,\nfatta da agricoltori.',
+      headline: 'Gestione agricola,\nda agricoltori,\nper agricoltori.',
       sub: "Campi e animali in un'unica app, registrati in azienda invece che la sera al PC. Open source e sostenuta dall'associazione AgriColtivio: nessun investitore, nessuna industria agroalimentare, i tuoi dati sono tuoi.",
       note: 'Per iPhone e Android, senza abbonamento. In tedesco, francese, italiano e inglese.',
       ctaIos: "Scarica dall'App Store",
@@ -372,7 +372,7 @@ const translations: Record<Locale, Translations> = {
   en: {
     nav: { openApp: 'Open Web App', features: 'Features', webapp: 'Web App', membership: 'Membership', about: 'About' },
     hero: {
-      headline: 'Farm Management,\nBuilt by Farmers.',
+      headline: 'Farm Management,\nBy Farmers,\nfor farmers.',
       sub: 'Fields and animals in one app, recorded on the farm instead of at the PC in the evening. Open source and carried by the AgriColtivio association: no investors, no agribusiness, your data belongs to you.',
       note: 'For iPhone and Android, no subscription. In German, French, Italian and English.',
       ctaIos: 'Download on the App Store',

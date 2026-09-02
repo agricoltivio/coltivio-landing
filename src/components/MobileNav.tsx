@@ -141,7 +141,7 @@ export function MobileNav({ lang, appUrl, labels }: Props) {
         {/* Language switcher */}
         <div className="px-4 pb-4 mt-auto">
           <div className="border-t pt-4">
-            <LanguageSwitcher lang={lang} />
+            <LanguageSwitcher lang={lang} placement="up" />
           </div>
         </div>
       </div>
