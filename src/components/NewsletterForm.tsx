@@ -56,6 +56,8 @@ export function NewsletterForm({ apiUrl, lang, label, placeholder, cta, successM
       formData.append('EMAIL', email)
       formData.append('email_address_check', '')
       formData.append('locale', lang.slice(0, 2))
+      // Same Brevo list as the app signups, kept apart by origin. The API writes QUELLE=app.
+      formData.append('QUELLE', 'landing')
       await fetch(BREVO_ACTION, { method: 'POST', body: formData, mode: 'no-cors' })
 
       setStatus('success')
