@@ -6,9 +6,14 @@
  * behind a hero is not a background, it is a payload.
  *
  * The arcs are drawn far outside the viewBox on purpose. Only the crest of
- * each one is visible, which is what gives the sweep. `preserveAspectRatio`
- * pins that crest to the bottom-left corner, so the pattern anchors under the
- * headline no matter how wide the viewport gets.
+ * each one is visible, which is what gives the sweep.
+ *
+ * `preserveAspectRatio="none"` is deliberate: the kit's artboard is a band
+ * about two and a half times wider than it is tall, and the pattern only reads
+ * as contour lines while it stays a band. Let it keep its aspect ratio inside a
+ * section box and the arcs stand up and cut diagonally across the content
+ * instead of lying under it. Give it both a width and a height, and let it
+ * squash.
  *
  * Geometry taken verbatim from assets/lineart.svg.
  */
@@ -21,9 +26,12 @@ const { class: className = '' } = Astro.props
 
 <svg
   viewBox="0 0 1320 572.77"
-  preserveAspectRatio="xMinYMax slice"
+  preserveAspectRatio="none"
   fill="none"
   stroke-miterlimit="10"
+  {/* The band is squashed, so without this the strokes would come out
+      elliptical: thicker on the vertical parts of each arc than the horizontal. */}
+  vector-effect="non-scaling-stroke"
   class:list={className}
   aria-hidden="true"
 >

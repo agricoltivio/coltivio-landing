@@ -27,12 +27,9 @@ const appUrl = import.meta.env.PUBLIC_APP_URL ?? 'https://app.coltivio.ch'
 const apiUrl = import.meta.env.PUBLIC_API_URL ?? 'https://api.coltivio.ch'
 
 // Each pillar carries its own CTA: the app itself, the source, the association.
-// The icon names are `as const` so a typo is a build error rather than a
-// silently missing glyph; BrandIcon's prop type is the union of its own keys.
 const pillars = [
   {
     ...tr.pillars.admin,
-    icon: 'field-cal' as const,
     links: [
       { label: tr.footer.appStore, href: IOS_DOWNLOAD_URL },
       { label: tr.footer.playStore, href: PLAY_STORE_URL },
@@ -40,12 +37,10 @@ const pillars = [
   },
   {
     ...tr.pillars.verein,
-    icon: 'farm' as const,
     links: [{ label: tr.membership.cta, href: `${appUrl}/membership`, authRedirect: '/membership' }],
   },
   {
     ...tr.pillars.oss,
-    icon: 'wiki' as const,
     links: [{ label: tr.oss.github, href: GITHUB_URL }],
   },
 ]
@@ -120,17 +115,18 @@ const legalLinks = [
       <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {pillars.map((pillar) => (
           <div class:list={[CARD, 'flex flex-col']}>
-            <BrandIcon name={pillar.icon} class="h-9 w-9 text-primary" />
-            <h3 class:list={[CARD_TITLE, 'mt-5']}>{pillar.title}</h3>
+            <h3 class={CARD_TITLE}>{pillar.title}</h3>
             <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{pillar.desc}</p>
-            <div class="mt-auto flex flex-wrap gap-x-5 gap-y-2 pt-5">
+            {/* The three pillars are peers, so their calls to action all get the
+                same weight. The one loud membership button lives on the band. */}
+            <div class="mt-auto flex flex-wrap gap-2 pt-6">
               {pillar.links.map((link) => (
                 <a
                   href={link.href}
                   data-auth-redirect={link.authRedirect}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="text-sm font-medium text-primary hover:underline"
+                  class={buttonClass('secondary', 'sm')}
                 >
                   {link.label}
                 </a>

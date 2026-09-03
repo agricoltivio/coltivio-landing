@@ -52,14 +52,21 @@ as image files, so everything inherits colour, scales without blurring and costs
 - `BrandIcon.astro`, the seven kit icons. Two tones: body in `currentColor`, highlight in
   `--icon-accent`. Path data is generated from `assets/icons/svg` in the brand kit; regenerate
   there rather than hand-editing.
-- `Lineart.astro`, the contour pattern. Anchor it to a corner at its own aspect ratio; stretching
-  it over a whole section drags the arcs through the middle of the content.
+- `Lineart.astro`, the contour pattern. Give it a width *and* a height and let it squash: the kit
+  artboard is a band about two and a half times wider than it is tall, and the arcs only lie flat
+  under the content while it stays a band. At its natural aspect ratio they stand up and cut
+  across the page diagonally.
 - `Wave.astro`, the edge between two sections. Always placed *inside* a section, pinned to one
   edge, filled with the flat ground of the neighbour on that side, and overlapped by a pixel
   (`-bottom-px` / `-top-px`) so no seam shows. A divider in the flow carrying the gradient instead
   would give every band its own gradient box and a visible join.
 - `SplashPhone.astro`, the app launch screen drawn in the browser, and `StoreGlyph.astro`, the two
   store marks. Both exist so the page ships no screenshot of text.
+
+The hero also carries the leaf mark as a watermark, blown up so only its rounded caps clear the
+wave. It is a shade *lighter* than the gradient behind it, not darker: sage at thirty percent,
+which is what the reference design measures. Its colour comes from `--logo-mark` set on a wrapper,
+because CSS variables inherit and nothing then has to be threaded through the component.
 
 **React components (islands):**
 - `NewsletterForm.tsx`, submits to Brevo via a `no-cors` fetch, gated by Cloudflare Turnstile.

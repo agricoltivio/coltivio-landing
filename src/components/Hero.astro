@@ -6,6 +6,7 @@ import PhoneMockup from './PhoneMockup.astro'
 import Lineart from './brand/Lineart.astro'
 import Wave from './brand/Wave.astro'
 import SplashPhone from './brand/SplashPhone.astro'
+import LogoMark from './brand/LogoMark.astro'
 import StoreGlyph from './brand/StoreGlyph.astro'
 import homeShot from '@/assets/screenshots/home.png'
 
@@ -22,12 +23,23 @@ const headlineLines = tr.hero.headline.split('\n')
 
 <section class="brand-band on-brand overflow-hidden">
   {/* Decoration, back to front: the corner shade that keeps the headline
-      readable wherever the gradient lands, then the contour pattern. */}
-  <div class="brand-band-shade absolute inset-0 -z-20" aria-hidden="true"></div>
-  {/* Anchored bottom left at its own aspect ratio rather than stretched over
-      the section: stretching pulls the arcs up through the middle of the hero
-      and they cut across the devices. */}
-  <Lineart class="absolute bottom-0 left-0 -z-10 w-[130%] min-w-[80rem] max-w-none opacity-50" />
+      readable wherever the gradient lands, the leaf mark blown up until only
+      its crests clear the wave, then the contour pattern over both. */}
+  <div class="brand-band-shade absolute inset-0 -z-30" aria-hidden="true"></div>
+  {/* Sampled off the reference: the watermark sits a little *lighter* than the
+      gradient behind it, not darker. Sage at thirty percent lands on the same
+      values. The wrapper carries the colour because `--logo-mark` is what the
+      mark's fill resolves against, and a CSS variable inherits. */}
+  <div
+    class="absolute top-[36%] -left-[13%] -z-20 h-[64%]"
+    style="--logo-mark: color-mix(in oklab, var(--brand-sage) 34%, transparent); --logo-mark-to: color-mix(in oklab, var(--brand-sage) 8%, transparent)"
+    aria-hidden="true"
+  >
+    <LogoMark shaded class="h-full w-auto" />
+  </div>
+  {/* A band across the bottom, not a layer over the section. Sized in both
+      directions so the arcs stay flat and lie under the content. */}
+  <Lineart class="absolute inset-x-0 bottom-0 -z-10 h-[82%] opacity-60" />
 
   <div
     class="container relative z-10 mx-auto grid min-h-dvh items-center gap-14 px-4 pt-28 pb-56 sm:pb-64 lg:grid-cols-12 lg:gap-8 lg:pb-48"
