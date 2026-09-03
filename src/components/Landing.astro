@@ -327,65 +327,63 @@ const legalLinks = [
     </div>
   </section>
 
-  {/* ── Support ────────────────────────────────────────────── */}
-  {/* The third and last gradient band. Donation and newsletter are the two
-      closing asks, so they share one band rather than trailing off as two more
-      flat sections, and the band hands over to the footer with a wave filled in
-      the footer's ink. That is what keeps the wave running to the bottom of the
-      page instead of stopping after the membership. */}
+  {/* ── Newsletter ──────────────────────────────── */}
+  {/* The quiet ask, deliberately kept off the band: two calls to action side by
+      side, each with its own loud button, read as a wall of controls at the very
+      point where the page should be easiest to leave. */}
+  <section class={SECTION}>
+    <div class="container mx-auto max-w-2xl space-y-6 px-4">
+      <h2 class={H2_MINOR}>{tr.newsletter.title}</h2>
+      <p class="text-muted-foreground">{tr.newsletter.sub}</p>
+      <NewsletterForm
+        client:load
+        apiUrl={apiUrl}
+        lang={lang}
+        label={tr.newsletter.label}
+        placeholder={tr.newsletter.placeholder}
+        cta={tr.newsletter.cta}
+        successMsg={tr.newsletter.success}
+        errorMsg={tr.newsletter.error}
+        captchaMsg={tr.newsletter.captcha}
+      />
+    </div>
+  </section>
+
+  {/* ── Donate ─────────────────────────────────── */}
+  {/* The third and last gradient band, carrying one ask and one loud button.
+      It hands over to the footer with a wave filled in the footer's ink, which
+      is what keeps the wave running to the bottom of the page instead of
+      stopping after the membership. */}
   <section id="donate" class="brand-band on-brand overflow-hidden">
     <div class="brand-band-shade absolute inset-0 -z-20" aria-hidden="true"></div>
     <Lineart class="absolute inset-0 -z-10 h-full w-full opacity-40" />
     {/* Mirrored the other way round from the membership band, so the two do not
         trace the same line twice on one page. */}
-    <Wave edge="top" flip fill="var(--surface)" class="absolute inset-x-0 -top-px h-[clamp(4rem,14vw,9rem)]" />
+    <Wave edge="top" flip fill="var(--background)" class="absolute inset-x-0 -top-px h-[clamp(4rem,14vw,9rem)]" />
     <Wave fill="var(--brand-ink)" class="absolute inset-x-0 -bottom-px h-[clamp(4rem,14vw,9rem)]" />
 
-    <div class="container relative z-10 mx-auto max-w-5xl px-4 pt-[20vw] pb-[20vw] sm:pt-32 sm:pb-32 md:pt-36 md:pb-36">
-      <div class="grid gap-12 lg:grid-cols-2 lg:gap-16">
-        {/* Donate */}
-        <div class="space-y-6">
-          <h2 class={H2_MINOR}>{tr.donate.title}</h2>
-          <p class="leading-relaxed text-white/85">{tr.donate.sub}</p>
-          <DonationForm
-            client:load
-            onDark
-            apiUrl={apiUrl}
-            lang={lang}
-            amountLabel={tr.donate.amountLabel}
-            customPlaceholder={tr.donate.customPlaceholder}
-            emailLabel={tr.donate.emailLabel}
-            emailPlaceholder={tr.donate.emailPlaceholder}
-            cta={tr.donate.cta}
-            processing={tr.donate.processing}
-            error={tr.donate.error}
-            errorAmount={tr.donate.errorAmount}
-            errorEmail={tr.donate.errorEmail}
-            thankYouTitle={tr.donate.thankYouTitle}
-            thankYouBody={tr.donate.thankYouBody}
-            thankYouClose={tr.donate.thankYouClose}
-            closeLabel={tr.a11y.close}
-          />
-        </div>
-
-        {/* Newsletter */}
-        <div class="space-y-6">
-          <h2 class={H2_MINOR}>{tr.newsletter.title}</h2>
-          <p class="leading-relaxed text-white/85">{tr.newsletter.sub}</p>
-          <NewsletterForm
-            client:load
-            onDark
-            apiUrl={apiUrl}
-            lang={lang}
-            label={tr.newsletter.label}
-            placeholder={tr.newsletter.placeholder}
-            cta={tr.newsletter.cta}
-            successMsg={tr.newsletter.success}
-            errorMsg={tr.newsletter.error}
-            captchaMsg={tr.newsletter.captcha}
-          />
-        </div>
-      </div>
+    <div class="container relative z-10 mx-auto max-w-2xl space-y-6 px-4 pt-[20vw] pb-[20vw] sm:pt-32 sm:pb-32 md:pt-36 md:pb-36">
+      <h2 class={H2_MINOR}>{tr.donate.title}</h2>
+      <p class="leading-relaxed text-white/85">{tr.donate.sub}</p>
+      <DonationForm
+        client:load
+        onDark
+        apiUrl={apiUrl}
+        lang={lang}
+        amountLabel={tr.donate.amountLabel}
+        customPlaceholder={tr.donate.customPlaceholder}
+        emailLabel={tr.donate.emailLabel}
+        emailPlaceholder={tr.donate.emailPlaceholder}
+        cta={tr.donate.cta}
+        processing={tr.donate.processing}
+        error={tr.donate.error}
+        errorAmount={tr.donate.errorAmount}
+        errorEmail={tr.donate.errorEmail}
+        thankYouTitle={tr.donate.thankYouTitle}
+        thankYouBody={tr.donate.thankYouBody}
+        thankYouClose={tr.donate.thankYouClose}
+        closeLabel={tr.a11y.close}
+      />
     </div>
   </section>
 
