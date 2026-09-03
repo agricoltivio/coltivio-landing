@@ -15,9 +15,11 @@ interface Props {
   successMsg: string
   errorMsg: string
   captchaMsg: string
+  /** Restyles the control colours for a gradient band. */
+  onDark?: boolean
 }
 
-export function NewsletterForm({ apiUrl, lang, label, placeholder, cta, successMsg, errorMsg, captchaMsg }: Props) {
+export function NewsletterForm({ apiUrl, lang, label, placeholder, cta, successMsg, errorMsg, captchaMsg, onDark = false }: Props) {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error' | 'captcha'>('idle')
   const inputId = useId()
@@ -67,7 +69,7 @@ export function NewsletterForm({ apiUrl, lang, label, placeholder, cta, successM
 
   if (status === 'success') {
     return (
-      <p className="text-sm font-medium text-primary" role="status">
+      <p className={`text-sm font-medium ${onDark ? 'text-brand-mint' : 'text-primary'}`} role="status">
         {successMsg}
       </p>
     )
@@ -92,13 +94,13 @@ export function NewsletterForm({ apiUrl, lang, label, placeholder, cta, successM
           <button
             type="submit"
             disabled={status === 'loading'}
-            className={buttonClass('primary', 'sm')}
+            className={buttonClass(onDark ? 'onBrandAccent' : 'primary', 'sm')}
           >
             {status === 'loading' ? '…' : cta}
           </button>
         </div>
       </div>
-      <div className="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} />
+      <div className="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-theme={onDark ? 'dark' : 'light'} />
       {(status === 'error' || status === 'captcha') && (
         <p className="text-sm text-destructive" role="alert">
           {status === 'captcha' ? captchaMsg : errorMsg}

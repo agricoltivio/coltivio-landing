@@ -149,6 +149,14 @@ body {
     background: var(--brand-gradient);
     color: #fff;
   }
+
+  /* The page's destructive red is picked for white paper and sinks into the
+     deep-teal end of a band. Remapping the variable rather than passing a
+     colour into every form keeps the error styling in one place: the token
+     inherits, so anything inside a band picks up the lighter coral by itself. */
+  .on-brand {
+    --destructive: oklch(0.84 0.115 24);
+  }
 }
 
 @layer utilities {
