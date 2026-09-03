@@ -1,0 +1,128 @@
+---
+import type { Translations } from '@/i18n/translations'
+import { buttonClass } from '@/lib/button'
+import { LanguageSwitcher } from './LanguageSwitcher'
+import { MobileNav } from './MobileNav'
+import Logo from './brand/Logo.astro'
+
+/**
+ * The landing page header. It is fixed rather than sticky because the hero
+ * starts at the very top of the document and the header floats on the gradient
+ * instead of sitting above it. Only the landing page uses it; the legal pages
+ * have their own back link.
+ */
+interface Props {
+  tr: Translations
+  lang: string
+  appUrl: string
+}
+
+const { tr, lang, appUrl } = Astro.props
+
+const homeUrl = lang === 'de' ? '/' : `/${lang}`
+
+const navLinks = [
+  { href: '#features', label: tr.nav.features },
+  { href: '#webapp', label: tr.nav.webapp },
+  { href: '#membership', label: tr.nav.membership },
+  { href: '#about', label: tr.nav.about },
+]
+---
+
+<header
+  id="site-header"
+  class="fixed inset-x-0 top-0 z-50 h-16 border-b border-transparent text-white transition-colors duration-300"
+>
+  <div class="container relative mx-auto flex h-full items-center justify-between gap-4 px-4">
+    <a href={homeUrl} class="flex items-center rounded-md" aria-label="Coltivio">
+      <Logo title="" class="h-7 w-auto" />
+    </a>
+
+    {/* Truly centred, not centred-ish: a three column grid would hand the nav
+        whatever the two button clusters left over, and they are never equal. */}
+    <nav
+      class="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 text-sm font-medium lg:flex"
+      aria-label={tr.a11y.menu}
+    >
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="rounded-md px-3 py-1.5 transition-colors hover:bg-white/15"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a
+        href={appUrl}
+        data-auth-redirect="/dashboard"
+        target="_blank"
+        rel="noopener noreferrer"
+        class={buttonClass('onBrandGlass', 'sm', 'max-lg:hidden')}
+      >
+        {tr.nav.openApp}
+      </a>
+      <a
+        href={`${appUrl}/membership`}
+        data-auth-redirect="/membership"
+        target="_blank"
+        rel="noopener noreferrer"
+        class={buttonClass('onBrand', 'sm')}
+      >
+        {tr.membership.cta}
+      </a>
+      <div class="hidden lg:block">
+        <LanguageSwitcher client:load lang={lang} onDark />
+      </div>
+      <MobileNav
+        client:load
+        lang={lang}
+        appUrl={appUrl}
+        onDark
+        labels={{
+          features: tr.nav.features,
+          webapp: tr.nav.webapp,
+          membership: tr.nav.membership,
+          about: tr.nav.about,
+          openApp: tr.nav.openApp,
+          membershipCta: tr.membership.cta,
+          menu: tr.a11y.menu,
+          openMenu: tr.a11y.openMenu,
+          closeMenu: tr.a11y.closeMenu,
+        }}
+      />
+    </div>
+  </div>
+</header>
+
+<style>
+  /* Transparent while the hero is under it, deep teal once the page has moved.
+     The colour is mixed rather than set with an opacity utility so the border
+     and the blur can stay put. */
+  #site-header[data-scrolled] {
+    background: color-mix(in oklab, var(--brand-deep) 92%, transparent);
+    backdrop-filter: blur(12px);
+    border-color: rgb(255 255 255 / 0.12);
+  }
+</style>
+
+<script>
+  // A one pixel sentinel at the top of the document instead of a scroll
+  // listener: the observer fires twice per page, on the way out and on the way
+  // back, rather than on every frame the user scrolls.
+  const header = document.getElementById('site-header')
+  if (header) {
+    const sentinel = document.createElement('div')
+    sentinel.setAttribute('aria-hidden', 'true')
+    sentinel.style.cssText = 'position:absolute;top:0;left:0;height:1px;width:1px'
+    document.body.prepend(sentinel)
+    new IntersectionObserver(
+      ([entry]) => header.toggleAttribute('data-scrolled', !entry.isIntersecting),
+      { threshold: 0 },
+    ).observe(sentinel)
+  }
+</script>

@@ -2,15 +2,21 @@ import { useState, useCallback } from 'react'
 import { statutenText } from '@/i18n/statuten'
 import type { Locale } from '@/i18n/translations'
 import { useDialog } from '@/lib/useDialog'
-import { buttonClass } from '@/lib/button'
+import { buttonClass, type ButtonVariant } from '@/lib/button'
 
 interface Props {
   lang: string
   linkLabel: string
   closeLabel: string
+  /**
+   * The trigger appears twice: once on the white page and once on the
+   * membership band, where the light outline variant would be a white block.
+   * The dialog itself is a light panel in both cases.
+   */
+  variant?: ButtonVariant
 }
 
-export function StatutenDialog({ lang, linkLabel, closeLabel }: Props) {
+export function StatutenDialog({ lang, linkLabel, closeLabel, variant = 'secondary' }: Props) {
   const [isOpen, setIsOpen] = useState(false)
   const locale = (lang in statutenText ? lang : 'de') as Locale
   const { title, text } = statutenText[locale]
@@ -22,7 +28,7 @@ export function StatutenDialog({ lang, linkLabel, closeLabel }: Props) {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className={buttonClass('secondary')}
+        className={buttonClass(variant)}
       >
         {linkLabel}
       </button>

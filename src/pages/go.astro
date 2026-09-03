@@ -15,6 +15,7 @@
 import Base from '@/layouts/Base.astro'
 import { getTranslations, supportedLocales } from '@/i18n/translations'
 import { IOS_DOWNLOAD_URL, PLAY_STORE_URL } from '@/lib/links'
+import Logo from '@/components/brand/Logo.astro'
 
 const lang = 'de'
 const tr = getTranslations(lang)
@@ -80,7 +81,7 @@ const targets = {
   </noscript>
 
   <main id="main" class="flex min-h-svh flex-col items-center justify-center gap-6 px-6 text-center">
-    <img src="/logo.png" alt="Coltivio" class="h-12 w-auto" />
+    <Logo class="h-12 w-auto text-primary" />
     <p id="redirect-message" class="text-muted-foreground" role="status" aria-live="polite">
       {tr.download.redirecting}
     </p>

@@ -22,19 +22,51 @@ body {
   --sans:
     'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
     'Helvetica Neue', sans-serif;
+
+  /* ── Brand palette, 2026 kit ──────────────────────────────────────────────
+     Straight from assets/colors.pdf. The hex the kit publishes is in the
+     comment, the oklch next to it is the exact conversion, so a designer can
+     grep either notation and find the same token. Nothing outside this block
+     should name a brand colour. */
+  --brand-deep: oklch(0.4096 0.0461 212.4); /* #2a5159, primary 1 */
+  --brand-sage: oklch(0.7062 0.0649 180.3); /* #72aea2, primary 2 */
+  --brand-mint: oklch(0.805 0.1141 153.6); /* #82d59d, accent */
+  --brand-straw: oklch(0.9096 0.0836 108); /* #e6e6a5, second accent */
+  /* Two steps darker than the deep teal, for the footer ground and for text
+     that has to sit on mint. Not a kit colour, derived from it. */
+  --brand-ink: oklch(0.2554 0.0307 209.6); /* #0f272b */
+
+  /* The kit's gradient: linear, deep teal into sage. The PDF draws it
+     horizontally; the hero runs it bottom-left to top-right so the darkest
+     corner sits under the headline. */
+  --brand-gradient: linear-gradient(
+    66deg,
+    var(--brand-deep) 0%,
+    var(--brand-sage) 100%
+  );
+
   --background: oklch(1 0 0);
   --foreground: oklch(0.162 0.003 264);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.162 0.003 264);
-  --primary: oklch(0.37 0.063 198);
+  /* The primary token used to be oklch(0.37 0.063 198), which is not #2a5159:
+     it drifted about four points of lightness and fourteen of hue away from
+     the brand. It is now the converted kit value. */
+  --primary: var(--brand-deep);
   --primary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.967 0.001 286.375);
   --muted-foreground: oklch(0.552 0.016 285.938);
+  /* The tinted section ground, so the page alternates without a hard border. */
+  --surface: oklch(0.9718 0.0059 170.4); /* #f2f7f5 */
   --destructive: oklch(0.52 0.22 355);
-  --border: oklch(0.92 0.006 198);
-  --input: oklch(0.92 0.006 198);
-  --ring: oklch(0.37 0.063 198);
+  --border: oklch(0.92 0.006 212);
+  --input: oklch(0.92 0.006 212);
+  --ring: var(--brand-deep);
   --radius: 0.625rem;
+
+  /* The second tone of every brand icon. Sections on the gradient raise it to
+     white; the default is the kit's mint. */
+  --icon-accent: var(--brand-mint);
 }
 
 @theme inline {
@@ -50,10 +82,16 @@ body {
   --color-primary-foreground: var(--primary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+  --color-surface: var(--surface);
   --color-destructive: var(--destructive);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-brand-deep: var(--brand-deep);
+  --color-brand-sage: var(--brand-sage);
+  --color-brand-mint: var(--brand-mint);
+  --color-brand-straw: var(--brand-straw);
+  --color-brand-ink: var(--brand-ink);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -68,6 +106,22 @@ body {
     @apply bg-background text-foreground;
   }
 
+  /* The nav is anchor links into the same page, so animate the jump. The
+     padding keeps a target from landing underneath the sticky header; it has
+     to track the header height (h-16, 4rem) plus a little air. */
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  /* Animating a jump is a comfort, not a feature. Anyone who has asked their
+     system for less motion gets the instant jump back. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
   /* One focus treatment for every interactive element. Previously only three
      form inputs declared one, so buttons and links fell back to the browser
      default and keyboard users saw two different rings on the same page. */
@@ -75,5 +129,44 @@ body {
     outline: 2px solid var(--ring);
     outline-offset: 2px;
     border-radius: var(--radius-md);
+  }
+
+  /* On the gradient bands the deep-teal ring disappears into the background,
+     so anything inside one switches to a white ring. */
+  .on-brand *:focus-visible,
+  .on-brand:focus-visible {
+    outline-color: #fff;
+  }
+}
+
+@layer components {
+  /* The gradient ground shared by the hero, the membership band and any future
+     dark section. `isolate` so the decorative layers behind the content can use
+     negative z-index without escaping the section. */
+  .brand-band {
+    position: relative;
+    isolation: isolate;
+    background: var(--brand-gradient);
+    color: #fff;
+  }
+
+  /* The page's destructive red is picked for white paper and sinks into the
+     deep-teal end of a band. Remapping the variable rather than passing a
+     colour into every form keeps the error styling in one place: the token
+     inherits, so anything inside a band picks up the lighter coral by itself. */
+  .on-brand {
+    --destructive: oklch(0.84 0.115 24);
+  }
+}
+
+@layer utilities {
+  /* The hero and the membership band both darken their bottom-left corner, so
+     the headline keeps its contrast wherever the gradient happens to land. */
+  .brand-band-shade {
+    background: radial-gradient(
+      115% 85% at 5% 100%,
+      color-mix(in oklab, var(--brand-ink) 62%, transparent) 0%,
+      transparent 62%
+    );
   }
 }
