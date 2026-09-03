@@ -1,0 +1,42 @@
+---
+import LogoMark from './LogoMark.astro'
+
+/**
+ * The second device in the hero, showing the app's launch screen. Drawn rather
+ * than photographed: the splash is a mark, a wordmark and a line of type on a
+ * gradient, all of which the browser renders sharper than any screenshot could,
+ * in the reader's own language, for no bytes.
+ *
+ * It sits behind the real screenshot and is decorative, so it carries no
+ * alternative text of its own.
+ */
+interface Props {
+  tagline: string
+  class?: string
+}
+
+const { tagline, class: className = '' } = Astro.props
+---
+
+<div
+  class:list={[
+    className,
+    // No `position` here on purpose. The caller positions the frame, and a
+    // `relative` in this list would quietly win over an `absolute` passed in:
+    // Tailwind emits position utilities in a fixed order, not in class order.
+    'aspect-[9/19.5] rounded-[2.6rem] bg-brand-ink p-[3px] shadow-2xl shadow-brand-ink/40 ring-1 ring-white/15',
+  ]}
+  aria-hidden="true"
+>
+  <div
+    class="relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-[2.4rem] bg-[image:var(--brand-gradient)] px-6 text-center"
+  >
+    <LogoMark class="h-16 w-16 text-white" />
+    <p class="mt-5 text-2xl font-semibold tracking-tight text-white">Coltivio</p>
+    <p class="mt-1 text-[0.6rem] leading-snug text-white/70">{tagline}</p>
+    <div
+      class="absolute bottom-[1%] left-1/2 h-[0.5%] w-[32%] -translate-x-1/2 rounded-full bg-white/30"
+    >
+    </div>
+  </div>
+</div>

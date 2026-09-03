@@ -19,13 +19,18 @@ interface Props {
   lang: string
   appUrl: string
   labels: NavLabels
+  /**
+   * The trigger sits on the gradient header and has to be white. The drawer
+   * itself stays a light panel, so nothing below this line changes with it.
+   */
+  onDark?: boolean
 }
 
 function buildAuthUrl(appUrl: string, token: string, redirect: string) {
   return `${appUrl}/auth/token#token=${encodeURIComponent(token)}&redirect=${encodeURIComponent(redirect)}`
 }
 
-export function MobileNav({ lang, appUrl, labels }: Props) {
+export function MobileNav({ lang, appUrl, labels, onDark = false }: Props) {
   const [isOpen, setIsOpen] = useState(false)
   const [openAppHref, setOpenAppHref] = useState(appUrl)
   const [membershipHref, setMembershipHref] = useState(`${appUrl}/membership`)
@@ -46,7 +51,9 @@ export function MobileNav({ lang, appUrl, labels }: Props) {
     <>
       {/* Hamburger button, mobile only */}
       <button
-        className="lg:hidden flex items-center justify-center rounded-md p-1.5 hover:bg-muted transition-colors"
+        className={`lg:hidden flex items-center justify-center rounded-md p-1.5 transition-colors ${
+          onDark ? 'text-white hover:bg-white/15' : 'hover:bg-muted'
+        }`}
         aria-label={labels.openMenu}
         onClick={() => setIsOpen(true)}
       >
@@ -76,7 +83,7 @@ export function MobileNav({ lang, appUrl, labels }: Props) {
         // The drawer stays mounted so it can slide, so it must be inert while
         // closed. Otherwise its links stay tabbable behind the page.
         inert={!isOpen}
-        className={`absolute top-0 right-0 h-full w-72 bg-background shadow-xl flex flex-col pointer-events-auto transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        className={`absolute top-0 right-0 h-full w-72 bg-background text-foreground shadow-xl flex flex-col pointer-events-auto transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
         role="dialog"
         aria-modal="true"
         aria-label={labels.menu}

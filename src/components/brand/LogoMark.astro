@@ -1,0 +1,19 @@
+---
+/**
+ * The leaf mark on its own, for the places the full lockup is too wide: the
+ * footer strip and the splash panel in the hero mockup. Same geometry as
+ * Logo.astro, cropped to the mark's own bounds.
+ */
+interface Props {
+  class?: string
+}
+
+const { class: className = 'h-8 w-8' } = Astro.props
+---
+
+<svg viewBox="0 0 320 300" class:list={className} aria-hidden="true">
+  <rect fill="var(--logo-mark, #82d59d)" x="14.91" y="42.54" width="138.48" height="57.7" rx="19.23" ry="19.23" transform="translate(-25.84 80.41) rotate(-45)"/>
+      <rect fill="var(--logo-mark, #82d59d)" x="12.73" y="148.08" width="138.48" height="57.7" rx="19.23" ry="19.23" transform="translate(-101.1 109.78) rotate(-45)"/>
+      <rect fill="var(--logo-mark, #82d59d)" x="169.94" y="197.58" width="138.48" height="57.7" rx="19.23" ry="19.23" transform="translate(-90.06 235.45) rotate(-45)"/>
+      <rect fill="var(--logo-mark, #82d59d)" x="64.41" y="199.76" width="138.48" height="57.7" rx="19.23" ry="19.23" transform="translate(-122.51 161.46) rotate(-45)"/>
+</svg>

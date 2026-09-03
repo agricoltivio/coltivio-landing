@@ -3,12 +3,16 @@ import type { Translations } from '@/i18n/translations'
 import { IOS_DOWNLOAD_URL, PLAY_STORE_URL, GITHUB_URL } from '@/lib/links'
 import { buttonClass } from '@/lib/button'
 import { NewsletterForm } from './NewsletterForm'
-import { LanguageSwitcher } from './LanguageSwitcher'
-import { MobileNav } from './MobileNav'
 import { StatutenDialog } from './StatutenDialog'
 import { DonationForm } from './DonationForm'
+import SiteHeader from './SiteHeader.astro'
+import Hero from './Hero.astro'
 import PhoneMockup from './PhoneMockup.astro'
-import homeShot from '@/assets/screenshots/home.png'
+import Logo from './brand/Logo.astro'
+import BrandIcon from './brand/BrandIcon.astro'
+import Lineart from './brand/Lineart.astro'
+import Wave from './brand/Wave.astro'
+import StoreGlyph from './brand/StoreGlyph.astro'
 import fieldworkShot from '@/assets/screenshots/fieldwork.png'
 import animalsShot from '@/assets/screenshots/animals.png'
 
@@ -23,15 +27,12 @@ const appUrl = import.meta.env.PUBLIC_APP_URL ?? 'https://app.coltivio.ch'
 const apiUrl = import.meta.env.PUBLIC_API_URL ?? 'https://api.coltivio.ch'
 
 // Each pillar carries its own CTA: the app itself, the source, the association.
-interface PillarLink {
-  label: string
-  href: string
-  authRedirect?: string
-}
-
-const pillars: { title: string; desc: string; links: PillarLink[] }[] = [
+// The icon names are `as const` so a typo is a build error rather than a
+// silently missing glyph; BrandIcon's prop type is the union of its own keys.
+const pillars = [
   {
     ...tr.pillars.admin,
+    icon: 'field-cal' as const,
     links: [
       { label: tr.footer.appStore, href: IOS_DOWNLOAD_URL },
       { label: tr.footer.playStore, href: PLAY_STORE_URL },
@@ -39,19 +40,31 @@ const pillars: { title: string; desc: string; links: PillarLink[] }[] = [
   },
   {
     ...tr.pillars.verein,
+    icon: 'farm' as const,
     links: [{ label: tr.membership.cta, href: `${appUrl}/membership`, authRedirect: '/membership' }],
   },
   {
     ...tr.pillars.oss,
+    icon: 'wiki' as const,
     links: [{ label: tr.oss.github, href: GITHUB_URL }],
   },
 ]
 
 // Heading scale, so the same level never renders at two sizes.
-const H2_SECTION = 'text-3xl font-bold md:text-4xl'   // primary sections
-const H2_MINOR = 'text-2xl font-bold'                 // supporting sections
-const H3_SUBSECTION = 'text-2xl font-bold'            // groups inside a section
-const CARD_TITLE = 'font-semibold'                    // any card, at any depth
+const H2_SECTION = 'text-3xl font-bold tracking-tight md:text-4xl'  // primary sections
+const H2_MINOR = 'text-2xl font-bold tracking-tight'                // supporting sections
+const H3_SUBSECTION = 'text-2xl font-bold tracking-tight'           // groups inside a section
+const CARD_TITLE = 'font-semibold'                                  // any card, at any depth
+
+// Section rhythm. The page alternates white and the tinted ground instead of
+// separating every band with a rule, so the two gradient bands and the footer
+// are the only hard colour changes on the page.
+const SECTION = 'py-20 md:py-24'
+const CARD =
+  'rounded-lg border bg-card text-card-foreground p-6 shadow-sm transition-colors hover:border-brand-sage'
+// The same card on a gradient band, where a white block would punch a hole.
+const CARD_ON_BRAND = 'rounded-lg border border-white/25 bg-white/10 p-6 backdrop-blur-sm'
+const EYEBROW = 'text-xs font-semibold uppercase tracking-widest text-primary'
 
 const membershipBenefits = [
   tr.membership.benefits.carry,
@@ -59,138 +72,69 @@ const membershipBenefits = [
   tr.membership.benefits.support,
   tr.membership.benefits.community,
 ]
+
+// `['export']` rather than `.export`: the Astro compiler scans the frontmatter
+// for module-level `export` statements, and a bare `export` token, even as a
+// property name, is enough to make it cut the expression in half. The bracket
+// form hides it inside a string. The template is not affected, only this block.
+const fieldworkCards = [tr.fieldwork.plots, tr.fieldwork.protection, tr.fieldwork.harvest, tr.fieldwork['export']]
+
+const animalCards = [tr.animals.import, tr.animals.treatments, tr.animals.turnout, tr.animals['export']]
+
+const moreCards = [
+  tr.more.multiUser,
+  tr.more.multiFarm,
+  tr.more.tasks,
+  tr.more.journals,
+  tr.more.wiki,
+  tr.more.stats,
+]
+
+const webappCards = [
+  tr.webapp.contacts,
+  tr.webapp.orders,
+  tr.webapp.sponsorships,
+  tr.webapp.community,
+]
+
+const customizeCards = [tr.customize.speedDial, tr.customize.modules]
+
+const legalLinks = [
+  { href: lang === 'de' ? '/imprint' : `/${lang}/imprint`, label: tr.imprint.title },
+  { href: lang === 'de' ? '/privacy' : `/${lang}/privacy`, label: tr.privacy.title },
+  { href: lang === 'de' ? '/data-deletion' : `/${lang}/data-deletion`, label: tr.dataDeletion.title },
+]
 ---
 
 <div class="min-h-dvh bg-background text-foreground">
-
-  {/* ── Navbar ─────────────────────────────────────────────── */}
-  <header class="sticky top-0 z-50 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-    <div class="container mx-auto flex h-14 items-center justify-between px-4">
-      <div class="flex items-center gap-2 font-semibold text-lg">
-        <img src="/logo.png" alt="" class="h-7" />
-        Coltivio
-      </div>
-
-      {/* Desktop nav links */}
-      <nav class="hidden lg:flex items-center gap-1 text-sm font-medium">
-        <a href="#features" class="px-3 py-1.5 rounded-md hover:bg-muted transition-colors">{tr.nav.features}</a>
-        <a href="#webapp" class="px-3 py-1.5 rounded-md hover:bg-muted transition-colors">{tr.nav.webapp}</a>
-        <a href="#membership" class="px-3 py-1.5 rounded-md hover:bg-muted transition-colors">{tr.nav.membership}</a>
-        <a href="#about" class="px-3 py-1.5 rounded-md hover:bg-muted transition-colors">{tr.nav.about}</a>
-      </nav>
-
-      <div class="flex items-center gap-2">
-        {/* Open App: desktop only */}
-        <a
-          href={appUrl}
-          data-auth-redirect="/dashboard"
-          target="_blank"
-          rel="noopener noreferrer"
-          class={buttonClass('secondary', 'sm', 'max-lg:hidden')}
-        >
-          {tr.nav.openApp}
-        </a>
-        {/* Become Member: always visible */}
-        <a
-          href={`${appUrl}/membership`}
-          data-auth-redirect="/membership"
-          target="_blank"
-          rel="noopener noreferrer"
-          class={buttonClass('primary', 'sm')}
-        >
-          {tr.membership.cta}
-        </a>
-        {/* Lang switcher: desktop only */}
-        <div class="hidden lg:block">
-          <LanguageSwitcher client:load lang={lang} />
-        </div>
-        {/* Mobile hamburger */}
-        <MobileNav
-          client:load
-          lang={lang}
-          appUrl={appUrl}
-          labels={{
-            features: tr.nav.features,
-            webapp: tr.nav.webapp,
-            membership: tr.nav.membership,
-            about: tr.nav.about,
-            openApp: tr.nav.openApp,
-            membershipCta: tr.membership.cta,
-            menu: tr.a11y.menu,
-            openMenu: tr.a11y.openMenu,
-            closeMenu: tr.a11y.closeMenu,
-          }}
-        />
-      </div>
-    </div>
-  </header>
+  <SiteHeader tr={tr} lang={lang} appUrl={appUrl} />
 
   <main id="main">
 
-  {/* ── Hero ───────────────────────────────────────────────── */}
-  <section class="container mx-auto flex min-h-[calc(100dvh-3.5rem)] items-center px-4 py-16">
-    <div class="grid gap-12 md:grid-cols-2 md:items-center w-full">
-      <div class="space-y-6">
-        <h1 class="text-4xl font-bold tracking-tight md:text-7xl whitespace-pre-line">
-          {tr.hero.headline}
-        </h1>
-        <p class="text-lg text-muted-foreground max-w-lg md:text-xl">
-          {tr.hero.sub}
-        </p>
-        <div class="space-y-4">
-          <div class="flex flex-wrap gap-3">
-            <a
-              href={IOS_DOWNLOAD_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              class={buttonClass('primary')}
-            >
-              {tr.hero.ctaIos}
-            </a>
-            <a
-              href={PLAY_STORE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              class={buttonClass('secondary')}
-            >
-              {tr.hero.ctaAndroid}
-            </a>
-          </div>
-          <p class="text-sm text-muted-foreground">
-            {tr.hero.note}
-          </p>
-        </div>
-      </div>
-
-      <div class="flex justify-center md:justify-end lg:justify-center">
-        <PhoneMockup src={homeShot} alt={tr.hero.imageAlt} rotate="md:-rotate-3" wrapper="flex md:order-first" eager />
-      </div>
-    </div>
-  </section>
+  <Hero tr={tr} />
 
   {/* ── Pillars ────────────────────────────────────────────── */}
-  <section class="border-t py-16">
+  <section class={SECTION}>
     <div class="container mx-auto px-4">
       <h2 class="sr-only">{tr.pillars.title}</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {pillars.map((pillar) => (
-          <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
-            <div class="flex h-full flex-col pt-6 px-6 pb-6">
-              <h3 class={CARD_TITLE}>{pillar.title}</h3>
-              <p class="mt-2 text-sm text-muted-foreground leading-relaxed">{pillar.desc}</p>
-              <div class="mt-auto pt-4 flex flex-wrap gap-x-5 gap-y-2">
-                {pillar.links.map((link) => (
-                  <a
-                    href={link.href}
-                    data-auth-redirect={link.authRedirect}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-sm font-medium text-primary hover:underline"
-                  >
-                    {link.label}
-                  </a>
-                ))}
-              </div>
+          <div class:list={[CARD, 'flex flex-col']}>
+            <BrandIcon name={pillar.icon} class="h-9 w-9 text-primary" />
+            <h3 class:list={[CARD_TITLE, 'mt-5']}>{pillar.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{pillar.desc}</p>
+            <div class="mt-auto flex flex-wrap gap-x-5 gap-y-2 pt-5">
+              {pillar.links.map((link) => (
+                <a
+                  href={link.href}
+                  data-auth-redirect={link.authRedirect}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-sm font-medium text-primary hover:underline"
+                >
+                  {link.label}
+                </a>
+              ))}
             </div>
           </div>
         ))}
@@ -199,233 +143,152 @@ const membershipBenefits = [
   </section>
 
   {/* ── Story ──────────────────────────────────────────────── */}
-  <section class="border-t py-20">
-    <div class="container mx-auto px-4 max-w-3xl space-y-10">
+  <section class:list={[SECTION, 'bg-surface']}>
+    <div class="container mx-auto max-w-3xl space-y-10 px-4">
       <h2 class={H2_SECTION}>{tr.story.headline}</h2>
-      <div class="space-y-4 text-muted-foreground text-lg leading-relaxed">
+      <div class="space-y-4 text-lg leading-relaxed text-muted-foreground">
         <p>{tr.story.founders}</p>
         <p>{tr.story.problem}</p>
-        <p class="text-foreground font-medium">{tr.story.born}</p>
+        <p class="font-medium text-foreground">{tr.story.born}</p>
       </div>
     </div>
   </section>
 
   {/* ── Membership ─────────────────────────────────────────── */}
-  <section id="membership" class="border-t bg-primary/5 py-20">
-    <div class="container mx-auto px-4 max-w-3xl space-y-6">
+  {/* The second gradient band. The two waves carry the neighbouring grounds,
+      so the band keeps one uninterrupted gradient behind them. */}
+  <section id="membership" class="brand-band on-brand overflow-hidden">
+    <div class="brand-band-shade absolute inset-0 -z-20" aria-hidden="true"></div>
+    <Lineart class="absolute inset-0 -z-10 h-full w-full opacity-50" />
+    <Wave edge="top" fill="var(--surface)" class="absolute inset-x-0 -top-px h-[clamp(5rem,16vw,11rem)]" />
+    <Wave flip fill="var(--background)" class="absolute inset-x-0 -bottom-px h-[clamp(5rem,16vw,11rem)]" />
+
+    <div class="container relative z-10 mx-auto max-w-3xl space-y-6 px-4 pt-[22vw] pb-[22vw] sm:pt-40 sm:pb-40 md:pt-48 md:pb-48">
       <div class="space-y-3">
-        <p class="text-xs font-semibold uppercase tracking-widest text-primary">{tr.membership.eyebrow}</p>
+        <p class="text-xs font-semibold uppercase tracking-widest text-brand-mint">{tr.membership.eyebrow}</p>
         <h2 class={H2_SECTION}>{tr.membership.tagline}</h2>
       </div>
-      <p class="text-lg text-muted-foreground leading-relaxed">{tr.membership.body}</p>
+      <p class="text-lg leading-relaxed text-white/85">{tr.membership.body}</p>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {membershipBenefits.map((benefit) => (
-          <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
-            <div class="pt-6 px-6 pb-6 space-y-2">
-              <h3 class={CARD_TITLE}>{benefit.title}</h3>
-              <p class="text-sm text-muted-foreground leading-relaxed">{benefit.desc}</p>
-            </div>
+          <div class={CARD_ON_BRAND}>
+            <h3 class={CARD_TITLE}>{benefit.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-white/80">{benefit.desc}</p>
           </div>
         ))}
       </div>
 
-      <p class="text-muted-foreground leading-relaxed">{tr.membership.price}</p>
+      <p class="leading-relaxed text-white/85">{tr.membership.price}</p>
 
-      <div class="flex flex-wrap gap-3 pt-2">
+      <div class="flex flex-wrap items-center gap-3 pt-2">
         <a
           href={`${appUrl}/membership`}
           data-auth-redirect="/membership"
           target="_blank"
           rel="noopener noreferrer"
-          class={buttonClass('primary')}
+          class={buttonClass('onBrandAccent')}
         >
           {tr.membership.cta}
         </a>
-        <StatutenDialog client:load lang={lang} linkLabel={tr.oss.statutenLink} closeLabel={tr.a11y.close} />
+        <StatutenDialog client:load lang={lang} linkLabel={tr.oss.statutenLink} closeLabel={tr.a11y.close} variant="onBrandGlass" />
       </div>
     </div>
   </section>
 
   {/* ── Features ───────────────────────────────────────────── */}
-  <section id="features" class="border-t py-20">
-    <div class="container mx-auto px-4 space-y-20">
-      <h2 class="text-sm font-medium text-muted-foreground uppercase tracking-wider">
-        {tr.fieldwork.sub}
-      </h2>
+  <section id="features" class={SECTION}>
+    <div class="container mx-auto space-y-20 px-4">
+      <h2 class={EYEBROW}>{tr.fieldwork.sub}</h2>
 
       {/* Field Work */}
       <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
         <div class="space-y-6">
-          <h3 class={H3_SUBSECTION}>{tr.fieldwork.title}</h3>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
-              <div class="pt-6 px-6 pb-6 space-y-2">
-                <h4 class={CARD_TITLE}>{tr.fieldwork.plots.title}</h4>
-                <p class="text-sm text-muted-foreground leading-relaxed">{tr.fieldwork.plots.desc}</p>
+          <div class="flex items-center gap-3">
+            <BrandIcon name="plots" class="h-8 w-8 shrink-0 text-primary" />
+            <h3 class={H3_SUBSECTION}>{tr.fieldwork.title}</h3>
+          </div>
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {fieldworkCards.map((card) => (
+              <div class={CARD}>
+                <h4 class={CARD_TITLE}>{card.title}</h4>
+                <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{card.desc}</p>
               </div>
-            </div>
-            <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
-              <div class="pt-6 px-6 pb-6 space-y-2">
-                <h4 class={CARD_TITLE}>{tr.fieldwork.protection.title}</h4>
-                <p class="text-sm text-muted-foreground leading-relaxed">{tr.fieldwork.protection.desc}</p>
-              </div>
-            </div>
-            <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
-              <div class="pt-6 px-6 pb-6 space-y-2">
-                <h4 class={CARD_TITLE}>{tr.fieldwork.harvest.title}</h4>
-                <p class="text-sm text-muted-foreground leading-relaxed">{tr.fieldwork.harvest.desc}</p>
-              </div>
-            </div>
-            <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
-              <div class="pt-6 px-6 pb-6 space-y-2">
-                <h4 class={CARD_TITLE}>{tr.fieldwork.export.title}</h4>
-                <p class="text-sm text-muted-foreground leading-relaxed">{tr.fieldwork.export.desc}</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
-        <PhoneMockup src={fieldworkShot} alt={tr.fieldwork.imageAlt} rotate="lg:rotate-3" />
+        <div class="flex justify-center">
+          <PhoneMockup src={fieldworkShot} alt={tr.fieldwork.imageAlt} class="w-52 lg:rotate-3" />
+        </div>
       </div>
 
       {/* Animal Husbandry */}
       <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
         {/* One element, reordered: below the text on small screens, left of it from lg */}
-        <PhoneMockup src={animalsShot} alt={tr.animals.imageAlt} rotate="lg:-rotate-3" wrapper="flex order-2 lg:order-1" />
-        <div class="space-y-6 order-1 lg:order-2">
-          <h3 class={H3_SUBSECTION}>{tr.animals.title}</h3>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
-              <div class="pt-6 px-6 pb-6 space-y-2">
-                <h4 class={CARD_TITLE}>{tr.animals.import.title}</h4>
-                <p class="text-sm text-muted-foreground leading-relaxed">{tr.animals.import.desc}</p>
+        <div class="order-2 flex justify-center lg:order-1">
+          <PhoneMockup src={animalsShot} alt={tr.animals.imageAlt} class="w-52 lg:-rotate-3" />
+        </div>
+        <div class="order-1 space-y-6 lg:order-2">
+          <div class="flex items-center gap-3">
+            <BrandIcon name="animals" class="h-8 w-8 shrink-0 text-primary" />
+            <h3 class={H3_SUBSECTION}>{tr.animals.title}</h3>
+          </div>
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {animalCards.map((card) => (
+              <div class={CARD}>
+                <h4 class={CARD_TITLE}>{card.title}</h4>
+                <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{card.desc}</p>
               </div>
-            </div>
-            <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
-              <div class="pt-6 px-6 pb-6 space-y-2">
-                <h4 class={CARD_TITLE}>{tr.animals.treatments.title}</h4>
-                <p class="text-sm text-muted-foreground leading-relaxed">{tr.animals.treatments.desc}</p>
-              </div>
-            </div>
-            <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
-              <div class="pt-6 px-6 pb-6 space-y-2">
-                <h4 class={CARD_TITLE}>{tr.animals.turnout.title}</h4>
-                <p class="text-sm text-muted-foreground leading-relaxed">{tr.animals.turnout.desc}</p>
-              </div>
-            </div>
-            <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
-              <div class="pt-6 px-6 pb-6 space-y-2">
-                <h4 class={CARD_TITLE}>{tr.animals.export.title}</h4>
-                <p class="text-sm text-muted-foreground leading-relaxed">{tr.animals.export.desc}</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
 
       {/* More features */}
-      <div class="space-y-6">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
-            <div class="pt-6 px-6 pb-6 space-y-2">
-              <h3 class={CARD_TITLE}>{tr.more.multiUser.title}</h3>
-              <p class="text-sm text-muted-foreground leading-relaxed">{tr.more.multiUser.desc}</p>
-            </div>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {moreCards.map((card) => (
+          <div class={CARD}>
+            <h3 class={CARD_TITLE}>{card.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{card.desc}</p>
           </div>
-          <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
-            <div class="pt-6 px-6 pb-6 space-y-2">
-              <h3 class={CARD_TITLE}>{tr.more.multiFarm.title}</h3>
-              <p class="text-sm text-muted-foreground leading-relaxed">{tr.more.multiFarm.desc}</p>
-            </div>
-          </div>
-          <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
-            <div class="pt-6 px-6 pb-6 space-y-2">
-              <h3 class={CARD_TITLE}>{tr.more.tasks.title}</h3>
-              <p class="text-sm text-muted-foreground leading-relaxed">{tr.more.tasks.desc}</p>
-            </div>
-          </div>
-          <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
-            <div class="pt-6 px-6 pb-6 space-y-2">
-              <h3 class={CARD_TITLE}>{tr.more.journals.title}</h3>
-              <p class="text-sm text-muted-foreground leading-relaxed">{tr.more.journals.desc}</p>
-            </div>
-          </div>
-          <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
-            <div class="pt-6 px-6 pb-6 space-y-2">
-              <h3 class={CARD_TITLE}>{tr.more.wiki.title}</h3>
-              <p class="text-sm text-muted-foreground leading-relaxed">{tr.more.wiki.desc}</p>
-            </div>
-          </div>
-          <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
-            <div class="pt-6 px-6 pb-6 space-y-2">
-              <h3 class={CARD_TITLE}>{tr.more.stats.title}</h3>
-              <p class="text-sm text-muted-foreground leading-relaxed">{tr.more.stats.desc}</p>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   </section>
 
   {/* ── Customization ──────────────────────────────────────── */}
-  <section class="border-t py-20">
-    <div class="container mx-auto px-4 max-w-3xl space-y-10">
+  <section class:list={[SECTION, 'bg-surface']}>
+    <div class="container mx-auto max-w-3xl space-y-10 px-4">
       <div class="space-y-4">
         <h2 class={H2_SECTION}>{tr.customize.headline}</h2>
-        <p class="text-lg text-muted-foreground leading-relaxed">{tr.customize.sub}</p>
+        <p class="text-lg leading-relaxed text-muted-foreground">{tr.customize.sub}</p>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
-          <div class="pt-6 px-6 pb-6 space-y-2">
-            <h3 class={CARD_TITLE}>{tr.customize.speedDial.title}</h3>
-            <p class="text-sm text-muted-foreground leading-relaxed">{tr.customize.speedDial.desc}</p>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {customizeCards.map((card) => (
+          <div class={CARD}>
+            <h3 class={CARD_TITLE}>{card.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{card.desc}</p>
           </div>
-        </div>
-        <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
-          <div class="pt-6 px-6 pb-6 space-y-2">
-            <h3 class={CARD_TITLE}>{tr.customize.modules.title}</h3>
-            <p class="text-sm text-muted-foreground leading-relaxed">{tr.customize.modules.desc}</p>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   </section>
 
   {/* ── Web App ────────────────────────────────────────────── */}
-  <section id="webapp" class="border-t bg-muted/30 py-20">
-    <div class="container mx-auto px-4 space-y-20">
-      <p class="text-sm font-medium text-muted-foreground uppercase tracking-wider">
-        {tr.webapp.label}
-      </p>
-      <div class="space-y-6 max-w-3xl">
-        <h2 class={H2_SECTION}>{tr.webapp.title}</h2>
-        <p class="text-muted-foreground">{tr.webapp.body}</p>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
-            <div class="pt-6 px-6 pb-6 space-y-2">
-              <h3 class={CARD_TITLE}>{tr.webapp.contacts.title}</h3>
-              <p class="text-sm text-muted-foreground leading-relaxed">{tr.webapp.contacts.desc}</p>
-            </div>
+  <section id="webapp" class={SECTION}>
+    <div class="container mx-auto max-w-3xl space-y-6 px-4">
+      <p class={EYEBROW}>{tr.webapp.label}</p>
+      <h2 class={H2_SECTION}>{tr.webapp.title}</h2>
+      <p class="text-muted-foreground">{tr.webapp.body}</p>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {webappCards.map((card) => (
+          <div class={CARD}>
+            <h3 class={CARD_TITLE}>{card.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{card.desc}</p>
           </div>
-          <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
-            <div class="pt-6 px-6 pb-6 space-y-2">
-              <h3 class={CARD_TITLE}>{tr.webapp.orders.title}</h3>
-              <p class="text-sm text-muted-foreground leading-relaxed">{tr.webapp.orders.desc}</p>
-            </div>
-          </div>
-          <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
-            <div class="pt-6 px-6 pb-6 space-y-2">
-              <h3 class={CARD_TITLE}>{tr.webapp.sponsorships.title}</h3>
-              <p class="text-sm text-muted-foreground leading-relaxed">{tr.webapp.sponsorships.desc}</p>
-            </div>
-          </div>
-          <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
-            <div class="pt-6 px-6 pb-6 space-y-2">
-              <h3 class={CARD_TITLE}>{tr.webapp.community.title}</h3>
-              <p class="text-sm text-muted-foreground leading-relaxed">{tr.webapp.community.desc}</p>
-            </div>
-          </div>
-        </div>
+        ))}
+      </div>
+      <div class="pt-2">
         <a
           href={appUrl}
           data-auth-redirect="/dashboard"
@@ -440,11 +303,11 @@ const membershipBenefits = [
   </section>
 
   {/* ── OSS ────────────────────────────────────────────────── */}
-  <section id="about" class="border-t py-20">
-    <div class="container mx-auto px-4 max-w-3xl space-y-8">
+  <section id="about" class:list={[SECTION, 'bg-surface']}>
+    <div class="container mx-auto max-w-3xl space-y-8 px-4">
       <h2 class={H2_SECTION}>{tr.story.ossTitle}</h2>
-      <div class="space-y-4 text-muted-foreground leading-relaxed">
-        <p class="text-foreground font-medium">{tr.story.verein}</p>
+      <div class="space-y-4 leading-relaxed text-muted-foreground">
+        <p class="font-medium text-foreground">{tr.story.verein}</p>
         <p>{tr.story.vereinPurpose}</p>
         <p>{tr.story.vereinGovernance}</p>
         <p>{tr.story.oss}</p>
@@ -469,8 +332,8 @@ const membershipBenefits = [
   </section>
 
   {/* ── Donate ─────────────────────────────────────────────── */}
-  <section id="donate" class="border-t py-20">
-    <div class="container mx-auto px-4 max-w-2xl space-y-6">
+  <section id="donate" class={SECTION}>
+    <div class="container mx-auto max-w-2xl space-y-6 px-4">
       <h2 class={H2_MINOR}>{tr.donate.title}</h2>
       <p class="text-muted-foreground">{tr.donate.sub}</p>
       <DonationForm
@@ -495,8 +358,8 @@ const membershipBenefits = [
   </section>
 
   {/* ── Newsletter ─────────────────────────────────────────── */}
-  <section class="border-t py-20">
-    <div class="container mx-auto px-4 max-w-2xl space-y-6">
+  <section class:list={[SECTION, 'bg-surface']}>
+    <div class="container mx-auto max-w-2xl space-y-6 px-4">
       <h2 class={H2_MINOR}>{tr.newsletter.title}</h2>
       <p class="text-muted-foreground">{tr.newsletter.sub}</p>
       <NewsletterForm
@@ -516,30 +379,35 @@ const membershipBenefits = [
   </main>
 
   {/* ── Footer ─────────────────────────────────────────────── */}
+  <footer class="relative isolate overflow-hidden bg-brand-ink text-white">
+    <Wave edge="top" flip fill="var(--surface)" class="absolute inset-x-0 -top-px h-[clamp(4rem,14vw,9rem)]" />
+    <Lineart class="absolute inset-x-0 bottom-0 -z-10 h-2/3 w-full opacity-25" />
 
-  <footer class="border-t py-10">
-    <div class="container mx-auto px-4 space-y-6">
-      <div class="flex flex-wrap items-center justify-between gap-4">
-        <div class="flex items-center gap-2 font-semibold">
-          <img src="/icon.png" alt="" class="h-5 w-5" />
-          Coltivio, {tr.footer.tagline}
+    <div class="container relative z-10 mx-auto space-y-8 px-4 pt-[24vw] pb-12 sm:pt-32">
+      <div class="flex flex-wrap items-center justify-between gap-6">
+        <div class="space-y-3">
+          <Logo class="h-8 w-auto" />
+          <p class="text-sm text-white/70">{tr.footer.tagline}</p>
         </div>
-        <div class="flex flex-wrap gap-3 text-sm">
-          <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-md hover:bg-muted transition-colors text-muted-foreground hover:text-foreground">
+        <div class="flex flex-wrap gap-2 text-sm">
+          <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" class="rounded-md px-3 py-1.5 text-white/75 transition-colors hover:bg-white/10 hover:text-white">
             {tr.footer.github}
           </a>
-          <a href={IOS_DOWNLOAD_URL} target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-md hover:bg-muted transition-colors text-muted-foreground hover:text-foreground">
+          <a href={IOS_DOWNLOAD_URL} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-white/75 transition-colors hover:bg-white/10 hover:text-white">
+            <StoreGlyph store="ios" class="h-4 w-4 shrink-0" />
             {tr.footer.appStore}
           </a>
-          <a href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-md hover:bg-muted transition-colors text-muted-foreground hover:text-foreground">
+          <a href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-white/75 transition-colors hover:bg-white/10 hover:text-white">
+            <StoreGlyph store="android" class="h-4 w-4 shrink-0" />
             {tr.footer.playStore}
           </a>
         </div>
       </div>
-      <div class="flex flex-wrap gap-4 text-sm text-muted-foreground">
-        <a href={lang === 'de' ? '/imprint' : `/${lang}/imprint`} class="hover:underline">{tr.imprint.title}</a>
-        <a href={lang === 'de' ? '/privacy' : `/${lang}/privacy`} class="hover:underline">{tr.privacy.title}</a>
-        <a href={lang === 'de' ? '/data-deletion' : `/${lang}/data-deletion`} class="hover:underline">{tr.dataDeletion.title}</a>
+
+      <div class="flex flex-wrap items-center gap-4 border-t border-white/15 pt-6 text-sm text-white/70">
+        {legalLinks.map((link) => (
+          <a href={link.href} class="rounded-md transition-colors hover:text-white hover:underline">{link.label}</a>
+        ))}
         <span class="ml-auto">© 2026 Coltivio</span>
       </div>
     </div>

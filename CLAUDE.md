@@ -41,7 +41,25 @@ resolved document and are not edited for style.
 
 **Page structure:** Every locale renders the same `Landing.astro`, receiving `tr` (translations)
 and `lang`. `Base.astro` wraps it with all `<head>` meta, the skip link, hreflang alternates and
-JSON-LD.
+JSON-LD. Two pieces are split out of `Landing.astro` because they carry their own logic:
+`SiteHeader.astro` (fixed, floats on the hero gradient, turns solid on scroll) and `Hero.astro`.
+The legal pages have no header, which is why the header may stay dark at all times.
+
+**Brand system (`src/components/brand/`):** the 2026 kit, inlined as vectors rather than shipped
+as image files, so everything inherits colour, scales without blurring and costs no extra request.
+- `Logo.astro` and `LogoMark.astro`, the lockup and the leaf mark. The wordmark follows
+  `currentColor`, the mark follows `--logo-mark` (default mint).
+- `BrandIcon.astro`, the seven kit icons. Two tones: body in `currentColor`, highlight in
+  `--icon-accent`. Path data is generated from `assets/icons/svg` in the brand kit; regenerate
+  there rather than hand-editing.
+- `Lineart.astro`, the contour pattern. Anchor it to a corner at its own aspect ratio; stretching
+  it over a whole section drags the arcs through the middle of the content.
+- `Wave.astro`, the edge between two sections. Always placed *inside* a section, pinned to one
+  edge, filled with the flat ground of the neighbour on that side, and overlapped by a pixel
+  (`-bottom-px` / `-top-px`) so no seam shows. A divider in the flow carrying the gradient instead
+  would give every band its own gradient box and a visible join.
+- `SplashPhone.astro`, the app launch screen drawn in the browser, and `StoreGlyph.astro`, the two
+  store marks. Both exist so the page ships no screenshot of text.
 
 **React components (islands):**
 - `NewsletterForm.tsx`, submits to Brevo via a `no-cors` fetch, gated by Cloudflare Turnstile.
@@ -49,13 +67,17 @@ JSON-LD.
 - `DonationForm.tsx`, posts to `PUBLIC_API_URL/v1/donations/checkout` and redirects to Stripe.
   Amounts go to the API in Rappen.
 - `LanguageSwitcher.tsx`, a `<details>` dropdown that swaps the locale prefix and keeps the path.
-- `MobileNav.tsx`, the drawer below `lg`.
-- `StatutenDialog.tsx`, the statutes modal.
+  `onDark` restyles the trigger for the header; the dropdown panel stays light either way.
+- `MobileNav.tsx`, the drawer below `lg`. `onDark` does the same for the hamburger.
+- `StatutenDialog.tsx`, the statutes modal. `variant` picks the trigger's button variant, because
+  the trigger appears both on the white page and on the membership band.
 
 **Shared building blocks in `src/lib/`:**
-- `button.ts`, the only place button styling is defined. Two variants (`primary`, `secondary`) and
-  two sizes (`sm` for the header and form controls, `md` for section CTAs). Used from `.astro`
-  markup and from the islands so both stay in sync. Do not style a button inline.
+- `button.ts`, the only place button styling is defined. Two families: `primary` and `secondary`
+  for the white page, `onBrand`, `onBrandGlass` and `onBrandAccent` for the gradient bands, where
+  the light variants either vanish or shout. Two sizes (`sm` for the header and form controls,
+  `md` for section CTAs). Used from `.astro` markup and from the islands so both stay in sync.
+  Do not style a button inline.
 - `input.ts`, the same for text inputs, including the invalid state.
 - `useDialog.ts`, shared dialog behaviour for all three modals: Escape to close, body scroll lock,
   focus trap, focus restored to the trigger. `onClose` has to be stable.
@@ -63,14 +85,29 @@ JSON-LD.
   the App Store listing is not public yet; switch that one line when it is.
 
 **Images:** screenshots live in `src/assets/`, not `public/`, so `astro:assets` can resize them and
-convert to WebP. `PhoneMockup.astro` wraps them. Anything put in `public/` bypasses that pipeline,
+convert to WebP. `PhoneMockup.astro` wraps them; it owns the device frame and nothing else, and
+takes width, rotation and placement through `class`, because the hero stacks two frames and the
+feature rows centre one. Anything put in `public/` bypasses that pipeline,
 which is how a 4 MB PNG once shipped into a 208 pixel frame. `sharp` is a dev dependency because
 the build needs it to transform images.
 
 **Styling:** Tailwind v4 as a Vite plugin. Design tokens are CSS variables in
 `src/styles/global.css` using `oklch`. Use the semantic tokens (`bg-primary`,
 `text-muted-foreground`, `border-input`), not raw Tailwind colours. `global.css` also carries the
-one global `:focus-visible` rule; components must not declare their own.
+one global `:focus-visible` rule and the smooth in-page scrolling; components must not declare
+their own.
+
+The brand palette is the four colours in `assets/colors.pdf`, converted once into
+`--brand-deep`, `--brand-sage`, `--brand-mint` and `--brand-straw`, with the published hex in a
+comment next to each. `--primary` is an alias of `--brand-deep`, not a separate value: it had
+drifted about four points of lightness away from the kit before, and aliasing is what keeps that
+from happening again.
+
+**Section rhythm:** the page alternates `bg-background` and `bg-surface` rather than separating
+every section with a rule. The only hard colour changes are the two gradient bands (hero,
+membership) and the footer, and each of those hands over with a `Wave`. A gradient band is
+`class="brand-band on-brand"`; `on-brand` switches the focus ring to white, which the deep-teal
+default cannot do on its own background.
 
 **Heading scale:** declared at the top of `Landing.astro` as `H2_SECTION`, `H2_MINOR`,
 `H3_SUBSECTION` and `CARD_TITLE`. Use those rather than picking a size per section, and keep the
@@ -80,6 +117,20 @@ document outline free of skipped levels.
 modals, `rounded-full` for badges.
 
 **Path alias:** `@` maps to `./src`.
+
+## Two traps worth knowing
+
+**Never start a frontmatter expression with the token `export`.** The Astro compiler scans a
+component's frontmatter for module-level exports and cuts the expression in half wherever it finds
+one, even as a property name. `tr.fieldwork.export` in the frontmatter silently truncates the
+build; `tr.fieldwork['export']` does not. The template is unaffected. A multi-line
+`export type X = | 'a' | 'b'` breaks the same way: the first line is hoisted and the union is left
+behind.
+
+**Do not put a `position` utility in a component's own base class list.** Tailwind emits position
+utilities in a fixed order (static, fixed, absolute, relative, sticky), not in class order, so a
+`relative` baked into a component quietly beats an `absolute` passed in by the caller. The phone
+frames position nothing themselves for exactly this reason.
 
 ## Writing style
 
