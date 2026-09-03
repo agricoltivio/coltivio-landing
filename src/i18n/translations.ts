@@ -2,7 +2,7 @@ export type Locale = 'de' | 'fr' | 'it' | 'en'
 
 export interface Translations {
   nav: { openApp: string; features: string; webapp: string; membership: string; about: string }
-  hero: { headline: string; sub: string; note: string; ctaIos: string; ctaAndroid: string; imageAlt: string }
+  hero: { headline: string; splashTagline: string; sub: string; note: string; ctaIos: string; ctaAndroid: string; imageAlt: string }
   pillars: {
     title: string
     admin: { title: string; desc: string }
@@ -94,6 +94,7 @@ const translations: Record<Locale, Translations> = {
     nav: { openApp: 'Web-App öffnen', features: 'Funktionen', webapp: 'Web-App', membership: 'Mitgliedschaft', about: 'Über uns' },
     hero: {
       headline: 'Hofverwaltung,\nvon Bauern,\nfür Bauern.',
+      splashTagline: 'Von Bauern. Für Bauern.',
       sub: 'Felder und Tiere in einer App, erfasst auf dem Hof statt am Abend am PC. Quelloffen und getragen vom Verein AgriColtivio: keine Investoren, keine Agrarindustrie, deine Daten gehören dir.',
       note: 'Für iPhone und Android, ohne Abo. Auf Deutsch, Französisch, Italienisch und Englisch.',
       ctaIos: 'Im App Store laden',
@@ -187,6 +188,7 @@ const translations: Record<Locale, Translations> = {
     nav: { openApp: 'Ouvrir la Web App', features: 'Fonctionnalités', webapp: 'Web App', membership: 'Adhésion', about: 'À propos' },
     hero: {
       headline: 'Gestion agricole,\npar des paysans,\npour des paysans.',
+      splashTagline: 'Par des paysans. Pour des paysans.',
       sub: "Champs et animaux dans une seule app, saisis à la ferme plutôt que le soir devant l'ordinateur. Open source et porté par l'association AgriColtivio : pas d'investisseurs, pas d'agro-industrie, tes données t'appartiennent.",
       note: 'Pour iPhone et Android, sans abonnement. En allemand, français, italien et anglais.',
       ctaIos: "Télécharger sur l'App Store",
@@ -280,6 +282,7 @@ const translations: Record<Locale, Translations> = {
     nav: { openApp: 'Apri la Web App', features: 'Funzionalità', webapp: 'Web App', membership: 'Iscrizione', about: 'Chi siamo' },
     hero: {
       headline: 'Gestione agricola,\nda agricoltori,\nper agricoltori.',
+      splashTagline: 'Da agricoltori. Per agricoltori.',
       sub: "Campi e animali in un'unica app, registrati in azienda invece che la sera al PC. Open source e sostenuta dall'associazione AgriColtivio: nessun investitore, nessuna industria agroalimentare, i tuoi dati sono tuoi.",
       note: 'Per iPhone e Android, senza abbonamento. In tedesco, francese, italiano e inglese.',
       ctaIos: "Scarica dall'App Store",
@@ -373,6 +376,7 @@ const translations: Record<Locale, Translations> = {
     nav: { openApp: 'Open Web App', features: 'Features', webapp: 'Web App', membership: 'Membership', about: 'About' },
     hero: {
       headline: 'Farm Management,\nBy Farmers,\nfor farmers.',
+      splashTagline: 'By farmers. For farmers.',
       sub: 'Fields and animals in one app, recorded on the farm instead of at the PC in the evening. Open source and carried by the AgriColtivio association: no investors, no agribusiness, your data belongs to you.',
       note: 'For iPhone and Android, no subscription. In German, French, Italian and English.',
       ctaIos: 'Download on the App Store',
