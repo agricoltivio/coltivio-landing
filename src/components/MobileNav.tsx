@@ -51,7 +51,7 @@ export function MobileNav({ lang, appUrl, labels, onDark = false }: Props) {
     <>
       {/* Hamburger button, mobile only */}
       <button
-        className={`lg:hidden flex items-center justify-center rounded-md p-1.5 transition-colors ${
+        className={`md:hidden flex items-center justify-center rounded-md p-1.5 transition-colors ${
           onDark ? 'text-white hover:bg-white/15' : 'hover:bg-muted'
         }`}
         aria-label={labels.openMenu}
@@ -76,7 +76,7 @@ export function MobileNav({ lang, appUrl, labels, onDark = false }: Props) {
       {/* Clip layer: viewport-sized, clips the off-screen (translated) drawer
           so it never creates horizontal page overflow. Pointer-events pass through
           when closed; the drawer itself re-enables them. z-[51] sits above the overlay. */}
-      <div className="lg:hidden fixed top-0 left-0 h-dvh w-full z-[51] overflow-hidden pointer-events-none">
+      <div className="md:hidden fixed top-0 left-0 h-dvh w-full z-[51] overflow-hidden pointer-events-none">
       {/* Drawer */}
       <div
         ref={drawerRef}

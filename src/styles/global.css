@@ -11,6 +11,13 @@
   src: url('/fonts/inter/Inter-roman.var.woff2') format('woff2');
 }
 
+html {
+  /* Reserves the scrollbar's width permanently, so locking body scroll for a
+     dialog (see useDialog.ts) doesn't change the viewport width and jolt the
+     fixed header and drawer sideways mid-transition. */
+  scrollbar-gutter: stable;
+}
+
 body {
   margin: 0;
   font-family: var(--sans);

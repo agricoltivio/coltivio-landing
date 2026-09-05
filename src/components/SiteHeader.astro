@@ -33,15 +33,16 @@ const navLinks = [
   id="site-header"
   class="fixed inset-x-0 top-0 z-50 h-16 border-b border-transparent text-white transition-colors duration-300"
 >
-  <div class="container relative mx-auto flex h-full items-center justify-between gap-4 px-4">
-    <a href={homeUrl} class="flex items-center rounded-md" aria-label="Coltivio">
+  <div class="relative flex h-full w-full items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+    <a href={homeUrl} class="flex shrink-0 items-center rounded-md" aria-label="Coltivio">
       <Logo title="" class="h-7 w-auto" />
     </a>
 
-    {/* Truly centred, not centred-ish: a three column grid would hand the nav
-        whatever the two button clusters left over, and they are never equal. */}
+    {/* Sits in the normal flex flow (not absolutely centred) so it only ever
+        gets the space the logo and the button cluster actually leave it,
+        rather than overlapping either one when that space is tight. */}
     <nav
-      class="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 text-sm font-medium lg:flex"
+      class="hidden min-w-0 flex-1 items-center justify-center gap-1 text-sm font-medium md:flex"
       aria-label={tr.a11y.menu}
     >
       {
@@ -56,7 +57,7 @@ const navLinks = [
       }
     </nav>
 
-    <div class="flex items-center gap-2">
+    <div class="flex shrink-0 items-center gap-2">
       <a
         href={appUrl}
         data-auth-redirect="/dashboard"
@@ -75,7 +76,7 @@ const navLinks = [
       >
         {tr.membership.cta}
       </a>
-      <div class="hidden lg:block">
+      <div class="hidden md:block">
         <LanguageSwitcher client:load lang={lang} onDark />
       </div>
       <MobileNav

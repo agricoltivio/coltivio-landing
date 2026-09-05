@@ -33,7 +33,11 @@ export function useDialog<T extends HTMLElement>(isOpen: boolean, onClose: () =>
       )
 
     // Move focus in, otherwise the first Tab would land behind the dialog.
-    visibleFocusable()[0]?.focus()
+    // preventScroll matters here: the drawer variant slides in from a
+    // translated, off-screen position inside an overflow-hidden clip layer,
+    // and a default focus() tries to scroll that element into view, fighting
+    // the CSS transition and making the slide look broken.
+    visibleFocusable()[0]?.focus({ preventScroll: true })
 
     function onKeyDown(e: KeyboardEvent) {
       if (e.key === 'Escape') {
@@ -64,7 +68,7 @@ export function useDialog<T extends HTMLElement>(isOpen: boolean, onClose: () =>
     return () => {
       document.removeEventListener('keydown', onKeyDown)
       document.body.style.overflow = previousOverflow
-      restoreTo.current?.focus()
+      restoreTo.current?.focus({ preventScroll: true })
     }
   }, [isOpen, onClose])
 
