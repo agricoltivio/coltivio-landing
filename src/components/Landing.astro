@@ -12,7 +12,8 @@ import Logo from './brand/Logo.astro'
 import BrandIcon from './brand/BrandIcon.astro'
 import Lineart from './brand/Lineart.astro'
 import Wave from './brand/Wave.astro'
-import StoreGlyph from './brand/StoreGlyph.astro'
+import StoreBadge from './brand/StoreBadge.astro'
+import GithubButton from './brand/GithubButton.astro'
 import fieldworkShot from '@/assets/screenshots/fieldwork.png'
 import animalsShot from '@/assets/screenshots/animals.png'
 
@@ -55,8 +56,13 @@ const CARD_TITLE = 'font-semibold'                                  // any card,
 // separating every band with a rule, so the two gradient bands and the footer
 // are the only hard colour changes on the page.
 const SECTION = 'py-20 md:py-24'
+// Every card on the light page carries the same sage wash and sage hairline. It is the
+// membership card translated: those read as tinted glass because the gradient shows through
+// them, and on white the only way to get the same tint is to mix it in. A plain white card
+// with a grey border disappeared into the page, which is what this replaces. No shadow, the
+// tint alone separates the card from the ground.
 const CARD =
-  'rounded-lg border bg-card text-card-foreground p-6 shadow-sm transition-colors hover:border-brand-sage'
+  'rounded-lg border border-brand-sage/40 bg-brand-sage/15 text-card-foreground p-6 transition-colors hover:border-brand-sage hover:bg-brand-sage/20'
 // The same card on a gradient band, where a white block would punch a hole.
 const CARD_ON_BRAND = 'rounded-lg border border-white/25 bg-white/10 p-6 backdrop-blur-sm'
 const EYEBROW = 'text-xs font-semibold uppercase tracking-widest text-primary'
@@ -106,7 +112,7 @@ const legalLinks = [
 
   <main id="main">
 
-  <Hero tr={tr} />
+  <Hero tr={tr} lang={lang} />
 
   {/* ── Pillars ────────────────────────────────────────────── */}
   <section class={SECTION}>
@@ -118,7 +124,11 @@ const legalLinks = [
             <h3 class={CARD_TITLE}>{pillar.title}</h3>
             <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{pillar.desc}</p>
             {/* The three pillars are peers, so their calls to action all get the
-                same weight. The one loud membership button lives on the band. */}
+                same weight: filled deep teal, not the grey outline they used to
+                carry, which read as disabled next to the coloured page around
+                them. The one loud mint button still lives on the band.
+                The store badges stay out of here on purpose: three of them on one
+                page was one too many, and the cards read better as three peers. */}
             <div class="mt-auto flex flex-wrap gap-2 pt-6">
               {pillar.links.map((link) => (
                 <a
@@ -126,7 +136,7 @@ const legalLinks = [
                   data-auth-redirect={link.authRedirect}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class={buttonClass('secondary', 'sm')}
+                  class={buttonClass('primary', 'sm')}
                 >
                   {link.label}
                 </a>
@@ -402,18 +412,10 @@ const legalLinks = [
           <Logo class="h-8 w-auto" />
           <p class="text-sm text-white/70">{tr.footer.tagline}</p>
         </div>
-        <div class="flex flex-wrap gap-2 text-sm">
-          <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" class="rounded-md px-3 py-1.5 text-white/75 transition-colors hover:bg-white/10 hover:text-white">
-            {tr.footer.github}
-          </a>
-          <a href={IOS_DOWNLOAD_URL} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-white/75 transition-colors hover:bg-white/10 hover:text-white">
-            <StoreGlyph store="ios" class="h-4 w-4 shrink-0" />
-            {tr.footer.appStore}
-          </a>
-          <a href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-white/75 transition-colors hover:bg-white/10 hover:text-white">
-            <StoreGlyph store="android" class="h-4 w-4 shrink-0" />
-            {tr.footer.playStore}
-          </a>
+        <div class="flex flex-wrap items-center gap-2 text-sm">
+          <GithubButton label={tr.footer.github} class="h-8" />
+          <StoreBadge store="ios" lang={lang} label={tr.hero.ctaIos} class="h-8" />
+          <StoreBadge store="android" lang={lang} label={tr.hero.ctaAndroid} class="h-8" />
         </div>
       </div>
 

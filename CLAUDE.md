@@ -60,8 +60,25 @@ as image files, so everything inherits colour, scales without blurring and costs
   edge, filled with the flat ground of the neighbour on that side, and overlapped by a pixel
   (`-bottom-px` / `-top-px`) so no seam shows. A divider in the flow carrying the gradient instead
   would give every band its own gradient box and a visible join.
-- `SplashPhone.astro`, the app launch screen drawn in the browser, and `StoreGlyph.astro`, the two
-  store marks. Both exist so the page ships no screenshot of text.
+- `SplashPhone.astro`, the app launch screen drawn in the browser, so the page ships no screenshot
+  of text.
+- `StoreBadge.astro`, the App Store and Google Play buttons. The one exception to the rule above:
+  this artwork is not ours and may not be redrawn, recoloured or retyped. Both stores require their
+  own badge, unaltered, in the visitor's language, so `src/assets/badges/` holds eight files, four
+  Apple SVGs and four Google PNGs, and the component picks by locale with the same `de` fallback as
+  `getTranslations`. Only the transparent margins of the Google files were cropped, because the four
+  shipped with three different ones; the clear space both stores ask for (a quarter of the badge
+  height) is carried by the gap of the row instead. Refresh the files from
+  `toolbox.marketingtools.apple.com` and `play.google.com/intl/en_us/badges/`, never by editing
+  them.
+- `GithubButton.astro`, the third button in that footer row. Half official: the mark is GitHub's
+  own `mark-github` octicon, which may only ever be solid black or solid white, but GitHub ships
+  no badge, so the pill around it is ours and copies the Apple badge beside it, down to the
+  `#a6a6a6` keyline. Its label and padding are set for `h-8`.
+
+`StoreBadge` appears twice per page, the hero at `h-10` and the footer at `h-8`. The pillar cards
+deliberately do not use it: they keep plain buttons so the three read as peers, and three badge
+pairs on one page was one too many.
 
 The hero also carries the leaf mark as a watermark, blown up so only its rounded caps clear the
 wave. It is a shade *lighter* than the gradient behind it, not darker: sage at thirty percent,
@@ -89,10 +106,12 @@ because CSS variables inherit and nothing then has to be threaded through the co
 - `useDialog.ts`, shared dialog behaviour for all three modals: Escape to close, body scroll lock,
   focus trap, focus restored to the trigger. `onClose` has to be stable.
 - `links.ts`, the store and GitHub URLs. `IOS_DOWNLOAD_URL` currently aliases TestFlight because
-  the App Store listing is not public yet; switch that one line when it is.
+  the App Store listing is not public yet; switch that one line when it is. Note that the hero and
+  the footer already show the real App Store badge, so that line is the only thing between the badge
+  and a misleading link. Google Play is live and `PLAY_STORE_URL` points at the listing.
 
-**Images:** screenshots live in `src/assets/`, not `public/`, so `astro:assets` can resize them and
-convert to WebP. `PhoneMockup.astro` wraps them; it owns the device frame and nothing else, and
+**Images:** screenshots and the store badges live in `src/assets/`, not `public/`, so `astro:assets`
+can resize them and convert to WebP. `PhoneMockup.astro` wraps them; it owns the device frame and nothing else, and
 takes width, rotation and placement through `class`, because the hero stacks two frames and the
 feature rows centre one. Anything put in `public/` bypasses that pipeline,
 which is how a 4 MB PNG once shipped into a 208 pixel frame. `sharp` is a dev dependency because
@@ -115,6 +134,13 @@ every section with a rule. The only hard colour changes are the two gradient ban
 membership) and the footer, and each of those hands over with a `Wave`. A gradient band is
 `class="brand-band on-brand"`; `on-brand` switches the focus ring to white, which the deep-teal
 default cannot do on its own background.
+
+**Cards:** two constants at the top of `Landing.astro`, and every card on the page uses one of
+them. `CARD` is the light-page card: a sage wash with a sage hairline and no shadow, the tint
+alone doing the separating. `CARD_ON_BRAND` is the same card on a gradient band, where a filled
+block would punch a hole, so it is white glass instead and lets the gradient through. Both say the
+same thing in the two grounds; do not reintroduce a plain white card with a grey border, which is
+what these replaced, because it disappeared into the page.
 
 **Heading scale:** declared at the top of `Landing.astro` as `H2_SECTION`, `H2_MINOR`,
 `H3_SUBSECTION` and `CARD_TITLE`. Use those rather than picking a size per section, and keep the

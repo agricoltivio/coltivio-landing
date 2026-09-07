@@ -1,20 +1,19 @@
 ---
 import type { Translations } from '@/i18n/translations'
-import { IOS_DOWNLOAD_URL, PLAY_STORE_URL } from '@/lib/links'
-import { buttonClass } from '@/lib/button'
 import PhoneMockup from './PhoneMockup.astro'
 import Lineart from './brand/Lineart.astro'
 import Wave from './brand/Wave.astro'
 import SplashPhone from './brand/SplashPhone.astro'
 import LogoMark from './brand/LogoMark.astro'
-import StoreGlyph from './brand/StoreGlyph.astro'
+import StoreBadge from './brand/StoreBadge.astro'
 import homeShot from '@/assets/screenshots/home.png'
 
 interface Props {
   tr: Translations
+  lang: string
 }
 
-const { tr } = Astro.props
+const { tr, lang } = Astro.props
 
 // The headline is authored as three lines. The last one carries the brand
 // accent, which is why it is split here rather than set with `whitespace-pre-line`.
@@ -64,25 +63,9 @@ const headlineLines = tr.hero.headline.split('\n')
         {tr.hero.sub}
       </p>
 
-      <div class="mt-10 flex flex-wrap gap-3">
-        <a
-          href={IOS_DOWNLOAD_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          class={buttonClass('onBrand')}
-        >
-          <StoreGlyph store="ios" />
-          {tr.hero.ctaIos}
-        </a>
-        <a
-          href={PLAY_STORE_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          class={buttonClass('onBrandGlass')}
-        >
-          <StoreGlyph store="android" />
-          {tr.hero.ctaAndroid}
-        </a>
+      <div class="mt-10 flex flex-wrap items-center gap-3">
+        <StoreBadge store="ios" lang={lang} label={tr.hero.ctaIos} class="h-10" />
+        <StoreBadge store="android" lang={lang} label={tr.hero.ctaAndroid} class="h-10" />
       </div>
 
       <p class="mt-5 text-sm text-white/70">{tr.hero.note}</p>
