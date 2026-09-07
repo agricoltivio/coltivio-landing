@@ -42,7 +42,14 @@ resolved document and are not edited for style.
 **Page structure:** Every locale renders the same `Landing.astro`, receiving `tr` (translations)
 and `lang`. `Base.astro` wraps it with all `<head>` meta, the skip link, hreflang alternates and
 JSON-LD. Two pieces are split out of `Landing.astro` because they carry their own logic:
-`SiteHeader.astro` (fixed, floats on the hero gradient, turns solid on scroll) and `Hero.astro`.
+`SiteHeader.astro` (fixed, deep teal at all times) and `Hero.astro`.
+
+The order of the sections is the argument the page makes, so it is worth stating: hero, the
+problem, what the app does, the web app, the ask for the app, the association, the ask for a
+membership, the FAQ, the ask for a donation, footer. Each ask sits after the case for it, and the
+membership ask follows the association because the case for paying is the case for the
+association. The newsletter lives in the footer, not in a section of its own: next to the donation
+band it read as a wall of controls at the point where the page should be easiest to leave.
 The legal pages have no header, which is why the header may stay dark at all times.
 
 **Brand system (`src/components/brand/`):** the 2026 kit, inlined as vectors rather than shipped
@@ -111,7 +118,9 @@ because CSS variables inherit and nothing then has to be threaded through the co
   and a misleading link. Google Play is live and `PLAY_STORE_URL` points at the listing.
 
 **Images:** screenshots and the store badges live in `src/assets/`, not `public/`, so `astro:assets`
-can resize them and convert to WebP. `PhoneMockup.astro` wraps them; it owns the device frame and nothing else, and
+can resize them and convert to WebP. `PhoneMockup.astro` wraps the three phone screenshots;
+`webapp-laptop.png` is the exception and goes through `<Image>` bare, because it is a laptop render
+that already carries its own device. it owns the device frame and nothing else, and
 takes width, rotation and placement through `class`, because the hero stacks two frames and the
 feature rows centre one. Anything put in `public/` bypasses that pipeline,
 which is how a 4 MB PNG once shipped into a 208 pixel frame. `sharp` is a dev dependency because
@@ -130,8 +139,11 @@ drifted about four points of lightness away from the kit before, and aliasing is
 from happening again.
 
 **Section rhythm:** the page alternates `bg-background` and `bg-surface` rather than separating
-every section with a rule. The only hard colour changes are the two gradient bands (hero,
-membership) and the footer, and each of those hands over with a `Wave`. A gradient band is
+every section with a rule. The only hard colour changes are the three gradient bands (hero,
+membership, donate) and the footer, and each of those hands over with a `Wave` filled in the flat
+ground of the section it meets. The donate band's lower wave is filled in `--brand-ink`, so it
+hands straight over to the footer and the footer draws no wave of its own. Moving a section means
+checking the two waves on either side of it. A gradient band is
 `class="brand-band on-brand"`; `on-brand` switches the focus ring to white, which the deep-teal
 default cannot do on its own background.
 
