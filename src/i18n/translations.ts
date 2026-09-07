@@ -91,7 +91,7 @@ export interface Translations {
 
 const translations: Record<Locale, Translations> = {
   de: {
-    nav: { openApp: 'Web-App öffnen', features: 'Funktionen', webapp: 'Web-App', membership: 'Mitgliedschaft', about: 'Über uns' },
+    nav: { openApp: 'Web-App öffnen', features: 'Funktionen', webapp: 'Web-App', membership: 'Mitgliedschaft', about: 'Der Verein' },
     hero: {
       headline: 'Hofverwaltung,\nvon Bauern,\nfür Bauern.',
       splashTagline: 'Von Bauern. Für Bauern.',
@@ -131,7 +131,7 @@ const translations: Record<Locale, Translations> = {
     },
     animals: {
       title: 'Tierhaltung',
-      imageAlt: 'Tierbestand in der Coltivio-App, Liste der Tiere mit Herde und Wartezeiten.',
+      imageAlt: 'Auslaufjournal in der Coltivio-App, Auslauf- und Weidezeiten pro Herde im Kalender.',
       import: { title: 'Tierbestand', desc: 'Dein ganzer Tierbestand im Überblick. Erstelle Herden mit Auslauf- und Weidezeiten. Die Tiere übernimmst du direkt aus dem Tierlisten-Export der TVD.' },
       treatments: { title: 'Behandlungsjournal', desc: 'Vollständiges Medikamentenprotokoll pro Tier: Präparat, Dosis, Grund und Tierarztpraxis. Milch- und Fleischwartezeiten rechnet die App automatisch aus. Tiere mit laufender Absetzfrist sind in der Tierliste markiert und filterbar.' },
       turnout: { title: 'Auslaufjournal', desc: 'Das Auslaufjournal entsteht automatisch aus deinen Herden. Einmal eingerichtet, dann läuft es.' },
@@ -185,7 +185,7 @@ const translations: Record<Locale, Translations> = {
   },
 
   fr: {
-    nav: { openApp: 'Ouvrir la Web App', features: 'Fonctionnalités', webapp: 'Web App', membership: 'Adhésion', about: 'À propos' },
+    nav: { openApp: 'Ouvrir la Web App', features: 'Fonctionnalités', webapp: 'Web App', membership: 'Adhésion', about: "L'association" },
     hero: {
       headline: 'Gestion agricole,\npar des paysans,\npour des paysans.',
       splashTagline: 'Par des paysans. Pour des paysans.',
@@ -225,7 +225,7 @@ const translations: Record<Locale, Translations> = {
     },
     animals: {
       title: 'Élevage',
-      imageAlt: "Cheptel dans Coltivio, liste des animaux avec troupeau et délais d'attente.",
+      imageAlt: 'Journal de pâturage dans Coltivio, sorties et temps de pâturage par troupeau dans le calendrier.',
       import: { title: 'Cheptel', desc: "Tout votre cheptel en un coup d'œil. Créez des troupeaux avec des sorties et des temps de pâturage définis. Importez les animaux via l'export des listes animaux depuis TVD." },
       treatments: { title: 'Journal des traitements', desc: "Journal complet des médicaments par animal : produit, dose, motif et vétérinaire. Les délais d'attente (Absetzfristen) lait et viande sont calculés automatiquement avec alertes avant expiration." },
       turnout: { title: 'Journal de pâturage', desc: 'Journal de pâturage généré automatiquement en fonction des troupeaux configurés. Configurez-le une fois et oubliez-le.' },
@@ -279,7 +279,7 @@ const translations: Record<Locale, Translations> = {
   },
 
   it: {
-    nav: { openApp: 'Apri la Web App', features: 'Funzionalità', webapp: 'Web App', membership: 'Iscrizione', about: 'Chi siamo' },
+    nav: { openApp: 'Apri la Web App', features: 'Funzionalità', webapp: 'Web App', membership: 'Iscrizione', about: "L'associazione" },
     hero: {
       headline: 'Gestione agricola,\nda agricoltori,\nper agricoltori.',
       splashTagline: 'Da agricoltori. Per agricoltori.',
@@ -319,7 +319,7 @@ const translations: Record<Locale, Translations> = {
     },
     animals: {
       title: 'Zootecnia',
-      imageAlt: 'Patrimonio zootecnico in Coltivio, elenco degli animali con mandria e tempi di attesa.',
+      imageAlt: 'Giornale di pascolo in Coltivio, uscite e tempi di pascolo per mandria nel calendario.',
       import: { title: 'Patrimonio zootecnico', desc: "Tutto il tuo bestiame a colpo d'occhio. Crea mandrie con uscite e tempi di pascolo definiti. Importa gli animali tramite l'esportazione delle liste animali da TVD." },
       treatments: { title: 'Giornale trattamenti', desc: 'Registro completo dei farmaci per animale: prodotto, dose, motivo e veterinario. I periodi di attesa (Absetzfristen) per latte e carne vengono calcolati automaticamente con avvisi prima della scadenza.' },
       turnout: { title: 'Giornale di pascolo', desc: "Giornale di pascolo generato automaticamente in base alle mandrie configurate. Configuralo una volta e lascia fare all'app." },
@@ -373,7 +373,7 @@ const translations: Record<Locale, Translations> = {
   },
 
   en: {
-    nav: { openApp: 'Open Web App', features: 'Features', webapp: 'Web App', membership: 'Membership', about: 'About' },
+    nav: { openApp: 'Open Web App', features: 'Features', webapp: 'Web App', membership: 'Membership', about: 'The Association' },
     hero: {
       headline: 'Farm Management,\nBy Farmers,\nfor farmers.',
       splashTagline: 'By farmers. For farmers.',
@@ -413,7 +413,7 @@ const translations: Record<Locale, Translations> = {
     },
     animals: {
       title: 'Animal Husbandry',
-      imageAlt: 'Livestock in Coltivio, list of animals with herd and withdrawal periods.',
+      imageAlt: 'Turnout journal in Coltivio, turnout and grazing periods per herd in the calendar.',
       import: { title: 'Livestock Overview', desc: 'Your entire livestock at a glance. Create herds with defined turnout and grazing times. Import animals from a TVD herd list export.' },
       treatments: { title: 'Treatments Journal', desc: 'A complete medication log per animal: drug, dose, reason, and vet. Milk and meat withdrawal periods (Absetzfristen) are calculated automatically, and animals still inside a withdrawal period are flagged and filterable in the animal list.' },
       turnout: { title: 'Turnout Journal', desc: 'Automatically generated turnout journal based on your configured herds. Set it up once and let it run.' },
