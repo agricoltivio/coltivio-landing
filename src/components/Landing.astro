@@ -327,40 +327,17 @@ const legalLinks = [
     </div>
   </section>
 
-  {/* ── Newsletter ──────────────────────────────── */}
-  {/* The quiet ask, deliberately kept off the band: two calls to action side by
-      side, each with its own loud button, read as a wall of controls at the very
-      point where the page should be easiest to leave. */}
-  <section class={SECTION}>
-    <div class="container mx-auto max-w-2xl space-y-6 px-4">
-      <h2 class={H2_MINOR}>{tr.newsletter.title}</h2>
-      <p class="text-muted-foreground">{tr.newsletter.sub}</p>
-      <NewsletterForm
-        client:load
-        apiUrl={apiUrl}
-        lang={lang}
-        label={tr.newsletter.label}
-        placeholder={tr.newsletter.placeholder}
-        cta={tr.newsletter.cta}
-        successMsg={tr.newsletter.success}
-        errorMsg={tr.newsletter.error}
-        captchaMsg={tr.newsletter.captcha}
-      />
-    </div>
-  </section>
-
   {/* ── Donate ─────────────────────────────────── */}
   {/* The third and last gradient band, carrying one ask and one loud button.
-      It hands over to the footer with a wave filled in the footer's ink, which
-      is what keeps the wave running to the bottom of the page instead of
-      stopping after the membership. */}
+      It sits between the association text on the surface ground and the
+      newsletter on the page ground, so its two waves carry those two fills. */}
   <section id="donate" class="brand-band on-brand overflow-hidden">
     <div class="brand-band-shade absolute inset-0 -z-20" aria-hidden="true"></div>
     <Lineart class="absolute inset-0 -z-10 h-full w-full opacity-40" />
     {/* Mirrored the other way round from the membership band, so the two do not
         trace the same line twice on one page. */}
-    <Wave edge="top" flip fill="var(--background)" class="absolute inset-x-0 -top-px h-[clamp(4rem,14vw,9rem)]" />
-    <Wave fill="var(--brand-ink)" class="absolute inset-x-0 -bottom-px h-[clamp(4rem,14vw,9rem)]" />
+    <Wave edge="top" flip fill="var(--surface)" class="absolute inset-x-0 -top-px h-[clamp(4rem,14vw,9rem)]" />
+    <Wave fill="var(--background)" class="absolute inset-x-0 -bottom-px h-[clamp(4rem,14vw,9rem)]" />
 
     <div class="container relative z-10 mx-auto max-w-2xl space-y-6 px-4 pt-[20vw] pb-[20vw] sm:pt-32 sm:pb-32 md:pt-36 md:pb-36">
       <h2 class={H2_MINOR}>{tr.donate.title}</h2>
@@ -387,15 +364,39 @@ const legalLinks = [
     </div>
   </section>
 
+  {/* ── Newsletter ──────────────────────────────── */}
+  {/* The quiet ask, deliberately kept off the band and placed last: two calls
+      to action side by side, each with its own loud button, read as a wall of
+      controls at the very point where the page should be easiest to leave. */}
+  <section class={SECTION}>
+    <div class="container mx-auto max-w-2xl space-y-6 px-4">
+      <h2 class={H2_MINOR}>{tr.newsletter.title}</h2>
+      <p class="text-muted-foreground">{tr.newsletter.sub}</p>
+      <NewsletterForm
+        client:load
+        apiUrl={apiUrl}
+        lang={lang}
+        label={tr.newsletter.label}
+        placeholder={tr.newsletter.placeholder}
+        cta={tr.newsletter.cta}
+        successMsg={tr.newsletter.success}
+        errorMsg={tr.newsletter.error}
+        captchaMsg={tr.newsletter.captcha}
+      />
+    </div>
+  </section>
+
   </main>
 
   {/* ── Footer ─────────────────────────────────────────────── */}
   <footer class="relative isolate overflow-hidden bg-brand-ink text-white">
-    {/* No wave of its own: the support band above already curves into this
-        ground, so a second curve here would double the edge. */}
+    {/* The newsletter above is a flat section, so the footer draws the hand-over
+        itself: a wave in the page ground, mirrored against the one that closes
+        the support band. The top padding clears it. */}
+    <Wave edge="top" flip fill="var(--background)" class="absolute inset-x-0 -top-px h-[clamp(4rem,14vw,9rem)]" />
     <Lineart class="absolute inset-x-0 bottom-0 -z-10 h-2/3 w-full opacity-25" />
 
-    <div class="container relative z-10 mx-auto space-y-8 px-4 pt-16 pb-12">
+    <div class="container relative z-10 mx-auto space-y-8 px-4 pt-[24vw] pb-12 sm:pt-40">
       <div class="flex flex-wrap items-center justify-between gap-6">
         <div class="space-y-3">
           <Logo class="h-8 w-auto" />

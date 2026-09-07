@@ -21,10 +21,11 @@ const { tr, lang, appUrl } = Astro.props
 
 const homeUrl = lang === 'de' ? '/' : `/${lang}`
 
+// Same order as the sections on the page.
 const navLinks = [
+  { href: '#membership', label: tr.nav.membership },
   { href: '#features', label: tr.nav.features },
   { href: '#webapp', label: tr.nav.webapp },
-  { href: '#membership', label: tr.nav.membership },
   { href: '#about', label: tr.nav.about },
 ]
 ---
