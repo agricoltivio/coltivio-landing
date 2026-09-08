@@ -19,9 +19,10 @@ const { tr, lang } = Astro.props
 // accent, which is why it is split here rather than set with `whitespace-pre-line`.
 const headlineLines = tr.hero.headline.split('\n')
 
-// The widest the front device is ever laid out is 288px. Three times that
-// covers every sensible device pixel ratio.
-const DEVICE_RENDER_WIDTH = 864
+// The device renders are 844px wide and the frame is laid out at 288px, so this
+// is the source resolution. Asking for more upscales the render, asking for less
+// resamples it twice, once here and once on the way to the screen.
+const DEVICE_RENDER_WIDTH = 844
 ---
 
 <section class="brand-band on-brand overflow-hidden">
@@ -88,7 +89,7 @@ const DEVICE_RENDER_WIDTH = 864
           alt=""
           width={DEVICE_RENDER_WIDTH}
           loading="eager"
-          class="absolute -top-16 left-[84%] hidden w-full rotate-[7deg] drop-shadow-2xl sm:block"
+          class="absolute -top-16 left-[84%] hidden w-full rotate-[7deg] drop-shadow-[0_6px_14px_rgb(0_0_0_/_0.25)] sm:block"
           aria-hidden="true"
         />
         {/* Shipped as a rendered device, frame and all, rather than a
@@ -101,7 +102,7 @@ const DEVICE_RENDER_WIDTH = 864
           width={DEVICE_RENDER_WIDTH}
           loading="eager"
           fetchpriority="high"
-          class="relative z-10 w-full -rotate-2 drop-shadow-2xl"
+          class="relative z-10 w-full -rotate-2 drop-shadow-[0_6px_14px_rgb(0_0_0_/_0.25)]"
         />
       </div>
     </div>
