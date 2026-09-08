@@ -104,7 +104,7 @@ export interface Translations {
 
 const translations: Record<Locale, Translations> = {
   de: {
-    nav: { openApp: 'Web-App öffnen', appCta: 'App laden', features: 'Funktionen', webapp: 'Web-App', membership: 'Mitgliedschaft', about: 'Der Verein' },
+    nav: { openApp: 'Web-App öffnen', appCta: 'App installieren', features: 'Funktionen', webapp: 'Web-App', membership: 'Mitgliedschaft', about: 'Der Verein' },
     hero: {
       headline: 'Hofverwaltung,\nvon Bauern,\nfür Bauern.',
       splashTagline: 'Von Bauern. Für Bauern.',
@@ -159,7 +159,7 @@ const translations: Record<Locale, Translations> = {
       wikiStats: { title: 'Wiki und Statistiken', desc: 'Dein Wissensarchiv auf dem Hof, dazu Grafiken zur Feldarbeit, zur Altersverteilung im Tierbestand oder Stammbäume.' },
     },
     downloadCta: {
-      title: 'Lade die App und erfass die erste Feldarbeit noch heute',
+      title: 'Hol dir die App und erfasse die erste Feldarbeit noch heute',
       sub: 'Kein Abo, keine Kreditkarte. Betrieb anlegen, Flächen übernehmen, loslegen.',
     },
     verein: {
