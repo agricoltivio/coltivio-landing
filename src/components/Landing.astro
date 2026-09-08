@@ -40,13 +40,9 @@ const CARD_TITLE = 'font-semibold'                                  // any card,
 // donate band, footer. Every band hands over with a `Wave` filled in the ground
 // of the section it meets, so moving a section means checking its two waves.
 const SECTION = 'py-20 md:py-24'
-// Every card on the light page carries the same sage wash and sage hairline. It is the
-// membership card translated: those read as tinted glass because the gradient shows through
-// them, and on white the only way to get the same tint is to mix it in. A plain white card
-// with a grey border disappeared into the page, which is what this replaces. No shadow, the
-// tint alone separates the card from the ground.
-const CARD =
-  'rounded-lg border border-brand-sage/40 bg-brand-sage/15 text-card-foreground p-6 transition-colors hover:border-brand-sage hover:bg-brand-sage/20'
+// Every card on the light page carries the same sage hairline, permanently, so it
+// doesn't rely on hover to read as separated from a plain white background.
+const CARD = 'rounded-lg border border-brand-sage/40 bg-card text-card-foreground p-6'
 // The same card on a gradient band, where a white block would punch a hole.
 const CARD_ON_BRAND = 'rounded-lg border border-white/25 bg-white/10 p-6 backdrop-blur-sm'
 const EYEBROW = 'text-xs font-semibold uppercase tracking-widest text-primary'
