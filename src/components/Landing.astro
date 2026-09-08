@@ -7,15 +7,14 @@ import { StatutenDialog } from './StatutenDialog'
 import { DonationForm } from './DonationForm'
 import SiteHeader from './SiteHeader.astro'
 import Hero from './Hero.astro'
-import PhoneMockup from './PhoneMockup.astro'
 import Logo from './brand/Logo.astro'
 import BrandIcon from './brand/BrandIcon.astro'
 import Lineart from './brand/Lineart.astro'
 import Wave from './brand/Wave.astro'
 import StoreBadge from './brand/StoreBadge.astro'
 import GithubButton from './brand/GithubButton.astro'
-import fieldworkShot from '@/assets/screenshots/fieldwork.png'
-import animalsShot from '@/assets/screenshots/animals.png'
+import fieldworkDevice from '@/assets/screenshots/fieldwork-device.png'
+import animalsDevice from '@/assets/screenshots/animals-device.png'
 import webappShot from '@/assets/screenshots/webapp-laptop.png'
 
 interface Props {
@@ -51,6 +50,10 @@ const CARD =
 // The same card on a gradient band, where a white block would punch a hole.
 const CARD_ON_BRAND = 'rounded-lg border border-white/25 bg-white/10 p-6 backdrop-blur-sm'
 const EYEBROW = 'text-xs font-semibold uppercase tracking-widest text-primary'
+// The feature rows carry the same rendered devices as the hero, laid out at the
+// same 288px, so 844 is the source resolution and nothing is resampled twice.
+const DEVICE_RENDER_WIDTH = 844
+const DEVICE = 'w-72 max-w-full drop-shadow-[0_6px_14px_rgb(0_0_0_/_0.25)]'
 
 const membershipBenefits = [
   tr.membership.benefits.carry,
@@ -149,7 +152,12 @@ const legalLinks = [
           </div>
         </div>
         <div class="flex justify-center">
-          <PhoneMockup src={fieldworkShot} alt={tr.fieldwork.imageAlt} class="w-52 lg:rotate-3" />
+          <Image
+            src={fieldworkDevice}
+            alt={tr.fieldwork.imageAlt}
+            width={DEVICE_RENDER_WIDTH}
+            class:list={[DEVICE, 'lg:rotate-3']}
+          />
         </div>
       </div>
 
@@ -157,7 +165,12 @@ const legalLinks = [
       <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
         {/* One element, reordered: below the text on small screens, left of it from lg */}
         <div class="order-2 flex justify-center lg:order-1">
-          <PhoneMockup src={animalsShot} alt={tr.animals.imageAlt} class="w-52 lg:-rotate-3" />
+          <Image
+            src={animalsDevice}
+            alt={tr.animals.imageAlt}
+            width={DEVICE_RENDER_WIDTH}
+            class:list={[DEVICE, 'lg:-rotate-3']}
+          />
         </div>
         <div class="order-1 space-y-6 lg:order-2">
           <div class="flex items-center gap-3">
