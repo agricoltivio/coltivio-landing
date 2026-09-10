@@ -1,20 +1,21 @@
 ---
 import type { Translations } from '@/i18n/translations'
-import { IOS_DOWNLOAD_URL, PLAY_STORE_URL, GITHUB_URL } from '@/lib/links'
+import { Image } from 'astro:assets'
 import { buttonClass } from '@/lib/button'
 import { NewsletterForm } from './NewsletterForm'
 import { StatutenDialog } from './StatutenDialog'
 import { DonationForm } from './DonationForm'
 import SiteHeader from './SiteHeader.astro'
 import Hero from './Hero.astro'
-import PhoneMockup from './PhoneMockup.astro'
 import Logo from './brand/Logo.astro'
 import BrandIcon from './brand/BrandIcon.astro'
 import Lineart from './brand/Lineart.astro'
 import Wave from './brand/Wave.astro'
-import StoreGlyph from './brand/StoreGlyph.astro'
-import fieldworkShot from '@/assets/screenshots/fieldwork.png'
-import animalsShot from '@/assets/screenshots/animals.png'
+import StoreBadge from './brand/StoreBadge.astro'
+import GithubButton from './brand/GithubButton.astro'
+import fieldworkDevice from '@/assets/screenshots/fieldwork-device.png'
+import animalsDevice from '@/assets/screenshots/animals-device.png'
+import webappShot from '@/assets/screenshots/webapp-laptop.png'
 
 interface Props {
   tr: Translations
@@ -26,25 +27,6 @@ const { tr, lang } = Astro.props
 const appUrl = import.meta.env.PUBLIC_APP_URL ?? 'https://app.coltivio.ch'
 const apiUrl = import.meta.env.PUBLIC_API_URL ?? 'https://api.coltivio.ch'
 
-// Each pillar carries its own CTA: the app itself, the source, the association.
-const pillars = [
-  {
-    ...tr.pillars.admin,
-    links: [
-      { label: tr.footer.appStore, href: IOS_DOWNLOAD_URL },
-      { label: tr.footer.playStore, href: PLAY_STORE_URL },
-    ],
-  },
-  {
-    ...tr.pillars.verein,
-    links: [{ label: tr.membership.cta, href: `${appUrl}/membership`, authRedirect: '/membership' }],
-  },
-  {
-    ...tr.pillars.oss,
-    links: [{ label: tr.oss.github, href: GITHUB_URL }],
-  },
-]
-
 // Heading scale, so the same level never renders at two sizes.
 const H2_SECTION = 'text-3xl font-bold tracking-tight md:text-4xl'  // primary sections
 const H2_MINOR = 'text-2xl font-bold tracking-tight'                // supporting sections
@@ -52,14 +34,22 @@ const H3_SUBSECTION = 'text-2xl font-bold tracking-tight'           // groups in
 const CARD_TITLE = 'font-semibold'                                  // any card, at any depth
 
 // Section rhythm. The page alternates white and the tinted ground instead of
-// separating every band with a rule, so the two gradient bands and the footer
-// are the only hard colour changes on the page.
+// separating every band with a rule, so the three gradient bands and the footer
+// are the only hard colour changes on the page. Reading down: hero band,
+// problem, features, web app, download, association, membership band, FAQ,
+// donate band, footer. Every band hands over with a `Wave` filled in the ground
+// of the section it meets, so moving a section means checking its two waves.
 const SECTION = 'py-20 md:py-24'
-const CARD =
-  'rounded-lg border bg-card text-card-foreground p-6 shadow-sm transition-colors hover:border-brand-sage'
+// Every card on the light page carries the same sage hairline, permanently, so it
+// doesn't rely on hover to read as separated from a plain white background.
+const CARD = 'rounded-lg border border-brand-sage/40 bg-card text-card-foreground p-6'
 // The same card on a gradient band, where a white block would punch a hole.
 const CARD_ON_BRAND = 'rounded-lg border border-white/25 bg-white/10 p-6 backdrop-blur-sm'
 const EYEBROW = 'text-xs font-semibold uppercase tracking-widest text-primary'
+// The feature rows carry the same rendered devices as the hero, laid out at the
+// same 288px, so 844 is the source resolution and nothing is resampled twice.
+const DEVICE_RENDER_WIDTH = 844
+const DEVICE = 'w-72 max-w-full drop-shadow-[0_6px_14px_rgb(0_0_0_/_0.25)]'
 
 const membershipBenefits = [
   tr.membership.benefits.carry,
@@ -76,13 +66,15 @@ const fieldworkCards = [tr.fieldwork.plots, tr.fieldwork.protection, tr.fieldwor
 
 const animalCards = [tr.animals.import, tr.animals.treatments, tr.animals.turnout, tr.animals['export']]
 
+// What the app does beyond the two big journals, ordered from the setting a
+// farmer touches first to the archive they touch last.
 const moreCards = [
+  tr.customize.speedDial,
+  tr.customize.modules,
   tr.more.multiUser,
   tr.more.multiFarm,
-  tr.more.tasks,
-  tr.more.journals,
-  tr.more.wiki,
-  tr.more.stats,
+  tr.more.tasksJournal,
+  tr.more.wikiStats,
 ]
 
 const webappCards = [
@@ -92,7 +84,16 @@ const webappCards = [
   tr.webapp.community,
 ]
 
-const customizeCards = [tr.customize.speedDial, tr.customize.modules]
+const vereinCards = [
+  tr.verein.purpose,
+  tr.verein.finances,
+  tr.verein.oss,
+  tr.verein.data,
+  tr.verein.funding,
+  tr.verein.paperwork,
+]
+
+const faqItems = [tr.faq.cost, tr.faq.data, tr.faq.devices, tr.faq['exports'], tr.faq.team, tr.faq.who]
 
 const legalLinks = [
   { href: lang === 'de' ? '/imprint' : `/${lang}/imprint`, label: tr.imprint.title },
@@ -106,39 +107,11 @@ const legalLinks = [
 
   <main id="main">
 
-  <Hero tr={tr} />
+  <Hero tr={tr} lang={lang} />
 
-  {/* ── Pillars ────────────────────────────────────────────── */}
-  <section class={SECTION}>
-    <div class="container mx-auto px-4">
-      <h2 class="sr-only">{tr.pillars.title}</h2>
-      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {pillars.map((pillar) => (
-          <div class:list={[CARD, 'flex flex-col']}>
-            <h3 class={CARD_TITLE}>{pillar.title}</h3>
-            <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{pillar.desc}</p>
-            {/* The three pillars are peers, so their calls to action all get the
-                same weight. The one loud membership button lives on the band. */}
-            <div class="mt-auto flex flex-wrap gap-2 pt-6">
-              {pillar.links.map((link) => (
-                <a
-                  href={link.href}
-                  data-auth-redirect={link.authRedirect}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class={buttonClass('secondary', 'sm')}
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  {/* ── Story ──────────────────────────────────────────────── */}
+  {/* ── Problem ────────────────────────────────────────────── */}
+  {/* Why the app exists, before what it does. It sits directly under the hero
+      so the first thing after the pitch is the reader's own working day. */}
   <section class:list={[SECTION, 'bg-surface']}>
     <div class="container mx-auto max-w-3xl space-y-10 px-4">
       <h2 class={H2_SECTION}>{tr.story.headline}</h2>
@@ -150,52 +123,13 @@ const legalLinks = [
     </div>
   </section>
 
-  {/* ── Membership ─────────────────────────────────────────── */}
-  {/* The second gradient band. The two waves carry the neighbouring grounds,
-      so the band keeps one uninterrupted gradient behind them. */}
-  <section id="membership" class="brand-band on-brand overflow-hidden">
-    <div class="brand-band-shade absolute inset-0 -z-20" aria-hidden="true"></div>
-    <Lineart class="absolute inset-0 -z-10 h-full w-full opacity-50" />
-    <Wave edge="top" fill="var(--surface)" class="absolute inset-x-0 -top-px h-[clamp(5rem,16vw,11rem)]" />
-    <Wave flip fill="var(--background)" class="absolute inset-x-0 -bottom-px h-[clamp(5rem,16vw,11rem)]" />
-
-    <div class="container relative z-10 mx-auto max-w-3xl space-y-6 px-4 pt-[22vw] pb-[22vw] sm:pt-40 sm:pb-40 md:pt-48 md:pb-48">
-      <div class="space-y-3">
-        <p class="text-xs font-semibold uppercase tracking-widest text-brand-mint">{tr.membership.eyebrow}</p>
-        <h2 class={H2_SECTION}>{tr.membership.tagline}</h2>
-      </div>
-      <p class="text-lg leading-relaxed text-white/85">{tr.membership.body}</p>
-
-      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {membershipBenefits.map((benefit) => (
-          <div class={CARD_ON_BRAND}>
-            <h3 class={CARD_TITLE}>{benefit.title}</h3>
-            <p class="mt-2 text-sm leading-relaxed text-white/80">{benefit.desc}</p>
-          </div>
-        ))}
-      </div>
-
-      <p class="leading-relaxed text-white/85">{tr.membership.price}</p>
-
-      <div class="flex flex-wrap items-center gap-3 pt-2">
-        <a
-          href={`${appUrl}/membership`}
-          data-auth-redirect="/membership"
-          target="_blank"
-          rel="noopener noreferrer"
-          class={buttonClass('onBrandAccent')}
-        >
-          {tr.membership.cta}
-        </a>
-        <StatutenDialog client:load lang={lang} linkLabel={tr.oss.statutenLink} closeLabel={tr.a11y.close} variant="onBrandGlass" />
-      </div>
-    </div>
-  </section>
-
   {/* ── Features ───────────────────────────────────────────── */}
   <section id="features" class={SECTION}>
     <div class="container mx-auto space-y-20 px-4">
-      <h2 class={EYEBROW}>{tr.fieldwork.sub}</h2>
+      <div class="max-w-2xl space-y-3">
+        <p class={EYEBROW}>{tr.features.eyebrow}</p>
+        <h2 class={H2_SECTION}>{tr.features.title}</h2>
+      </div>
 
       {/* Field Work */}
       <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
@@ -214,7 +148,12 @@ const legalLinks = [
           </div>
         </div>
         <div class="flex justify-center">
-          <PhoneMockup src={fieldworkShot} alt={tr.fieldwork.imageAlt} class="w-52 lg:rotate-3" />
+          <Image
+            src={fieldworkDevice}
+            alt={tr.fieldwork.imageAlt}
+            width={DEVICE_RENDER_WIDTH}
+            class:list={[DEVICE, 'lg:rotate-3']}
+          />
         </div>
       </div>
 
@@ -222,7 +161,12 @@ const legalLinks = [
       <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
         {/* One element, reordered: below the text on small screens, left of it from lg */}
         <div class="order-2 flex justify-center lg:order-1">
-          <PhoneMockup src={animalsShot} alt={tr.animals.imageAlt} class="w-52 lg:-rotate-3" />
+          <Image
+            src={animalsDevice}
+            alt={tr.animals.imageAlt}
+            width={DEVICE_RENDER_WIDTH}
+            class:list={[DEVICE, 'lg:-rotate-3']}
+          />
         </div>
         <div class="order-1 space-y-6 lg:order-2">
           <div class="flex items-center gap-3">
@@ -240,42 +184,35 @@ const legalLinks = [
         </div>
       </div>
 
-      {/* More features */}
-      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {moreCards.map((card) => (
-          <div class={CARD}>
-            <h3 class={CARD_TITLE}>{card.title}</h3>
-            <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{card.desc}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  {/* ── Customization ──────────────────────────────────────── */}
-  <section class:list={[SECTION, 'bg-surface']}>
-    <div class="container mx-auto max-w-3xl space-y-10 px-4">
-      <div class="space-y-4">
-        <h2 class={H2_SECTION}>{tr.customize.headline}</h2>
-        <p class="text-lg leading-relaxed text-muted-foreground">{tr.customize.sub}</p>
-      </div>
-      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {customizeCards.map((card) => (
-          <div class={CARD}>
-            <h3 class={CARD_TITLE}>{card.title}</h3>
-            <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{card.desc}</p>
-          </div>
-        ))}
+      {/* Everything else the app does, under one heading rather than as a
+          section of its own, because none of it carries a section on its own. */}
+      <div class="space-y-6">
+        <h3 class={H3_SUBSECTION}>{tr.customize.headline}</h3>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {moreCards.map((card) => (
+            <div class={CARD}>
+              <h4 class={CARD_TITLE}>{card.title}</h4>
+              <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{card.desc}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   </section>
 
   {/* ── Web App ────────────────────────────────────────────── */}
-  <section id="webapp" class={SECTION}>
+  <section id="webapp" class:list={[SECTION, 'bg-surface']}>
     <div class="container mx-auto max-w-3xl space-y-6 px-4">
       <p class={EYEBROW}>{tr.webapp.label}</p>
       <h2 class={H2_SECTION}>{tr.webapp.title}</h2>
-      <p class="text-muted-foreground">{tr.webapp.body}</p>
+      <p class="text-lg leading-relaxed text-muted-foreground">{tr.webapp.body}</p>
+
+      {/* The one screenshot on the page that is not in a phone frame: it is a
+          laptop render and already carries its own device. */}
+      <div class="py-2">
+        <Image src={webappShot} alt={tr.webapp.imageAlt} widths={[640, 960, 1280]} sizes="(min-width: 48rem) 44rem, 100vw" class="mx-auto h-auto w-full max-w-2xl" />
+      </div>
+
       <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {webappCards.map((card) => (
           <div class={CARD}>
@@ -298,46 +235,126 @@ const legalLinks = [
     </div>
   </section>
 
-  {/* ── OSS ────────────────────────────────────────────────── */}
-  <section id="about" class:list={[SECTION, 'bg-surface']}>
-    <div class="container mx-auto max-w-3xl space-y-8 px-4">
-      <h2 class={H2_SECTION}>{tr.story.ossTitle}</h2>
-      <div class="space-y-4 leading-relaxed text-muted-foreground">
-        <p class="font-medium text-foreground">{tr.story.verein}</p>
-        <p>{tr.story.vereinPurpose}</p>
-        <p>{tr.story.vereinGovernance}</p>
-        <p>{tr.story.oss}</p>
-        <p>{tr.story.data}</p>
-        <p>{tr.story.funding}</p>
+  {/* ── Download ───────────────────────────────────────────── */}
+  {/* The ask for the app itself, placed after the feature tour and before the
+      association: the reader has seen what it does and has not yet been asked
+      for anything. The hero carries the same two badges, but a visitor who
+      scrolled this far should not have to scroll back up. */}
+  <section class={SECTION}>
+    <div class="container mx-auto flex max-w-3xl flex-col items-center gap-5 px-4 text-center">
+      <h2 class={H2_SECTION}>{tr.downloadCta.title}</h2>
+      <p class="max-w-xl text-lg leading-relaxed text-muted-foreground">{tr.downloadCta.sub}</p>
+      <div class="flex flex-wrap items-center justify-center gap-3 pt-1">
+        <StoreBadge store="ios" lang={lang} label={tr.hero.ctaIos} class="h-10" />
+        <StoreBadge store="android" lang={lang} label={tr.hero.ctaAndroid} class="h-10" />
       </div>
-      <div class="flex flex-wrap items-center gap-3">
-        <a
-          href={GITHUB_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          class={buttonClass('secondary')}
-        >
-          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
-          </svg>
-          {tr.oss.github}
-        </a>
-        <StatutenDialog client:load lang={lang} linkLabel={tr.oss.statutenLink} closeLabel={tr.a11y.close} />
+    </div>
+  </section>
+
+  {/* ── Association ────────────────────────────────────────── */}
+  {/* Six cards rather than the six paragraphs this used to be: the section
+      answers six separate questions and nobody reads it end to end. */}
+  <section id="verein" class:list={[SECTION, 'bg-surface']}>
+    <div class="container mx-auto max-w-5xl space-y-10 px-4">
+      <div class="max-w-3xl space-y-4">
+        <p class={EYEBROW}>{tr.verein.eyebrow}</p>
+        <h2 class={H2_SECTION}>{tr.verein.title}</h2>
+        <p class="text-lg font-medium leading-relaxed text-foreground">{tr.verein.intro}</p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {vereinCards.map((card) => (
+          <div class={CARD}>
+            <h3 class={CARD_TITLE}>{card.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{card.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ── Membership ─────────────────────────────────────────── */}
+  {/* The second gradient band, and the one ask the page builds towards. It
+      follows the association section because the case for paying is the case
+      for the association. The two waves carry the neighbouring grounds, so the
+      band keeps one uninterrupted gradient behind them. */}
+  <section id="membership" class="brand-band on-brand overflow-hidden">
+    <div class="brand-band-shade absolute inset-0 -z-20" aria-hidden="true"></div>
+    <Lineart class="absolute inset-0 -z-10 h-full w-full opacity-50" />
+    <Wave edge="top" fill="var(--surface)" class="absolute inset-x-0 -top-px h-[clamp(5rem,16vw,11rem)]" />
+    <Wave flip fill="var(--background)" class="absolute inset-x-0 -bottom-px h-[clamp(5rem,16vw,11rem)]" />
+
+    <div class="container relative z-10 mx-auto max-w-5xl px-4 pt-[22vw] pb-[22vw] sm:pt-40 sm:pb-40 md:pt-48 md:pb-48">
+      <div class="grid gap-10 lg:grid-cols-2 lg:items-start">
+        <div class="space-y-5">
+          <p class="text-xs font-semibold uppercase tracking-widest text-brand-mint">{tr.membership.eyebrow}</p>
+          <h2 class={H2_SECTION}>{tr.membership.tagline}</h2>
+          <p class="text-lg leading-relaxed text-white/85">{tr.membership.body}</p>
+          {/* The price is a number, not a sentence: it is the one fact a reader
+              is looking for here and it should be findable without reading. */}
+          <p class="text-2xl font-bold tracking-tight">{tr.membership.price}</p>
+          <div class="flex flex-wrap items-center gap-3">
+            <a
+              href={`${appUrl}/membership`}
+              data-auth-redirect="/membership"
+              target="_blank"
+              rel="noopener noreferrer"
+              class={buttonClass('onBrandAccent')}
+            >
+              {tr.membership.cta}
+            </a>
+            <StatutenDialog client:load lang={lang} linkLabel={tr.oss.statutenLink} closeLabel={tr.a11y.close} variant="onBrandGlass" />
+          </div>
+        </div>
+
+        <div class="space-y-3">
+          {membershipBenefits.map((benefit) => (
+            <div class={CARD_ON_BRAND}>
+              <h3 class={CARD_TITLE}>{benefit.title}</h3>
+              <p class="mt-1.5 text-sm leading-relaxed text-white/80">{benefit.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── FAQ ────────────────────────────────────────────────── */}
+  {/* Native `details`, so the answers are in the DOM for search engines and
+      work with JavaScript off. The default marker is hidden and replaced with
+      a chevron that turns, because a summary with no affordance at all reads
+      as a heading rather than as something to open. */}
+  <section id="faq" class={SECTION}>
+    <div class="container mx-auto max-w-3xl space-y-8 px-4">
+      <h2 class={H2_SECTION}>{tr.faq.title}</h2>
+      <div class="space-y-2">
+        {faqItems.map((item, i) => (
+          <details open={i === 0} class="group rounded-lg border border-border px-5 py-4 transition-colors hover:border-brand-sage">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold [&::-webkit-details-marker]:hidden">
+              {item.q}
+              <svg class="h-4 w-4 shrink-0 text-muted-foreground transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </summary>
+            <p class="mt-3 text-sm leading-relaxed text-muted-foreground">{item.a}</p>
+          </details>
+        ))}
       </div>
     </div>
   </section>
 
   {/* ── Donate ─────────────────────────────────── */}
   {/* The third and last gradient band, carrying one ask and one loud button.
-      It sits between the association text on the surface ground and the
-      newsletter on the page ground, so its two waves carry those two fills. */}
+      It is for the reader who will not become a member, which is why it comes
+      after the membership band and not before it. Its bottom wave is filled in
+      the footer's ink, so the band hands straight over to the footer. */}
   <section id="donate" class="brand-band on-brand overflow-hidden">
     <div class="brand-band-shade absolute inset-0 -z-20" aria-hidden="true"></div>
     <Lineart class="absolute inset-0 -z-10 h-full w-full opacity-40" />
     {/* Mirrored the other way round from the membership band, so the two do not
         trace the same line twice on one page. */}
-    <Wave edge="top" flip fill="var(--surface)" class="absolute inset-x-0 -top-px h-[clamp(4rem,14vw,9rem)]" />
-    <Wave fill="var(--background)" class="absolute inset-x-0 -bottom-px h-[clamp(4rem,14vw,9rem)]" />
+    <Wave edge="top" flip fill="var(--background)" class="absolute inset-x-0 -top-px h-[clamp(4rem,14vw,9rem)]" />
+    <Wave fill="var(--brand-ink)" class="absolute inset-x-0 -bottom-px h-[clamp(4rem,14vw,9rem)]" />
 
     <div class="container relative z-10 mx-auto max-w-2xl space-y-6 px-4 pt-[20vw] pb-[20vw] sm:pt-32 sm:pb-32 md:pt-36 md:pb-36">
       <h2 class={H2_MINOR}>{tr.donate.title}</h2>
@@ -364,56 +381,43 @@ const legalLinks = [
     </div>
   </section>
 
-  {/* ── Newsletter ──────────────────────────────── */}
-  {/* The quiet ask, deliberately kept off the band and placed last: two calls
-      to action side by side, each with its own loud button, read as a wall of
-      controls at the very point where the page should be easiest to leave. */}
-  <section class={SECTION}>
-    <div class="container mx-auto max-w-2xl space-y-6 px-4">
-      <h2 class={H2_MINOR}>{tr.newsletter.title}</h2>
-      <p class="text-muted-foreground">{tr.newsletter.sub}</p>
-      <NewsletterForm
-        client:load
-        apiUrl={apiUrl}
-        lang={lang}
-        label={tr.newsletter.label}
-        placeholder={tr.newsletter.placeholder}
-        cta={tr.newsletter.cta}
-        successMsg={tr.newsletter.success}
-        errorMsg={tr.newsletter.error}
-        captchaMsg={tr.newsletter.captcha}
-      />
-    </div>
-  </section>
-
   </main>
 
   {/* ── Footer ─────────────────────────────────────────────── */}
+  {/* The newsletter lives here rather than in a section of its own: it is the
+      quiet ask, and next to the loud one on the band above it read as a wall of
+      controls. The donate band's own wave carries the hand-over, so the footer
+      draws none of its own. */}
   <footer class="relative isolate overflow-hidden bg-brand-ink text-white">
-    {/* The newsletter above is a flat section, so the footer draws the hand-over
-        itself: a wave in the page ground, mirrored against the one that closes
-        the support band. The top padding clears it. */}
-    <Wave edge="top" flip fill="var(--background)" class="absolute inset-x-0 -top-px h-[clamp(4rem,14vw,9rem)]" />
     <Lineart class="absolute inset-x-0 bottom-0 -z-10 h-2/3 w-full opacity-25" />
 
-    <div class="container relative z-10 mx-auto space-y-8 px-4 pt-[24vw] pb-12 sm:pt-40">
-      <div class="flex flex-wrap items-center justify-between gap-6">
-        <div class="space-y-3">
+    <div class="container relative z-10 mx-auto space-y-10 px-4 pt-14 pb-12 md:pt-18">
+      <div class="flex flex-wrap items-start justify-between gap-10">
+        <div class="min-w-0 flex-1 basis-80 space-y-3">
+          <h2 class="text-lg font-semibold">{tr.newsletter.title}</h2>
+          <p class="max-w-md text-sm leading-relaxed text-white/70">{tr.newsletter.sub}</p>
+          <NewsletterForm
+            client:load
+            onDark
+            apiUrl={apiUrl}
+            lang={lang}
+            label={tr.newsletter.label}
+            placeholder={tr.newsletter.placeholder}
+            cta={tr.newsletter.cta}
+            successMsg={tr.newsletter.success}
+            errorMsg={tr.newsletter.error}
+            captchaMsg={tr.newsletter.captcha}
+          />
+        </div>
+
+        <div class="flex shrink-0 flex-col items-start gap-4">
           <Logo class="h-8 w-auto" />
           <p class="text-sm text-white/70">{tr.footer.tagline}</p>
-        </div>
-        <div class="flex flex-wrap gap-2 text-sm">
-          <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" class="rounded-md px-3 py-1.5 text-white/75 transition-colors hover:bg-white/10 hover:text-white">
-            {tr.footer.github}
-          </a>
-          <a href={IOS_DOWNLOAD_URL} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-white/75 transition-colors hover:bg-white/10 hover:text-white">
-            <StoreGlyph store="ios" class="h-4 w-4 shrink-0" />
-            {tr.footer.appStore}
-          </a>
-          <a href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-white/75 transition-colors hover:bg-white/10 hover:text-white">
-            <StoreGlyph store="android" class="h-4 w-4 shrink-0" />
-            {tr.footer.playStore}
-          </a>
+          <div class="flex flex-wrap items-center gap-2 text-sm">
+            <GithubButton label={tr.footer.github} class="h-8" />
+            <StoreBadge store="ios" lang={lang} label={tr.hero.ctaIos} class="h-8" />
+            <StoreBadge store="android" lang={lang} label={tr.hero.ctaAndroid} class="h-8" />
+          </div>
         </div>
       </div>
 
@@ -427,30 +431,3 @@ const legalLinks = [
   </footer>
 
 </div>
-
-<script define:vars={{ appUrl }} is:inline>
-  // Read token from hash fragment (e.g. #token=...)
-  // Hash is used so the token never reaches the server or appears in analytics/logs.
-  const hash = window.location.hash.slice(1)
-  if (hash) {
-    const params = new URLSearchParams(hash)
-    const token = params.get('token')
-    if (token) {
-      sessionStorage.setItem('coltivio_token', token)
-      // Remove hash from URL so the token doesn't linger in browser history
-      history.replaceState(null, '', window.location.pathname + window.location.search)
-    }
-  }
-
-  // Rewrite all [data-auth-redirect] links to the token-exchange URL if token exists
-  const token = sessionStorage.getItem('coltivio_token')
-  if (token) {
-    document.querySelectorAll('[data-auth-redirect]').forEach((el) => {
-      const redirect = el.getAttribute('data-auth-redirect')
-      el.setAttribute(
-        'href',
-        `${appUrl}/auth/token#token=${encodeURIComponent(token)}&redirect=${encodeURIComponent(redirect)}`
-      )
-    })
-  }
-</script>

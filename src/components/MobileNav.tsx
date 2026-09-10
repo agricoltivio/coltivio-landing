@@ -105,10 +105,10 @@ export function MobileNav({ lang, appUrl, labels, onDark = false }: Props) {
         {/* Nav anchor links */}
         <nav className="flex flex-col p-4 gap-1">
           {([
-            { href: '#membership', label: labels.membership },
             { href: '#features', label: labels.features },
             { href: '#webapp', label: labels.webapp },
-            { href: '#about', label: labels.about },
+            { href: '#verein', label: labels.about },
+            { href: '#membership', label: labels.membership },
           ] as const).map(({ href, label }) => (
             <a
               key={href}
