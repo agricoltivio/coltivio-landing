@@ -1,0 +1,69 @@
+---
+/**
+ * The two official store badges, as the stores ship them.
+ *
+ * These are the one place on the page where the artwork is not ours and may not
+ * be redrawn: Apple and Google both require their own badge, unaltered, in the
+ * visitor's language. `assets/badges/` therefore holds four Apple SVGs (from
+ * `toolbox.marketingtools.apple.com`) and four Google PNGs (from
+ * `play.google.com/intl/en_us/badges/`), one per locale. The only thing done to
+ * them is that the transparent clear space was cropped off the Google files,
+ * because the four came with three different margins and could not otherwise be
+ * lined up. Both stores ask for clear space around the badge of a quarter of its
+ * height; the gap of the row that holds them has to carry that, so keep the
+ * hero at `gap-3` and the footer at `gap-2` or larger.
+ *
+ * The badges carry their label inside the artwork, so the link gets an
+ * `aria-label` and the artwork is hidden from assistive tech rather than
+ * described twice.
+ *
+ * Height is set by the caller through `class` (`h-10` in the hero, `h-8` in the
+ * footer). The two badges have different aspect ratios, which is how they look
+ * in the wild; do not stretch either to match the other.
+ */
+import { Image } from 'astro:assets'
+import { IOS_DOWNLOAD_URL, PLAY_STORE_URL } from '@/lib/links'
+import AppStoreDe from '@/assets/badges/app-store-de.svg'
+import AppStoreFr from '@/assets/badges/app-store-fr.svg'
+import AppStoreIt from '@/assets/badges/app-store-it.svg'
+import AppStoreEn from '@/assets/badges/app-store-en.svg'
+import googlePlayDe from '@/assets/badges/google-play-de.png'
+import googlePlayFr from '@/assets/badges/google-play-fr.png'
+import googlePlayIt from '@/assets/badges/google-play-it.png'
+import googlePlayEn from '@/assets/badges/google-play-en.png'
+
+interface Props {
+  store: 'ios' | 'android'
+  lang: string
+  /** The visible wording of the badge, used as the link's accessible name. */
+  label: string
+  class?: string
+}
+
+const appStore = { de: AppStoreDe, fr: AppStoreFr, it: AppStoreIt, en: AppStoreEn }
+const googlePlay = { de: googlePlayDe, fr: googlePlayFr, it: googlePlayIt, en: googlePlayEn }
+
+const { store, lang, label, class: className = 'h-10' } = Astro.props
+
+// Same fallback as `getTranslations`: an unknown locale gets the default one.
+const locale = (lang in appStore ? lang : 'de') as keyof typeof appStore
+const AppStoreBadge = appStore[locale]
+---
+
+<a
+  href={store === 'ios' ? IOS_DOWNLOAD_URL : PLAY_STORE_URL}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={label}
+  class:list={['inline-flex rounded-md transition-opacity hover:opacity-80', className]}
+>
+  {
+    store === 'ios' ? (
+      <AppStoreBadge class="h-full w-auto" aria-hidden="true" focusable="false" />
+    ) : (
+      /* Rendered at three times the largest display height so it stays sharp,
+         and left as the store ships it apart from the resize. */
+      <Image src={googlePlay[locale]} alt="" height={120} class="h-full w-auto" aria-hidden="true" />
+    )
+  }
+</a>

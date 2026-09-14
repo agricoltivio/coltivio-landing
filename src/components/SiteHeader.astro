@@ -1,0 +1,136 @@
+---
+import type { Translations } from '@/i18n/translations'
+import { buttonClass } from '@/lib/button'
+import { IOS_DOWNLOAD_URL, PLAY_STORE_URL } from '@/lib/links'
+import { LanguageSwitcher } from './LanguageSwitcher'
+import { MobileNav } from './MobileNav'
+import Logo from './brand/Logo.astro'
+
+/**
+ * The landing page header. It is fixed rather than sticky because the hero
+ * starts at the very top of the document. Only the landing page uses it; the
+ * legal pages have their own back link.
+ *
+ * It carries its deep-teal ground at all times rather than fading in on scroll.
+ * The hero is the same gradient, so a transparent header only ever looked
+ * transparent for the first screen and cost a scroll observer to undo.
+ */
+interface Props {
+  tr: Translations
+  lang: string
+  appUrl: string
+}
+
+const { tr, lang, appUrl } = Astro.props
+
+const homeUrl = lang === 'de' ? '/' : `/${lang}`
+
+// Same order as the sections on the page.
+const navLinks = [
+  { href: '#features', label: tr.nav.features },
+  { href: '#webapp', label: tr.nav.webapp },
+  { href: '#verein', label: tr.nav.about },
+  { href: '#membership', label: tr.nav.membership },
+]
+---
+
+<header
+  id="site-header"
+  class="fixed inset-x-0 top-0 z-50 h-16 border-b border-white/12 text-white"
+>
+  <div class="relative flex h-full w-full items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+    <a href={homeUrl} class="flex shrink-0 items-center rounded-md" aria-label="Coltivio">
+      <Logo title="" class="h-7 w-auto" />
+    </a>
+
+    {/* Sits in the normal flex flow (not absolutely centred) so it only ever
+        gets the space the logo and the button cluster actually leave it,
+        rather than overlapping either one when that space is tight. */}
+    <nav
+      class="hidden min-w-0 flex-1 items-center justify-center gap-1 text-sm font-medium md:flex"
+      aria-label={tr.a11y.menu}
+    >
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="rounded-md px-3 py-1.5 transition-colors hover:bg-white/15"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex shrink-0 items-center gap-2">
+      {/* Two anchors rather than one whose href is rewritten: the markup is
+          static, so the right one has to be pickable by media query alone. The
+          store one still needs a line of script, because which store depends on
+          the device and not on the viewport. */}
+      <a
+        id="header-store-cta"
+        href={PLAY_STORE_URL}
+        data-ios-href={IOS_DOWNLOAD_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class={buttonClass('onBrandAccent', 'sm', 'md:hidden')}
+      >
+        {tr.nav.appCta}
+      </a>
+      <a
+        href={appUrl}
+        data-auth-redirect="/dashboard"
+        target="_blank"
+        rel="noopener noreferrer"
+        class={buttonClass('onBrandAccent', 'sm', 'max-md:hidden')}
+      >
+        {tr.nav.openApp}
+      </a>
+      <div class="hidden md:block">
+        <LanguageSwitcher client:load lang={lang} onDark />
+      </div>
+      <MobileNav
+        client:load
+        lang={lang}
+        appUrl={appUrl}
+        onDark
+        labels={{
+          features: tr.nav.features,
+          webapp: tr.nav.webapp,
+          membership: tr.nav.membership,
+          about: tr.nav.about,
+          openApp: tr.nav.openApp,
+          membershipCta: tr.membership.cta,
+          menu: tr.a11y.menu,
+          openMenu: tr.a11y.openMenu,
+          closeMenu: tr.a11y.closeMenu,
+        }}
+      />
+    </div>
+  </div>
+</header>
+
+<style>
+  /* Mixed rather than set with an opacity utility, so the border and the blur
+     are not dragged along with the transparency. */
+  #site-header {
+    background: color-mix(in oklab, var(--brand-deep) 92%, transparent);
+    backdrop-filter: blur(12px);
+  }
+</style>
+
+<script>
+  // The small-screen call to action points at Google Play in the markup, which
+  // is what a crawler and a JavaScript-less visitor get. iPhones are switched
+  // over here. iPadOS 13 and later reports itself as a Mac, so touch points
+  // have to give it away.
+  const storeCta = document.getElementById('header-store-cta')
+  const iosHref = storeCta?.dataset.iosHref
+  if (storeCta && iosHref) {
+    const ua = navigator.userAgent
+    const isIos =
+      /iPad|iPhone|iPod/.test(ua) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+    if (isIos) storeCta.setAttribute('href', iosHref)
+  }
+</script>

@@ -9,6 +9,8 @@ const BREVO_ACTION =
 interface Props {
   apiUrl: string
   lang: string
+  /** Restyles the button and the success line for the ink footer. */
+  onDark?: boolean
   label: string
   placeholder: string
   cta: string
@@ -17,7 +19,7 @@ interface Props {
   captchaMsg: string
 }
 
-export function NewsletterForm({ apiUrl, lang, label, placeholder, cta, successMsg, errorMsg, captchaMsg }: Props) {
+export function NewsletterForm({ apiUrl, lang, onDark = false, label, placeholder, cta, successMsg, errorMsg, captchaMsg }: Props) {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error' | 'captcha'>('idle')
   const inputId = useId()
@@ -71,7 +73,7 @@ export function NewsletterForm({ apiUrl, lang, label, placeholder, cta, successM
 
   if (status === 'success') {
     return (
-      <p className="text-sm font-medium text-primary" role="status">
+      <p className={`text-sm font-medium ${onDark ? 'text-brand-mint' : 'text-primary'}`} role="status">
         {successMsg}
       </p>
     )
@@ -96,7 +98,7 @@ export function NewsletterForm({ apiUrl, lang, label, placeholder, cta, successM
           <button
             type="submit"
             disabled={status === 'loading'}
-            className={buttonClass('primary', 'sm')}
+            className={buttonClass(onDark ? 'onBrandAccent' : 'primary', 'sm')}
           >
             {status === 'loading' ? '…' : cta}
           </button>

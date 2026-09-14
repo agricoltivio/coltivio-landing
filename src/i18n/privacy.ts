@@ -37,11 +37,15 @@ export const privacyContent: Record<Locale, PrivacyContent> = {
             title: 'Website-Statistik',
             content: 'Auf coltivio.ch setzen wir Cloudflare Web Analytics ein, um zu sehen, wie oft welche Seite aufgerufen wird. Der Dienst kommt ohne Cookies aus, speichert keine IP-Adressen und bildet kein Profil über mehrere Geräte hinweg. Einzelne Besucherinnen und Besucher lassen sich damit nicht wiedererkennen. In der App und im Web-Portal kommt nichts davon zum Einsatz.',
           },
+          {
+            title: 'E-Mail-Kommunikation und Vereinsinformationen',
+            content: 'Zu Ihrem Konto versenden wir E-Mails, etwa zur Bestätigung Ihrer Adresse, zu Ihrer Mitgliedschaft und zu Einladungen auf einen Betrieb. Dafür setzen wir den Versanddienst Brevo (Sitz in Frankreich) als Auftragsbearbeiter ein; Ihre E-Mail-Adresse und der Inhalt dieser Nachrichten werden dort verarbeitet. Wenn Sie bei der Registrierung ausdrücklich einwilligen, nehmen wir Ihre Adresse zusätzlich in eine Kontaktliste auf, über die wir über den Verein und über neue Funktionen informieren. Diese Einwilligung können Sie jederzeit widerrufen, über den Abmeldelink in jeder solchen E-Mail oder per Nachricht an verein@coltivio.ch.',
+          },
         ],
       },
       {
         heading: '3. Weitergabe an Dritte',
-        content: 'Ihre Daten werden nicht an Dritte weitergegeben, verkauft oder für Werbezwecke verwendet. Es gibt keine Analyse- oder Tracking-Dienste von Drittanbietern in der App. Für die Website gilt die unter Punkt 2 beschriebene, cookiefreie Statistik.',
+        content: 'Wir verkaufen Ihre Daten nicht und geben sie nicht für Werbezwecke Dritter weiter. Weitergegeben wird nur, was für den Betrieb der Anwendung nötig ist, und ausschliesslich an Auftragsbearbeiter, die vertraglich an unsere Weisungen gebunden sind: Supabase für Hosting und Datenbank, Stripe für Zahlungen, Brevo für den E-Mail-Versand. Es gibt keine Analyse- oder Tracking-Dienste von Drittanbietern in der App. Für die Website gilt die unter Punkt 2 beschriebene, cookiefreie Statistik.',
       },
       {
         heading: '4. Hosting',
@@ -93,11 +97,15 @@ export const privacyContent: Record<Locale, PrivacyContent> = {
             title: 'Statistiques du site',
             content: 'Sur coltivio.ch, nous utilisons Cloudflare Web Analytics pour savoir combien de fois chaque page est consultée. Ce service fonctionne sans cookies, n\'enregistre aucune adresse IP et ne constitue aucun profil entre plusieurs appareils. Il ne permet donc pas de reconnaître un visiteur en particulier. Rien de tout cela n\'est utilisé dans l\'application ni dans le portail web.',
           },
+          {
+            title: 'Communication par e-mail et informations sur l\'association',
+            content: 'Nous envoyons des e-mails liés à votre compte, par exemple pour confirmer votre adresse, au sujet de votre adhésion ou d\'une invitation sur une exploitation. Pour cela, nous faisons appel au service d\'envoi Brevo (siège en France) en qualité de sous-traitant; votre adresse e-mail et le contenu de ces messages y sont traités. Si vous y consentez expressément lors de l\'inscription, nous ajoutons votre adresse à une liste de contacts par laquelle nous informons sur l\'association et sur les nouvelles fonctionnalités. Vous pouvez révoquer ce consentement à tout moment, via le lien de désabonnement figurant dans chacun de ces e-mails ou par message à verein@coltivio.ch.',
+          },
         ],
       },
       {
         heading: '3. Transmission à des tiers',
-        content: 'Vos données ne sont pas transmises à des tiers, ni vendues, ni utilisées à des fins publicitaires. Il n\'existe aucun service d\'analyse ou de suivi tiers dans l\'application. Pour le site web, les statistiques sans cookies décrites au point 2 s\'appliquent.',
+        content: 'Nous ne vendons pas vos données et ne les transmettons pas à des tiers à des fins publicitaires. Ne sont transmises que les données nécessaires au fonctionnement de l\'application, et uniquement à des sous-traitants contractuellement liés à nos instructions: Supabase pour l\'hébergement et la base de données, Stripe pour les paiements, Brevo pour l\'envoi des e-mails. Il n\'existe aucun service d\'analyse ou de suivi tiers dans l\'application. Pour le site web, les statistiques sans cookies décrites au point 2 s\'appliquent.',
       },
       {
         heading: '4. Hébergement',
@@ -149,11 +157,15 @@ export const privacyContent: Record<Locale, PrivacyContent> = {
             title: 'Statistiche del sito',
             content: 'Su coltivio.ch utilizziamo Cloudflare Web Analytics per sapere quante volte viene consultata ogni pagina. Il servizio funziona senza cookie, non memorizza indirizzi IP e non crea profili su più dispositivi. Non è quindi possibile riconoscere un singolo visitatore. Nulla di tutto ciò viene utilizzato nell\'app o nel portale web.',
           },
+          {
+            title: 'Comunicazioni via e-mail e informazioni sull\'associazione',
+            content: 'Inviamo e-mail legate al vostro account, ad esempio per confermare il vostro indirizzo, riguardo alla vostra iscrizione o a un invito su un\'azienda. A tal fine ci avvaliamo del servizio di invio Brevo (sede in Francia) in qualità di responsabile del trattamento; il vostro indirizzo e-mail e il contenuto di questi messaggi vengono elaborati presso di esso. Se al momento della registrazione acconsentite espressamente, aggiungiamo il vostro indirizzo a un elenco di contatti tramite il quale informiamo sull\'associazione e sulle nuove funzioni. Potete revocare questo consenso in qualsiasi momento, tramite il link di disiscrizione presente in ognuna di queste e-mail oppure scrivendo a verein@coltivio.ch.',
+          },
         ],
       },
       {
         heading: '3. Trasmissione a terzi',
-        content: 'I vostri dati non vengono trasmessi a terzi, venduti né utilizzati a fini pubblicitari. Nell\'app non sono presenti servizi di analisi o tracciamento di terze parti. Per il sito web valgono le statistiche senza cookie descritte al punto 2.',
+        content: 'Non vendiamo i vostri dati e non li trasmettiamo a terzi a fini pubblicitari. Viene trasmesso solo quanto necessario al funzionamento dell\'applicazione, ed esclusivamente a responsabili del trattamento vincolati contrattualmente alle nostre istruzioni: Supabase per hosting e banca dati, Stripe per i pagamenti, Brevo per l\'invio delle e-mail. Nell\'app non sono presenti servizi di analisi o tracciamento di terze parti. Per il sito web valgono le statistiche senza cookie descritte al punto 2.',
       },
       {
         heading: '4. Hosting',
@@ -205,11 +217,15 @@ export const privacyContent: Record<Locale, PrivacyContent> = {
             title: 'Website statistics',
             content: 'On coltivio.ch we use Cloudflare Web Analytics to see how often each page is opened. The service works without cookies, stores no IP addresses and builds no profile across devices, so it cannot recognise an individual visitor. None of this is used in the app or the web portal.',
           },
+          {
+            title: 'Email Communication and Association Information',
+            content: 'We send emails relating to your account, for example to confirm your address, about your membership or about an invitation to a farm. For this we use the sending service Brevo (based in France) as a processor; your email address and the content of these messages are processed there. If you explicitly consent during registration, we additionally add your address to a contact list we use to share news about the association and about new features. You can withdraw this consent at any time, through the unsubscribe link in each such email or by writing to verein@coltivio.ch.',
+          },
         ],
       },
       {
         heading: '3. Sharing with Third Parties',
-        content: 'Your data is not shared with third parties, sold, or used for advertising purposes. There are no third-party analytics or tracking services in the app. For the website, the cookieless statistics described under point 2 apply.',
+        content: 'We do not sell your data and do not pass it on to third parties for advertising. Only what is needed to run the application is shared, and only with processors contractually bound to our instructions: Supabase for hosting and the database, Stripe for payments, Brevo for sending emails. There are no third-party analytics or tracking services in the app. For the website, the cookieless statistics described under point 2 apply.',
       },
       {
         heading: '4. Hosting',

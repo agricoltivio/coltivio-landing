@@ -1,0 +1,52 @@
+---
+/**
+ * The organic edge the brand uses to hand one section over to the next: a
+ * single curve, low on the left, sweeping up to the right, echoing the contour
+ * arcs in Lineart.astro.
+ *
+ * It is always placed *inside* a section, pinned to one of its edges, and
+ * filled with the flat ground of the neighbour on that side. Doing it the other
+ * way round, a divider in the flow carrying the gradient, gives every band its
+ * own gradient box and a visible seam where the two meet.
+ *
+ * `preserveAspectRatio="none"` lets the curve stretch to any viewport width;
+ * the shape is decorative, so the distortion is the point.
+ */
+interface Props {
+  /** Ground of the neighbouring section. Any CSS colour. */
+  fill?: string
+  /** `top` mirrors the curve so it covers the section's upper edge instead. */
+  edge?: 'bottom' | 'top'
+  /** Mirrors left to right, so two dividers do not trace the identical line. */
+  flip?: boolean
+  class?: string
+}
+
+const {
+  fill = 'var(--background)',
+  edge = 'bottom',
+  flip = false,
+  class: className = '',
+} = Astro.props
+
+// viewBox units. Mirroring in place means translating by the full extent first.
+const sx = flip ? -1 : 1
+const sy = edge === 'top' ? -1 : 1
+const transform =
+  sx === 1 && sy === 1
+    ? undefined
+    : `translate(${sx === -1 ? 1440 : 0},${sy === -1 ? 320 : 0}) scale(${sx},${sy})`
+---
+
+<svg
+  viewBox="0 0 1440 320"
+  preserveAspectRatio="none"
+  class:list={['block w-full', className]}
+  aria-hidden="true"
+>
+  <path
+    fill={fill}
+    transform={transform}
+    d="M0,181 C96,197 192,208 288,207 C480,205 576,166 720,138 C900,103 1020,74 1152,54 C1248,39 1344,32 1440,28 L1440,320 L0,320 Z"
+  />
+</svg>

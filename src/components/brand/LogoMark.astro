@@ -1,0 +1,65 @@
+---
+/**
+ * The leaf mark on its own, for the places the full lockup is too wide: the
+ * footer strip, the splash panel in the hero mockup, and the hero watermark.
+ * Same geometry as Logo.astro, cropped to the mark's own bounds.
+ *
+ * Colour comes from `--logo-mark`, which inherits, so a wrapper can set it
+ * without anything being threaded through here.
+ */
+interface Props {
+  /**
+   * Shade each bar along its own length instead of filling it flat. At
+   * watermark size a flat fill reads as a sticker; the sweep gives the bars
+   * enough form to sit behind the gradient. Ends of the ramp come from
+   * `--logo-mark` and `--logo-mark-to`.
+   */
+  shaded?: boolean
+  class?: string
+}
+
+const { shaded = false, class: className = 'h-8 w-8' } = Astro.props
+
+// The gradient is per-bar, not per-mark: `objectBoundingBox` resolves against
+// each rect's own box, and each rect carries a 45 degree rotation, so the ramp
+// runs along the bar rather than down the page.
+const gradientId = `mark-${crypto.randomUUID().slice(0, 8)}`
+const fill = shaded ? `url(#${gradientId})` : 'var(--logo-mark, #82d59d)'
+
+const BARS = [
+  { x: 14.91, y: 42.54, transform: 'translate(-25.84 80.41) rotate(-45)' },
+  { x: 12.73, y: 148.08, transform: 'translate(-101.1 109.78) rotate(-45)' },
+  { x: 169.94, y: 197.58, transform: 'translate(-90.06 235.45) rotate(-45)' },
+  { x: 64.41, y: 199.76, transform: 'translate(-122.51 161.46) rotate(-45)' },
+]
+---
+
+<svg viewBox="0 0 320 300" class:list={className} aria-hidden="true">
+  {
+    shaded && (
+      <defs>
+        <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="var(--logo-mark, #82d59d)" />
+          <stop
+            offset="100%"
+            stop-color="var(--logo-mark-to, transparent)"
+          />
+        </linearGradient>
+      </defs>
+    )
+  }
+  {
+    BARS.map((bar) => (
+      <rect
+        fill={fill}
+        x={bar.x}
+        y={bar.y}
+        width="138.48"
+        height="57.7"
+        rx="19.23"
+        ry="19.23"
+        transform={bar.transform}
+      />
+    ))
+  }
+</svg>

@@ -22,6 +22,8 @@ interface Props {
   thankYouBody: string;
   thankYouClose: string;
   closeLabel: string;
+  /** Restyles the control colours for a gradient band. */
+  onDark?: boolean;
 }
 
 export function DonationForm({
@@ -40,6 +42,7 @@ export function DonationForm({
   thankYouBody,
   thankYouClose,
   closeLabel,
+  onDark = false,
 }: Props) {
   const [selectedAmount, setSelectedAmount] = useState<number | null>(25);
   const [customAmount, setCustomAmount] = useState("");
@@ -163,7 +166,13 @@ export function DonationForm({
               }}
               aria-pressed={selectedAmount === amount && customAmount === ""}
               className={buttonClass(
-                selectedAmount === amount && customAmount === "" ? "primary" : "secondary",
+                selectedAmount === amount && customAmount === ""
+                  ? onDark
+                    ? "onBrand"
+                    : "primary"
+                  : onDark
+                    ? "onBrandGlass"
+                    : "secondary",
                 "sm",
               )}
             >
@@ -214,7 +223,7 @@ export function DonationForm({
       <button
         type="submit"
         disabled={isLoading}
-        className={buttonClass("primary")}
+        className={buttonClass(onDark ? "onBrandAccent" : "primary")}
       >
         {isLoading
           ? processing

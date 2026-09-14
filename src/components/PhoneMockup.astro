@@ -1,32 +1,42 @@
 ---
 import { Image } from 'astro:assets'
 
+/**
+ * A screenshot in a device frame. The frame is drawn, not photographed: a dark
+ * rim, a hairline highlight, and the screen clipped to a smaller radius so the
+ * corners nest instead of running parallel.
+ *
+ * The component owns the frame and nothing else. Width, rotation and placement
+ * come from `class`, because the hero stacks two of these and the feature rows
+ * centre a single one, and those are not the same layout problem.
+ */
 interface Props {
   /** Imported from src/assets so Astro can resize and convert it. */
   src: ImageMetadata
   alt: string
-  /** Rotation applied to the device frame, e.g. "md:-rotate-3". */
-  rotate?: string
-  /** Layout and visibility classes for the wrapper, e.g. "hidden lg:flex". */
-  wrapper?: string
-  /** Hero mockup is the LCP element and must not be lazy. */
+  /** Sizing, rotation and positioning for the frame itself. */
+  class?: string
+  /** The hero mockup is the LCP element and must not be lazy. */
   eager?: boolean
 }
 
-const { src, alt, rotate = '', wrapper = 'flex', eager = false } = Astro.props
+const { src, alt, class: className = 'w-52', eager = false } = Astro.props
 
-// The frame is w-52 (208px). Three times that covers every sensible DPR.
-const RENDER_WIDTH = 624
+// The widest frame on the page is 272px. Three times that covers every sensible
+// DPR, and one rendered width is cheaper than one per call site.
+const RENDER_WIDTH = 816
 ---
 
-<div class:list={['justify-center', wrapper]}>
-  <div
-    class:list={[
-      rotate,
-      'relative w-52 rounded-[2.5rem] border-4 border-foreground/15 shadow-2xl overflow-hidden aspect-[9/19] bg-muted',
-    ]}
-  >
-    <div class="absolute top-3 left-1/2 -translate-x-1/2 w-16 h-4 rounded-full bg-foreground/10 z-10"></div>
+<div
+  class:list={[
+    className,
+    // No `position` here on purpose. The caller positions the frame, and a
+    // `relative` in this list would quietly win over an `absolute` passed in:
+    // Tailwind emits position utilities in a fixed order, not in class order.
+    'aspect-[9/19.5] rounded-[2.6rem] bg-brand-ink p-[3px] shadow-2xl shadow-brand-ink/30 ring-1 ring-white/15',
+  ]}
+>
+  <div class="relative h-full w-full overflow-hidden rounded-[2.4rem] bg-muted">
     <Image
       src={src}
       alt={alt}
@@ -35,5 +45,15 @@ const RENDER_WIDTH = 624
       fetchpriority={eager ? 'high' : 'auto'}
       class="absolute inset-0 h-full w-full object-cover"
     />
+    {/* Dynamic island and home indicator, so the frame reads as a phone
+        without shipping a photograph of one. */}
+    <div
+      class="absolute top-[1.6%] left-1/2 h-[2.6%] w-[26%] -translate-x-1/2 rounded-full bg-brand-ink"
+    >
+    </div>
+    <div
+      class="absolute bottom-[1%] left-1/2 h-[0.5%] w-[32%] -translate-x-1/2 rounded-full bg-brand-ink/35"
+    >
+    </div>
   </div>
 </div>
