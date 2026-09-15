@@ -1,0 +1,75 @@
+---
+import type { Translations } from '@/i18n/translations'
+import type { Locale } from '@/i18n/translations'
+import { cantonSources, dataSourcesContent, PARCELS_UPDATED_AT, RETRIEVED_AT } from '@/i18n/data-sources'
+
+interface Props {
+  tr: Translations
+  lang: string
+}
+
+const { tr, lang } = Astro.props
+const homeUrl = lang === 'de' ? '/' : `/${lang}`
+const locale = (lang in dataSourcesContent ? lang : 'de') as Locale
+const c = dataSourcesContent[locale]
+---
+
+<div class="min-h-dvh bg-background text-foreground">
+  <main id="main" class="container mx-auto max-w-2xl px-4 py-12 space-y-8">
+    <a href={homeUrl} class="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M19 12H5M12 5l-7 7 7 7"/>
+      </svg>
+      {tr.dataSources.back}
+    </a>
+
+    <div class="space-y-6">
+      <h1 class="text-3xl font-bold">{tr.dataSources.title}</h1>
+      <p class="text-muted-foreground">{c.intro}</p>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-semibold">{c.basemapTitle}</h2>
+        <ul class="list-disc pl-5 space-y-1 text-muted-foreground">
+          {c.basemapItems.map((item) => <li>{item}</li>)}
+        </ul>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold">{c.plotsTitle}</h2>
+        <p class="text-muted-foreground">{c.plotsIntro.replace('{date}', RETRIEVED_AT)}</p>
+        <ul class="divide-y divide-border border-y border-border">
+          {cantonSources.map((canton) => (
+            <li class="py-3 space-y-1">
+              <p>
+                <strong class="font-semibold">{canton.code}</strong>
+                <span class="ml-2">{canton.attribution}</span>
+              </p>
+              <p class="text-sm text-muted-foreground">
+                {c.usageAreas}: {canton.usageAreasUpdatedAt}, {c.managementUnits}: {canton.managementUnitsUpdatedAt}
+              </p>
+              {canton.links.length > 0 && (
+                <p class="text-sm">
+                  {canton.links.map((link, index) => (
+                    <>{index > 0 && ', '}<a href={link.href} class="underline hover:no-underline" rel="noopener" target="_blank">{c.linkLabels[link.kind]}</a></>
+                  ))}
+                </p>
+              )}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-semibold">{c.parcelsTitle}</h2>
+        <p class="text-muted-foreground">{c.parcelsBody.replace('{date}', PARCELS_UPDATED_AT)}</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-semibold">{c.notesTitle}</h2>
+        <ul class="list-disc pl-5 space-y-1 text-muted-foreground">
+          {c.notes.map((note) => <li>{note}</li>)}
+        </ul>
+      </section>
+    </div>
+  </main>
+</div>
