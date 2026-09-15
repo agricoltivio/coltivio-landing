@@ -11,10 +11,12 @@
  * beacon reports a page view, the URL already carries the detected platform, so a scan
  * shows up as /go/bioaktuell/ios and campaign plus platform land in one hit. Cloudflare
  * Web Analytics has no custom events, this is how we get the split.
+ *
+ * Every platform then lands on the landing page rather than a store, so readers see what
+ * Coltivio is before they install it. The page carries both store CTAs.
  */
 import Base from '@/layouts/Base.astro'
 import { getTranslations, supportedLocales } from '@/i18n/translations'
-import { IOS_DOWNLOAD_URL, PLAY_STORE_URL } from '@/lib/links'
 import Logo from '@/components/brand/Logo.astro'
 
 const lang = 'de'
@@ -25,26 +27,18 @@ const tr = getTranslations(lang)
 const copy = Object.fromEntries(
   supportedLocales.map((locale) => {
     const t = getTranslations(locale)
-    return [locale, { title: t.download.title, redirecting: t.download.redirecting }]
+    return [locale, { title: t.redirect.title, redirecting: t.redirect.redirecting }]
   }),
 )
-
-const targets = {
-  ios: IOS_DOWNLOAD_URL,
-  android: PLAY_STORE_URL,
-  // Desktop and anything unrecognised go to the landing page. It already carries both
-  // store CTAs, so there is no second place where store links could drift out of sync.
-  other: '/',
-}
 ---
 
 <Base
   lang={lang}
-  title={`${tr.download.title} | Coltivio`}
-  description={tr.download.redirecting}
+  title={`${tr.redirect.title} | Coltivio`}
+  description={tr.redirect.redirecting}
   noindex
 >
-  <script is:inline define:vars={{ copy, targets }}>
+  <script is:inline define:vars={{ copy }}>
     ;(function () {
       var ua = navigator.userAgent
       var isIOS =
@@ -72,7 +66,7 @@ const targets = {
       // The delay is not decoration: it gives the deferred beacon time to fire before
       // the document is torn down by the navigation.
       setTimeout(function () {
-        location.replace(targets[platform])
+        location.replace('/')
       }, 1200)
     })()
   </script>
@@ -83,7 +77,7 @@ const targets = {
   <main id="main" class="flex min-h-svh flex-col items-center justify-center gap-6 px-6 text-center">
     <Logo class="h-12 w-auto text-primary" />
     <p id="redirect-message" class="text-muted-foreground" role="status" aria-live="polite">
-      {tr.download.redirecting}
+      {tr.redirect.redirecting}
     </p>
   </main>
 </Base>

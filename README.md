@@ -67,9 +67,9 @@ article. Astro builds a single `src/pages/go.astro`, and the rewrite in `public/
 it for every ref, so a new campaign needs a new QR code and no code change.
 
 The page detects the platform in a synchronous head script, rewrites the URL to
-`/go/<ref>/<platform>` via `history.replaceState`, and only then redirects: iOS to the store link
-in `src/lib/links.ts`, Android to Google Play, everything else to the landing page. The short delay
-before the redirect is deliberate, it gives the analytics beacon time to fire.
+`/go/<ref>/<platform>` via `history.replaceState`, and only then redirects to the landing page,
+on every platform. The short delay before the redirect is deliberate, it gives the analytics beacon
+time to fire.
 
 Analytics is Cloudflare Web Analytics, enabled per project under **Workers & Pages** > the project >
 **Metrics** > **Enable**. Cloudflare injects the beacon into the HTML itself, which is why there is

@@ -99,7 +99,7 @@ export interface Translations {
   dataDeletion: { title: string; back: string }
   footer: { tagline: string; github: string; appStore: string; playStore: string }
   a11y: { menu: string; openMenu: string; closeMenu: string; close: string; skipToContent: string }
-  download: { title: string; redirecting: string }
+  redirect: { title: string; redirecting: string }
 }
 
 const translations: Record<Locale, Translations> = {
@@ -203,7 +203,7 @@ const translations: Record<Locale, Translations> = {
     dataDeletion: { title: 'Datenlöschung', back: 'Zurück' },
     footer: { tagline: 'Open-Source-Hofverwaltung', github: 'GitHub', appStore: 'App Store', playStore: 'Google Play' },
     a11y: { menu: 'Navigation', openMenu: 'Menü öffnen', closeMenu: 'Menü schliessen', close: 'Schliessen', skipToContent: 'Zum Inhalt springen' },
-    download: { title: 'Coltivio herunterladen', redirecting: 'Einen Moment, wir leiten Sie weiter.' },
+    redirect: { title: 'Weiterleitung', redirecting: 'Einen Moment, du wirst weitergeleitet.' },
   },
 
   fr: {
@@ -306,7 +306,7 @@ const translations: Record<Locale, Translations> = {
     dataDeletion: { title: 'Suppression des données', back: 'Retour' },
     footer: { tagline: 'Gestion agricole open source', github: 'GitHub', appStore: 'App Store', playStore: 'Google Play' },
     a11y: { menu: 'Navigation', openMenu: 'Ouvrir le menu', closeMenu: 'Fermer le menu', close: 'Fermer', skipToContent: 'Aller au contenu' },
-    download: { title: 'Télécharger Coltivio', redirecting: 'Un instant, nous vous redirigeons.' },
+    redirect: { title: 'Redirection', redirecting: 'Un instant, vous allez être redirigé.' },
   },
 
   it: {
@@ -409,7 +409,7 @@ const translations: Record<Locale, Translations> = {
     dataDeletion: { title: 'Cancellazione dei dati', back: 'Indietro' },
     footer: { tagline: 'Gestione agricola open source', github: 'GitHub', appStore: 'App Store', playStore: 'Google Play' },
     a11y: { menu: 'Navigazione', openMenu: 'Apri il menu', closeMenu: 'Chiudi il menu', close: 'Chiudi', skipToContent: 'Vai al contenuto' },
-    download: { title: 'Scarica Coltivio', redirecting: 'Un momento, vi stiamo reindirizzando.' },
+    redirect: { title: 'Reindirizzamento', redirecting: 'Un momento, ti stiamo reindirizzando.' },
   },
 
   en: {
@@ -512,7 +512,7 @@ const translations: Record<Locale, Translations> = {
     dataDeletion: { title: 'Data Deletion', back: 'Back' },
     footer: { tagline: 'Open source farm management', github: 'GitHub', appStore: 'App Store', playStore: 'Google Play' },
     a11y: { menu: 'Navigation', openMenu: 'Open menu', closeMenu: 'Close menu', close: 'Close', skipToContent: 'Skip to content' },
-    download: { title: 'Download Coltivio', redirecting: 'One moment, redirecting you.' },
+    redirect: { title: 'Redirecting', redirecting: 'One moment, redirecting you.' },
   },
 }
 
