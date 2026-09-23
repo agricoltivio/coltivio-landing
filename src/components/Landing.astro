@@ -13,8 +13,8 @@ import Lineart from './brand/Lineart.astro'
 import Wave from './brand/Wave.astro'
 import StoreBadge from './brand/StoreBadge.astro'
 import GithubButton from './brand/GithubButton.astro'
-import fieldworkDevice from '@/assets/screenshots/fieldwork-device.png'
-import animalsDevice from '@/assets/screenshots/animals-device.png'
+import fieldworkDevice from '@/assets/screenshots/crop_rotations.png'
+import animalsDevice from '@/assets/screenshots/outdoor_journal.png'
 import webappShot from '@/assets/screenshots/webapp-laptop.png'
 
 interface Props {
@@ -46,9 +46,10 @@ const CARD = 'rounded-lg border border-brand-sage/40 bg-card text-card-foregroun
 // The same card on a gradient band, where a white block would punch a hole.
 const CARD_ON_BRAND = 'rounded-lg border border-white/25 bg-white/10 p-6 backdrop-blur-sm'
 const EYEBROW = 'text-xs font-semibold uppercase tracking-widest text-primary'
-// The feature rows carry the same rendered devices as the hero, laid out at the
-// same 288px, so 844 is the source resolution and nothing is resampled twice.
-const DEVICE_RENDER_WIDTH = 844
+// The feature rows carry the same rendered devices as the hero's home screen,
+// laid out at the same 288px, so 1676 is the source resolution and nothing is
+// resampled twice.
+const DEVICE_RENDER_WIDTH = 1676
 const DEVICE = 'w-72 max-w-full drop-shadow-[0_6px_14px_rgb(0_0_0_/_0.25)]'
 
 const membershipBenefits = [
