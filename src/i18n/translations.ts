@@ -4,6 +4,7 @@ export interface Translations {
   nav: { openApp: string; appCta: string; features: string; webapp: string; membership: string; about: string }
   hero: { headline: string; splashTagline: string; sub: string; note: string; ctaIos: string; ctaAndroid: string; imageAlt: string }
   story: { headline: string; founders: string; problem: string; born: string }
+  press: { eyebrow: string; quote: string; role: string; source: string; articleLead: string; articleTitle: string; articleLink: string }
   features: { eyebrow: string; title: string }
   fieldwork: {
     title: string
@@ -73,6 +74,7 @@ export interface Translations {
     data: { q: string; a: string }
     devices: { q: string; a: string }
     exports: { q: string; a: string }
+    agate: { q: string; a: string }
     team: { q: string; a: string }
     who: { q: string; a: string }
   }
@@ -120,6 +122,15 @@ const translations: Record<Locale, Translations> = {
       founders: 'Curdin und Sarah, Bergbauer und Bergbäuerin, hatten täglich dasselbe Problem: zu viel zu dokumentieren, zu wenig Zeit und kein Programm, das zum Hofalltag passt.',
       problem: 'Die bestehende Software war kompliziert, oft nur am PC nutzbar und damit nicht praxistauglich. Was fehlte, war klar: eine einfache App fürs Handy, die im Stall und auf dem Feld funktioniert.',
       born: 'So entstand Coltivio: die Open-Source-App, die Betriebsdokumentation erleichtert und Zeit spart.',
+    },
+    press: {
+      eyebrow: 'Aus dem Magazin Bioaktuell',
+      quote: 'Es ist toll, dass diese App von Bauern für Bauern entwickelt wurde. Ein einfaches, kostenfreies Hilfsmittel, das Betriebe entlasten soll, ist ganz im Sinne von Bio Suisse.',
+      role: 'Co-Geschäftsführer Bio Suisse',
+      source: 'Bioaktuell 8/2026',
+      articleLead: 'Die ganze Geschichte im Artikel',
+      articleTitle: 'Feierabend statt Papierkram',
+      articleLink: 'Artikel lesen (PDF)',
     },
     features: { eyebrow: 'Dein Hof in der Hosentasche', title: 'Alles, was auf dem Hof dokumentiert werden muss, in einer App' },
     fieldwork: {
@@ -193,6 +204,7 @@ const translations: Record<Locale, Translations> = {
       data: { q: 'Wem gehören meine Daten?', a: 'Dir. Alle Daten liegen ausschliesslich auf Servern innerhalb der EU und unterliegen den strengen Vorgaben der DSGVO. Weil der Quellcode offen liegt, lässt sich jederzeit überprüfen, wie Coltivio damit umgeht.' },
       devices: { q: 'Auf welchen Geräten läuft Coltivio?', a: 'Auf iPhone und Android, dazu die Web-App am Computer mit denselben Daten. Verfügbar auf Deutsch, Französisch, Italienisch und Englisch.' },
       exports: { q: 'Kann ich die Exporte für Kontrollen verwenden?', a: 'Ja. Den Feldkalender exportierst du als Excel-Datei. Für offizielle Tierkontrollen gibt es Behandlungsprotokoll, Bestandslisten und Auslaufjournal im exakt geforderten Format der Schweizer Behörden.' },
+      agate: { q: 'Gibt es eine Anbindung an Agate oder an Maschinen?', a: 'Noch nicht. Deine Flächen holt Coltivio über die Betriebsnummer aus den Geodaten der Kantone, den Tierbestand übernimmst du aus dem Tierlisten-Export der TVD. Eine Schnittstelle zu Agate, zu Lieferanten oder zur Maschinentechnik gibt es derzeit nicht. Was als Nächstes kommt, entscheiden die Mitglieder des Vereins mit.' },
       team: { q: 'Können mehrere Personen denselben Betrieb führen?', a: 'Ja. Lade andere Personen zu deinem Betrieb ein und vergib Lese- und Schreibrechte pro Funktion. Betriebsgemeinschaften können mehrere Betriebe anlegen oder ihnen beitreten.' },
       who: { q: 'Wer steht hinter Coltivio?', a: 'Der Verein AgriColtivio, ein gemeinnütziger Verein nach Schweizer Recht mit Sitz in Braggio im Calancatal. Er ist politisch unabhängig, verfolgt keine kommerziellen Eigeninteressen und legt seine Finanzen jedes Jahr den Mitgliedern vor.' },
     },
@@ -224,6 +236,15 @@ const translations: Record<Locale, Translations> = {
       founders: "Curdin et Sarah, agriculteurs de montagne, faisaient face chaque jour au même défi : trop de documentation, trop peu de temps, et aucun outil numérique vraiment adapté au quotidien à la ferme.",
       problem: "Les logiciels existants étaient compliqués, souvent utilisables uniquement sur PC, peu pratiques pour le quotidien à la ferme. La réponse était évidente : il fallait créer une app simple, mobile et efficace.",
       born: "C'est ainsi qu'est né Coltivio : l'app open source qui simplifie la documentation agricole, fait gagner du temps et connecte les agriculteurs.",
+    },
+    press: {
+      eyebrow: 'Dans le magazine Bioactualités',
+      quote: "C'est super que cette appli ait été développée par des paysans pour des paysans. Un outil de travail simple et gratuit qui peut soulager les productrices et producteurs va tout à fait dans le sens de Bio Suisse.",
+      role: 'codirecteur de Bio Suisse',
+      source: 'Bioactualités 8/2026',
+      articleLead: "Toute l'histoire dans l'article",
+      articleTitle: 'Soirée libre au lieu de paperasserie',
+      articleLink: "Lire l'article (PDF)",
     },
     features: { eyebrow: 'Votre exploitation dans votre poche', title: "Tout ce qui doit être documenté à la ferme, dans une seule app" },
     fieldwork: {
@@ -297,6 +318,7 @@ const translations: Record<Locale, Translations> = {
       data: { q: 'À qui appartiennent mes données ?', a: "À toi. Toutes les données sont stockées exclusivement sur des serveurs au sein de l'UE et soumises aux strictes réglementations RGPD. Le code source étant public, chacun peut vérifier à tout moment comment Coltivio les traite." },
       devices: { q: 'Sur quels appareils Coltivio fonctionne-t-il ?', a: 'Sur iPhone et Android, plus la Web App sur ordinateur avec les mêmes données. Disponible en allemand, français, italien et anglais.' },
       exports: { q: 'Puis-je utiliser les exports pour les contrôles ?', a: "Oui. Le calendrier des champs s'exporte en fichier Excel. Pour les contrôles officiels du cheptel, il y a l'historique des traitements, les listes de troupeaux et le journal de pâturage dans le format exact exigé par les autorités suisses." },
+      agate: { q: 'Y a-t-il un raccordement à Agate ou aux machines ?', a: "Pas encore. Coltivio récupère tes surfaces à partir des géodonnées des cantons via le numéro d'exploitation, et tu importes ton cheptel depuis l'export des listes animaux de TVD. Il n'y a pour l'instant pas d'interface avec Agate, les fournisseurs ou les machines agricoles. Les membres de l'association décident ensemble de la suite." },
       team: { q: 'Plusieurs personnes peuvent-elles gérer la même exploitation ?', a: "Oui. Invitez d'autres personnes dans votre exploitation et attribuez des droits de lecture et d'écriture par fonctionnalité. Les communautés d'exploitation peuvent créer plusieurs exploitations ou les rejoindre." },
       who: { q: 'Qui est derrière Coltivio ?', a: "L'association AgriColtivio, une association à but non lucratif de droit suisse dont le siège est à Braggio, dans le val Calanca. Elle est politiquement indépendante, ne poursuit aucun intérêt commercial propre et présente ses comptes chaque année à ses membres." },
     },
@@ -328,6 +350,15 @@ const translations: Record<Locale, Translations> = {
       founders: "Curdin e Sarah, agricoltori di montagna, affrontavano ogni giorno la stessa sfida: troppa documentazione, troppo poco tempo e nessuno strumento digitale adatto alla vita quotidiana in azienda.",
       problem: "Il software esistente era complicato, spesso utilizzabile solo su PC, poco pratico per la vita quotidiana in fattoria. La soluzione era evidente: bisognava costruire un'app semplice, mobile ed efficiente.",
       born: "Così è nato Coltivio: l'app open source che semplifica la documentazione agricola, fa risparmiare tempo e mette in rete gli agricoltori.",
+    },
+    press: {
+      eyebrow: 'Dalla rivista Bioattualità',
+      quote: 'È fantastico che questa applicazione sia stata sviluppata da contadini per contadini. Uno strumento semplice e gratuito per sgravare le aziende è assolutamente in linea con i principi di Bio Suisse.',
+      role: 'codirettore di Bio Suisse',
+      source: 'Bioattualità 8/2026',
+      articleLead: "Tutta la storia nell'articolo",
+      articleTitle: 'Tempo libero anziché burocrazia',
+      articleLink: "Leggi l'articolo (PDF)",
     },
     features: { eyebrow: 'Il tuo podere in tasca', title: "Tutto quello che va documentato in azienda, in un'unica app" },
     fieldwork: {
@@ -401,6 +432,7 @@ const translations: Record<Locale, Translations> = {
       data: { q: 'A chi appartengono i miei dati?', a: "A te. Tutti i dati sono archiviati esclusivamente su server all'interno dell'UE e soggetti alle rigide normative GDPR. Poiché il codice sorgente è pubblico, si può verificare in ogni momento come Coltivio li tratta." },
       devices: { q: 'Su quali dispositivi funziona Coltivio?', a: 'Su iPhone e Android, più la Web App al computer con gli stessi dati. Disponibile in tedesco, francese, italiano e inglese.' },
       exports: { q: 'Posso usare gli export per i controlli?', a: 'Sì. Il calendario dei campi si esporta come file Excel. Per i controlli ufficiali del bestiame ci sono storico trattamenti, liste di mandria e giornale di pascolo nel formato esatto richiesto dalle autorità svizzere.' },
+      agate: { q: 'Esiste un collegamento con Agate o con le macchine?', a: "Non ancora. Coltivio rileva le tue superfici dai geodati dei Cantoni tramite il numero aziendale, e il bestiame lo importi dall'esportazione delle liste animali da TVD. Al momento non esiste un'interfaccia con Agate, con i fornitori o con le macchine agricole. I soci dell'associazione decidono insieme cosa viene dopo." },
       team: { q: 'Più persone possono gestire la stessa azienda?', a: 'Sì. Invita altre persone nella tua azienda e assegna permessi di lettura e scrittura per singola funzionalità. Le comunità aziendali possono creare più aziende o unirsi a esse.' },
       who: { q: 'Chi c\'è dietro Coltivio?', a: "L'associazione AgriColtivio, un'associazione senza scopo di lucro di diritto svizzero con sede a Braggio, in Val Calanca. È politicamente indipendente, non persegue interessi commerciali propri e presenta ogni anno i suoi conti ai soci." },
     },
@@ -432,6 +464,15 @@ const translations: Record<Locale, Translations> = {
       founders: 'Curdin and Sarah, mountain farmers, faced the same challenge every day: too much documentation, too little time, and no digital tool that actually fit daily life on the farm.',
       problem: 'Existing software was complicated, mostly desktop-only, not practical for daily life on the farm. The answer was obvious: a simple, mobile, and efficient app had to be built.',
       born: "That's how Coltivio came to be: the open-source app that makes farm documentation easier, saves time, and connects farmers.",
+    },
+    press: {
+      eyebrow: 'In the magazine Bioaktuell',
+      quote: 'It is great that this app was developed by farmers for farmers. A simple, free tool that takes work off farms is exactly in the spirit of Bio Suisse.',
+      role: 'Co-Managing Director, Bio Suisse',
+      source: 'Bioaktuell 8/2026',
+      articleLead: 'The whole story in the article',
+      articleTitle: 'Feierabend statt Papierkram',
+      articleLink: 'Read the article (PDF, in German)',
     },
     features: { eyebrow: 'Your farm in your pocket', title: 'Everything a farm has to document, in one app' },
     fieldwork: {
@@ -505,6 +546,7 @@ const translations: Record<Locale, Translations> = {
       data: { q: 'Who owns my data?', a: 'You do. All data is stored exclusively on servers within the EU and subject to strict GDPR regulations. Because the source code is public, anyone can check at any time how Coltivio handles it.' },
       devices: { q: 'What devices does Coltivio run on?', a: 'On iPhone and Android, plus the web app on a computer with the same data. Available in German, French, Italian and English.' },
       exports: { q: 'Can I use the exports for inspections?', a: 'Yes. The field calendar exports as an Excel file. For official livestock inspections there are treatment records, herd lists, and the turnout journal formatted exactly as Swiss authorities require.' },
+      agate: { q: 'Is there a connection to Agate or to machinery?', a: 'Not yet. Coltivio pulls your plots from the cantonal geodata using your farm number, and you import your livestock from a TVD herd list export. There is currently no interface to Agate, to suppliers or to farm machinery. The members of the association have a say in what comes next.' },
       team: { q: 'Can several people run the same farm?', a: 'Yes. Invite others to your farm and assign feature-specific read and write permissions. Joint farming operations can create or join multiple farms.' },
       who: { q: 'Who is behind Coltivio?', a: 'The AgriColtivio association, a non-profit association under Swiss law based in Braggio in the Calanca valley. It is politically independent, pursues no commercial interests of its own, and presents its accounts to the members every year.' },
     },

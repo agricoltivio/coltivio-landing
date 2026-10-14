@@ -52,6 +52,11 @@ association. The newsletter lives in the footer, not in a section of its own: ne
 band it read as a wall of controls at the point where the page should be easiest to leave.
 The legal pages have no header, which is why the header may stay dark at all times.
 
+The Bioaktuell press block (the Bio Suisse quote and the article PDF) sits inside the problem
+section, because the article tells the same origin story and one mention on the page is enough.
+The PDFs live in `src/assets/press/`, one per magazine edition, mapped by locale in
+`src/lib/press.ts`; English links the German one.
+
 **Brand system (`src/components/brand/`):** the 2026 kit, inlined as vectors rather than shipped
 as image files, so everything inherits colour, scales without blurring and costs no extra request.
 - `Logo.astro` and `LogoMark.astro`, the lockup and the leaf mark. The wordmark follows
@@ -183,7 +188,7 @@ No em dashes, no en dashes, no middots in copy. Use a comma, a colon, or a new s
 applies to all four locales and to the legal texts, except `statuten.ts`. Check with:
 
 ```sh
-grep -rn "—\|–\|·" src/ public/ --exclude=statuten.ts
+grep -rnI "—\|–\|·" src/ public/ --exclude=statuten.ts
 ```
 
 The price is not the argument. "kostenlos" and "gratis" do not belong in the headline, the
