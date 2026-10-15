@@ -94,6 +94,7 @@ export interface Translations {
     thankYouClose: string
   }
   newsletter: { title: string; sub: string; label: string; placeholder: string; cta: string; success: string; error: string; captcha: string }
+  newsletterOptIn: { title: string; intro: string; emailNote: string; cta: string }
   imprint: { title: string; back: string }
   privacy: { title: string; back: string }
   dataDeletion: { title: string; back: string }
@@ -199,6 +200,7 @@ const translations: Record<Locale, Translations> = {
     oss: { statutenLink: 'Vereinsstatuten lesen' },
     donate: { title: 'Kein Mitglied, aber unterstützen?', sub: 'Jeder Beitrag zählt und hilft uns, eine unabhängige Alternative aufzubauen, bei der die Interessen der Bäuerinnen und Bauern im Vordergrund stehen.', amountLabel: 'Betrag (CHF)', customPlaceholder: 'Anderen Betrag eingeben', emailLabel: 'Deine E-Mail-Adresse', emailPlaceholder: 'deine@email.ch', cta: 'Jetzt spenden', processing: 'Weiterleitung …', error: 'Etwas ist schiefgelaufen. Bitte versuche es erneut.', errorAmount: 'Mindestbetrag: CHF 1', errorEmail: 'Bitte eine gültige E-Mail-Adresse eingeben.', thankYouTitle: 'Danke für deine Unterstützung!', thankYouBody: 'Danke, dass du AgriColtivio unterstützt. Du erhältst in Kürze eine E-Mail mit einer Spendenbestätigung.', thankYouClose: 'Schliessen' },
     newsletter: { title: 'Newsletter', sub: 'Wir informieren dich über den Verein AgriColtivio und über neue Funktionen. Abmelden kannst du dich jederzeit.', label: 'E-Mail-Adresse', placeholder: 'deine@email.ch', cta: 'Anmelden', success: 'Danke für deine Anmeldung! Wir halten dich auf dem Laufenden.', error: 'Etwas ist schiefgelaufen. Bitte versuche es erneut.', captcha: 'Bitte bestätige zuerst die Sicherheitsabfrage.' },
+    newsletterOptIn: { title: 'Newsletter abonnieren', intro: 'Ein Klick, und du bist dabei. Wir informieren dich über den Verein AgriColtivio und über neue Funktionen. Abmelden kannst du dich jederzeit.', emailNote: 'Stimmt die Adresse nicht, kannst du sie hier anpassen.', cta: 'Ja, Newsletter abonnieren' },
     imprint: { title: 'Impressum', back: 'Zurück' },
     privacy: { title: 'Datenschutzerklärung', back: 'Zurück' },
     dataDeletion: { title: 'Datenlöschung', back: 'Zurück' },
@@ -303,6 +305,7 @@ const translations: Record<Locale, Translations> = {
     oss: { statutenLink: "Lire les statuts de l'association" },
     donate: { title: 'Pas membre, mais envie de soutenir ?', sub: 'Chaque contribution compte et nous aide à développer Coltivio et à le garder ouvert à tous.', amountLabel: 'Montant (CHF)', customPlaceholder: 'Saisir un autre montant', emailLabel: 'Votre adresse e-mail', emailPlaceholder: 'votre@email.ch', cta: 'Faire un don', processing: 'Redirection...', error: "Une erreur s'est produite. Veuillez réessayer.", errorAmount: 'Montant minimum : CHF 1', errorEmail: 'Veuillez saisir une adresse e-mail valide.', thankYouTitle: 'Merci pour votre soutien !', thankYouBody: "Merci de soutenir AgriColtivio. Vous recevrez bientôt un e-mail de confirmation de don.", thankYouClose: 'Fermer' },
     newsletter: { title: 'Newsletter', sub: "Nous vous informons sur l'association AgriColtivio et sur les nouvelles fonctionnalités. Vous pouvez vous désabonner à tout moment.", label: 'Adresse e-mail', placeholder: 'votre@email.ch', cta: "S'inscrire", success: 'Merci pour votre inscription ! Nous vous tiendrons informé.', error: "Une erreur s'est produite. Veuillez réessayer.", captcha: "Veuillez d'abord valider le contrôle de sécurité." },
+    newsletterOptIn: { title: "S'abonner à la newsletter", intro: "Un clic et c'est fait. Nous vous informons sur l'association AgriColtivio et sur les nouvelles fonctionnalités. Vous pouvez vous désabonner à tout moment.", emailNote: "Si l'adresse n'est pas la bonne, vous pouvez la corriger ici.", cta: 'Oui, je m\'abonne' },
     imprint: { title: 'Mentions légales', back: 'Retour' },
     privacy: { title: 'Politique de confidentialité', back: 'Retour' },
     dataDeletion: { title: 'Suppression des données', back: 'Retour' },
@@ -407,6 +410,7 @@ const translations: Record<Locale, Translations> = {
     oss: { statutenLink: "Leggi lo statuto dell'associazione" },
     donate: { title: 'Non sei socio, ma vuoi sostenerci?', sub: 'Ogni contributo conta e ci aiuta a sviluppare Coltivio e a mantenerlo aperto a tutti.', amountLabel: 'Importo (CHF)', customPlaceholder: 'Inserisci un altro importo', emailLabel: 'Il tuo indirizzo e-mail', emailPlaceholder: 'tua@email.ch', cta: 'Dona ora', processing: 'Reindirizzamento...', error: 'Qualcosa è andato storto. Riprova.', errorAmount: 'Importo minimo: CHF 1', errorEmail: 'Inserisci un indirizzo e-mail valido.', thankYouTitle: 'Grazie per il tuo sostegno!', thankYouBody: 'Grazie per sostenere AgriColtivio. Riceverai a breve una e-mail di conferma della donazione.', thankYouClose: 'Chiudi' },
     newsletter: { title: 'Newsletter', sub: "Ti informiamo sull'associazione AgriColtivio e sulle nuove funzioni. Puoi disiscriverti in qualsiasi momento.", label: 'Indirizzo e-mail', placeholder: 'tua@email.ch', cta: 'Iscriviti', success: "Grazie per l'iscrizione! Ti terremo aggiornato.", error: 'Qualcosa è andato storto. Riprova.', captcha: 'Conferma prima il controllo di sicurezza.' },
+    newsletterOptIn: { title: 'Iscriviti alla newsletter', intro: "Un clic e sei dentro. Ti informiamo sull'associazione AgriColtivio e sulle nuove funzioni. Puoi disiscriverti in qualsiasi momento.", emailNote: "Se l'indirizzo non è corretto, puoi modificarlo qui.", cta: 'Sì, iscrivimi' },
     imprint: { title: 'Impronta', back: 'Indietro' },
     privacy: { title: 'Informativa sulla privacy', back: 'Indietro' },
     dataDeletion: { title: 'Cancellazione dei dati', back: 'Indietro' },
@@ -511,6 +515,7 @@ const translations: Record<Locale, Translations> = {
     oss: { statutenLink: 'Read the association statutes' },
     donate: { title: 'Not a member, but want to support us?', sub: 'Every contribution counts and helps us keep developing Coltivio and keep it open to everyone.', amountLabel: 'Amount (CHF)', customPlaceholder: 'Enter a custom amount', emailLabel: 'Your email address', emailPlaceholder: 'your@email.com', cta: 'Donate now', processing: 'Redirecting...', error: 'Something went wrong. Please try again.', errorAmount: 'Minimum amount: CHF 1', errorEmail: 'Please enter a valid email address.', thankYouTitle: 'Thank you for your support!', thankYouBody: 'Thank you for supporting AgriColtivio. You will receive an email with a donation confirmation shortly.', thankYouClose: 'Close' },
     newsletter: { title: 'Newsletter', sub: 'We keep you posted on the AgriColtivio association and on new features. You can unsubscribe at any time.', label: 'Email address', placeholder: 'your@email.com', cta: 'Subscribe', success: "Thanks for signing up! We'll keep you in the loop.", error: 'Something went wrong. Please try again.', captcha: 'Please complete the security check first.' },
+    newsletterOptIn: { title: 'Subscribe to the newsletter', intro: 'One click and you are in. We keep you posted on the AgriColtivio association and on new features. You can unsubscribe at any time.', emailNote: 'If the address is wrong, you can change it here.', cta: 'Yes, subscribe me' },
     imprint: { title: 'Imprint', back: 'Back' },
     privacy: { title: 'Privacy Policy', back: 'Back' },
     dataDeletion: { title: 'Data Deletion', back: 'Back' },

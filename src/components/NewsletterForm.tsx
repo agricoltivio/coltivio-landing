@@ -17,12 +17,34 @@ interface Props {
   successMsg: string
   errorMsg: string
   captchaMsg: string
+  /** Query parameter that prefills the address, for links out of an email. */
+  emailFromQuery?: string
+  /** QUELLE attribute in Brevo. The API writes `app` for app accounts. */
+  source?: 'landing' | 'app'
 }
 
-export function NewsletterForm({ apiUrl, lang, onDark = false, label, placeholder, cta, successMsg, errorMsg, captchaMsg }: Props) {
+export function NewsletterForm({
+  apiUrl,
+  lang,
+  onDark = false,
+  label,
+  placeholder,
+  cta,
+  successMsg,
+  errorMsg,
+  captchaMsg,
+  emailFromQuery,
+  source = 'landing',
+}: Props) {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error' | 'captcha'>('idle')
   const inputId = useId()
+
+  useEffect(() => {
+    if (!emailFromQuery) return
+    const prefill = new URLSearchParams(window.location.search).get(emailFromQuery)
+    if (prefill) setEmail(prefill)
+  }, [emailFromQuery])
 
   useEffect(() => {
     if (document.querySelector('script[src*="turnstile"]')) return
@@ -61,7 +83,7 @@ export function NewsletterForm({ apiUrl, lang, onDark = false, label, placeholde
       // Same Brevo list and the same attributes as the app signups, kept apart by origin.
       // The API writes QUELLE=app. Note: locale above is not a Brevo attribute, SPRACHE is.
       formData.append('SPRACHE', lang.slice(0, 2))
-      formData.append('QUELLE', 'landing')
+      formData.append('QUELLE', source)
       await fetch(BREVO_ACTION, { method: 'POST', body: formData, mode: 'no-cors' })
 
       setStatus('success')
