@@ -9,7 +9,7 @@ export default defineConfig({
   output: 'static',
   publicDir: './public',
   // /go is a scan target for printed QR codes, not a page anyone should find in a search result.
-  integrations: [react(), sitemap({ filter: (page) => !page.includes('/go') })],
+  integrations: [react(), sitemap({ filter: (page) => !page.includes('/go') && !page.includes('/newsletter') })],
   vite: {
     plugins: [tailwindcss()],
     resolve: {
