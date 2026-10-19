@@ -1,7 +1,8 @@
 ---
-import type { Translations } from '@/i18n/translations'
+import type { Locale, Translations } from '@/i18n/translations'
 import { Image } from 'astro:assets'
 import { buttonClass } from '@/lib/button'
+import { PRESS_ARTICLE_URL, PRESS_QUOTE_AUTHOR } from '@/lib/press'
 import { NewsletterForm } from './NewsletterForm'
 import { StatutenDialog } from './StatutenDialog'
 import { DonationForm } from './DonationForm'
@@ -94,7 +95,7 @@ const vereinCards = [
   tr.verein.paperwork,
 ]
 
-const faqItems = [tr.faq.cost, tr.faq.data, tr.faq.devices, tr.faq['exports'], tr.faq.team, tr.faq.who]
+const faqItems = [tr.faq.cost, tr.faq.data, tr.faq.devices, tr.faq['exports'], tr.faq.agate, tr.faq.team, tr.faq.who]
 
 const legalLinks = [
   { href: lang === 'de' ? '/imprint' : `/${lang}/imprint`, label: tr.imprint.title },
@@ -122,6 +123,27 @@ const legalLinks = [
         <p>{tr.story.problem}</p>
         <p class="font-medium text-foreground">{tr.story.born}</p>
       </div>
+
+      {/* The press block lives inside the story rather than in a section of its
+          own: the article tells the same origin story, and one mention of
+          Bioaktuell on the page is enough. */}
+      <figure class:list={[CARD, 'space-y-5']}>
+        <p class={EYEBROW}>{tr.press.eyebrow}</p>
+        <blockquote class="text-xl font-medium leading-relaxed text-foreground md:text-2xl">
+          <p>«{tr.press.quote}»</p>
+        </blockquote>
+        <figcaption class="space-y-4 text-sm text-muted-foreground">
+          <p>
+            <span class="font-semibold text-foreground">{PRESS_QUOTE_AUTHOR}</span>, {tr.press.role}. {tr.press.source}.
+          </p>
+          <p>
+            {tr.press.articleLead} «{tr.press.articleTitle}»:{' '}
+            <a href={PRESS_ARTICLE_URL[lang as Locale]} target="_blank" rel="noopener" class="font-medium text-primary underline underline-offset-4 hover:text-primary/80">
+              {tr.press.articleLink}
+            </a>
+          </p>
+        </figcaption>
+      </figure>
     </div>
   </section>
 
