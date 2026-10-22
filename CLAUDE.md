@@ -9,6 +9,7 @@ pnpm dev        # start dev server on http://localhost:4321
 pnpm build      # production build
 pnpm preview    # preview production build
 pnpm --package=typescript@5.9.2 dlx tsc --noEmit   # type-check
+pnpm release [x.y.z]   # add the next app release to src/data/releases.ts (notes page + /app-version.json)
 ```
 
 TypeScript is not a dependency of this project, so `npx tsc --noEmit` does not work.
@@ -167,6 +168,16 @@ document outline free of skipped levels.
 modals, `rounded-full` for badges.
 
 **Path alias:** `@` maps to `./src`.
+
+**App releases (`src/data/releases.ts`):** the release history of the mobile app, newest first,
+one entry per store version with the notes in all four locales as plain bullet strings. It renders
+`/releases` (`ReleasesPage.astro`) and `/app-version.json` (`src/pages/app-version.json.ts`), which
+the app polls for its update banner; after an update the app only links here, it carries no notes
+itself. `pnpm release` adds a template entry below the marker line, and the module throws at build
+time on a leftover `TODO` or a wrong order. `releasedAt` gates both outputs on the reading side:
+the site is static, so the page filters future dates at build and the app filters them at runtime,
+which lets an entry be merged ahead of a scheduled rollout. Merge equals publish, Cloudflare Pages
+deploys `main` on push.
 
 ## Two traps worth knowing
 
