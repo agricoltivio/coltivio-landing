@@ -23,6 +23,42 @@ export interface Release {
 export const RELEASES: Release[] = [
   // pnpm release inserts new entries below this line
   {
+    version: '1.0.8',
+    releasedAt: '2026-10-22',
+    platforms: ['ios', 'android'],
+    minSupportedVersion: null,
+    notes: {
+      de: [
+        'Weideflächen in der Tierhaltung: frei zeichnen oder aus bestehenden Schlägen zusammensetzen, Weidezeiten pro Herde planen, Nutzung als Statistik ansehen.',
+        'Schläge und Weideflächen archivieren statt löschen. Alle Einträge bleiben erhalten, Wiederherstellen jederzeit möglich.',
+        'Ebenen auf der Karte: Schläge, Weideflächen und archivierte Flächen ein- und ausblenden.',
+        'Herden: Eintritt und Austritt von Tieren mit Datum erfassen.',
+        'Die App zeigt ihre Version in den Einstellungen, meldet neue Versionen im Store und weist nach einem Update auf diese Seite hin.',
+      ],
+      fr: [
+        "Pâtures dans l'élevage : dessiner librement ou composer à partir des champs existants, planifier les périodes de pâture par troupeau, consulter l'utilisation sous forme de statistiques.",
+        'Archiver les champs et les pâtures au lieu de les supprimer. Toutes les entrées sont conservées, la restauration est possible à tout moment.',
+        'Couches sur la carte : afficher ou masquer les champs, les pâtures et les surfaces archivées.',
+        "Troupeaux : saisir l'entrée et la sortie des animaux avec la date.",
+        "L'application affiche sa version dans les paramètres, signale les nouvelles versions dans le store et renvoie vers cette page après une mise à jour.",
+      ],
+      it: [
+        "Aree di pascolo nella gestione degli animali: disegnarle liberamente o comporle dai campi esistenti, pianificare i periodi di pascolo per mandria, consultare l'utilizzo come statistica.",
+        'Archiviare campi e aree di pascolo invece di eliminarli. Tutte le voci restano salvate, il ripristino è possibile in qualsiasi momento.',
+        'Livelli sulla mappa: mostrare o nascondere campi, aree di pascolo e superfici archiviate.',
+        "Mandrie: registrare l'ingresso e l'uscita degli animali con la data.",
+        "L'app mostra la sua versione nelle impostazioni, segnala le nuove versioni nello store e rimanda a questa pagina dopo un aggiornamento.",
+      ],
+      en: [
+        'Meadows in animal husbandry: draw them freely or compose them from existing plots, plan grazing periods per herd, review usage as statistics.',
+        'Archive plots and meadows instead of deleting them. All entries are kept, restoring is possible at any time.',
+        'Map layers: show or hide plots, meadows and archived areas.',
+        'Herds: record when animals join and leave, with dates.',
+        'The app shows its version in the settings, flags new store versions and points to this page after an update.',
+      ],
+    },
+  },
+  {
     version: '1.0.7',
     releasedAt: '2026-10-15',
     platforms: ['ios', 'android'],
