@@ -40,6 +40,9 @@ pnpm preview   # preview production build
 
 # Type-check. TypeScript is not a dependency here, so plain `npx tsc` does not work.
 pnpm --package=typescript@5.9.2 dlx tsc --noEmit
+
+# Add the next app release (release notes page and /app-version.json for the app's update banner)
+pnpm release 1.0.8
 ```
 
 ## i18n

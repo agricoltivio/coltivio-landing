@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "release": "node scripts/add-release.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^5.0.0",

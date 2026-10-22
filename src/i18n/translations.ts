@@ -101,6 +101,7 @@ export interface Translations {
   privacy: { title: string; back: string }
   dataDeletion: { title: string; back: string }
   dataSources: { title: string; back: string }
+  releases: { title: string; back: string; intro: string; version: string; releasedOn: string }
   footer: { tagline: string; github: string; appStore: string; playStore: string }
   a11y: { menu: string; openMenu: string; closeMenu: string; close: string; skipToContent: string }
   redirect: { title: string; redirecting: string }
@@ -217,6 +218,7 @@ const translations: Record<Locale, Translations> = {
     privacy: { title: 'Datenschutzerklärung', back: 'Zurück' },
     dataDeletion: { title: 'Datenlöschung', back: 'Zurück' },
     dataSources: { title: 'Datenquellen', back: 'Zurück' },
+    releases: { title: 'Was ist neu', back: 'Zurück', intro: 'Alle Versionen der Coltivio-App und was sich geändert hat.', version: 'Version {version}', releasedOn: 'Veröffentlicht am {date}' },
     footer: { tagline: 'Open-Source-Hofverwaltung', github: 'GitHub', appStore: 'App Store', playStore: 'Google Play' },
     a11y: { menu: 'Navigation', openMenu: 'Menü öffnen', closeMenu: 'Menü schliessen', close: 'Schliessen', skipToContent: 'Zum Inhalt springen' },
     redirect: { title: 'Weiterleitung', redirecting: 'Einen Moment, du wirst weitergeleitet.' },
@@ -332,6 +334,7 @@ const translations: Record<Locale, Translations> = {
     privacy: { title: 'Politique de confidentialité', back: 'Retour' },
     dataDeletion: { title: 'Suppression des données', back: 'Retour' },
     dataSources: { title: 'Sources des données', back: 'Retour' },
+    releases: { title: 'Nouveautés', back: 'Retour', intro: "Toutes les versions de l'application Coltivio et ce qui a changé.", version: 'Version {version}', releasedOn: 'Publiée le {date}' },
     footer: { tagline: 'Gestion agricole open source', github: 'GitHub', appStore: 'App Store', playStore: 'Google Play' },
     a11y: { menu: 'Navigation', openMenu: 'Ouvrir le menu', closeMenu: 'Fermer le menu', close: 'Fermer', skipToContent: 'Aller au contenu' },
     redirect: { title: 'Redirection', redirecting: 'Un instant, vous allez être redirigé.' },
@@ -447,6 +450,7 @@ const translations: Record<Locale, Translations> = {
     privacy: { title: 'Informativa sulla privacy', back: 'Indietro' },
     dataDeletion: { title: 'Cancellazione dei dati', back: 'Indietro' },
     dataSources: { title: 'Fonti dei dati', back: 'Indietro' },
+    releases: { title: 'Novità', back: 'Indietro', intro: "Tutte le versioni dell'app Coltivio e cosa è cambiato.", version: 'Versione {version}', releasedOn: 'Pubblicata il {date}' },
     footer: { tagline: 'Gestione agricola open source', github: 'GitHub', appStore: 'App Store', playStore: 'Google Play' },
     a11y: { menu: 'Navigazione', openMenu: 'Apri il menu', closeMenu: 'Chiudi il menu', close: 'Chiudi', skipToContent: 'Vai al contenuto' },
     redirect: { title: 'Reindirizzamento', redirecting: 'Un momento, ti stiamo reindirizzando.' },
@@ -562,6 +566,7 @@ const translations: Record<Locale, Translations> = {
     privacy: { title: 'Privacy Policy', back: 'Back' },
     dataDeletion: { title: 'Data Deletion', back: 'Back' },
     dataSources: { title: 'Data Sources', back: 'Back' },
+    releases: { title: "What's new", back: 'Back', intro: 'Every version of the Coltivio app and what changed.', version: 'Version {version}', releasedOn: 'Released on {date}' },
     footer: { tagline: 'Open source farm management', github: 'GitHub', appStore: 'App Store', playStore: 'Google Play' },
     a11y: { menu: 'Navigation', openMenu: 'Open menu', closeMenu: 'Close menu', close: 'Close', skipToContent: 'Skip to content' },
     redirect: { title: 'Redirecting', redirecting: 'One moment, redirecting you.' },
