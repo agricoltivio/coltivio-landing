@@ -1,12 +1,21 @@
 ---
 /**
- * Release notes of the mobile app, one block per store release. The app links here
+ * Release notes of the mobile app, one card per store release. The app links here
  * after an update instead of carrying the notes itself; the data lives in
  * src/data/releases.ts and feeds /app-version.json as well.
+ *
+ * Unlike the legal pages this one is a destination users are sent to, so it wears
+ * the brand: a short gradient band with the logo, the title and the store badges,
+ * then the list on the white page, then the dark footer with the legal links.
  */
 import type { Translations } from '@/i18n/translations'
 import type { Locale } from '@/i18n/translations'
 import { releasedReleases } from '@/data/releases'
+import { LanguageSwitcher } from '@/components/LanguageSwitcher'
+import Logo from '@/components/brand/Logo.astro'
+import LogoMark from '@/components/brand/LogoMark.astro'
+import Lineart from '@/components/brand/Lineart.astro'
+import Wave from '@/components/brand/Wave.astro'
 import StoreBadge from '@/components/brand/StoreBadge.astro'
 
 interface Props {
@@ -20,36 +29,89 @@ const locale = lang as Locale
 const dateLocale: Record<string, string> = { de: 'de-CH', fr: 'fr-CH', it: 'it-CH', en: 'en-GB' }
 const formatDate = new Intl.DateTimeFormat(dateLocale[lang] ?? 'de-CH', { dateStyle: 'long', timeZone: 'Europe/Zurich' })
 const releases = releasedReleases()
+
+// Same card as the light page in Landing.astro.
+const CARD = 'rounded-lg border border-brand-sage/40 bg-card text-card-foreground p-6'
+
+const legalLinks = [
+  { href: lang === 'de' ? '/imprint' : `/${lang}/imprint`, label: tr.imprint.title },
+  { href: lang === 'de' ? '/privacy' : `/${lang}/privacy`, label: tr.privacy.title },
+  { href: lang === 'de' ? '/data-deletion' : `/${lang}/data-deletion`, label: tr.dataDeletion.title },
+  { href: lang === 'de' ? '/data-sources' : `/${lang}/data-sources`, label: tr.dataSources.title },
+]
 ---
 
-<div class="min-h-dvh bg-background text-foreground">
-  <main id="main" class="container mx-auto max-w-2xl px-4 py-12 space-y-8">
-    <a href={homeUrl} class="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M19 12H5M12 5l-7 7 7 7"/>
-      </svg>
-      {tr.releases.back}
-    </a>
+<div class="flex min-h-dvh flex-col bg-background text-foreground">
+  <header class="brand-band on-brand overflow-hidden">
+    <div class="brand-band-shade absolute inset-0 -z-30" aria-hidden="true"></div>
+    {/* Same watermark as the hero, a shade lighter than the gradient behind it. */}
+    <div
+      class="absolute top-[30%] -right-[8%] -z-20 h-[90%]"
+      style="--logo-mark: color-mix(in oklab, var(--brand-sage) 34%, transparent); --logo-mark-to: color-mix(in oklab, var(--brand-sage) 8%, transparent)"
+      aria-hidden="true"
+    >
+      <LogoMark shaded class="h-full w-auto" />
+    </div>
+    <Lineart class="absolute inset-x-0 bottom-0 -z-10 h-[70%] opacity-60" />
+    <Wave fill="var(--background)" class="absolute inset-x-0 -bottom-px h-[clamp(3rem,10vw,6rem)]" />
 
-    <div class="space-y-6">
-      <h1 class="text-3xl font-bold">{tr.releases.title}</h1>
-      <p class="text-muted-foreground">{tr.releases.intro}</p>
-      <div class="flex flex-wrap items-center gap-3">
+    <div class="container relative z-10 mx-auto max-w-3xl px-4 pt-6 pb-28 sm:pb-32">
+      <div class="flex items-center justify-between gap-4">
+        <a href={homeUrl} aria-label={tr.releases.back} class="inline-flex rounded-md">
+          <Logo class="h-7 w-auto" />
+        </a>
+        <LanguageSwitcher client:load lang={lang} onDark />
+      </div>
+
+      <h1 class="mt-14 text-4xl font-bold tracking-tight sm:text-5xl">{tr.releases.title}</h1>
+      <p class="mt-5 max-w-xl text-lg leading-relaxed text-white/85">{tr.releases.intro}</p>
+      <div class="mt-8 flex flex-wrap items-center gap-3">
         <StoreBadge store="ios" lang={lang} label={tr.hero.ctaIos} class="h-10" />
         <StoreBadge store="android" lang={lang} label={tr.hero.ctaAndroid} class="h-10" />
       </div>
+    </div>
+  </header>
 
-      {releases.map((release) => (
-        <section class="space-y-2 border-t border-border pt-6">
-          <h2 class="text-xl font-semibold">{tr.releases.version.replace('{version}', release.version)}</h2>
-          <p class="text-sm text-muted-foreground">
-            {tr.releases.releasedOn.replace('{date}', formatDate.format(new Date(release.releasedAt)))}
-          </p>
-          <ul class="list-disc pl-5 space-y-1">
+  <main id="main" class="container mx-auto w-full max-w-3xl flex-1 px-4 py-14 md:py-16">
+    <ol class="space-y-6">
+      {releases.map((release, index) => (
+        <li class={CARD}>
+          <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+            <h2 class="text-xl font-bold tracking-tight">
+              <span
+                class:list={[
+                  'inline-block rounded-full px-3 py-0.5 text-base',
+                  index === 0 ? 'bg-primary text-primary-foreground' : 'bg-surface text-primary',
+                ]}
+              >
+                {tr.releases.version.replace('{version}', release.version)}
+              </span>
+            </h2>
+            <p class="text-sm text-muted-foreground">
+              {tr.releases.releasedOn.replace('{date}', formatDate.format(new Date(release.releasedAt)))}
+            </p>
+          </div>
+          <ul class="mt-4 list-disc space-y-2 pl-5 leading-relaxed">
             {release.notes[locale].map((note) => <li>{note}</li>)}
           </ul>
-        </section>
+        </li>
       ))}
-    </div>
+    </ol>
   </main>
+
+  <footer class="relative isolate overflow-hidden bg-brand-ink text-white">
+    <Lineart class="absolute inset-x-0 bottom-0 -z-10 h-2/3 w-full opacity-25" />
+    <div class="container relative z-10 mx-auto max-w-3xl space-y-6 px-4 pt-10 pb-8">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <a href={homeUrl} class="inline-flex rounded-md"><Logo class="h-7 w-auto" /></a>
+        <p class="text-sm text-white/70">{tr.footer.tagline}</p>
+      </div>
+      <div class="flex flex-wrap items-center gap-4 border-t border-white/15 pt-5 text-sm text-white/70">
+        {legalLinks.map((link) => (
+          <a href={link.href} class="rounded-md transition-colors hover:text-white hover:underline">{link.label}</a>
+        ))}
+        <span class="ml-auto">© 2026 Coltivio</span>
+      </div>
+    </div>
+  </footer>
 </div>
