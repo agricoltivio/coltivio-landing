@@ -13,3 +13,26 @@ export const PRESS_ARTICLE_URL: Record<Locale, string> = {
 }
 
 export const PRESS_QUOTE_AUTHOR = 'Balz Strasser'
+
+export interface PressCoverage {
+  outlet: Record<Locale, string>
+  issue: string
+  title: Record<Locale, string>
+  url: Record<Locale, string>
+}
+
+// Every article about Coltivio, newest first. Listed on /press; the landing page only
+// quotes the Bioaktuell one.
+export const PRESS_COVERAGE: PressCoverage[] = [
+  {
+    outlet: { de: 'Bioaktuell', fr: 'Bioactualités', it: 'Bioattualità', en: 'Bioaktuell' },
+    issue: '8/2026',
+    title: {
+      de: 'Feierabend statt Papierkram',
+      fr: 'Soirée libre au lieu de paperasserie',
+      it: 'Tempo libero anziché burocrazia',
+      en: 'Feierabend statt Papierkram',
+    },
+    url: PRESS_ARTICLE_URL,
+  },
+]

@@ -12,6 +12,11 @@ export default defineConfig({
   integrations: [react(), sitemap({ filter: (page) => !page.includes('/go') && !page.includes('/newsletter') })],
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      // The press kit downloads must stay real files: Vite would inline the two smallest
+      // logo SVGs as data URIs, which some browsers refuse to save under the given name.
+      assetsInlineLimit: (filePath) => (filePath.includes('/src/assets/brand/') ? false : undefined),
+    },
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),

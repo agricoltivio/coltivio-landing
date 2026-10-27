@@ -1,3 +1,5 @@
+import type { ColorKey, Ground, LogoKey, SceneKey, ScreenKey } from '@/lib/brand-kit'
+
 export type Locale = 'de' | 'fr' | 'it' | 'en'
 
 export interface Translations {
@@ -102,6 +104,48 @@ export interface Translations {
   dataDeletion: { title: string; back: string }
   dataSources: { title: string; back: string }
   releases: { title: string; back: string; intro: string; version: string; releasedOn: string }
+  pressKit: {
+    title: string
+    back: string
+    intro: string
+    aboutTitle: string
+    aboutShortLabel: string
+    aboutShort: string
+    aboutLongLabel: string
+    aboutLong: string
+    facts: string[]
+    contactTitle: string
+    contact: string
+    coverageTitle: string
+    logoTitle: string
+    logoIntro: string
+    logoRules: string[]
+    logos: Record<LogoKey, string>
+    reversed: string
+    colorsTitle: string
+    colorsIntro: string
+    colors: Record<ColorKey, string>
+    gradient: string
+    copy: string
+    copied: string
+    typeTitle: string
+    typeIntro: string
+    typeSample: string
+    typeLink: string
+    imagesTitle: string
+    mockupsTitle: string
+    mockupsIntro: string
+    front: string
+    angle: string
+    screens: Record<ScreenKey, string>
+    visualsTitle: string
+    visualsIntro: string
+    webappTitle: string
+    scenes: Record<SceneKey, string>
+    grounds: Record<Ground, string>
+    usageTitle: string
+    usage: string
+  }
   footer: { tagline: string; github: string; appStore: string; playStore: string }
   a11y: { menu: string; openMenu: string; closeMenu: string; close: string; skipToContent: string }
   redirect: { title: string; redirecting: string }
@@ -219,6 +263,75 @@ const translations: Record<Locale, Translations> = {
     dataDeletion: { title: 'Datenlöschung', back: 'Zurück' },
     dataSources: { title: 'Datenquellen', back: 'Zurück' },
     releases: { title: 'Was ist neu', back: 'Zurück', intro: 'Alle Versionen der Coltivio-App und was sich geändert hat.', version: 'Version {version}', releasedOn: 'Veröffentlicht am {date}' },
+    pressKit: {
+      title: 'Presse und Marke',
+      back: 'Zurück',
+      intro: 'Texte, Logos, Farben, Schrift und Bilder von Coltivio für Berichte und Partnerschaften, zum direkten Herunterladen.',
+      aboutTitle: 'Über Coltivio',
+      aboutShortLabel: 'In einem Satz',
+      aboutShort: 'Coltivio ist eine Hofverwaltungs-App für Schweizer Bäuerinnen und Bauern, entwickelt von Bauern und getragen vom gemeinnützigen Verein AgriColtivio.',
+      aboutLongLabel: 'In einem Absatz',
+      aboutLong: 'Curdin und Sarah, Bergbauer und Bergbäuerin im Calancatal, haben Coltivio gebaut, weil keine Software zu ihrem Hofalltag passte. Mit der App erfassen Bäuerinnen und Bauern Schläge, Kulturen, Tiere, Auslauf und Aufgaben direkt auf dem Hof, auf dem Handy oder im Browser. Der Quellcode ist offen. Entwickelt und betrieben wird Coltivio vom Verein AgriColtivio mit Sitz in Braggio, der politisch unabhängig ist und keine kommerziellen Eigeninteressen verfolgt.',
+      facts: [
+        'Getragen vom Verein AgriColtivio, Braggio GR',
+        'Quelloffen, der Code liegt auf GitHub',
+        'Für iPhone, Android und im Browser',
+        'Auf Deutsch, Französisch, Italienisch und Englisch',
+      ],
+      contactTitle: 'Medienkontakt',
+      contact: 'Für Anfragen, Interviews und weiteres Bildmaterial schreiben Sie uns an {email}.',
+      coverageTitle: 'Medienberichte',
+      logoTitle: 'Logo',
+      logoIntro: 'Das Logo gibt es quer und gestapelt, dazu Bildmarke und Wortmarke einzeln. Jede Variante als SVG für Druck und Web und als PNG.',
+      logoRules: [
+        'Die Negativ-Varianten gehören auf dunklen Grund, die anderen auf hellen.',
+        'Das Logo nicht verzerren, nicht umfärben und nicht mit Effekten versehen.',
+        'Die Bildmarke allein nur dort, wo das ganze Logo keinen Platz hat.',
+      ],
+      logos: { horizontal: 'Logo quer', stacked: 'Logo gestapelt', mark: 'Bildmarke', wordmark: 'Wortmarke' },
+      reversed: 'Negativ',
+      colorsTitle: 'Farben',
+      colorsIntro: 'Vier Farben und ein Verlauf vom dunklen Petrol ins Salbeigrün.',
+      colors: { deep: 'Petrol', sage: 'Salbei', mint: 'Mint', straw: 'Stroh' },
+      gradient: 'Verlauf',
+      copy: 'Kopieren',
+      copied: 'Kopiert',
+      typeTitle: 'Schrift',
+      typeIntro: 'Coltivio verwendet durchgehend die Inter: Bold für die Wortmarke und Titel, Regular für Text. Die Schrift steht frei unter der SIL Open Font License.',
+      typeSample: 'Hofverwaltung, von Bauern, für Bauern.',
+      typeLink: 'Inter herunterladen',
+      imagesTitle: 'Bilder',
+      mockupsTitle: 'App auf dem iPhone',
+      mockupsIntro: 'Neun Ansichten der App, je frontal und schräg, als PNG mit transparentem Hintergrund, 2160 × 2160 Pixel.',
+      front: 'Frontal',
+      angle: 'Schräg',
+      screens: {
+        splash: 'Startbildschirm',
+        home: 'Startseite',
+        map: 'Karte',
+        quickActions: 'Schnellzugriff',
+        cropRotations: 'Fruchtfolgen',
+        fertilization: 'Düngeraustrag',
+        outdoorJournal: 'Auslaufjournal',
+        tasks: 'Aufgaben',
+        tillage: 'Bodenbearbeitungen',
+      },
+      visualsTitle: 'Sujets',
+      visualsIntro: 'Querformat 1920 × 1080 Pixel, je auf Markengrund, dunklem Verlauf, Weiss oder transparent.',
+      webappTitle: 'Web-App',
+      scenes: {
+        splash: 'Startbildschirm',
+        intro: 'Startbildschirm und Startseite',
+        maps: 'Karte mit Schlägen',
+        featureGrid: 'Alle Funktionen',
+        webapp: 'Web-App mit Schlagkarte',
+        webappPhone: 'Web-App und App',
+        webappMulti: 'Web-App in drei Ansichten',
+      },
+      grounds: { brand: 'Markengrund', dark: 'Dunkel', white: 'Weiss', transparent: 'Transparent' },
+      usageTitle: 'Nutzung',
+      usage: 'Texte und Bilder auf dieser Seite dürfen Sie für redaktionelle Berichte über Coltivio frei verwenden. Für andere Zwecke fragen Sie uns bitte vorher.',
+    },
     footer: { tagline: 'Open-Source-Hofverwaltung', github: 'GitHub', appStore: 'App Store', playStore: 'Google Play' },
     a11y: { menu: 'Navigation', openMenu: 'Menü öffnen', closeMenu: 'Menü schliessen', close: 'Schliessen', skipToContent: 'Zum Inhalt springen' },
     redirect: { title: 'Weiterleitung', redirecting: 'Einen Moment, du wirst weitergeleitet.' },
@@ -335,6 +448,75 @@ const translations: Record<Locale, Translations> = {
     dataDeletion: { title: 'Suppression des données', back: 'Retour' },
     dataSources: { title: 'Sources des données', back: 'Retour' },
     releases: { title: 'Nouveautés', back: 'Retour', intro: "Toutes les versions de l'application Coltivio et ce qui a changé.", version: 'Version {version}', releasedOn: 'Publiée le {date}' },
+    pressKit: {
+      title: 'Presse et marque',
+      back: 'Retour',
+      intro: 'Textes, logos, couleurs, police et images de Coltivio pour vos articles et partenariats, à télécharger directement.',
+      aboutTitle: 'À propos de Coltivio',
+      aboutShortLabel: 'En une phrase',
+      aboutShort: "Coltivio est une application de gestion agricole pour les paysannes et paysans suisses, développée par des paysans et portée par l'association à but non lucratif AgriColtivio.",
+      aboutLongLabel: 'En un paragraphe',
+      aboutLong: "Curdin et Sarah, paysans de montagne dans le val Calanca, ont créé Coltivio parce qu'aucun logiciel ne correspondait à leur quotidien à la ferme. Avec l'application, les paysannes et paysans saisissent champs, cultures, animaux, sorties et tâches directement à la ferme, sur le téléphone ou dans le navigateur. Le code source est ouvert. Coltivio est développé et exploité par l'association AgriColtivio, dont le siège est à Braggio, politiquement indépendante et sans intérêt commercial propre.",
+      facts: [
+        "Portée par l'association AgriColtivio, Braggio GR",
+        'Open source, le code est sur GitHub',
+        'Pour iPhone, Android et dans le navigateur',
+        'En allemand, français, italien et anglais',
+      ],
+      contactTitle: 'Contact médias',
+      contact: "Pour vos demandes, interviews et images supplémentaires, écrivez-nous à {email}.",
+      coverageTitle: 'Dans les médias',
+      logoTitle: 'Logo',
+      logoIntro: "Le logo existe en version horizontale et empilée, ainsi que le symbole et le logotype seuls. Chaque variante en SVG pour l'impression et le web, et en PNG.",
+      logoRules: [
+        'Les variantes négatives vont sur fond foncé, les autres sur fond clair.',
+        "Ne pas déformer le logo, ne pas changer ses couleurs et ne pas y ajouter d'effets.",
+        "Le symbole seul uniquement là où le logo complet n'a pas la place.",
+      ],
+      logos: { horizontal: 'Logo horizontal', stacked: 'Logo empilé', mark: 'Symbole', wordmark: 'Logotype' },
+      reversed: 'Négatif',
+      colorsTitle: 'Couleurs',
+      colorsIntro: 'Quatre couleurs et un dégradé du pétrole foncé au vert sauge.',
+      colors: { deep: 'Pétrole', sage: 'Sauge', mint: 'Menthe', straw: 'Paille' },
+      gradient: 'Dégradé',
+      copy: 'Copier',
+      copied: 'Copié',
+      typeTitle: 'Police',
+      typeIntro: 'Coltivio utilise partout la police Inter : Bold pour le logotype et les titres, Regular pour le texte. Elle est libre sous la SIL Open Font License.',
+      typeSample: 'Gestion agricole, par des paysans, pour des paysans.',
+      typeLink: 'Télécharger Inter',
+      imagesTitle: 'Images',
+      mockupsTitle: "L'application sur iPhone",
+      mockupsIntro: "Neuf vues de l'application, de face et de biais, en PNG à fond transparent, 2160 × 2160 pixels.",
+      front: 'De face',
+      angle: 'De biais',
+      screens: {
+        splash: 'Écran de démarrage',
+        home: 'Accueil',
+        map: 'Carte',
+        quickActions: 'Accès rapide',
+        cropRotations: 'Rotations culturales',
+        fertilization: 'Fertilisations',
+        outdoorJournal: 'Journal de sorties',
+        tasks: 'Tâches',
+        tillage: 'Travaux du sol',
+      },
+      visualsTitle: 'Visuels',
+      visualsIntro: 'Format paysage 1920 × 1080 pixels, sur fond de marque, dégradé foncé, blanc ou transparent.',
+      webappTitle: 'Application web',
+      scenes: {
+        splash: 'Écran de démarrage',
+        intro: 'Écran de démarrage et accueil',
+        maps: 'Carte des champs',
+        featureGrid: 'Toutes les fonctions',
+        webapp: 'Application web avec carte des champs',
+        webappPhone: 'Application web et application mobile',
+        webappMulti: 'Application web en trois vues',
+      },
+      grounds: { brand: 'Fond de marque', dark: 'Foncé', white: 'Blanc', transparent: 'Transparent' },
+      usageTitle: 'Utilisation',
+      usage: "Vous pouvez utiliser librement les textes et images de cette page pour des articles rédactionnels sur Coltivio. Pour tout autre usage, merci de nous demander d'abord.",
+    },
     footer: { tagline: 'Gestion agricole open source', github: 'GitHub', appStore: 'App Store', playStore: 'Google Play' },
     a11y: { menu: 'Navigation', openMenu: 'Ouvrir le menu', closeMenu: 'Fermer le menu', close: 'Fermer', skipToContent: 'Aller au contenu' },
     redirect: { title: 'Redirection', redirecting: 'Un instant, vous allez être redirigé.' },
@@ -451,6 +633,75 @@ const translations: Record<Locale, Translations> = {
     dataDeletion: { title: 'Cancellazione dei dati', back: 'Indietro' },
     dataSources: { title: 'Fonti dei dati', back: 'Indietro' },
     releases: { title: 'Novità', back: 'Indietro', intro: "Tutte le versioni dell'app Coltivio e cosa è cambiato.", version: 'Versione {version}', releasedOn: 'Pubblicata il {date}' },
+    pressKit: {
+      title: 'Stampa e marchio',
+      back: 'Indietro',
+      intro: 'Testi, loghi, colori, carattere e immagini di Coltivio per articoli e partenariati, da scaricare direttamente.',
+      aboutTitle: 'Su Coltivio',
+      aboutShortLabel: 'In una frase',
+      aboutShort: "Coltivio è un'app di gestione aziendale per le contadine e i contadini svizzeri, sviluppata da contadini e sostenuta dall'associazione di pubblica utilità AgriColtivio.",
+      aboutLongLabel: 'In un paragrafo',
+      aboutLong: "Curdin e Sarah, contadini di montagna in Val Calanca, hanno creato Coltivio perché nessun software si adattava alla loro quotidianità in azienda. Con l'app le contadine e i contadini registrano campi, colture, animali, uscite e compiti direttamente in azienda, sul telefono o nel browser. Il codice sorgente è aperto. Coltivio è sviluppato e gestito dall'associazione AgriColtivio con sede a Braggio, politicamente indipendente e senza interessi commerciali propri.",
+      facts: [
+        "Sostenuto dall'associazione AgriColtivio, Braggio GR",
+        'Open source, il codice è su GitHub',
+        'Per iPhone, Android e nel browser',
+        'In tedesco, francese, italiano e inglese',
+      ],
+      contactTitle: 'Contatto per i media',
+      contact: 'Per richieste, interviste e altre immagini scriveteci a {email}.',
+      coverageTitle: 'Nei media',
+      logoTitle: 'Logo',
+      logoIntro: 'Il logo esiste in versione orizzontale e verticale, oltre al marchio figurativo e al logotipo da soli. Ogni variante in SVG per stampa e web e in PNG.',
+      logoRules: [
+        'Le varianti in negativo vanno su sfondo scuro, le altre su sfondo chiaro.',
+        'Non deformare il logo, non cambiarne i colori e non aggiungere effetti.',
+        'Il marchio figurativo da solo solo dove il logo completo non ha spazio.',
+      ],
+      logos: { horizontal: 'Logo orizzontale', stacked: 'Logo verticale', mark: 'Marchio figurativo', wordmark: 'Logotipo' },
+      reversed: 'Negativo',
+      colorsTitle: 'Colori',
+      colorsIntro: 'Quattro colori e una sfumatura dal petrolio scuro al verde salvia.',
+      colors: { deep: 'Petrolio', sage: 'Salvia', mint: 'Menta', straw: 'Paglia' },
+      gradient: 'Sfumatura',
+      copy: 'Copia',
+      copied: 'Copiato',
+      typeTitle: 'Carattere',
+      typeIntro: 'Coltivio usa ovunque il carattere Inter: Bold per il logotipo e i titoli, Regular per il testo. È libero sotto la SIL Open Font License.',
+      typeSample: 'Gestione aziendale, da contadini, per contadini.',
+      typeLink: 'Scarica Inter',
+      imagesTitle: 'Immagini',
+      mockupsTitle: "L'app su iPhone",
+      mockupsIntro: "Nove viste dell'app, frontali e inclinate, in PNG con sfondo trasparente, 2160 × 2160 pixel.",
+      front: 'Frontale',
+      angle: 'Inclinata',
+      screens: {
+        splash: 'Schermata iniziale',
+        home: 'Pagina principale',
+        map: 'Mappa',
+        quickActions: 'Accesso rapido',
+        cropRotations: 'Rotazioni colturali',
+        fertilization: 'Fertilizzazioni',
+        outdoorJournal: "Diario all'aperto",
+        tasks: 'Compiti',
+        tillage: 'Lavorazioni del terreno',
+      },
+      visualsTitle: 'Visual',
+      visualsIntro: 'Formato orizzontale 1920 × 1080 pixel, su sfondo del marchio, sfumatura scura, bianco o trasparente.',
+      webappTitle: 'App web',
+      scenes: {
+        splash: 'Schermata iniziale',
+        intro: 'Schermata iniziale e pagina principale',
+        maps: 'Mappa dei campi',
+        featureGrid: 'Tutte le funzioni',
+        webapp: 'App web con mappa dei campi',
+        webappPhone: 'App web e app',
+        webappMulti: 'App web in tre viste',
+      },
+      grounds: { brand: 'Sfondo del marchio', dark: 'Scuro', white: 'Bianco', transparent: 'Trasparente' },
+      usageTitle: 'Utilizzo',
+      usage: "Potete usare liberamente i testi e le immagini di questa pagina per articoli redazionali su Coltivio. Per altri scopi chiedeteci prima, per favore.",
+    },
     footer: { tagline: 'Gestione agricola open source', github: 'GitHub', appStore: 'App Store', playStore: 'Google Play' },
     a11y: { menu: 'Navigazione', openMenu: 'Apri il menu', closeMenu: 'Chiudi il menu', close: 'Chiudi', skipToContent: 'Vai al contenuto' },
     redirect: { title: 'Reindirizzamento', redirecting: 'Un momento, ti stiamo reindirizzando.' },
@@ -567,6 +818,75 @@ const translations: Record<Locale, Translations> = {
     dataDeletion: { title: 'Data Deletion', back: 'Back' },
     dataSources: { title: 'Data Sources', back: 'Back' },
     releases: { title: "What's new", back: 'Back', intro: 'Every version of the Coltivio app and what changed.', version: 'Version {version}', releasedOn: 'Released on {date}' },
+    pressKit: {
+      title: 'Press and brand',
+      back: 'Back',
+      intro: 'Copy, logos, colours, type and images of Coltivio for articles and partnerships, ready to download.',
+      aboutTitle: 'About Coltivio',
+      aboutShortLabel: 'In one sentence',
+      aboutShort: 'Coltivio is a farm management app for Swiss farmers, developed by farmers and run by the non-profit association AgriColtivio.',
+      aboutLongLabel: 'In one paragraph',
+      aboutLong: 'Curdin and Sarah, mountain farmers in the Calanca valley, built Coltivio because no software fitted their everyday work on the farm. With the app, farmers record plots, crops, animals, outdoor access and tasks right on the farm, on their phone or in the browser. The source code is open. Coltivio is developed and run by the association AgriColtivio, based in Braggio, which is politically independent and pursues no commercial interests of its own.',
+      facts: [
+        'Run by the association AgriColtivio, Braggio GR',
+        'Open source, the code is on GitHub',
+        'For iPhone, Android and in the browser',
+        'In German, French, Italian and English',
+      ],
+      contactTitle: 'Media contact',
+      contact: 'For enquiries, interviews and further images, write to us at {email}.',
+      coverageTitle: 'In the media',
+      logoTitle: 'Logo',
+      logoIntro: 'The logo comes horizontal and stacked, plus the mark and the wordmark on their own. Every variant as SVG for print and web, and as PNG.',
+      logoRules: [
+        'The reversed variants go on dark grounds, the others on light ones.',
+        'Do not stretch the logo, recolour it or add effects to it.',
+        'Use the mark on its own only where the full logo does not fit.',
+      ],
+      logos: { horizontal: 'Horizontal logo', stacked: 'Stacked logo', mark: 'Mark', wordmark: 'Wordmark' },
+      reversed: 'Reversed',
+      colorsTitle: 'Colours',
+      colorsIntro: 'Four colours and a gradient from deep petrol into sage green.',
+      colors: { deep: 'Petrol', sage: 'Sage', mint: 'Mint', straw: 'Straw' },
+      gradient: 'Gradient',
+      copy: 'Copy',
+      copied: 'Copied',
+      typeTitle: 'Type',
+      typeIntro: 'Coltivio uses Inter throughout: Bold for the wordmark and headings, Regular for text. It is free under the SIL Open Font License.',
+      typeSample: 'Farm management, by farmers, for farmers.',
+      typeLink: 'Download Inter',
+      imagesTitle: 'Images',
+      mockupsTitle: 'The app on iPhone',
+      mockupsIntro: 'Nine views of the app, straight on and angled, as PNG with a transparent background, 2160 × 2160 pixels.',
+      front: 'Straight on',
+      angle: 'Angled',
+      screens: {
+        splash: 'Launch screen',
+        home: 'Home',
+        map: 'Map',
+        quickActions: 'Quick Access',
+        cropRotations: 'Crop Rotations',
+        fertilization: 'Fertilizer Applications',
+        outdoorJournal: 'Outdoor Journal',
+        tasks: 'Tasks',
+        tillage: 'Tillages',
+      },
+      visualsTitle: 'Visuals',
+      visualsIntro: 'Landscape, 1920 × 1080 pixels, on the brand ground, a dark gradient, white or transparent.',
+      webappTitle: 'Web app',
+      scenes: {
+        splash: 'Launch screen',
+        intro: 'Launch screen and home',
+        maps: 'Map of plots',
+        featureGrid: 'All features',
+        webapp: 'Web app with plot map',
+        webappPhone: 'Web app and app',
+        webappMulti: 'Web app in three views',
+      },
+      grounds: { brand: 'Brand ground', dark: 'Dark', white: 'White', transparent: 'Transparent' },
+      usageTitle: 'Use',
+      usage: 'You are free to use the copy and images on this page for editorial coverage of Coltivio. For anything else, please ask us first.',
+    },
     footer: { tagline: 'Open source farm management', github: 'GitHub', appStore: 'App Store', playStore: 'Google Play' },
     a11y: { menu: 'Navigation', openMenu: 'Open menu', closeMenu: 'Close menu', close: 'Close', skipToContent: 'Skip to content' },
     redirect: { title: 'Redirecting', redirecting: 'One moment, redirecting you.' },
