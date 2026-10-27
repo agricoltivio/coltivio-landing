@@ -1,9 +1,8 @@
 import type { ImageMetadata } from 'astro'
 
 /**
- * What the /press page offers for download. The files in src/assets/brand/ are written
- * by scripts/sync-brand-kit.mjs from the brand kit; the names below are the names it
- * gives them, so a new motif means a line in the script and a line here.
+ * What the /press page offers for download, from the files in src/assets/brand/. A new
+ * motif means a file there under the same naming scheme and a line here.
  *
  * Downloads go through Vite's `?url`, which ships the file untouched. Previews go through
  * astro:assets like every other image on the site.
@@ -29,14 +28,14 @@ export interface BrandFile {
 function file(path: string): BrandFile {
   const href = urls[`/src/assets/brand/${path}`]
   // Fails the build rather than shipping a dead button after a rename in the script.
-  if (!href) throw new Error(`brand-kit: missing src/assets/brand/${path}, rerun scripts/sync-brand-kit.mjs`)
+  if (!href) throw new Error(`brand-kit: missing src/assets/brand/${path}`)
   const filename = path.split('/').pop()!
   return { href, filename, format: filename.split('.').pop()!.toUpperCase() as BrandFile['format'] }
 }
 
 function image(path: string): ImageMetadata {
   const img = images[`/src/assets/brand/${path}`]
-  if (!img) throw new Error(`brand-kit: missing src/assets/brand/${path}, rerun scripts/sync-brand-kit.mjs`)
+  if (!img) throw new Error(`brand-kit: missing src/assets/brand/${path}`)
   return img
 }
 
