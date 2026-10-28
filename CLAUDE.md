@@ -58,6 +58,15 @@ section, because the article tells the same origin story and one mention on the 
 The PDFs live in `src/assets/press/`, one per magazine edition, mapped by locale in
 `src/lib/press.ts`; English links the German one.
 
+**Press and brand kit (`/press`, `PressKitPage.astro`):** copy to quote, the coverage list
+(`PRESS_COVERAGE` in `src/lib/press.ts`, add new articles there), and logos, colours, type and images
+as direct downloads. The files in `src/assets/brand/` are a selection from the designer's kit,
+renamed for the downloads folder; renders on an opaque ground are JPG, only transparent ones PNG.
+`src/lib/brand-kit.ts` maps the file names to the page and fails the build on a missing file. `astro.config.ts` keeps
+Vite from inlining these files as data URIs, because a download has to stay a real file. Taglines
+and fonts are left out on purpose: the localized tagline lockups are still copies of the English
+one, and Inter is linked rather than shipped.
+
 **Brand system (`src/components/brand/`):** the 2026 kit, inlined as vectors rather than shipped
 as image files, so everything inherits colour, scales without blurring and costs no extra request.
 - `Logo.astro` and `LogoMark.astro`, the lockup and the leaf mark. The wordmark follows
