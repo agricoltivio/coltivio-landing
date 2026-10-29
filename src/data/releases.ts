@@ -23,6 +23,42 @@ export interface Release {
 export const RELEASES: Release[] = [
   // pnpm release inserts new entries below this line
   {
+    version: '1.0.9',
+    releasedAt: '2026-10-29',
+    platforms: ['ios', 'android'],
+    minSupportedVersion: null,
+    notes: {
+      de: [
+        'Parasitenkontrolle in der Tierhaltung: FAMACHA-Werte und Kotproben erfassen, Ergebnisse als Zahl oder als Stufe (+, ++, +++), Verlauf als Diagramm pro Tier und pro Tierart.',
+        'Nachkontrollen nach einer Behandlung zeigen, wie stark die Werte zurückgegangen sind. Eine Aufgabe für die Nachkontrolle lässt sich direkt mit erstellen.',
+        'Tierauswahl: Tiere nach Herde filtern.',
+        'TVD Import: unterstützt den neuen TVD-Export mit Abstammung, führt Konflikte mit einem Tipp über die Ohrmarke zusammen und zeigt verständlich an, warum eine Importvorschau fehlschlägt. Die Einführung wurde überarbeitet.',
+        'Android: Die App rutscht beim Start nicht mehr um die Höhe der Statusleiste nach unten.',
+      ],
+      fr: [
+        "Contrôle des parasites dans l'élevage : saisir les scores FAMACHA et les échantillons de fèces, résultats sous forme de nombre ou de degré (+, ++, +++), évolution en graphique par animal et par espèce.",
+        'Les recontrôles après un traitement montrent de combien les valeurs ont baissé. Une tâche de recontrôle peut être créée directement.',
+        'Sélection des animaux : filtrer les animaux par troupeau.',
+        "Import TVD : prend en charge le nouvel export TVD avec ascendance, fusionne les conflits d'un seul geste via le numéro de marque auriculaire et explique clairement pourquoi un aperçu de l'importation échoue. L'introduction a été remaniée.",
+        "Android : l'application ne glisse plus vers le bas de la hauteur de la barre d'état au démarrage.",
+      ],
+      it: [
+        'Controllo parassiti nella gestione degli animali: registrare i punteggi FAMACHA e i campioni di feci, risultati come numero o come grado (+, ++, +++), andamento in grafico per animale e per specie.',
+        'I ricontrolli dopo un trattamento mostrano di quanto sono diminuiti i valori. Un compito per il ricontrollo si può creare direttamente.',
+        'Selezione degli animali: filtrare gli animali per mandria.',
+        "Importazione TVD: supporta il nuovo export TVD con ascendenza, unisce i conflitti con un solo tocco tramite la marca auricolare e spiega in modo chiaro perché un'anteprima dell'importazione non riesce. L'introduzione è stata rielaborata.",
+        "Android: all'avvio l'app non scivola più verso il basso dell'altezza della barra di stato.",
+      ],
+      en: [
+        'Parasite control in animal husbandry: record FAMACHA scores and fecal samples, results as a number or as a grade (+, ++, +++), history as a chart per animal and per species.',
+        'Re-checks after a treatment show how much the values have dropped. A task for the re-check can be created right away.',
+        'Animal selection: filter animals by herd.',
+        'TVD Import: supports the new TVD export with pedigree, merges conflicts with one tap via the ear tag and explains clearly why an import preview fails. The introduction has been reworked.',
+        'Android: the app no longer shifts down by the height of the status bar on start.',
+      ],
+    },
+  },
+  {
     version: '1.0.8',
     releasedAt: '2026-10-22',
     platforms: ['ios', 'android'],
