@@ -25,7 +25,7 @@ Copy `.env.example` to `.env` and fill in:
 
 ## Architecture
 
-Static Astro 6 site with React islands and Tailwind CSS v4.
+Static Astro 7 site with React islands and Tailwind CSS v4.
 
 **Routing and i18n:** Astro's built-in i18n with `de` as the default locale (no URL prefix).
 Non-default locales live under `/[lang]/`. Route generation is manual via `getStaticPaths` in
