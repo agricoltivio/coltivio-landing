@@ -8,6 +8,8 @@ export default defineConfig({
   site: 'https://coltivio.ch',
   output: 'static',
   publicDir: './public',
+  // Astro 7 defaults to 'jsx', which drops whitespace between inline elements (nav, footer).
+  compressHTML: true,
   // /go is a scan target for printed QR codes, not a page anyone should find in a search result.
   integrations: [react(), sitemap({ filter: (page) => !page.includes('/go') && !page.includes('/newsletter') })],
   vite: {
