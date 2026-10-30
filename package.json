@@ -1,6 +1,10 @@
 {
   "name": "coltivio-landing",
   "type": "module",
+  "packageManager": "pnpm@11.28.7",
+  "engines": {
+    "node": ">=22.22"
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
