@@ -23,6 +23,46 @@ export interface Release {
 export const RELEASES: Release[] = [
   // pnpm release inserts new entries below this line
   {
+    version: '1.0.10',
+    releasedAt: '2026-11-11',
+    platforms: ['ios', 'android'],
+    minSupportedVersion: null,
+    notes: {
+      de: [
+        'Saat im Feldkalender: Aussaaten mit Saatgut und Vorlagen erfassen, Übersicht pro Kultur.',
+        'Tiere: Gewicht mit Verlauf erfassen, bei Behandlungen die Menge pro kg Körpergewicht berechnen.',
+        'Trächtigkeitskalender: Brunst und Deckungen erfassen, erwartete Geburten mit Erinnerungen.',
+        'Tiere: Farbe, Notizen und Nachkommen erfassen.',
+        'Ohrmarken: mehrere auf einmal erstellen und löschen.',
+        'Karte: Parzellengrenzen als Ebene, Fehler beim Speichern von Schlägen werden angezeigt.',
+      ],
+      fr: [
+        'Semis dans le calendrier des champs : saisir les semis avec semences et modèles, aperçu par culture.',
+        'Animaux : saisir le poids avec son évolution, calculer la quantité par kg de poids vif lors des traitements.',
+        'Calendrier de gestation : saisir les chaleurs et les saillies, mises bas prévues avec rappels.',
+        'Animaux : saisir la couleur, des notes et les descendants.',
+        'Marques auriculaires : en créer et en supprimer plusieurs à la fois.',
+        "Carte : limites des parcelles comme couche, les erreurs lors de l'enregistrement des champs sont affichées.",
+      ],
+      it: [
+        'Semina nel calendario dei campi: registrare le semine con sementi e modelli, panoramica per coltura.',
+        'Animali: registrare il peso con il suo andamento, calcolare la quantità per kg di peso vivo nei trattamenti.',
+        'Calendario gravidanze: registrare calori e monte, parti previsti con promemoria.',
+        'Animali: registrare colore, note e discendenti.',
+        'Marche auricolari: crearne ed eliminarne diverse in una volta.',
+        'Mappa: confini delle particelle come livello, gli errori nel salvataggio dei campi vengono mostrati.',
+      ],
+      en: [
+        'Sowing in the field calendar: record sowings with seeds and presets, overview per crop.',
+        'Animals: record weights with their history, treatments calculate the amount per kg of body weight.',
+        'Breeding calendar: record heats and matings, expected births with reminders.',
+        'Animals: record color, notes and offspring.',
+        'Ear tags: create and delete several at once.',
+        'Map: parcel borders as a layer, errors when saving plots are shown.',
+      ],
+    },
+  },
+  {
     version: '1.0.9',
     releasedAt: '2026-10-29',
     platforms: ['ios', 'android'],
