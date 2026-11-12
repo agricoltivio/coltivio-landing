@@ -157,6 +157,13 @@ export const cantonSources: CantonSource[] = [
     links: [{ kind: 'terms', href: 'https://webgis.lisag.ch/PDF/Nutzungsbestimmungen/Nutzungsbestimmungen_GIS_Uri.pdf' }],
   },
   {
+    code: 'VD',
+    attribution: 'Source : Géodonnées Etat de Vaud',
+    usageAreasUpdatedAt: '01.12.2025',
+    managementUnitsUpdatedAt: '01.12.2025',
+    links: [{ kind: 'terms', href: 'https://www.vd.ch/fileadmin/user_upload/dinf/8000/8401.pdf' }],
+  },
+  {
     code: 'VS',
     attribution: 'Canton du Valais, CC BY-SA 4.0',
     usageAreasUpdatedAt: '13.12.2025',
