@@ -23,6 +23,42 @@ export interface Release {
 export const RELEASES: Release[] = [
   // pnpm release inserts new entries below this line
   {
+    version: '1.0.10',
+    releasedAt: '2026-11-11',
+    platforms: ['ios', 'android'],
+    minSupportedVersion: null,
+    notes: {
+      de: [
+        'Saat im Feldkalender: Aussaaten mit Saatgut und Vorlagen erfassen, Übersicht pro Kultur.',
+        'Tiere: Gewicht mit Verlauf erfassen, bei Behandlungen die Menge pro kg Körpergewicht berechnen, zusätzliche Felder für Farbe und Notizen.',
+        'Trächtigkeitskalender: Brunst und Deckungen erfassen, erwartete Geburten mit Erinnerungen.',
+        'Karte: Neue Ebene mit Parzellengrenzen.',
+        'Weitere Verbesserungen.',
+      ],
+      fr: [
+        'Semis dans le calendrier des champs : saisir les semis avec semences et modèles, aperçu par culture.',
+        'Animaux : saisir le poids avec son évolution, calculer la quantité par kg de poids vif lors des traitements, champs supplémentaires pour la couleur et les notes.',
+        'Calendrier de gestation : saisir les chaleurs et les saillies, mises bas prévues avec rappels.',
+        'Carte : nouvelle couche avec les limites des parcelles.',
+        'Autres améliorations.',
+      ],
+      it: [
+        'Semina nel calendario dei campi: registrare le semine con sementi e modelli, panoramica per coltura.',
+        'Animali: registrare il peso con il suo andamento, calcolare la quantità per kg di peso vivo nei trattamenti, campi aggiuntivi per colore e note.',
+        'Calendario gravidanze: registrare calori e monte, parti previsti con promemoria.',
+        'Mappa: nuovo livello con i confini delle particelle.',
+        'Altri miglioramenti.',
+      ],
+      en: [
+        'Sowing in the field calendar: record sowings with seeds and presets, overview per crop.',
+        'Animals: record weights with their history, treatments calculate the amount per kg of body weight, additional fields for color and notes.',
+        'Breeding calendar: record heats and matings, expected births with reminders.',
+        'Map: new layer with parcel borders.',
+        'Further improvements.',
+      ],
+    },
+  },
+  {
     version: '1.0.9',
     releasedAt: '2026-10-29',
     platforms: ['ios', 'android'],
