@@ -6,7 +6,7 @@ export interface Translations {
   nav: { openApp: string; appCta: string; features: string; webapp: string; membership: string; about: string }
   hero: { headline: string; splashTagline: string; sub: string; note: string; ctaIos: string; ctaAndroid: string; imageAlt: string }
   story: { headline: string; founders: string; problem: string; born: string }
-  press: { eyebrow: string; quote: string; role: string; source: string; articleLead: string; articleTitle: string; articleLink: string }
+  press: { articleLead: string; articleTitle: string; articleLink: string; onlineLink: string }
   features: { eyebrow: string; title: string }
   fieldwork: {
     title: string
@@ -22,6 +22,8 @@ export interface Translations {
     import: { title: string; desc: string }
     treatments: { title: string; desc: string }
     turnout: { title: string; desc: string }
+    parasites: { title: string; desc: string }
+    breeding: { title: string; desc: string }
     export: { title: string; desc: string }
   }
   customize: {
@@ -46,6 +48,7 @@ export interface Translations {
     wikiStats: { title: string; desc: string }
   }
   downloadCta: { title: string; sub: string }
+  voices: { title: string; eyebrow: string; translated: string }
   verein: {
     eyebrow: string
     title: string
@@ -170,29 +173,28 @@ const translations: Record<Locale, Translations> = {
       born: 'So entstand Coltivio: die Open-Source-App, die Betriebsdokumentation erleichtert und Zeit spart.',
     },
     press: {
-      eyebrow: 'Aus dem Magazin Bioaktuell',
-      quote: 'Es ist toll, dass diese App von Bauern für Bauern entwickelt wurde. Ein einfaches, kostenfreies Hilfsmittel, das Betriebe entlasten soll, ist ganz im Sinne von Bio Suisse.',
-      role: 'Co-Geschäftsführer Bio Suisse',
-      source: 'Bioaktuell 8/2026',
       articleLead: 'Die ganze Geschichte im Artikel',
       articleTitle: 'Feierabend statt Papierkram',
       articleLink: 'Artikel lesen (PDF)',
+      onlineLink: 'Online lesen',
     },
     features: { eyebrow: 'Dein Hof in der Hosentasche', title: 'Alles, was auf dem Hof dokumentiert werden muss, in einer App' },
     fieldwork: {
       title: 'Feldarbeit',
       imageAlt: 'Fruchtfolgeplanung in der Coltivio-App, Kulturen über mehrere Jahre im Kalender.',
-      plots: { title: 'Flächenverwaltung', desc: 'Deine Flächen werden automatisch übernommen. Danach kannst du sie aufteilen, zusammenführen oder neu einzeichnen, ganz wie du es brauchst.' },
+      plots: { title: 'Flächenverwaltung', desc: 'Deine Flächen werden automatisch übernommen. Danach kannst du sie aufteilen, zusammenführen oder neu einzeichnen, ganz wie du es brauchst. Wo das nicht geht, importierst du sie am Computer in der Web-App aus dem kantonalen System, zum Beispiel aus Acorda oder LAWIS.' },
       protection: { title: 'Fruchtfolgeplanung', desc: 'Plane deine Fruchtfolgen mit wiederkehrenden Mustern. Überschneidungen und nicht eingehaltene Wartezeiten erkennt die App automatisch, das Ergebnis siehst du direkt im Kalender.' },
-      harvest: { title: 'Feldarbeiten', desc: 'Trag deine Feldarbeiten in wenigen Schritten ein. Pflügen, Düngeraustrag, Pflanzenschutz oder Ernte, alles direkt auf dem Feld.' },
+      harvest: { title: 'Feldarbeiten', desc: 'Trag deine Feldarbeiten in wenigen Schritten ein. Saat, Pflügen, Düngeraustrag, Pflanzenschutz oder Ernte, alles direkt auf dem Feld.' },
       export: { title: 'Export', desc: 'Exportiere den Feldkalender als Excel-Datei, aufbereitet für die nächste Kontrolle.' },
     },
     animals: {
       title: 'Tierhaltung',
       imageAlt: 'Auslaufjournal in der Coltivio-App, Auslauf- und Weidezeiten pro Herde im Kalender.',
       import: { title: 'Tierbestand', desc: 'Dein ganzer Tierbestand im Überblick. Erstelle Herden mit Auslauf- und Weidezeiten. Die Tiere übernimmst du direkt aus dem Tierlisten-Export der TVD.' },
-      treatments: { title: 'Behandlungsjournal', desc: 'Vollständiges Medikamentenprotokoll pro Tier: Präparat, Dosis, Grund und Tierarztpraxis. Milch- und Fleischwartezeiten rechnet die App automatisch aus.' },
-      turnout: { title: 'Auslaufjournal', desc: 'Das Auslaufjournal entsteht automatisch aus deinen Herden. Einmal eingerichtet, dann läuft es.' },
+      treatments: { title: 'Behandlungsjournal', desc: 'Vollständiges Medikamentenprotokoll pro Tier: Präparat, Dosis, Grund und Tierarztpraxis. Milch- und Fleischwartezeiten rechnet die App automatisch aus, aus dem erfassten Gewicht auch die Menge pro kg Körpergewicht.' },
+      turnout: { title: 'Weideflächen und Auslaufjournal', desc: 'Zeichne deine Weideflächen ein oder setz sie aus bestehenden Schlägen zusammen und plane die Weidezeiten pro Herde. Das Auslaufjournal entsteht daraus automatisch.' },
+      parasites: { title: 'Parasitenkontrolle', desc: 'Erfasse FAMACHA-Werte und Kotproben, als Einzel- oder Sammelprobe. Nachkontrollen zeigen, wie stark die Werte nach einer Behandlung zurückgegangen sind.' },
+      breeding: { title: 'Trächtigkeitskalender', desc: 'Halte fest, wann ein Tier paarungsbereit war und wann es gedeckt wurde. Die App zeigt die erwartete Geburt im Kalender und erinnert dich rechtzeitig daran.' },
       export: { title: 'Export für Kontrollen', desc: 'Strukturierte Exporte für offizielle Tierkontrollen: Behandlungsprotokoll, Bestandslisten und Auslaufjournal im exakt geforderten Format der Schweizer Behörden.' },
     },
     customize: {
@@ -220,6 +222,7 @@ const translations: Record<Locale, Translations> = {
       title: 'Hol dir die App und erfasse die erste Feldarbeit noch heute',
       sub: 'Kein Abo, keine Kreditkarte. Betrieb anlegen, Flächen übernehmen, loslegen.',
     },
+    voices: { eyebrow: 'Stimmen', title: 'Werde Teil einer wachsenden Gemeinschaft unabhängiger Bäuerinnen und Bauern', translated: 'Übersetzung' },
     verein: {
       eyebrow: 'Der Verein',
       title: 'Offen, unabhängig und von einem Verein getragen',
@@ -355,29 +358,28 @@ const translations: Record<Locale, Translations> = {
       born: "C'est ainsi qu'est né Coltivio : l'app open source qui simplifie la documentation agricole, fait gagner du temps et connecte les agriculteurs.",
     },
     press: {
-      eyebrow: 'Dans le magazine Bioactualités',
-      quote: "C'est super que cette appli ait été développée par des paysans pour des paysans. Un outil de travail simple et gratuit qui peut soulager les productrices et producteurs va tout à fait dans le sens de Bio Suisse.",
-      role: 'codirecteur de Bio Suisse',
-      source: 'Bioactualités 8/2026',
       articleLead: "Toute l'histoire dans l'article",
       articleTitle: 'Soirée libre au lieu de paperasserie',
       articleLink: "Lire l'article (PDF)",
+      onlineLink: 'Lire en ligne',
     },
     features: { eyebrow: 'Votre exploitation dans votre poche', title: "Tout ce qui doit être documenté à la ferme, dans une seule app" },
     fieldwork: {
       title: 'Travaux des Champs',
       imageAlt: "Planification des rotations culturales dans Coltivio, les cultures sur plusieurs années dans le calendrier.",
-      plots: { title: 'Gestion des surfaces', desc: 'Saisie automatique de vos surfaces. Adaptez-les à vos besoins : divisez, fusionnez ou dessinez de nouvelles parcelles, exactement comme il vous faut.' },
+      plots: { title: 'Gestion des surfaces', desc: "Saisie automatique de vos surfaces. Adaptez-les à vos besoins : divisez, fusionnez ou dessinez de nouvelles parcelles, exactement comme il vous faut. Si ce n'est pas possible, importez-les sur ordinateur dans la Web App depuis le système cantonal, par exemple Acorda ou LAWIS." },
       protection: { title: 'Planification de la rotation des cultures', desc: "Planifiez vos rotations culturales facilement grâce aux schémas récurrents, la détection automatique des conflits et des violations des délais d'attente, et visualisez le résultat en temps réel dans le calendrier." },
-      harvest: { title: 'Travaux des champs', desc: "Enregistrez vos travaux des champs en quelques étapes : labour, épandage d'engrais, protection des cultures ou récolte, tout noté immédiatement sur place." },
+      harvest: { title: 'Travaux des champs', desc: "Enregistrez vos travaux des champs en quelques étapes : semis, labour, épandage d'engrais, protection des cultures ou récolte, tout noté immédiatement sur place." },
       export: { title: 'Export', desc: 'Exportez le calendrier des champs sous forme de fichier Excel optimisé, prêt pour votre prochaine inspection officielle.' },
     },
     animals: {
       title: 'Élevage',
       imageAlt: 'Journal de pâturage dans Coltivio, sorties et temps de pâturage par troupeau dans le calendrier.',
       import: { title: 'Cheptel', desc: "Tout votre cheptel en un coup d'œil. Créez des troupeaux avec des sorties et des temps de pâturage définis. Importez les animaux via l'export des listes animaux depuis TVD." },
-      treatments: { title: 'Journal des traitements', desc: "Journal complet des médicaments par animal : produit, dose, motif et vétérinaire. Les délais d'attente lait et viande sont calculés automatiquement." },
-      turnout: { title: 'Journal de pâturage', desc: 'Journal de pâturage généré automatiquement en fonction des troupeaux configurés. Configurez-le une fois et oubliez-le.' },
+      treatments: { title: 'Journal des traitements', desc: "Journal complet des médicaments par animal : produit, dose, motif et vétérinaire. Les délais d'attente lait et viande sont calculés automatiquement, tout comme la quantité par kg de poids vif à partir du poids saisi." },
+      turnout: { title: 'Pâtures et journal de sorties', desc: "Dessinez vos pâtures ou composez-les à partir de champs existants, puis planifiez les périodes de pâture par troupeau. Le journal de sorties en découle automatiquement." },
+      parasites: { title: 'Contrôle des parasites', desc: "Saisissez les scores FAMACHA et les échantillons de fèces, individuels ou groupés. Les recontrôles montrent de combien les valeurs ont baissé après un traitement." },
+      breeding: { title: 'Calendrier de gestation', desc: "Notez quand un animal était en chaleur et quand il a été sailli. L'app affiche la mise bas prévue dans le calendrier et vous le rappelle à temps." },
       export: { title: 'Export pour contrôles', desc: 'Exports structurés pour les inspections officielles du cheptel : historique des traitements, listes de troupeaux et registres de pâturage dans le format exact exigé par les autorités suisses.' },
     },
     customize: {
@@ -405,6 +407,7 @@ const translations: Record<Locale, Translations> = {
       title: "Téléchargez l'app et saisissez votre premier travail des champs dès aujourd'hui",
       sub: "Sans abonnement, sans carte de crédit. Créez votre exploitation, reprenez vos surfaces, c'est parti.",
     },
+    voices: { eyebrow: 'Témoignages', title: 'Rejoignez une communauté grandissante de paysannes et paysans indépendants', translated: 'Traduction' },
     verein: {
       eyebrow: "L'association",
       title: 'Ouvert, indépendant et porté par une association',
@@ -540,29 +543,28 @@ const translations: Record<Locale, Translations> = {
       born: "Così è nato Coltivio: l'app open source che semplifica la documentazione agricola, fa risparmiare tempo e mette in rete gli agricoltori.",
     },
     press: {
-      eyebrow: 'Dalla rivista Bioattualità',
-      quote: 'È fantastico che questa applicazione sia stata sviluppata da contadini per contadini. Uno strumento semplice e gratuito per sgravare le aziende è assolutamente in linea con i principi di Bio Suisse.',
-      role: 'codirettore di Bio Suisse',
-      source: 'Bioattualità 8/2026',
       articleLead: "Tutta la storia nell'articolo",
       articleTitle: 'Tempo libero anziché burocrazia',
       articleLink: "Leggi l'articolo (PDF)",
+      onlineLink: 'Leggi online (in tedesco)',
     },
     features: { eyebrow: 'Il tuo podere in tasca', title: "Tutto quello che va documentato in azienda, in un'unica app" },
     fieldwork: {
       title: 'Lavoro in Campo',
       imageAlt: "Pianificazione della rotazione colturale in Coltivio, le colture su più anni nel calendario.",
-      plots: { title: 'Gestione delle superfici', desc: 'Acquisizione automatica delle tue superfici. Adattale alle tue esigenze: dividile, uniscile o disegnane di nuove, esattamente come ti serve.' },
+      plots: { title: 'Gestione delle superfici', desc: 'Acquisizione automatica delle tue superfici. Adattale alle tue esigenze: dividile, uniscile o disegnane di nuove, esattamente come ti serve. Se non è possibile, importale al computer nella Web App dal sistema cantonale, ad esempio da Acorda o LAWIS.' },
       protection: { title: 'Pianificazione della rotazione colturale', desc: 'Pianifica le rotazioni colturali con facilità usando schemi ricorrenti, rilevamento automatico di conflitti e violazioni dei tempi di attesa, e vedi il risultato in tempo reale nel calendario.' },
-      harvest: { title: 'Attività di campo', desc: 'Registra le tue attività di campo in pochi passi: aratura, spargimento di fertilizzanti, protezione delle colture o raccolta, tutto catturato immediatamente sul posto.' },
+      harvest: { title: 'Attività di campo', desc: 'Registra le tue attività di campo in pochi passi: semina, aratura, spargimento di fertilizzanti, protezione delle colture o raccolta, tutto catturato immediatamente sul posto.' },
       export: { title: 'Esportazione', desc: 'Esporta il calendario dei campi come file Excel ottimizzato, pronto per la tua prossima ispezione ufficiale.' },
     },
     animals: {
       title: 'Zootecnia',
       imageAlt: 'Giornale di pascolo in Coltivio, uscite e tempi di pascolo per mandria nel calendario.',
       import: { title: 'Patrimonio zootecnico', desc: "Tutto il tuo bestiame a colpo d'occhio. Crea mandrie con uscite e tempi di pascolo definiti. Importa gli animali tramite l'esportazione delle liste animali da TVD." },
-      treatments: { title: 'Giornale trattamenti', desc: 'Registro completo dei farmaci per animale: prodotto, dose, motivo e veterinario. I periodi di attesa per latte e carne vengono calcolati automaticamente.' },
-      turnout: { title: 'Giornale di pascolo', desc: "Giornale di pascolo generato automaticamente in base alle mandrie configurate. Configuralo una volta e lascia fare all'app." },
+      treatments: { title: 'Giornale trattamenti', desc: 'Registro completo dei farmaci per animale: prodotto, dose, motivo e veterinario. I periodi di attesa per latte e carne vengono calcolati automaticamente, così come la quantità per kg di peso vivo in base al peso registrato.' },
+      turnout: { title: "Aree di pascolo e diario all'aperto", desc: "Disegna le tue aree di pascolo o componile dai campi esistenti e pianifica i periodi di pascolo per mandria. Il diario all'aperto si genera automaticamente." },
+      parasites: { title: 'Controllo parassiti', desc: 'Registra i punteggi FAMACHA e i campioni di feci, individuali o collettivi. I ricontrolli mostrano di quanto sono diminuiti i valori dopo un trattamento.' },
+      breeding: { title: 'Calendario gravidanze', desc: "Annota quando un animale era in calore e quando è stato coperto. L'app mostra il parto previsto nel calendario e te lo ricorda per tempo." },
       export: { title: 'Esporta per controlli', desc: 'Export strutturati per le ispezioni ufficiali del bestiame: storico trattamenti, liste di mandria e registri di pascolo nel formato esatto richiesto dalle autorità svizzere.' },
     },
     customize: {
@@ -590,6 +592,7 @@ const translations: Record<Locale, Translations> = {
       title: "Scarica l'app e registra oggi stesso il primo lavoro in campo",
       sub: "Nessun abbonamento, nessuna carta di credito. Crea l'azienda, importa le superfici, si parte.",
     },
+    voices: { eyebrow: 'Voci', title: 'Entra a far parte di una comunità in crescita di contadine e contadini indipendenti', translated: 'Traduzione' },
     verein: {
       eyebrow: "L'associazione",
       title: "Aperto, indipendente e sostenuto da un'associazione",
@@ -725,29 +728,28 @@ const translations: Record<Locale, Translations> = {
       born: "That's how Coltivio came to be: the open-source app that makes farm documentation easier, saves time, and connects farmers.",
     },
     press: {
-      eyebrow: 'In the magazine Bioaktuell',
-      quote: 'It is great that this app was developed by farmers for farmers. A simple, free tool that takes work off farms is exactly in the spirit of Bio Suisse.',
-      role: 'Co-Managing Director, Bio Suisse',
-      source: 'Bioaktuell 8/2026',
       articleLead: 'The whole story in the article',
       articleTitle: 'Feierabend statt Papierkram',
       articleLink: 'Read the article (PDF, in German)',
+      onlineLink: 'Read online (in German)',
     },
     features: { eyebrow: 'Your farm in your pocket', title: 'Everything a farm has to document, in one app' },
     fieldwork: {
       title: 'Field Work',
       imageAlt: 'Crop rotation planning in Coltivio, crops across several years in the calendar.',
-      plots: { title: 'Plot Management', desc: 'Automatic capture of your plots. Adjust them to your needs: split, merge or draw new ones, exactly as you need it.' },
+      plots: { title: 'Plot Management', desc: 'Automatic capture of your plots. Adjust them to your needs: split, merge or draw new ones, exactly as you need it. Where that is not possible, import them on a computer in the web app from the cantonal system, for example Acorda or LAWIS.' },
       protection: { title: 'Crop Rotation Planning', desc: 'Plan your crop rotations with ease using recurring patterns, conflict and waiting time violation detection, and see the result in real time in the calendar.' },
-      harvest: { title: 'Field Activities', desc: 'Log your field activities in just a few steps: ploughing, fertiliser spreading, crop protection or harvest, all captured on the spot.' },
+      harvest: { title: 'Field Activities', desc: 'Log your field activities in just a few steps: sowing, ploughing, fertiliser spreading, crop protection or harvest, all captured on the spot.' },
       export: { title: 'Export', desc: 'Export the field calendar as an optimised Excel file, ready for your next official inspection.' },
     },
     animals: {
       title: 'Animal Husbandry',
       imageAlt: 'Turnout journal in Coltivio, turnout and grazing periods per herd in the calendar.',
       import: { title: 'Livestock Overview', desc: 'Your entire livestock at a glance. Create herds with defined turnout and grazing times. Import animals from a TVD herd list export.' },
-      treatments: { title: 'Treatments Journal', desc: 'A complete medication log per animal: drug, dose, reason, and vet. Milk and meat withdrawal periods are calculated automatically.' },
-      turnout: { title: 'Turnout Journal', desc: 'Automatically generated turnout journal based on your configured herds. Set it up once and let it run.' },
+      treatments: { title: 'Treatments Journal', desc: 'A complete medication log per animal: drug, dose, reason, and vet. Milk and meat withdrawal periods are calculated automatically, and so is the amount per kg of body weight from the recorded weight.' },
+      turnout: { title: 'Meadows and Outdoor Journal', desc: 'Draw your meadows or compose them from existing plots, then plan grazing periods per herd. The outdoor journal is generated from them automatically.' },
+      parasites: { title: 'Parasite Control', desc: 'Record FAMACHA scores and fecal samples, individual or pooled. Re-checks show how much the values dropped after a treatment.' },
+      breeding: { title: 'Breeding Calendar', desc: 'Note when an animal was in heat and when it was mated. The app shows the expected birth in the calendar and reminds you in time.' },
       export: { title: 'Export for Checks', desc: 'One-tap structured exports for official livestock inspections: treatment history, herd lists, and turnout records formatted exactly as required by Swiss authorities.' },
     },
     customize: {
@@ -775,6 +777,7 @@ const translations: Record<Locale, Translations> = {
       title: 'Get the app and log your first field job today',
       sub: 'No subscription, no credit card. Create your farm, pull in your plots, get going.',
     },
+    voices: { eyebrow: 'Voices', title: 'Join a growing community of independent farmers', translated: 'Translation' },
     verein: {
       eyebrow: 'The Association',
       title: 'Open, independent, and run by an association',

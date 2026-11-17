@@ -2,7 +2,8 @@
 import type { Locale, Translations } from '@/i18n/translations'
 import { Image } from 'astro:assets'
 import { buttonClass } from '@/lib/button'
-import { PRESS_ARTICLE_URL, PRESS_QUOTE_AUTHOR } from '@/lib/press'
+import { PRESS_ARTICLE_URL } from '@/lib/press'
+import { QUOTES } from '@/data/quotes'
 import { NewsletterForm } from './NewsletterForm'
 import { StatutenDialog } from './StatutenDialog'
 import { DonationForm } from './DonationForm'
@@ -37,7 +38,7 @@ const CARD_TITLE = 'font-semibold'                                  // any card,
 // Section rhythm. The page alternates white and the tinted ground instead of
 // separating every band with a rule, so the three gradient bands and the footer
 // are the only hard colour changes on the page. Reading down: hero band,
-// problem, features, web app, download, association, membership band, FAQ,
+// problem, features, web app, voices and download, association, membership band, FAQ,
 // donate band, footer. Every band hands over with a `Wave` filled in the ground
 // of the section it meets, so moving a section means checking its two waves.
 const SECTION = 'py-20 md:py-24'
@@ -66,7 +67,14 @@ const membershipBenefits = [
 // form hides it inside a string. The template is not affected, only this block.
 const fieldworkCards = [tr.fieldwork.plots, tr.fieldwork.protection, tr.fieldwork.harvest, tr.fieldwork['export']]
 
-const animalCards = [tr.animals.import, tr.animals.treatments, tr.animals.turnout, tr.animals['export']]
+const animalCards = [
+  tr.animals.import,
+  tr.animals.turnout,
+  tr.animals.treatments,
+  tr.animals.parasites,
+  tr.animals.breeding,
+  tr.animals['export'],
+]
 
 // What the app does beyond the two big journals, ordered from the setting a
 // farmer touches first to the archive they touch last.
@@ -97,6 +105,11 @@ const vereinCards = [
 
 const faqItems = [tr.faq.cost, tr.faq.data, tr.faq.devices, tr.faq['exports'], tr.faq.agate, tr.faq.team, tr.faq.who]
 
+const locale = lang as Locale
+// The press quotes share one article, so it is linked once below them rather than
+// under every quote.
+const quotesFromArticle = QUOTES.some((quote) => quote.source.url?.[locale] === PRESS_ARTICLE_URL[locale])
+
 const legalLinks = [
   { href: lang === 'de' ? '/imprint' : `/${lang}/imprint`, label: tr.imprint.title },
   { href: lang === 'de' ? '/privacy' : `/${lang}/privacy`, label: tr.privacy.title },
@@ -125,27 +138,6 @@ const legalLinks = [
         <p>{tr.story.problem}</p>
         <p class="font-medium text-foreground">{tr.story.born}</p>
       </div>
-
-      {/* The press block lives inside the story rather than in a section of its
-          own: the article tells the same origin story, and one mention of
-          Bioaktuell on the page is enough. */}
-      <figure class:list={[CARD, 'space-y-5']}>
-        <p class={EYEBROW}>{tr.press.eyebrow}</p>
-        <blockquote class="text-xl font-medium leading-relaxed text-foreground md:text-2xl">
-          <p>«{tr.press.quote}»</p>
-        </blockquote>
-        <figcaption class="space-y-4 text-sm text-muted-foreground">
-          <p>
-            <span class="font-semibold text-foreground">{PRESS_QUOTE_AUTHOR}</span>, {tr.press.role}. {tr.press.source}.
-          </p>
-          <p>
-            {tr.press.articleLead} «{tr.press.articleTitle}»:{' '}
-            <a href={PRESS_ARTICLE_URL[lang as Locale]} target="_blank" rel="noopener" class="font-medium text-primary underline underline-offset-4 hover:text-primary/80">
-              {tr.press.articleLink}
-            </a>
-          </p>
-        </figcaption>
-      </figure>
     </div>
   </section>
 
@@ -261,18 +253,61 @@ const legalLinks = [
     </div>
   </section>
 
-  {/* ── Download ───────────────────────────────────────────── */}
+  {/* ── Voices and download ───────────────────────────────── */}
   {/* The ask for the app itself, placed after the feature tour and before the
       association: the reader has seen what it does and has not yet been asked
-      for anything. The hero carries the same two badges, but a visitor who
+      for anything. The voices come first, so the ask follows what others say
+      about the app. The hero carries the same two badges, but a visitor who
       scrolled this far should not have to scroll back up. */}
-  <section class={SECTION}>
-    <div class="container mx-auto flex max-w-3xl flex-col items-center gap-5 px-4 text-center">
-      <h2 class={H2_SECTION}>{tr.downloadCta.title}</h2>
-      <p class="max-w-xl text-lg leading-relaxed text-muted-foreground">{tr.downloadCta.sub}</p>
-      <div class="flex flex-wrap items-center justify-center gap-3 pt-1">
-        <StoreBadge store="ios" lang={lang} label={tr.hero.ctaIos} class="h-10" />
-        <StoreBadge store="android" lang={lang} label={tr.hero.ctaAndroid} class="h-10" />
+  <section id="stimmen" class={SECTION}>
+    <div class="container mx-auto max-w-5xl space-y-12 px-4">
+      <div class="mx-auto max-w-3xl space-y-3 text-center">
+        <p class={EYEBROW}>{tr.voices.eyebrow}</p>
+        <h2 class={H2_SECTION}>{tr.voices.title}</h2>
+      </div>
+
+      {QUOTES.length > 0 && (
+        <div class="space-y-4">
+          <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+            {QUOTES.map((quote) => {
+              const text = quote.text[locale]
+              const sourceUrl = quote.source.url?.[locale]
+              return (
+                <figure class:list={[CARD, 'flex flex-col justify-between gap-5']}>
+                  <blockquote class="text-lg font-medium leading-relaxed text-foreground">
+                    <p>«{text.text}»</p>
+                  </blockquote>
+                  <figcaption class="text-sm text-muted-foreground">
+                    <span class="font-semibold text-foreground">{quote.name}</span>{quote.role && <>, {quote.role[locale]}</>}.{' '}
+                    {sourceUrl && sourceUrl !== PRESS_ARTICLE_URL[locale] ? (
+                      <a href={sourceUrl} target="_blank" rel="noopener" class="underline underline-offset-4 hover:text-foreground">{quote.source.label[locale]}</a>
+                    ) : (
+                      quote.source.label[locale]
+                    )}
+                    {text.translated && <> ({tr.voices.translated})</>}
+                  </figcaption>
+                </figure>
+              )
+            })}
+          </div>
+          {quotesFromArticle && (
+            <p class="text-sm text-muted-foreground">
+              {tr.press.articleLead} «{tr.press.articleTitle}»:{' '}
+              <a href={PRESS_ARTICLE_URL[locale]} target="_blank" rel="noopener" class="font-medium text-primary underline underline-offset-4 hover:text-primary/80">
+                {tr.press.articleLink}
+              </a>
+            </p>
+          )}
+        </div>
+      )}
+
+      <div class="mx-auto flex max-w-3xl flex-col items-center gap-5 pt-4 text-center">
+        <p class="text-2xl font-bold tracking-tight">{tr.downloadCta.title}</p>
+        <p class="max-w-xl text-lg leading-relaxed text-muted-foreground">{tr.downloadCta.sub}</p>
+        <div class="flex flex-wrap items-center justify-center gap-3 pt-1">
+          <StoreBadge store="ios" lang={lang} label={tr.hero.ctaIos} class="h-10" />
+          <StoreBadge store="android" lang={lang} label={tr.hero.ctaAndroid} class="h-10" />
+        </div>
       </div>
     </div>
   </section>

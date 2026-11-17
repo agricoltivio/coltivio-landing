@@ -131,10 +131,10 @@ const sceneGroups: { title: string; intro: string; scenes: Scene[] }[] = [
         {PRESS_COVERAGE.map((article) => (
           <li class:list={[CARD, 'flex flex-wrap items-center justify-between gap-4']}>
             <div>
-              <p class="text-sm text-muted-foreground">{article.outlet[locale]} {article.issue}</p>
+              <p class="text-sm text-muted-foreground">{article.outlet[locale]} {article.issue[locale]}</p>
               <p class="text-lg font-semibold">«{article.title[locale]}»</p>
             </div>
-            <a href={article.url[locale]} target="_blank" rel="noopener" class={DOWNLOAD}>{tr.press.articleLink}</a>
+            <a href={article.url[locale]} target="_blank" rel="noopener" class={DOWNLOAD}>{article.format === 'pdf' ? tr.press.articleLink : tr.press.onlineLink}</a>
           </li>
         ))}
       </ul>
