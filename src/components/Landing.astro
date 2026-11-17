@@ -2,7 +2,7 @@
 import type { Locale, Translations } from '@/i18n/translations'
 import { Image } from 'astro:assets'
 import { buttonClass } from '@/lib/button'
-import { PRESS_ARTICLE_URL } from '@/lib/press'
+import { BUENDNER_BAUER_ARTICLE } from '@/lib/press'
 import { QUOTES } from '@/data/quotes'
 import { NewsletterForm } from './NewsletterForm'
 import { StatutenDialog } from './StatutenDialog'
@@ -108,7 +108,6 @@ const faqItems = [tr.faq.cost, tr.faq.data, tr.faq.devices, tr.faq['exports'], t
 const locale = lang as Locale
 // The press quotes share one article, so it is linked once below them rather than
 // under every quote.
-const quotesFromArticle = QUOTES.some((quote) => quote.source.url?.[locale] === PRESS_ARTICLE_URL[locale])
 
 const legalLinks = [
   { href: lang === 'de' ? '/imprint' : `/${lang}/imprint`, label: tr.imprint.title },
@@ -279,7 +278,7 @@ const legalLinks = [
                   </blockquote>
                   <figcaption class="text-sm text-muted-foreground">
                     <span class="font-semibold text-foreground">{quote.name}</span>{quote.role && <>, {quote.role[locale]}</>}.{' '}
-                    {sourceUrl && sourceUrl !== PRESS_ARTICLE_URL[locale] ? (
+                    {sourceUrl ? (
                       <a href={sourceUrl} target="_blank" rel="noopener" class="underline underline-offset-4 hover:text-foreground">{quote.source.label[locale]}</a>
                     ) : (
                       quote.source.label[locale]
@@ -290,14 +289,12 @@ const legalLinks = [
               )
             })}
           </div>
-          {quotesFromArticle && (
-            <p class="text-sm text-muted-foreground">
-              {tr.press.articleLead} «{tr.press.articleTitle}»:{' '}
-              <a href={PRESS_ARTICLE_URL[locale]} target="_blank" rel="noopener" class="font-medium text-primary underline underline-offset-4 hover:text-primary/80">
-                {tr.press.articleLink}
-              </a>
-            </p>
-          )}
+          <p class="text-sm text-muted-foreground">
+            {tr.press.articleLead} «{BUENDNER_BAUER_ARTICLE.title[locale]}»:{' '}
+            <a href={BUENDNER_BAUER_ARTICLE.url[locale]} target="_blank" rel="noopener" class="font-medium text-primary underline underline-offset-4 hover:text-primary/80">
+              {tr.press.articleLink}
+            </a>
+          </p>
         </div>
       )}
 

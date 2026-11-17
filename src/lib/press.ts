@@ -23,22 +23,24 @@ export interface PressCoverage {
   format: 'pdf' | 'web'
 }
 
-// Every article about Coltivio, newest first. Listed on /press; the landing page only
-// quotes the Bioaktuell one.
-export const PRESS_COVERAGE: PressCoverage[] = [
-  // German edition only, every locale gets the same PDF.
-  {
-    outlet: { de: 'Bündner Bauer', fr: 'Bündner Bauer', it: 'Bündner Bauer', en: 'Bündner Bauer' },
-    issue: { de: '46/2026', fr: '46/2026', it: '46/2026', en: '46/2026' },
-    title: {
-      de: 'Ein Bündner Bergbauer baut sich seine Hof-App',
-      fr: 'Ein Bündner Bergbauer baut sich seine Hof-App',
-      it: 'Ein Bündner Bergbauer baut sich seine Hof-App',
-      en: 'Ein Bündner Bergbauer baut sich seine Hof-App',
-    },
-    url: { de: buendnerBauer, fr: buendnerBauer, it: buendnerBauer, en: buendnerBauer },
-    format: 'pdf',
+// German edition only, every locale gets the same PDF. The landing page links it
+// below the quotes.
+export const BUENDNER_BAUER_ARTICLE: PressCoverage = {
+  outlet: { de: 'Bündner Bauer', fr: 'Bündner Bauer', it: 'Bündner Bauer', en: 'Bündner Bauer' },
+  issue: { de: '46/2026', fr: '46/2026', it: '46/2026', en: '46/2026' },
+  title: {
+    de: 'Ein Bündner Bergbauer baut sich seine Hof-App',
+    fr: 'Ein Bündner Bergbauer baut sich seine Hof-App',
+    it: 'Ein Bündner Bergbauer baut sich seine Hof-App',
+    en: 'Ein Bündner Bergbauer baut sich seine Hof-App',
   },
+  url: { de: buendnerBauer, fr: buendnerBauer, it: buendnerBauer, en: buendnerBauer },
+  format: 'pdf',
+}
+
+// Every article about Coltivio, newest first. Listed on /press.
+export const PRESS_COVERAGE: PressCoverage[] = [
+  BUENDNER_BAUER_ARTICLE,
   // The online report on bioaktuell.ch, a shortened version of the print article.
   // German and French only; Italian and English link the German one.
   {

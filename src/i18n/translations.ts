@@ -6,7 +6,7 @@ export interface Translations {
   nav: { openApp: string; appCta: string; features: string; webapp: string; membership: string; about: string }
   hero: { headline: string; splashTagline: string; sub: string; note: string; ctaIos: string; ctaAndroid: string; imageAlt: string }
   story: { headline: string; founders: string; problem: string; born: string }
-  press: { articleLead: string; articleTitle: string; articleLink: string; onlineLink: string }
+  press: { articleLead: string; articleLink: string; onlineLink: string }
   features: { eyebrow: string; title: string }
   fieldwork: {
     title: string
@@ -174,7 +174,6 @@ const translations: Record<Locale, Translations> = {
     },
     press: {
       articleLead: 'Die ganze Geschichte im Artikel',
-      articleTitle: 'Feierabend statt Papierkram',
       articleLink: 'Artikel lesen (PDF)',
       onlineLink: 'Online lesen',
     },
@@ -359,7 +358,6 @@ const translations: Record<Locale, Translations> = {
     },
     press: {
       articleLead: "Toute l'histoire dans l'article",
-      articleTitle: 'Soirée libre au lieu de paperasserie',
       articleLink: "Lire l'article (PDF)",
       onlineLink: 'Lire en ligne',
     },
@@ -544,7 +542,6 @@ const translations: Record<Locale, Translations> = {
     },
     press: {
       articleLead: "Tutta la storia nell'articolo",
-      articleTitle: 'Tempo libero anziché burocrazia',
       articleLink: "Leggi l'articolo (PDF)",
       onlineLink: 'Leggi online (in tedesco)',
     },
@@ -729,7 +726,6 @@ const translations: Record<Locale, Translations> = {
     },
     press: {
       articleLead: 'The whole story in the article',
-      articleTitle: 'Feierabend statt Papierkram',
       articleLink: 'Read the article (PDF, in German)',
       onlineLink: 'Read online (in German)',
     },
