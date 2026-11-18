@@ -23,6 +23,42 @@ export interface Release {
 export const RELEASES: Release[] = [
   // pnpm release inserts new entries below this line
   {
+    version: '1.0.11',
+    releasedAt: '2026-11-18',
+    platforms: ['ios', 'android'],
+    minSupportedVersion: null,
+    notes: {
+      de: [
+        'Erinnerungen auf Android: Benachrichtigungen für fällige Aufgaben und erwartete Geburten kommen jetzt auch auf Android-Geräten an.',
+        'Behandlungen: auch ohne Medikament erfassen, zum Beispiel die Klauenpflege. Fehlen bei einem Medikament Dosierung und Absetzfristen für die Tierart, trägst du sie selbst ein.',
+        'Pflanzenschutzmittel und Dünger: Zulassungsnummer erfassen, Dünger auch in Kubikmetern.',
+        'Saatgut: eine fehlende Kultur direkt im Saatgut-Formular erstellen.',
+        'Weitere Verbesserungen und Fehlerbehebungen, unter anderem bei der Auswahl der Betriebsnummer in der Registrierung.',
+      ],
+      fr: [
+        'Rappels sur Android : les notifications pour les tâches à échéance et les mises bas prévues arrivent désormais aussi sur les appareils Android.',
+        "Traitements : saisir aussi sans médicament, par exemple le parage des onglons. Si un médicament n'a pas de dosage ni de délais d'attente pour l'espèce, tu les saisis toi-même.",
+        "Produits phytosanitaires et engrais : saisir le numéro d'homologation, engrais aussi en mètres cubes.",
+        'Semences : créer une culture manquante directement dans le formulaire des semences.',
+        "Autres améliorations et corrections, notamment lors du choix du numéro d'exploitation à l'inscription.",
+      ],
+      it: [
+        'Promemoria su Android: le notifiche per le attività in scadenza e i parti previsti arrivano ora anche sui dispositivi Android.',
+        'Trattamenti: registrare anche senza medicinale, per esempio il pareggio degli unghioni. Se un medicinale non ha dosaggio né periodi di attesa per la specie, li inserisci tu.',
+        'Prodotti fitosanitari e fertilizzanti: registrare il numero di omologazione, fertilizzanti anche in metri cubi.',
+        'Sementi: creare una coltura mancante direttamente nel modulo delle sementi.',
+        "Altri miglioramenti e correzioni, tra cui la scelta del numero d'azienda durante la registrazione.",
+      ],
+      en: [
+        'Reminders on Android: notifications for due tasks and expected births now also reach Android devices.',
+        'Treatments: record them without a drug too, for example hoof trimming. If a drug has no dose and withdrawal periods for the animal type, you enter them yourself.',
+        'Crop protection products and fertilizers: record the registration number, fertilizers also in cubic meters.',
+        'Seeds: create a missing crop right from the seed form.',
+        'Further improvements and fixes, among them choosing the farm number during sign-up.',
+      ],
+    },
+  },
+  {
     version: '1.0.10',
     releasedAt: '2026-11-11',
     platforms: ['ios', 'android'],
