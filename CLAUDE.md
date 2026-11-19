@@ -46,17 +46,21 @@ JSON-LD. Two pieces are split out of `Landing.astro` because they carry their ow
 `SiteHeader.astro` (fixed, deep teal at all times) and `Hero.astro`.
 
 The order of the sections is the argument the page makes, so it is worth stating: hero, the
-problem, what the app does, the web app, the ask for the app, the association, the ask for a
+problem, what the app does, the web app, voices and the ask for the app, the association, the ask for a
 membership, the FAQ, the ask for a donation, footer. Each ask sits after the case for it, and the
 membership ask follows the association because the case for paying is the case for the
 association. The newsletter lives in the footer, not in a section of its own: next to the donation
 band it read as a wall of controls at the point where the page should be easiest to leave.
 The legal pages have no header, which is why the header may stay dark at all times.
 
-The Bioaktuell press block (the Bio Suisse quote and the article PDF) sits inside the problem
-section, because the article tells the same origin story and one mention on the page is enough.
-The PDFs live in `src/assets/press/`, one per magazine edition, mapped by locale in
-`src/lib/press.ts`; English links the German one.
+The voices section (`id="stimmen"`) opens the ask for the app: the community line as its heading,
+the quotes from `src/data/quotes.ts`, then the store badges. Quotes are data, one entry per
+person with the text in all four locales and a `translated` flag the page shows. Press quotes
+are quoted from the publication; a quote from an e-mail or a conversation needs the person's
+consent, and `consentDate` is checked at build time. The repository is public, so such a quote
+does not go in before that date exists. The two current quotes come from the Bioaktuell article,
+which is linked once below them. The PDFs live in `src/assets/press/`, one per magazine edition,
+mapped by locale in `src/lib/press.ts`; English links the German one.
 
 **Press and brand kit (`/press`, `PressKitPage.astro`):** copy to quote, the coverage list
 (`PRESS_COVERAGE` in `src/lib/press.ts`, add new articles there), and logos, colours, type and images
