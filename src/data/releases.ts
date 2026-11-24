@@ -30,25 +30,25 @@ export const RELEASES: Release[] = [
     notes: {
       de: [
         'Tierdetails: neu gestaltet.',
-        'Ohrmarken unterstützen wieder Präfixe.',
+        'Ohrmarken unterstützen Präfixe.',
         'Auslauf: Ausnahmen pro Herde, Stall als eigener Typ.',
         'Weitere Verbesserungen und Fehlerbehebungen.',
       ],
       fr: [
-        'Détails de l\'animal : nouvelle présentation.',
-        'Les marques auriculaires prennent à nouveau en charge les préfixes.',
+        "Détails de l'animal : nouvelle présentation.",
+        'Les marques auriculaires prennent en charge les préfixes.',
         'Sorties : exceptions par troupeau, étable comme type distinct.',
         'Autres améliorations et corrections.',
       ],
       it: [
-        'Dettagli dell\'animale: nuova veste grafica.',
-        'Le marche auricolari supportano di nuovo i prefissi.',
+        "Dettagli dell'animale: nuova veste grafica.",
+        'Le marche auricolari supportano i prefissi.',
         'Uscite: eccezioni per mandria, stalla come tipo a sé.',
         'Altri miglioramenti e correzioni.',
       ],
       en: [
         'Animal details: redesigned.',
-        'Ear tags support prefixes again.',
+        'Ear tags support prefixes.',
         'Outdoor schedules: exceptions per herd, stable as its own type.',
         'Further improvements and fixes.',
       ],
