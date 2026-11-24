@@ -23,6 +23,38 @@ export interface Release {
 export const RELEASES: Release[] = [
   // pnpm release inserts new entries below this line
   {
+    version: '1.0.12',
+    releasedAt: '2026-11-24',
+    platforms: ['ios', 'android'],
+    minSupportedVersion: null,
+    notes: {
+      de: [
+        'Tierdetails: neu gestaltet.',
+        'Ohrmarken unterstützen wieder Präfixe.',
+        'Auslauf: Ausnahmen pro Herde, Stall als eigener Typ.',
+        'Weitere Verbesserungen und Fehlerbehebungen.',
+      ],
+      fr: [
+        'Détails de l\'animal : nouvelle présentation.',
+        'Les marques auriculaires prennent à nouveau en charge les préfixes.',
+        'Sorties : exceptions par troupeau, étable comme type distinct.',
+        'Autres améliorations et corrections.',
+      ],
+      it: [
+        'Dettagli dell\'animale: nuova veste grafica.',
+        'Le marche auricolari supportano di nuovo i prefissi.',
+        'Uscite: eccezioni per mandria, stalla come tipo a sé.',
+        'Altri miglioramenti e correzioni.',
+      ],
+      en: [
+        'Animal details: redesigned.',
+        'Ear tags support prefixes again.',
+        'Outdoor schedules: exceptions per herd, stable as its own type.',
+        'Further improvements and fixes.',
+      ],
+    },
+  },
+  {
     version: '1.0.11',
     releasedAt: '2026-11-18',
     platforms: ['ios', 'android'],
