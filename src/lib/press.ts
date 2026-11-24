@@ -41,6 +41,24 @@ export const BUENDNER_BAUER_ARTICLE: PressCoverage = {
 // Every article about Coltivio, newest first. Listed on /press.
 export const PRESS_COVERAGE: PressCoverage[] = [
   BUENDNER_BAUER_ARTICLE,
+  // Interview with Curdin by Tina Furger, Italian only, every locale links it.
+  {
+    outlet: { de: 'Il Moesano', fr: 'Il Moesano', it: 'Il Moesano', en: 'Il Moesano' },
+    issue: { de: '4.11.2026', fr: '4.11.2026', it: '4.11.2026', en: '4.11.2026' },
+    title: {
+      de: 'Da Braggio un’app per semplificare il lavoro nei campi',
+      fr: 'Da Braggio un’app per semplificare il lavoro nei campi',
+      it: 'Da Braggio un’app per semplificare il lavoro nei campi',
+      en: 'Da Braggio un’app per semplificare il lavoro nei campi',
+    },
+    url: {
+      de: 'https://ilmoesano.ch/notizie/politica/da-braggio-unapp-per-semplificare-il-lavoro-nei-campi',
+      fr: 'https://ilmoesano.ch/notizie/politica/da-braggio-unapp-per-semplificare-il-lavoro-nei-campi',
+      it: 'https://ilmoesano.ch/notizie/politica/da-braggio-unapp-per-semplificare-il-lavoro-nei-campi',
+      en: 'https://ilmoesano.ch/notizie/politica/da-braggio-unapp-per-semplificare-il-lavoro-nei-campi',
+    },
+    format: 'web',
+  },
   // The online report on bioaktuell.ch, a shortened version of the print article.
   // German and French only; Italian and English link the German one.
   {
