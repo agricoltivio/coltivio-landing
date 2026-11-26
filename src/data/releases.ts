@@ -24,7 +24,7 @@ export const RELEASES: Release[] = [
   // pnpm release inserts new entries below this line
   {
     version: '1.0.12',
-    releasedAt: '2026-11-24',
+    releasedAt: '2026-11-26',
     platforms: ['ios', 'android'],
     minSupportedVersion: null,
     notes: {
